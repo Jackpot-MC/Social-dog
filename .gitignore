@@ -232,4 +232,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+## 폴더 무시
+target/
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,intellij,java
