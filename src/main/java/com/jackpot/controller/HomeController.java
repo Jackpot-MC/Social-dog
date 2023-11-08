@@ -1,4 +1,4 @@
-package com.jackpot.web;
+package com.jackpot.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
