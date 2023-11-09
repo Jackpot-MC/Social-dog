@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackpot.mapper.DogMapper">
+	<resultMap id="dogMap" type="com.jackpot.domain.DogVO">
+		<id property="dogId" column="dog_id" />
+		<result property="dogId" column="dog_id" />
+		<result property="dogName" column="dog_name" />
+		<result property="dogKind" column="dog_kind" />
+		<result property="dogBirth" column="dog_birth" />
+		<result property="photoPath" column="photo_path" />
+		<result property="dogFavorite" column="dog_favorite" />
+		<result property="dogDescription" column="dog_description" />		
+	</resultMap>
+	
+	<insert id="create">
+		insert into dog (dog_name, dog_kind, dog_birth, photo_path, dog_favorite, dog_description)
+		values (#{dog_name}, #{dog_kind}, #{dog_birth}, #{photo_path}, #{dog_favorite}, #{dog_description})
+	</insert>
+	
+	<select id="get" resultMap="dogMap">
+		select dog_name, dog_kind, dog_birth, photo_path, dog_favorite, dog_description 
+		from dog where dog_id = #{dog_id} 
+	</select>
+	
+	<select id="update">
+		update dog
+		set dog_name = #{dog_name}, 
+			dog_kind = #{dog_kind), 
+			dog_birth = #{dog_birth}, 
+			photo_path = #{photo_path}, 
+			dog_favorite = #{dog_favorite}, 
+			dog_description = #{dog_description}
+		where dog_id = #{dog_id}
+	</select>
+	
+	<delete id="delete">
+		delete
+		from dog
+		where dog_id = #{dog_id}
+	</delete>
+	
+	<select id="getList" resultType="DogVO">
+		select * from dog
+	</select>
+	
+	
+</mapper>

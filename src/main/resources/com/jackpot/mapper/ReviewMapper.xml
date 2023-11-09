@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackpot.mapper.ReviewMapper">
+	<resultMap id="reviewMap" type="com.jackpot.domain.ReviewVO">
+		<id property="reviewId" column="review_id" />
+		<result property="reviewId" column="review_id" />
+		<result property="reviewTitle" column="review_title" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewDate" column="review_date" />
+		<result property="rating" column="rating" />
+	</resultMap>
+	
+	<insert id="create">
+		insert into review (review_id, review_title, review_content, review_date, rating)
+		values (#{review_title}, #{review_content}, #{review_date}, #{rating})
+	</insert>
+	
+	<select id="get" resultMap="reviewMap">
+		select review_title, review_content, review_date, rating 
+		from dog where review_id = #{review_id} 
+	</select>
+	
+	<select id="update">
+		update review
+		set review_title = #{review_title}, 
+			review_content = #{review_content), 
+			review_date = #{review_date}, 
+			rating = #{rating}, 
+		where review_id = #{review_id}
+	</select>
+	
+	<delete id="delete">
+		delete
+		from review
+		where review_id = #{review_id}
+	</delete>
+	
+	<select id="getList" resultType="ReviewVO">
+		select * from review
+	</select>
+	
+</mapper>

@@ -2,7 +2,6 @@ package com.jackpot.config;
 
 import javax.sql.DataSource;
 
-import org.galapagos.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -28,10 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Bean
-	public UserDetailsService customUserService() {
-		return new CustomUserDetailsService();
-	}
+//	@Bean
+//	public UserDetailsService customUserService() {
+//		return new CustomUserDetailsService();
+//	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -103,8 +101,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 * .roles("MEMBER");
 		 */
 		
-		auth.userDetailsService(customUserService())
-			.passwordEncoder(passwordEncoder());
+//		auth.userDetailsService(customUserService())
+//			.passwordEncoder(passwordEncoder());
 		
 	}
 
