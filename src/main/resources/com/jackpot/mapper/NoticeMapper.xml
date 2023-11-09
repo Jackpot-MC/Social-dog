@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackpot.mapper.NoticeMapper">
+
+	<resultMap id="noticeMap" type="com.jackpot.domain.AdminVO">
+		<id property="noticeId" column="notice_id" />
+		<result property="noticeTitle" column="notice_title" />
+		<result property="noticeContent" column="notice_content" />
+		<result property="adminId" column="admin_id" />
+	</resultMap>
+	
+	<select id = "read" resultMap="noticeMap">
+		select notice_id, notice_title, notice_content, admin_id
+		from notice
+		where notice_id = #{notice_id}
+	</select>
+	
+	<insert id = "insert">
+		insert into notice(notice_id, notice_title, notice_content, admin_id)
+		values(#{notice_id}, #{notice_title}, #{notice_content}, #{admin_id})
+	</insert>
+	
+	<update id = "update">
+		update notice set
+			notice_title = #{notice_title},
+			notice_content = #{notice_content},
+		where notice_id = #{notice_id}
+	</update>
+	
+	<delete id="delete">
+		delete from notice where notice_id = #{notice_id}
+	</delete>
+
+</mapper>
