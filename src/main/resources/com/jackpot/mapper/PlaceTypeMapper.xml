@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackpot.mapper.PlaceTypeMapper">
+    <resultMap id="placeTypeMap" type="com.jackpot.domain.PlaceTypeVO">
+        <id property="placeTypeID" column="place_type_id"/>
+        <result property="placeTypeID" column = "place_type_id"/>
+        <result property="placeTypeName" column="place_type_name"/>
+    </resultMap>
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="place_type_id">
+        insert into place_type (place_type_name)
+        values (#{place_type_name})
+    </insert>
+
+    <insert id="insertSelectKey">
+        insert into place_type (place_type_name)
+        values (#{place_type_name})
+
+        <selectKey resultType="Long" keyProperty="place_type_id" keyColumn="place_type_id" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <select id="get" resultType="PlaceTypeVO">
+        select *
+        from place_type
+        where place_type_id = #{place_type_id}
+    </select>
+
+    <delete id="delete">
+        delete
+        from place_type
+        where place_type_id = #{place_type_id}
+    </delete>
+
+    <update id="update">
+        update place_type
+        set place_type_name = #{place_type_name}
+        where place_type_id = #{place_type_id}
+    </update>
+
+    <select id="getList" resultType="PlaceTypeVO">
+        select * from place_type
+    </select>
+</mapper>
