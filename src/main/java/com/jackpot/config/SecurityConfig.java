@@ -2,7 +2,6 @@ package com.jackpot.config;
 
 import javax.sql.DataSource;
 
-import org.galapagos.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +16,6 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
-
 import lombok.extern.log4j.Log4j;
 
 @Configuration		// 설정이라는 뜻
@@ -28,10 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Bean
-	public UserDetailsService customUserService() {
-		return new CustomUserDetailsService();
-	}
+//	@Bean
+//	public UserDetailsService customUserService() {
+//		return new CustomUserDetailsService();
+//	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -91,20 +89,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		log.info("configure......................");
 		
-/* 위의 http로 비번 처리를 해야함. 이 부분은 메모리에 직접 접근하는 방법. 테스트용.
-		 * auth.inMemoryAuthentication() // 메모리에서 사용자 정보 설정 .withUser("admin") //
-		 * username, 사용자id
-		 * .password("$2a$10$YpK24Ik1JCkZUCSMM5rEI.1lRLVdiamjr.Fp0SIqD7b3KFVr7yqx6")
-		 * .roles("ADMIN"); // 역할 설정. 앞에 ROLE_ 안 붙여도 자동으로 붙음
-		 * 
-		 * auth.inMemoryAuthentication() .withUser("member") // .password("{noop}1234")
-		 * // 비밀번호, {noop}는 암호화 없음 의미 (no operation 약자)
-		 * .password("$2a$10$YpK24Ik1JCkZUCSMM5rEI.1lRLVdiamjr.Fp0SIqD7b3KFVr7yqx6")
-		 * .roles("MEMBER");
-		 */
+		auth.inMemoryAuthentication()	// 메모리에서 사용자 정보 설정
+		.withUser("admin")			// username, 사용자id
+		.password("$2a$10$YpK24Ik1JCkZUCSMM5rEI.1lRLVdiamjr.Fp0SIqD7b3KFVr7yqx6")
+		.roles("ADMIN");			// 역할 설정. 앞에 ROLE_ 안 붙여도 자동으로 붙음
+	
+		auth.inMemoryAuthentication()
+		.withUser("member")
+//		.password("{noop}1234")	// 비밀번호, {noop}는 암호화 없음 의미 (no operation 약자)
+		.password("$2a$10$YpK24Ik1JCkZUCSMM5rEI.1lRLVdiamjr.Fp0SIqD7b3KFVr7yqx6")
+		.roles("MEMBER");
 		
-		auth.userDetailsService(customUserService())
-			.passwordEncoder(passwordEncoder());
+//		auth.userDetailsService(customUserService())
+//			.passwordEncoder(passwordEncoder());
 		
 	}
 
