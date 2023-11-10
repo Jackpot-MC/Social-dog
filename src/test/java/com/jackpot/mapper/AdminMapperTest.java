@@ -31,17 +31,43 @@ public class AdminMapperTest {
 	
 //	@Test
 //	public void testInsert() {
-//		fail("Not yet implemented");
+//		AdminVO admin = new AdminVO();
+//		admin.setAdminId(4L);
+//		admin.setAdminLoginId("admin4");
+//		admin.setAdminLoginPwd("admin4");
+//		log.info(admin);
+//		
+//		mapper.insert(admin);
+//		
+//		log.info(admin);
 //	}
-//
+
 //	@Test
 //	public void testUpdate() {
-//		fail("Not yet implemented");
+//		AdminVO admin = mapper.get("admin1");
+//		log.info(admin);
+//		
+//		if(admin == null) {
+//			return;
+//		}
+//		
+//		admin.setAdminLoginPwd("admin111");
+//		log.info(admin);
+//		
+//		mapper.update(admin);
+//		
+//		log.info(admin);
 //	}
-//
+
 //	@Test
 //	public void testDelete() {
-//		fail("Not yet implemented");
+//		log.info("DELETE COUNT: " + mapper.delete(2L));
 //	}
+	
+//	@Test
+//	public void testDeleteLoginId() {
+//		log.info("DELETE COUNT: " + mapper.deleteLoginId("admin3"));
+//	}
+
 
 }

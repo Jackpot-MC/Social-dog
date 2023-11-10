@@ -37,10 +37,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public boolean remove(int adminId) {
+	public boolean remove(Long adminId) {
 		log.info("remove......." + adminId);
 		
 		return mapper.delete(adminId) == 1;
+	}
+
+	@Override
+	public boolean removeLoginId(String adminLoginId) {
+		log.info("removeLoginId......." + adminLoginId);
+		
+		return mapper.deleteLoginId(adminLoginId) == 1;
 	}
 
 }

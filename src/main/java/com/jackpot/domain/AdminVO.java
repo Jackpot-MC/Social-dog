@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AdminVO {
 
-	private int adminId;
+	private Long adminId;
 	
 	@NotBlank(message = "관리자 id는 필수 항목입니다.")
 	private String adminLoginId;

@@ -6,11 +6,11 @@ import com.jackpot.domain.NoticeVO;
 
 public interface NoticeService {
 
-	public NoticeVO get(int noticeId);
+	public NoticeVO get(Long noticeId);
 	
 	public void register(NoticeVO notice) throws IOException;
 	
-	public void modify(NoticeVO notice) throws IOException;
+	public int modify(NoticeVO notice) throws IOException;
 
-	public boolean remove(int noticeId);
+	public boolean remove(Long noticeId);
 }
