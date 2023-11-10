@@ -51,7 +51,7 @@ public class NoticeController {
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
-	public void get(@RequestParam("noticeId") int noticeId, Model model) {
+	public void get(@RequestParam("noticeId") Long noticeId, Model model) {
 		log.info("/get or modify");
 		model.addAttribute("notice", service.get(noticeId));
 	}
@@ -65,7 +65,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("noticeId") int noticeId) {
+	public String remove(@RequestParam("noticeId") Long noticeId) {
 		log.info("remove..." + noticeId);
 		
 		service.remove(noticeId);

@@ -18,7 +18,7 @@ public class NoticeServiceImpl implements NoticeService {
 	NoticeMapper mapper;
 	
 	@Override
-	public NoticeVO get(int noticeId) {
+	public NoticeVO get(Long noticeId) {
 		return mapper.read(noticeId);
 	}
 
@@ -31,14 +31,14 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void modify(NoticeVO notice) throws IOException {
+	public int modify(NoticeVO notice) throws IOException {
 		log.info("update......." + notice);
 		
-		mapper.update(notice);
+		return mapper.update(notice);
 	}
 
 	@Override
-	public boolean remove(int noticeId) {
+	public boolean remove(Long noticeId) {
 		log.info("remove......." + noticeId);
 		
 		return mapper.delete(noticeId) == 1;

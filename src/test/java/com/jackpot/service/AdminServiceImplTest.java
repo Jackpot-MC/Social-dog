@@ -25,31 +25,47 @@ public class AdminServiceImplTest {
 	@Autowired
 	private AdminService service;
 	
+	@Test
+	public void testGet() {
+		log.info(service.get("admin4"));
+	}
+
 //	@Test
-//	public void testGet() {
-//		fail("Not yet implemented");
+//	public void testRegister(){
+//		AdminVO admin = new AdminVO();
+//		admin.setAdminLoginId("admin2");
+//		admin.setAdminLoginPwd("admin2");
+//		log.info(admin);
+//		
+//		service.register(admin);
+//		
+//		log.info(admin);
 //	}
 
-	@Test
-	public void testRegister(){
-		AdminVO admin = new AdminVO();
-		admin.setAdminId(3);
-		admin.setAdminLoginId("admin3");
-		admin.setAdminLoginPwd("admin3");
-		
-		service.register(admin);
-		
-		log.info("생성된 게시물의 번호: " + admin.getAdminId());
-	}
-//
 //	@Test
-//	public void testModify() {
-//		fail("Not yet implemented");
+//	public void testModify() throws IOException {
+//		AdminVO admin = service.get("admin1");
+//		
+//		if(admin == null) {
+//			return;
+//		}
+//		
+//		admin.setAdminLoginPwd("admin112");
+//		log.info(admin);
+//		
+//		service.modify(admin);
+//		
+//		log.info(admin);
 //	}
-//
+
 //	@Test
 //	public void testRemove() {
-//		fail("Not yet implemented");
+//		log.info("REMOVE RESULT: " + service.remove(5L));
+//	}
+	
+//	@Test
+//	public void testRemoveLoginId() {
+//		log.info("REMOVE RESULT: " + service.removeLoginId("admin3"));
 //	}
 
 }

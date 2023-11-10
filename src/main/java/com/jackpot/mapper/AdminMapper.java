@@ -10,5 +10,7 @@ public interface AdminMapper {
 	
 	public int update(AdminVO admin);
 	
-	public int delete(int adminId); // PK 전달
+	public int delete(Long adminId); // PK 전달
+	
+	public int deleteLoginId(String adminLoginId); // PK 전달
 }

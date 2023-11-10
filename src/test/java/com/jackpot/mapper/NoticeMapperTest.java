@@ -1,5 +1,9 @@
 package com.jackpot.mapper;
 
+import static org.junit.Assert.fail;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.jackpot.config.RootConfig;
-import com.jackpot.domain.AdminVO;
+import com.jackpot.domain.NoticeVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -16,58 +20,47 @@ import lombok.extern.log4j.Log4j;
 @WebAppConfiguration
 @ContextConfiguration(classes= {RootConfig.class})
 @Log4j
-public class AdminMapperTest {
+public class NoticeMapperTest {
 
 	@Autowired
-	private AdminMapper mapper;
+	private NoticeMapper mapper;
 	
 	@Test
-	public void testGet() {
-		AdminVO admin = mapper.get("admin1");
+	public void testRead() {
+		NoticeVO notice = mapper.read(1L);
 		
-		log.info(admin);
+		log.info(notice);
 		log.warn("성공");
 	}
-	
+
 //	@Test
 //	public void testInsert() {
-//		AdminVO admin = new AdminVO();
-//		admin.setAdminId(4L);
-//		admin.setAdminLoginId("admin4");
-//		admin.setAdminLoginPwd("admin4");
-//		log.info(admin);
+//		NoticeVO notice = new NoticeVO();
+//		notice.setNoticeTitle("새로 작성하는 글");
+//		notice.setNoticeContent("새로 작성하는 내용");
+//		notice.setAdminId(7L);
 //		
-//		mapper.insert(admin);
+//		mapper.insert(notice);
 //		
-//		log.info(admin);
+//		log.info(notice);
 //	}
 
 //	@Test
 //	public void testUpdate() {
-//		AdminVO admin = mapper.get("admin1");
-//		log.info(admin);
+//		NoticeVO notice = new NoticeVO();
+//		notice.setNoticeId(3L);
+//		notice.setNoticeTitle("수정한 제목");
+//		notice.setNoticeContent("수정한 내용");
+//		log.info(notice);
 //		
-//		if(admin == null) {
-//			return;
-//		}
+//		int count = mapper.update(notice);
 //		
-//		admin.setAdminLoginPwd("admin111");
-//		log.info(admin);
-//		
-//		mapper.update(admin);
-//		
-//		log.info(admin);
+//		log.info(count);
 //	}
 
 //	@Test
 //	public void testDelete() {
 //		log.info("DELETE COUNT: " + mapper.delete(2L));
 //	}
-	
-//	@Test
-//	public void testDeleteLoginId() {
-//		log.info("DELETE COUNT: " + mapper.deleteLoginId("admin3"));
-//	}
-
 
 }
