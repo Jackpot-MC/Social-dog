@@ -12,7 +12,7 @@ public class PlaceTypeServiceImpl implements PlaceTypeService{
     @Override
     public void create(PlaceTypeVO placeType) {
         placeTypeMapper.insertSelectKey(placeType);
-        Long placeTypeID = placeType.getPlaceTypeID();
+        Long placeTypeID = placeType.getPlaceTypeId();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class PlaceTypeServiceImpl implements PlaceTypeService{
     public boolean update(PlaceTypeVO placeType) {
         int result = placeTypeMapper.update(placeType);
 
-        Long placeTypleID = placeType.getPlaceTypeID();
+        Long placeTypleID = placeType.getPlaceTypeId();
 
         return result == 1;
     }

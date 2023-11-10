@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlaceVO {
-    private Long placeID;
+    private Long placeId;
     private String placeName;
     private String placeSpot;
     private Long placeTypeID;

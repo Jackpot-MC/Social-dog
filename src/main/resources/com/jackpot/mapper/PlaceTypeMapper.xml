@@ -5,8 +5,8 @@
 
 <mapper namespace="com.jackpot.mapper.PlaceTypeMapper">
     <resultMap id="placeTypeMap" type="com.jackpot.domain.PlaceTypeVO">
-        <id property="placeTypeID" column="place_type_id"/>
-        <result property="placeTypeID" column = "place_type_id"/>
+        <id property="placeTypeId" column="place_type_id"/>
+        <result property="placeTypeId" column = "place_type_id"/>
         <result property="placeTypeName" column="place_type_name"/>
     </resultMap>
 
@@ -19,7 +19,7 @@
         insert into place_type (place_type_name)
         values (#{place_type_name})
 
-        <selectKey resultType="Long" keyProperty="place_type_id" keyColumn="place_type_id" order="AFTER">
+        <selectKey resultType="Long" keyProperty="placeTypeId" keyColumn="place_type_id" order="AFTER">
             SELECT LAST_INSERT_ID();
         </selectKey>
     </insert>

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlaceTypeVO {
-    private Long placeTypeId;
-    private String placeTypeName;
+public class AuthVO {
+	private String username;
+	private String auth;
 }

@@ -7,13 +7,13 @@ import java.util.List;
 public interface PlaceMapper {
     public void create(PlaceVO place);
 
-    public PlaceVO get(Long placeID);
+    public PlaceVO get(Long placeId);
 
     public int update(PlaceVO place);
 
-    public boolean delete(Long placeID);
+    public boolean delete(Long placeId);
 
-    public List<PlaceVO> getList() throws Exception;
+    public List<PlaceVO> getList();
 
     public void insertSelectKey(PlaceVO place);
 }
