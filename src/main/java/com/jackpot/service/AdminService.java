@@ -12,7 +12,5 @@ public interface AdminService {
 	
 	public void modify(AdminVO admin) throws IOException;
 
-	public boolean remove(Long adminId);
-	
-	public boolean removeLoginId(String adminLoginId);
+	public boolean remove(int adminId);
 }
