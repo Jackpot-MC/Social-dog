@@ -14,26 +14,22 @@
 	<select id = "get" resultMap="adminMap">
 		select admin_id, admin_login_id, admin_login_pwd
 		from admin
-		where admin_login_id = #{adminLoginId}
+		where admin_login_id = #{admin_login_id}
 	</select>
 	
 	<insert id = "insert">
 		insert into admin(admin_id, admin_login_id, admin_login_pwd)
-		values(#{adminId}, #{adminLoginId}, #{adminLoginPwd})
+		values(#{admin_id}, #{admin_login_id}, #{admin_login_pwd})
 	</insert>
 	
 	<update id = "update">
 		update admin set
-			admin_login_pwd = #{adminLoginPwd}
-		where admin_id = #{adminId}
+			admin_login_pwd = #{admin_login_pwd},
+		where admin_id = #{admin_id}
 	</update>
 	
 	<delete id="delete">
-		delete from admin where admin_id = #{adminId}
-	</delete>
-	
-	<delete id="deleteLoginId">
-		delete from admin where admin_login_id = #{adminLoginPwd}
+		delete from admin where admin_id = #{admin_id}
 	</delete>
 
 </mapper>
