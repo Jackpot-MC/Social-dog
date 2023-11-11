@@ -34,7 +34,7 @@ public class PlaceServiceImpl implements PlaceService{
     }
 
     @Override
-    public List<PlaceVO> getList() throws Exception {
+    public List<PlaceVO> getList(){
         return placeMapper.getList();
     }
 }

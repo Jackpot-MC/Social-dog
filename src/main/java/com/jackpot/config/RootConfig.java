@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -48,8 +47,8 @@ public class RootConfig {
 		
 		sqlSessionFactory.setConfigLocation(
 		        applicationContext.getResource(
-//						"classpath:/mybatis-config.xml"));
-		 "file:D:/IdeaProjects/Social-dog/src/main/resources/mybatis-config.xml"));
+						"classpath:/mybatis-config.xml"));
+//		 "file:D:/IdeaProjects/Social-dog/src/main/resources/mybatis-config.xml"));
 		
 		sqlSessionFactory.setDataSource(dataSource()); //메소드 호출이 아니라, dataSource()가 리턴한 Bean을 달라는 의미
 		return (SqlSessionFactory) sqlSessionFactory.getObject();

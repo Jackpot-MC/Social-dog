@@ -1,9 +1,11 @@
 package com.jackpot.service;
 
 import com.jackpot.domain.PlaceVO;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface PlaceService {
     public void create(PlaceVO place);
 
@@ -13,5 +15,5 @@ public interface PlaceService {
 
     public boolean delete(Long placeId);
 
-    public List<PlaceVO> getList() throws Exception;
+    public List<PlaceVO> getList();
 }

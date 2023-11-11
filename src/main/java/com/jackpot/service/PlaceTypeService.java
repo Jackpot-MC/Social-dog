@@ -1,9 +1,11 @@
 package com.jackpot.service;
 
 import com.jackpot.domain.PlaceTypeVO;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface PlaceTypeService {
 
     public void create(PlaceTypeVO placeType);

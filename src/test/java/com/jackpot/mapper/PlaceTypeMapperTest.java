@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import java.util.List;
 
+import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,13 +49,17 @@ public class PlaceTypeMapperTest {
 
     @Test
     public void delete() {
-        placeTypeMapper.delete(1L);
+        if (placeTypeMapper.delete(1L)) {
+            log.info("삭제 성공");
+        } else {
+            log.info("삭제 실패");
+        }
     }
 
     @Test
     public void getList() {
         List<PlaceTypeVO> placeTypes = placeTypeMapper.getList();
-        for(PlaceTypeVO placeType : placeTypes){
+        for (PlaceTypeVO placeType : placeTypes) {
             log.info(placeType);
         }
     }

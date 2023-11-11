@@ -45,7 +45,12 @@ public class PlaceMapperTest {
 
     @Test
     public void delete() {
-        placeMapper.delete(1L);
+       if(placeMapper.delete(1L)){
+            log.info("삭제 성공");
+        }
+       else{
+           log.info("삭제 실패");
+       }
     }
 
     @Test
