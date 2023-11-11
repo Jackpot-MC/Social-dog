@@ -33,15 +33,15 @@ public class RootConfig {
 //		config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 //		config.setJdbcUrl("jdbc:mysql://localhost:3306/glory_db");
 		
-//		config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-//      config.setJdbcUrl("jdbc:log4jdbc:mysql://49.50.165.92:3306/social_dog_db");
-//      config.setUsername("kim");
-//      config.setPassword("gooddogDB777!");
-		
 		config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-		config.setJdbcUrl("jdbc:log4jdbc:mysql://localhost:3306/social_dog");
-		config.setUsername("dog_admin");
-		config.setPassword("1234");
+	    config.setJdbcUrl("jdbc:log4jdbc:mysql://49.50.165.92:3306/social_dog_db");
+	    config.setUsername("kim");
+	    config.setPassword("gooddogDB777!");
+		
+//		config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+//		config.setJdbcUrl("jdbc:log4jdbc:mysql://localhost:3306/social_dog");
+//		config.setUsername("dog_admin");
+//		config.setPassword("1234");
 		
 		HikariDataSource dataSource = new HikariDataSource(config);
 		return dataSource;

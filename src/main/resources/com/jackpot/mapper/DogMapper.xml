@@ -10,31 +10,32 @@
 		<result property="dogName" column="dog_name" />
 		<result property="dogKind" column="dog_kind" />
 		<result property="dogBirth" column="dog_birth" />
-		<result property="photoPath" column="photo_path" />
+		<result property="dogPhotoPath" column="dog_photo_path" />
 		<result property="dogFavorite" column="dog_favorite" />
 		<result property="dogDescription" column="dog_description" />		
 	</resultMap>
 	
 	<insert id="create">
-		insert into dog (dog_name, dog_kind, dog_birth, photo_path, dog_favorite, dog_description)
-		values (#{dog_name}, #{dog_kind}, #{dog_birth}, #{photo_path}, #{dog_favorite}, #{dog_description})
+		insert into dog (dog_name, dog_kind, dog_birth, dog_photo_path, dog_favorite, dog_description)
+		values (#{dogName}, #{dogKind}, #{dogBirth}, #{dogPhotoPath}, #{dogFavorite}, #{dogDescription})
 	</insert>
 	
 	<select id="get" resultMap="dogMap">
-		select dog_name, dog_kind, dog_birth, photo_path, dog_favorite, dog_description 
-		from dog where dog_id = #{dog_id} 
+		select dog_id, dog_name, dog_kind, dog_birth, dog_photo_path, dog_favorite, dog_description 
+		from dog where dog_id = #{dogId} 
 	</select>
 	
-	<select id="update">
+	<update id="update">
 		update dog
-		set dog_name = #{dog_name}, 
-			dog_kind = #{dog_kind), 
-			dog_birth = #{dog_birth}, 
-			photo_path = #{photo_path}, 
-			dog_favorite = #{dog_favorite}, 
-			dog_description = #{dog_description}
-		where dog_id = #{dog_id}
-	</select>
+		set dog_name = #{dogName}, 
+			dog_kind = #{dogKind}, 
+			dog_birth = #{dogBirth}, 
+			dog_photo_path = #{dogPhotoPath}, 
+			dog_favorite = #{dogFavorite}, 
+			dog_description = #{dogDescription}
+		where dog_id = #{dogId}
+	</update>
+	
 	
 	<delete id="delete">
 		delete

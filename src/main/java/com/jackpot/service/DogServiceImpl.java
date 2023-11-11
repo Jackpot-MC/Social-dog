@@ -22,15 +22,17 @@ public class DogServiceImpl implements DogService {
 	}
 
 	@Override
-	public boolean modify(DogVO dog) {
+	public void modify(DogVO dog) {
 		int result = dogMapper.update(dog);
 		Long DogId = dog.getDogId();
-		return result == 1;
+		
+//		return 
+		dogMapper.update(dog);
 	}
 
 	@Override
 	public boolean remove(Long dogNo) {
-		return dogMapper.delete(dogNo);
+		return dogMapper.delete(dogNo) == 1;
 	}
 
 	@Override

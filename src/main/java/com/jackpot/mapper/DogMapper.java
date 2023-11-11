@@ -12,7 +12,7 @@ public interface DogMapper {
 	
 	public int update(DogVO dog);
 	
-	public boolean delete(Long dogId); 
+	public int delete(Long dogId); 
 	
 	public List<DogVO> getList();
 }

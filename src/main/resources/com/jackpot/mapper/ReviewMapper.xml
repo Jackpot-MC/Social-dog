@@ -26,7 +26,7 @@
 	<select id="update">
 		update review
 		set review_title = #{review_title}, 
-			review_content = #{review_content), 
+			review_content = #{review_content}, 
 			review_date = #{review_date}, 
 			rating = #{rating}, 
 		where review_id = #{review_id}
