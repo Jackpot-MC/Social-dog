@@ -11,5 +11,5 @@ public class PlaceVO {
     private Long placeId;
     private String placeName;
     private String placeSpot;
-    private Long placeTypeId;
+    private Long placeTypeID;
 }
