@@ -1,10 +1,10 @@
 package com.jackpot.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlaceVO {
@@ -12,4 +12,10 @@ public class PlaceVO {
     private String placeName;
     private String placeSpot;
     private Long placeTypeID;
+
+    public void updatePlace(String placeName, String placeSpot, Long placeTypeID){
+        this.placeName = placeName;
+        this.placeSpot = placeSpot;
+        this.placeTypeID = placeTypeID;
+    }
 }
