@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackpot.mapper.AdminMapper">
+
+	<resultMap id="adminMap" type="com.jackpot.domain.AdminVO">
+		<id property="adminId" column="admin_id" />
+		<result property="adminLoginId" column="admin_login_id" />
+		<result property="adminLoginPwd" column="admin_login_pwd" />
+	</resultMap>
+	
+	<select id = "get" resultMap="adminMap">
+		select admin_id, admin_login_id, admin_login_pwd
+		from admin
+		where admin_login_id = #{adminLoginId}
+	</select>
+	
+	<insert id = "insert">
+		insert into admin(admin_id, admin_login_id, admin_login_pwd)
+		values(#{adminId}, #{adminLoginId}, #{adminLoginPwd})
+	</insert>
+	
+	<update id = "update">
+		update admin set
+			admin_login_pwd = #{adminLoginPwd}
+		where admin_id = #{adminId}
+	</update>
+	
+	<delete id="delete">
+		delete from admin where admin_id = #{adminId}
+	</delete>
+	
+	<delete id="deleteLoginId">
+		delete from admin where admin_login_id = #{adminLoginPwd}
+	</delete>
+
+</mapper>
