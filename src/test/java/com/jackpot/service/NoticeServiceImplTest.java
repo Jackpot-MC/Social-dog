@@ -51,7 +51,7 @@ public class NoticeServiceImplTest {
 			return;
 		}
 		
-		notice.setNoticeTitle("제목입니다 수정");
+		notice.setNoticeTitle("제목입니다 수정수정");
 		log.warn(notice);
 		
 		int count = service.modify(notice);
