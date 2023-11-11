@@ -12,12 +12,13 @@
 		<result property="dogBirth" column="dog_birth" />
 		<result property="dogPhotoPath" column="dog_photo_path" />
 		<result property="dogFavorite" column="dog_favorite" />
-		<result property="dogDescription" column="dog_description" />		
+		<result property="dogDescription" column="dog_description" />
+		<result property="memberId" column="member_id" />	
 	</resultMap>
 	
 	<insert id="create">
-		insert into dog (dog_name, dog_kind, dog_birth, dog_photo_path, dog_favorite, dog_description)
-		values (#{dogName}, #{dogKind}, #{dogBirth}, #{dogPhotoPath}, #{dogFavorite}, #{dogDescription})
+		insert into dog (dog_name, dog_kind, dog_birth, dog_photo_path, dog_favorite, dog_description, member_id)
+		values (#{dogName}, #{dogKind}, #{dogBirth}, #{dogPhotoPath}, #{dogFavorite}, #{dogDescription}, #{memberId})
 	</insert>
 	
 	<select id="get" resultMap="dogMap">

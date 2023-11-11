@@ -9,6 +9,9 @@ import lombok.Data;
 @Data
 public class ReviewVO {
 	private long reviewId;
+	
+	private long memberId;	//FK
+	private long placeId;	//FK
 
 	@NotBlank(message = "제목은 필수 항목입니다.")
 	private String reviewTitle;

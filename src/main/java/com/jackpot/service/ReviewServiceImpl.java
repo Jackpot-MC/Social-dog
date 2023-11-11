@@ -22,15 +22,17 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public boolean modify(ReviewVO review) {
+	public void modify(ReviewVO review) {
 		int result = reviewMapper.update(review);
 		Long ReviewId = review.getReviewId();
-		return result == 1;
+		
+//		return result == 1;
+		reviewMapper.update(review);
 	}
 
 	@Override
 	public boolean remove(Long reviewId) {
-		return reviewMapper.delete(reviewId);
+		return reviewMapper.delete(reviewId) == 1;
 	}
 
 	@Override

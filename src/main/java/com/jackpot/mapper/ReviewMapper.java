@@ -12,7 +12,7 @@ public interface ReviewMapper {
 	
 	public int update(ReviewVO review);
 	
-	public boolean delete(Long reviewId); 
+	public int delete(Long reviewId); 
 	
 	public List<ReviewVO> getList();
 }

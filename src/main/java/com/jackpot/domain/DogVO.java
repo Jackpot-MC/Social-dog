@@ -19,5 +19,7 @@ public class DogVO {
 	private String dogPhotoPath;
 	private String dogFavorite;
 	private String dogDescription;
+	
+	private long memberId;	//FK
 
 }
