@@ -47,7 +47,7 @@ public class RootConfig {
 		
 		sqlSessionFactory.setConfigLocation(
 		        applicationContext.getResource(
-						"classpath:/mybatis-config.xml"));
+						"file:src/main/resources/mybatis-config.xml"));
 //		 "file:D:/IdeaProjects/Social-dog/src/main/resources/mybatis-config.xml"));
 		
 		sqlSessionFactory.setDataSource(dataSource()); //메소드 호출이 아니라, dataSource()가 리턴한 Bean을 달라는 의미

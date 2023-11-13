@@ -11,5 +11,10 @@
 	<typeAliases>
 		<package name="com.jackpot.domain" />	<!-- 패키지 별명 설정 -->	
 	</typeAliases>
+
+	<mappers>
+		<mapper url = "file:src/main/resources/com/jackpot/mapper/PlaceMapper.xml"/>
+		<mapper url = "file:src/main/resources/com/jackpot/mapper/PlaceTypeMapper.xml"/>
+	</mappers>
 	
 </configuration>
