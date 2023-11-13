@@ -37,7 +37,7 @@ public class PlaceMapperTest {
 
     @Test
     public void update() {
-        PlaceVO place = placeMapper.get(1L);
+        PlaceVO place = placeMapper.get(2L);
         place.updatePlace("updated place name", "updated place spot", 2L);
         log.info(place);
         placeMapper.update(place);
@@ -63,7 +63,7 @@ public class PlaceMapperTest {
 
     @Test
     public void insertSelectKey() {
-        PlaceVO place = PlaceVO.builder().placeName("new place name2").placeSpot("new place spot2").placeTypeID(3L).build();
+        PlaceVO place = PlaceVO.builder().placeName("new place name2").placeSpot("new place spot2").placeTypeId(2L).build();
         log.info(place);
         placeMapper.insertSelectKey(place);
     }

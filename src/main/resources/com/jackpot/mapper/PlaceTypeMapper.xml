@@ -12,12 +12,12 @@
 
     <insert id="create" useGeneratedKeys="true" keyProperty="place_type_id">
         insert into place_type (place_type_name)
-        values (#{place_type_name})
+        values (#{placeTypeName})
     </insert>
 
     <insert id="insertSelectKey">
         insert into place_type (place_type_name)
-        values (#{place_type_name})
+        values (#{placeTypeName})
 
         <selectKey resultType="Long" keyProperty="placeTypeId" keyColumn="place_type_id" order="AFTER">
             SELECT LAST_INSERT_ID();
@@ -27,19 +27,19 @@
     <select id="get" resultType="PlaceTypeVO">
         select *
         from place_type
-        where place_type_id = #{place_type_id}
+        where place_type_id = #{placeTypeId}
     </select>
 
     <delete id="delete">
         delete
         from place_type
-        where place_type_id = #{place_type_id}
+        where place_type_id = #{placeTypeId}
     </delete>
 
     <update id="update">
         update place_type
-        set place_type_name = #{place_type_name}
-        where place_type_id = #{place_type_id}
+        set place_type_name = #{placeTypeName}
+        where place_type_id = #{placeTypeId}
     </update>
 
     <select id="getList" resultType="PlaceTypeVO">

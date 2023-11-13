@@ -13,11 +13,11 @@ public class PlaceVO {
     private Long placeId;
     private String placeName;
     private String placeSpot;
-    private Long placeTypeID;
+    private Long placeTypeId;
 
-    public void updatePlace(String placeName, String placeSpot, Long placeTypeID){
+    public void updatePlace(String placeName, String placeSpot, Long placeTypeId){
         this.placeName = placeName;
         this.placeSpot = placeSpot;
-        this.placeTypeID = placeTypeID;
+        this.placeTypeId = placeTypeId;
     }
 }

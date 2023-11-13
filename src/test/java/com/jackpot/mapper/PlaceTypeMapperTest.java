@@ -40,7 +40,7 @@ public class PlaceTypeMapperTest {
 
     @Test
     public void update() {
-        PlaceTypeVO placeTypeVO = placeTypeMapper.get(1L);
+        PlaceTypeVO placeTypeVO = placeTypeMapper.get(2L);
         placeTypeVO.updatePlaceTypeName("updated type name");
         log.info(placeTypeVO);
 

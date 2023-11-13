@@ -28,7 +28,7 @@ public class PlaceServiceTest {
                 .placeId(3L)
                 .placeName("new place name3")
                 .placeSpot("new place spot3")
-                .placeTypeID(3L)
+                .placeTypeId(3L)
                 .build();
 
         log.info(place);

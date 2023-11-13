@@ -39,7 +39,9 @@
 
     <update id="update">
         update place
-        set place_name = #{placeName}
+        set place_name    = #{placeName},
+            place_spot    = #{placeSpot},
+            place_type_id = #{placeTypeId}
         where place_id = #{placeId}
     </update>
 
