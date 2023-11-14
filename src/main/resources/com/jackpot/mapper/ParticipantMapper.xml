@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackpot.mapper.ParticipantMapper">
+    <resultMap id="participantMap" type="com.jackpot.domain.ParticipantVO">
+        <id property="participantId" column="participant_id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="appointmentId" column="appointment_id"/>
+    </resultMap>
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="participant_id">
+        insert into participant (member_id, appointment_id)
+        values (#{member_id}, #{appointment_id})
+    </insert>
+
+    <insert id="insertSelectKey">
+        insert into participant (member_id, appointment_id)
+        values (#{memberId}, #{appointmentId})
+        
+        <selectKey resultType="Long" keyProperty="participantId" keyColumn="participant_id" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <select id="get" resultType="ParticipantVO">
+        select *
+        from participant
+        where participant_id = #{participant_id}
+    </select>
+
+    <delete id="delete">
+        delete
+        from participant
+        where participant_id = #{participant_id}
+    </delete>
+
+    <select id="getList" resultType="ParticipantVO">
+        select * from place
+    </select>
+</mapper>

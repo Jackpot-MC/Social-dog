@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackpot.mapper.AppointmentMapper">
+	<resultMap id="appointmentMap"
+		type="com.jackpot.domain.AppointmentVO">
+		<id property="appointmentId" column="appointment_id" />
+		<result property="appointmentId" column="appointment_id" />
+		<result property="appointmentName" column="appointment_name" />
+		<result property="appointmentDate" column="appointment_date" />
+		<result property="placeId" column="place_id" />
+		<result property="hostId" column="host_id" />
+
+	</resultMap>
+
+	<insert id="create" useGeneratedKeys="true"
+		keyProperty="appointment_id">
+		insert into appointment (appointment_id, appointment_name, appointment_date, place_id, host_id)
+		values
+		(#{appointment_id}, #{appointment_name}, #{appointment_date}, #{place_id}, #{host_id} )
+	</insert>
+
+	<insert id="insertSelectKey">
+		insert into appointment (appointment_name, appointment_date, place_id, host_id)
+		values
+		(#{appointmentName}, #{appointmentDate}, #{placeId}, #{hostId})
+
+		<selectKey resultType="Long" keyProperty="appointmentId"
+			keyColumn="appointment_id" order="AFTER">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+	</insert>
+
+    <update id="update">
+        update appointment
+        set appointment_name = #{appointmentName},appointment_date = #{appointmentDate}, place_id = #{placeId}
+        where appointment_id = #{appointmentId}
+    </update>
+
+	<select id="get" resultType="AppointmentVO">
+		select *
+		from appointment
+		where
+		appointment_id = #{appointment_id}
+	</select>
+
+	<delete id="delete">
+		delete
+		from appointment
+		where appointment_id =
+		#{appointment_id}
+	</delete>
+
+	<select id="getList" resultType="AppointmentVO">
+		select * from appointment
+	</select>
+</mapper>
