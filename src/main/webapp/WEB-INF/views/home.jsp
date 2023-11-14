@@ -14,10 +14,10 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=97a9015498ead4a6b2a0dd3237525dfb&libraries=services"></script>
 <script>
   let geocoder = new kakao.maps.services.Geocoder();
-  let address = '${travel.address}';
+  let address = '${member.memberAddress}';
   
   let locals = [
-	  <c:forEach var="local" items="${travel.locals}">
+	  <c:forEach var="local" items="${member.memberLocals}">
 	  	{
 	  		name: '${local.placeName}',
 	  		coords: new kakao.maps.LatLng(${local.y}, ${local.x})
