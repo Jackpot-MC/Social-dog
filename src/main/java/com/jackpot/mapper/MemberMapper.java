@@ -1,20 +1,27 @@
 package com.jackpot.mapper;
 
 
-import com.jackpot.domain.AuthVO;
+import java.util.List;
+
 import com.jackpot.domain.MemberVO;
 
 public interface MemberMapper {
-	public MemberVO read(String username);
+
+	// 회원정보조회
+	public MemberVO get(String memberLoginId);
+
+	// 회원가입
+	public void join(MemberVO member);
 	
-	public void insert(MemberVO member);
+	// 회원정보수정
+	public int update(MemberVO member);
 	
-	// insert부터 해서 username이라는 foreign키를 등록한 후에 실행해야 오류가 나지 않음
-	public void insertAuth(AuthVO auth);
+	// 회원정보삭제 (회원탈퇴)
+	public int delete(String memberLoginId);
+
+	public List<MemberVO> getList();
 	
-	public void modify(MemberVO member);
-	
-	// insert부터 해서 username이라는 foreign키를 등록한 후에 실행해야 오류가 나지 않음
-	public void modifyAuth(AuthVO auth);
+	// 로그인
+	public MemberVO login(MemberVO member);
 	
 }

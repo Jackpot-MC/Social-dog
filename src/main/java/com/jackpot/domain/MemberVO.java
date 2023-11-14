@@ -1,47 +1,40 @@
 package com.jackpot.domain;
 
-import lombok.Data;
-import lombok.extern.log4j.Log4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Log4j
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberVO {
-	@NotBlank(message = "사용자 id는 필수 항목입니다.")
+
+
+	private Long memberId;
+	
+	@NotBlank(message = "사용자 이름은 필수 항목입니다.")
+	private String memberName;
+	
+	@NotBlank(message = "사용자 나이는 필수 항목입니다.")
+	private int memberAge;
+	
+	@NotBlank(message = "사용자 아이디는 필수 항목입니다.")
 	@Size(min = 4, message = "사용자 id는 4글자 이상이어야 합니다.")
-	private String username;
+	private String memberLoginId;
 	
-	@NotBlank(message = "비밀번호는 필수 항목입니다.")
-	private String password;
+	@NotBlank(message = "사용자 비밀번호는 필수 항목입니다.")
+	@Size(min = 4, message = "사용자 비밀번호는 4글자 이상이어야 합니다.")
+	private String memberLoginPwd;
 	
-	@NotBlank(message = "비밀번호 확인은 필수 항목입니다.")
-	private String password2;
-	
-	@NotBlank(message = "email은 필수 항목입니다.")
+	@NotBlank(message = "사용자 이메일은 필수 항목입니다.")
 	@Email(message = "email 형식에 맞지 않습니다.")
-	private String email;
+	private String memberEmail;
 	
-	private Date regDate;
-	private Date updateDate;
+	@NotBlank(message = "사용자 주소는 필수 항목입니다.")
+	private String memberAddress;
 	
-	private List<AuthVO> authList;
-	
-	public Collection<SimpleGrantedAuthority> getAuthorities() {
-		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-		
-		for(AuthVO auth: authList) {
-			log.warn("================================"  + auth);
-			authorities.add(new SimpleGrantedAuthority(auth.getAuth()));
-		}
-		
-		return authorities;
-	}
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackpot.mapper.MemberMapper">
+
+	<resultMap id="memberMap" type="com.jackpot.domain.MemberVO">
+		<id property="memberId" column="member_id" />
+		<result property="memberLoginId" column="member_login_id" />
+		<result property="memberLoginPwd" column="member_login_pwd" />
+		<result property="memberName" column="member_name" />
+		<result property="memberAge" column="member_age" />
+		<result property="memberEmail" column="member_email" />
+		<result property="memberAddress" column="member_address" />
+	</resultMap>
+	
+	<!--  회원 조회 -->
+	<select id="get" resultMap="memberMap">
+		select * from member
+		where member_login_id = #{memberLoginId}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="join">
+		insert into member (member_login_id, member_login_pwd, member_name, member_age, member_email, member_address)
+		values(#{memberLoginId}, #{memberLoginPwd}, #{memberName}, #{memberAge}, #{memberEmail}, #{memberAddress})
+	</insert>
+	
+	<!--  회원 정보 수정 -->
+	<update id="update">
+		update member 
+		set
+			member_login_pwd = #{memberLoginPwd},
+			member_email = #{memberEmail},
+			member_address = #{memberAddress}
+		where member_id = #{memberId}
+	</update>
+	
+	<!-- 회원 정보 삭제 / 회원탈퇴 -->
+	<delete id="delete">
+		delete from member
+		where member_login_id = #{memberLoginId}
+	</delete>
+	
+	<!-- 회원 목록 -->
+	<select id="getList" resultType="MemberVO">
+		select * from member
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="MemberVO">
+		select member_login_id, member_login_pwd
+		from member
+		where member_login_id = #{memberLoginId}
+		and member_login_pwd = #{memberLoginPwd}
+	</select>	
+</mapper>
