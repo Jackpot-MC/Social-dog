@@ -1,5 +1,8 @@
 package com.jackpot.mapper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.jackpot.config.RootConfig;
+import com.jackpot.domain.DogVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -20,30 +24,30 @@ public class DogMapperTest {
 	@Autowired
 	private DogMapper mapper;
 
-//	@Test
-//	public void testCreate() throws Exception {
-//		DogVO vo = new DogVO();
-//		
-//		SimpleDateFormat date1 = new SimpleDateFormat("yyyy-MM-dd");
-//		Date date = date1.parse("2077-07-07");
-//
-//		System.out.println("dog DB에 데이터 삽입 시작");
-//
-//		
-//		vo.setDogName("테스트독");
-//		vo.setDogKind("친절해용");
-//		vo.setDogBirth(date);
-//		vo.setDogDescription("테스트테스트테스트테스트테스트");
-//		vo.setDogFavorite("테스트하기");
-//		vo.setDogPhotoPath("updateupdateupdate테스트");
-//		vo.setMemberId(2L);
-//		
-//
-//		mapper.create(vo);
-//		log.info(vo);
-//
-//		System.out.println("데이터 삽입 끝!");
-//	}
+	@Test
+	public void testCreate() throws Exception {
+		DogVO vo = new DogVO();
+		
+		SimpleDateFormat date1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = date1.parse("2077-07-07");
+
+		System.out.println("dog DB에 데이터 삽입 시작");
+
+		
+		vo.setDogName("테스트독2");
+		vo.setDogKind("친절해용2");
+		vo.setDogBirth(date);
+		vo.setDogDescription("2테스트테스트테스트테스트테스트");
+		vo.setDogFavorite("테2스트2하기");
+		vo.setDogPhotoPath("updateupdateupdate2테스트");
+		vo.setMemberId(6L);
+		
+
+		mapper.create(vo);
+		log.info(vo);
+
+		System.out.println("데이터 삽입 끝!");
+	}
 
 //	@Test
 //	public void testGet() {

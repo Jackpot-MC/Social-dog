@@ -5,9 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class AuthVO {
-	private String username;
-	private String auth;
+@NoArgsConstructor
+public class ParticipantVO {
+	private Long participantId;
+	private Long memberId;
+	private Long appointmentId;
+
 }
