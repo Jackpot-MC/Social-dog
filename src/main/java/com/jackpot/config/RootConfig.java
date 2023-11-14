@@ -34,7 +34,7 @@ public class RootConfig {
 //		config.setJdbcUrl("jdbc:mysql://localhost:3306/glory_db");
 		config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
         config.setJdbcUrl("jdbc:log4jdbc:mysql://49.50.165.92:3306/social_dog_db");
-		config.setUsername("yoo");
+		config.setUsername("park");
         config.setPassword("gooddogDB777!");
 		
 		HikariDataSource dataSource = new HikariDataSource(config);
@@ -47,7 +47,7 @@ public class RootConfig {
 		
 		sqlSessionFactory.setConfigLocation(
 		        applicationContext.getResource(
-		             "classpath:/mybatis-config.xml"));
+		             "file:src/main/resources/mybatis-config.xml"));
 		
 		sqlSessionFactory.setDataSource(dataSource()); //메소드 호출이 아니라, dataSource()가 리턴한 Bean을 달라는 의미
 		return (SqlSessionFactory) sqlSessionFactory.getObject();

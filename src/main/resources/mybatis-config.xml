@@ -11,5 +11,8 @@
 	<typeAliases>
 		<package name="com.jackpot.domain" />	<!-- 패키지 별명 설정 -->	
 	</typeAliases>
-	
+
+	<mappers>
+		<package name="com.jackpot.mapper"/>
+	</mappers>
 </configuration>

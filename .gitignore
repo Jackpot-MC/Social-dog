@@ -236,3 +236,12 @@ $RECYCLE.BIN/
 target/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,intellij,java
+social-dog.iml
+.idea/.gitignore
+.idea/compiler.xml
+.idea/dataSources.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/sqldialects.xml
+.idea/vcs.xml
