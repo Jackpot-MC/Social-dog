@@ -25,7 +25,7 @@
         </selectKey>
     </insert>
 
-    <select id="get" resultType="com.jackpot.domain.PlaceVO">
+    <select id="get" resultType="PlaceVO">
         select *
         from place
         where place_id = #{placeId}
@@ -45,7 +45,7 @@
         where place_id = #{placeId}
     </update>
 
-    <select id="getList" resultType="com.jackpot.domain.PlaceVO">
+    <select id="getList" resultType="PlaceVO">
         select *
         from place
     </select>
