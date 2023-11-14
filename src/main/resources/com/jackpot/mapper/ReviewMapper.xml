@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	<insert id="create">
-		insert into review (review_id, member_id, place_id, review_title, review_content, review_date, rating)
+		insert into review (member_id, place_id, review_title, review_content, review_date, rating)
 		values (#{memberId}, #{placeId}, #{reviewTitle}, #{reviewContent}, #{reviewDate}, #{rating})
 	</insert>
 	
@@ -30,7 +30,7 @@
 		set review_title = #{reviewTitle}, 
 			review_content = #{reviewContent}, 
 			review_date = #{reviewDate}, 
-			rating = #{rating}, 
+			rating = #{rating}
 		where review_id = #{reviewId}
 	</update>
 	
