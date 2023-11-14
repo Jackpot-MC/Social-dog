@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackpot.mapper.ReviewMapper">
+	<resultMap id="reviewMap" type="com.jackpot.domain.ReviewVO">
+		<id property="reviewId" column="review_id" />
+		<result property="reviewId" column="review_id" />
+		<result property="memberId" column="member_id" />
+		<result property="placeId" column="place_id" />
+		<result property="reviewTitle" column="review_title" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewDate" column="review_date" />
+		<result property="rating" column="rating" />
+	</resultMap>
+	
+	<insert id="create">
+		insert into review (member_id, place_id, review_title, review_content, review_date, rating)
+		values (#{memberId}, #{placeId}, #{reviewTitle}, #{reviewContent}, #{reviewDate}, #{rating})
+	</insert>
+	
+	<select id="get" resultMap="reviewMap">
+		select review_id, member_id, place_id, review_title, review_content, review_date, rating 
+		from review where review_id = #{reviewId} 
+	</select>
+	
+	<update id="update">
+		update review
+		set review_title = #{reviewTitle}, 
+			review_content = #{reviewContent}, 
+			review_date = #{reviewDate}, 
+			rating = #{rating}
+		where review_id = #{reviewId}
+	</update>
+	
+	<delete id="delete">
+		delete
+		from review
+		where review_id = #{reviewId}
+	</delete>
+	
+	<select id="getList" resultType="ReviewVO">
+		select * from review
+	</select>
+	
+</mapper>
