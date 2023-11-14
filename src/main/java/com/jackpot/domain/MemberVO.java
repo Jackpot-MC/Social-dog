@@ -7,6 +7,12 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,5 +42,18 @@ public class MemberVO {
 	
 	@NotBlank(message = "사용자 주소는 필수 항목입니다.")
 	private String memberAddress;
+
+	private Date regDate;
+	private Date updateDate;
+
+	private List<AuthVO> authVOList;
+
+	public Collection<SimpleGrantedAuthority> getAuthorities(){
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for(AuthVO auth : authVOList){
+			authorities.add(new SimpleGrantedAuthority(auth.getAuth()));
+		}
+		return authorities;
+	}
 	
 }
