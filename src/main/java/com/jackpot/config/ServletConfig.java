@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -44,7 +43,7 @@ public class ServletConfig implements WebMvcConfigurer {
 		
 		resolver.setMaxInMemorySize(1024*1024); //1MB
 		
-		resolver.setUploadTempDir(new FileSystemResource("e:\\Temp\\upload\\tmp"));
+//		resolver.setUploadTempDir(new FileSystemResource("e:\\Temp\\upload\\tmp"));
 		resolver.setDefaultEncoding("UTF-8");
 		
 		return resolver;

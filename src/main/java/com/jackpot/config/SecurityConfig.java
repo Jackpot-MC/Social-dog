@@ -2,7 +2,6 @@ package com.jackpot.config;
 
 import javax.sql.DataSource;
 
-import com.jackpot.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,10 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Bean
-	public UserDetailsService customUserService() {
-		return new CustomUserDetailsService();
-	}
+//	@Bean
+//	public UserDetailsService customUserService() {
+//		return new CustomUserDetailsService();
+//	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
