@@ -26,7 +26,7 @@ import lombok.extern.log4j.Log4j;
 public class HomeController {
 	
 	@Autowired
-	MemberService memberService;
+	MemberService service;
 		
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -44,7 +44,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("member", memberService.get(member.getMemberAddress()));
+		model.addAttribute("member", service.get(member.getMemberAddress()));
 		
 		
 		return "home";
