@@ -26,7 +26,7 @@
 <body>
 	<div class="container-fluid">
 		<header class="jumbotron mb-0 rounded-0">
-			<h1>Backend Study</h1>
-			<p>자바 기반의 백엔드 기술을 배웁니다.</p>
+			<h1><i class="fa-solid fa-paw"></i> Social Dogs</h1>
+			<p>반려견과 반려인 모두의 행복</p>
 		</header>
 	<%@ include file="menu.jsp"%>

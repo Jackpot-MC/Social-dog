@@ -3,28 +3,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<nav class="navbar navbar-expand-md bg-primary navbar-dark sticky-top">
+<nav class="navbar navbar-expand-md bg-warning navbar-dark sticky-top">
 	<a class="navbar-brand" href="/">
-		<i class="fa-solid fa-house"></i> Backend</a>
+		<i class="fa-solid fa-house"></i>Home</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="collapsibleNavbar">>
+	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 	
 		<!--좌측메뉴구성-->
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="/board/list">
-				<i class="fa-solid fa-chalkboard"></i>
-				게시판</a>
+				<i class="fa-solid fa-chalkboard"></i>산책장소찾기</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/travel/list?amount=12">
 				<i class="fa-solid fa-plane-departure"></i>
-				여행</a>
+				나의약속</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">메뉴3</a>
+				<a class="nav-link" href="#">산책기록</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">공지사항</a>
 			</li>
 		</ul>
 

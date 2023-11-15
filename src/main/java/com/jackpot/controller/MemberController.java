@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jackpot.domain.MemberVO;
 import com.jackpot.service.MemberService;
@@ -27,7 +26,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class MemberController {
 
-	MemberService service;
+	@Autowired
+	private MemberService service;
 	
 	//메인 페이지 이동
 	@GetMapping("/main")

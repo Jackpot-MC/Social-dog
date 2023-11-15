@@ -2,6 +2,7 @@ package com.jackpot.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -34,7 +35,7 @@ public class MemberVO {
 	@Email(message = "email 형식에 맞지 않습니다.")
 	private String memberEmail;
 	
-	@NotBlank(message = "사용자 주소는 필수 항목입니다.")
+	@NotNull(message = "사용자 주소는 필수 항목입니다.")
 	private String memberAddress;
 	
 }
