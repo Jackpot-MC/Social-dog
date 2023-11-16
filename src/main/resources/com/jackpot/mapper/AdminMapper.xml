@@ -14,7 +14,7 @@
 	<select id = "get" resultMap="adminMap">
 		select admin_id, admin_login_id, admin_login_pwd
 		from admin
-		where admin_login_id = #{adminLoginId}
+		where admin_id = #{adminId}
 	</select>
 	
 	<insert id = "insert">

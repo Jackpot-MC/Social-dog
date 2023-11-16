@@ -27,7 +27,7 @@ public class AdminServiceImplTest {
 	
 	@Test
 	public void testGet() {
-		log.info(service.get("admin4"));
+		log.info(service.get(4L));
 	}
 
 //	@Test

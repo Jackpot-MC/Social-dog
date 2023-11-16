@@ -23,7 +23,7 @@ public class AdminMapperTest {
 	
 	@Test
 	public void testGet() {
-		AdminVO admin = mapper.get("admin1");
+		AdminVO admin = mapper.get(1L);
 		
 		log.info(admin);
 		log.warn("성공");

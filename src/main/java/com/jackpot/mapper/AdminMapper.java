@@ -4,7 +4,7 @@ import com.jackpot.domain.AdminVO;
 
 public interface AdminMapper {
 	
-	public AdminVO get(String adminLoginId); // PK 전달
+	public AdminVO get(Long adminId); // PK 전달
 	
 	public void insert(AdminVO admin);
 	

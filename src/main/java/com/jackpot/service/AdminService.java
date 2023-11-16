@@ -6,7 +6,7 @@ import com.jackpot.domain.AdminVO;
 
 public interface AdminService {
 	
-	public AdminVO get(String adminLoginId);
+	public AdminVO get(Long adminId);
 	
 	public void register(AdminVO admin);
 	
