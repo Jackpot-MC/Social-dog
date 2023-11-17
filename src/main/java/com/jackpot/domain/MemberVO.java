@@ -23,7 +23,7 @@ public class MemberVO implements UserDetails {
 	private String memberName;
 	
 	@NotBlank(message = "사용자 나이는 필수 항목입니다.")
-	private int memberAge;
+	private int memberBirth;
 	
 	@NotBlank(message = "사용자 아이디는 필수 항목입니다.")
 	private String memberLoginId;
