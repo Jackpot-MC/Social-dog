@@ -12,7 +12,7 @@ public interface ReviewService {
 	public ReviewVO get(Long reviewId);
 
 	// 수정
-	public void modify(ReviewVO review);
+	public boolean modify(ReviewVO review);
 
 	// 삭제
 	public boolean remove(Long reviewId);
