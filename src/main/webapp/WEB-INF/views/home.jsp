@@ -15,8 +15,6 @@
 </div>
 
 
-
-
 <div class="map_wrap">
     <div id="map" style="width:100%; height:500px; position:relative;overflow:hidden;"></div>
     
@@ -55,7 +53,7 @@
 </div>
 
 
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2ef21ecaf963e1478e980c3e9d76aab&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2ef21ecaf963e1478e980c3e9d76aab&libraries=services,clusterer"></script>
 <script>
 
 //마커를 담을 배열
@@ -521,7 +519,53 @@ if (navigator.geolocation) {
     displayMarker(locPosition, message);
 }
 
+	// 마커를 표시할 위치와 title 객체 배열입니다 
+	var positions = [ {
+		title : '갑사화장실',
+		latlng : new kakao.maps.LatLng(36.36594682, 127.1862795)
+	}, {
+		title : '신원사화장실',
+		latlng : new kakao.maps.LatLng(36.33485768, 127.1836061)
+	}, {
+		title : '수통골화장실',
+		latlng : new kakao.maps.LatLng(36.34515556, 127.288587)
+	}, {
+		title : '동학사화장실',
+		latlng : new kakao.maps.LatLng(36.35289085, 127.2204177)
+	} ];
+	
+	// 마커 이미지의 이미지 주소입니다
+	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
+	var markers = [];
+
+	var clusterer = new kakao.maps.MarkerClusterer({
+		map : map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+		averageCenter : true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+		minLevel : 5, // 클러스터 할 최소 지도 레벨 
+		markers : markers
+	});
+	
+	for (var i = 0; i < positions.length; i++) {
+
+		// 마커 이미지의 이미지 크기 입니다
+		var imageSize = new kakao.maps.Size(24, 35);
+
+		// 마커 이미지를 생성합니다    
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			map : map, // 마커를 표시할 지도
+			position : positions[i].latlng, // 마커를 표시할 위치
+			title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			image : markerImage
+		// 마커 이미지 
+		});
+
+		clusterer.addMarker(marker);
+	}
+	
 //------------------------------------------
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition, message) {
