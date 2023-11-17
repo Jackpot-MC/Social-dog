@@ -40,11 +40,11 @@ public class MemberServiceImplTest {
 		member.setMemberLoginId("user4");
 		member.setMemberLoginPwd("user1234");
 		member.setMemberName("윤길동");
-		member.setMemberAge(22);
+		member.setMemberBirth(22);
 		member.setMemberEmail("user4@gmail.com");
 		member.setMemberAddress("서울시 강남구");
 
-		memberMapper.join(member);
+		memberMapper.signup(member);
 	}	
 	
 	//@Test

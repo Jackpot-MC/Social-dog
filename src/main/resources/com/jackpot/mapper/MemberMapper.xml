@@ -22,7 +22,7 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="join">
+	<insert id="signup">
 		insert into member (member_login_id, member_login_pwd, member_name, member_birth, member_email, member_address)
 		values(#{memberLoginId}, #{memberLoginPwd}, #{memberName}, #{memberBirth}, #{memberEmail}, #{memberAddress})
 	</insert>

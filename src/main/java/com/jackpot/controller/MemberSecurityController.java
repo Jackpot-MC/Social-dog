@@ -65,17 +65,17 @@ public class MemberSecurityController {
 		}
 
 		//2. 아이디 중복을 거르기
-		if (!errors.hasFieldErrors("adminLoginId")) {
+		if (!errors.hasFieldErrors("memberLoginId")) {
 			if (memberService.get(member.getMemberLoginId()) != null) {//id중복검사
-				errors.rejectValue("adminLoginId", "ID 중복", "이미 사용중인 ID입니다.");
+				errors.rejectValue("memberLoginId", "ID 중복", "이미 사용중인 ID입니다.");
 			}
 		}
 
 		if (errors.hasErrors()) {
-			return "admin/signup";//에러나면 다시 가입 화면으로
+			return "member/signup";//에러나면 다시 가입 화면으로
 		}
 
-		memberService.join(member);
+		memberService.signup(member);
 
 		return "redirect:/";//루트로 되돌리기
     }

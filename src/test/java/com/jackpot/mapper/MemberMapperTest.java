@@ -38,11 +38,11 @@ public class MemberMapperTest {
 		member.setMemberLoginId("user3");
 		member.setMemberLoginPwd("user1234");
 		member.setMemberName("김길동");
-		member.setMemberAge(20);
+		member.setMemberBirth(20);
 		member.setMemberEmail("user3@gmail.com");
 		member.setMemberAddress("서울시 강남구");
 
-		memberMapper.join(member);
+		memberMapper.signup(member);
 	}	
 	
 	//@Test
