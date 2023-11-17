@@ -25,8 +25,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void signup(MemberVO member) throws IOException {
-		member = new MemberVO();
-		log.info("join..." + member);
+		log.info("signup..." + member);
 		memberMapper.signup(member);
 	}
 

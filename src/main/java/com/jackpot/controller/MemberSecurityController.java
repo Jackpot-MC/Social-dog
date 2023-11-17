@@ -59,6 +59,7 @@ public class MemberSecurityController {
             @Valid
             @ModelAttribute("member") MemberVO member,
             Errors errors) throws IOException {
+    	log.info(member);
 		//1. 비밀번호-비밀번호 확인 일치 여부 판단
 		if (!member.getMemberLoginPwd().equals(member.getMemberLoginPwd2())) {
 			errors.rejectValue("password2", "비밀번호 불일치", "비밀번호 확인이 일치하지 않습니다.");

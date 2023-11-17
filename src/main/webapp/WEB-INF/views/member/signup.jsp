@@ -5,8 +5,8 @@
 <%@ include file="../layouts/header.jsp" %>
 
 <div>
-    <form:form modelAttribute="member" enctype="multipart/form-data"
-               action="/security/signup?_csrf=${_csrf.token}"
+    <form:form modelAttribute="member" 
+               action="/member/signup?_csrf=${_csrf.token}"
                style="width:500px" class="mx-auto"> <!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
         <h1 class="mt-4"><i class="fa-solid fa-user-plus"></i> 회원가입</h1>
 

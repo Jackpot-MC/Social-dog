@@ -47,7 +47,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().ignoringAntMatchers("/api/**");
 		
-		http.antMatcher("/admin*")
+		http.antMatcher("/admin/*")
 				.authorizeRequests()
 						.anyRequest()
 								.hasRole("ADMIN");

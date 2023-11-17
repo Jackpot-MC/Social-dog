@@ -1,15 +1,21 @@
 package com.jackpot.domain;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -22,8 +28,9 @@ public class MemberVO implements UserDetails {
 	@NotBlank(message = "사용자 이름은 필수 항목입니다.")
 	private String memberName;
 	
-	@NotBlank(message = "사용자 나이는 필수 항목입니다.")
-	private int memberBirth;
+	@NotNull(message = "사용자 나이는 필수 항목입니다.")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date memberBirth;
 	
 	@NotBlank(message = "사용자 아이디는 필수 항목입니다.")
 	private String memberLoginId;
