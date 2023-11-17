@@ -25,13 +25,6 @@
 				<form:input path="password2" cssClass="form-control"/>
 				<form:errors path="password2" cssClass="error"/>
 			</div>
-			<div class="form-group">
-				<form:label path="email">email</form:label>
-				<form:input path="email" cssClass="form-control"/>
-				<form:errors path="email" cssClass="error"/>
-			</div>
-			
-			<input type="file" name="avatar" /> <!-- DB에 넣지 않고 따로 처리 -->
 
 			<div class="text-center">
 				<button type="submit" class="btn btn-primary">

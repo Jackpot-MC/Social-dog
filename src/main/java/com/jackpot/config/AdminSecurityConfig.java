@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
@@ -42,8 +43,8 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setEncoding("UTF-8");
 		filter.setForceEncoding(true);
 		
-		http.addFilterBefore(filter, CsrfFilter.class);	
-		
+		http.addFilterBefore(filter, CsrfFilter.class);
+
 		http.csrf().ignoringAntMatchers("/api/**");
 		
 		http.antMatcher("/admin*")
@@ -51,7 +52,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 						.anyRequest()
 								.hasRole("ADMIN");
 
-		
+
 		http.formLogin()
 			.loginPage("/admin/login?error=login_required")	// 로그인 안하고 접근한 경우 리다이렉트
 			.loginProcessingUrl("/admin/login")
@@ -70,6 +71,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 			.key("Galapagos")
 			.tokenRepository(persistentTokenRepository())
 			.tokenValiditySeconds(7*24*60*60);	// 7일
+
 		
 	}
 

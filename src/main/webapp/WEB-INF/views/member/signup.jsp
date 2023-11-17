@@ -30,7 +30,7 @@
 				<form:input path="email" cssClass="form-control"/>
 				<form:errors path="email" cssClass="error"/>
 			</div>
-			
+
 			<input type="file" name="avatar" /> <!-- DB에 넣지 않고 따로 처리 -->
 
 			<div class="text-center">
