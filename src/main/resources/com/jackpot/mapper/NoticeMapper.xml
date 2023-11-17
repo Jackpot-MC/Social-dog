@@ -10,17 +10,22 @@
 		<result property="noticeTitle" column="notice_title" />
 		<result property="noticeContent" column="notice_content" />
 		<result property="adminId" column="admin_id" />
+		<result property="adminLoginId" column="admin_login_id" />
+		<result property="adminLoginPwd" column="admin_login_pwd" />
+		<result property="regDate" column="reg_date" />
+		<result property="updateDate" column="update_date" />
 	</resultMap>
 	
 	<select id = "read" resultMap="noticeMap">
-		select notice_id, notice_title, notice_content, admin_id
-		from notice
+		select notice_id, notice_title, notice_content, notice.admin_id, admin.admin_login_id, admin.admin_login_pwd, reg_date, update_date
+		from notice left outer join admin
+		on notice.admin_id = admin.admin_id
 		where notice_id = #{noticeId}
 	</select>
 	
 	<insert id = "insert">
-		insert into notice(notice_title, notice_content, admin_id)
-		values(#{noticeTitle}, #{noticeContent}, #{adminId})
+		insert into notice(notice_title, notice_content)
+		values(#{noticeTitle}, #{noticeContent})
 
 		<selectKey resultType= "Long" keyProperty="noticeId" keyColumn="notice_id" order="AFTER">
 			SELECT LAST_INSERT_ID()
@@ -37,5 +42,54 @@
 	<delete id="delete">
 		delete from notice where notice_id = #{noticeId}
 	</delete>
+	
+	<select id="getList" resultType="com.jackpot.domain.NoticeVO">
+		select * from notice
+		order by notice_id desc
+		limit 0, 10
+	</select>
+
+	<select id="getListWithPaging" resultType="NoticeVO">
+		select notice_id, notice_title, notice_content, notice.admin_id, admin.admin_login_id, admin.admin_login_pwd, reg_date, update_date
+		from notice left outer join admin
+		on notice.admin_id = admin.admin_id
+		<where>
+			<include refid="criteria"></include>
+		</where>
+		order by notice_id desc
+		limit #{offset}, #{amount}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from notice left outer join admin
+		on notice.admin_id = admin.admin_id
+		<where>
+			<include refid="criteria"></include>
+		</where>
+	</select>
+
+	<select id="getAdminLoginIdMapper" resultType="AdminVO">
+		select * from admin;
+	</select>
+	
+	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
+		<trim prefixOverrides = "OR">
+			<foreach item = "type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							notice_title like CONCAT('%',#{keyword},'%')
+						</when>
+						<when test="type == 'C'.toString()">
+							notice_content like CONCAT('%',#{keyword},'%')
+						</when>
+						<when test="type == 'A'.toString()">
+							admin.admin_login_id like CONCAT('%',#{keyword},'%')
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>	
+	</sql>
 
 </mapper>

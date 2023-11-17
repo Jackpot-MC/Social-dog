@@ -15,7 +15,7 @@
 		<!--좌측메뉴구성-->
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="/board/list">
-				<i class="fa-solid fa-chalkboard"></i>산책장소찾기</a>
+				<i class="fa-solid fa-chalkboard"></i>산책하기</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/travel/list?amount=12">
@@ -25,7 +25,7 @@
 				<a class="nav-link" href="#">산책기록</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">공지사항</a>
+				<a class="nav-link" href="/notice/list">커뮤니티</a>
 			</li>
 		</ul>
 
@@ -36,8 +36,8 @@
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
 				<a class="nav-link" href="/security/profile">
-					<img src="/security/avatar/sm/${username}" class="avatar-sm"/>
-					${username}
+					<img src="/security/avatar/sm/${memberName}" class="avatar-sm"/>
+					${memberName}
 				</a>
 			</li>
 			<li class="nav-item">

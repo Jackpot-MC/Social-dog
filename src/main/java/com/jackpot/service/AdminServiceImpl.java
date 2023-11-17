@@ -18,8 +18,8 @@ public class AdminServiceImpl implements AdminService {
 	AdminMapper mapper;
 	
 	@Override
-	public AdminVO get(String adminLoginId) {
-		return mapper.get(adminLoginId);
+	public AdminVO get(Long adminId) {
+		return mapper.get(adminId);
 	}
 
 	@Override
