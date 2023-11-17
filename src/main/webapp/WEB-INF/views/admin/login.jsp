@@ -23,8 +23,8 @@
 			</div>
 		</c:if>
 
-      <form action="/security/login" method="post">
-      <h1 class="mt-4"><i class="fa-solid fa-right-to-bracket"></i> 사용자 로그인</h1>
+      <form action="/admin/login" method="post">
+      <h1 class="mt-4"><i class="fa-solid fa-right-to-bracket"></i> 관리자 로그인</h1>
       	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
       	<div class="form-group mt-4">
            	<label for="username"><i class="fa-solid fa-user"></i> 사용자 ID:</label>
@@ -43,12 +43,10 @@
       	</div>
       	
       	<button type="submit" class="btn btn-primary btn-block">
-      		<i class="fa-solid fa-right-to-bracket"></i>로그인
+      		<i class="fa-solid fa-right-to-bracket"></i>
+			로그인
       	</button>
-      	
-   		<a href="/security/signup" class="btn btn-primary btn-block" role="button">
-   			<i class="fa-solid fa-user-plus"></i>회원가입
-   		</a>
+
    		
       </form>
      </div>

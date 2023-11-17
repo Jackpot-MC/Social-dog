@@ -2,22 +2,19 @@ package com.jackpot.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberVO {
+public class MemberVO implements UserDetails {
 
 
 	private Long memberId;
@@ -29,12 +26,13 @@ public class MemberVO {
 	private int memberAge;
 	
 	@NotBlank(message = "사용자 아이디는 필수 항목입니다.")
-	@Size(min = 4, message = "사용자 id는 4글자 이상이어야 합니다.")
 	private String memberLoginId;
 	
 	@NotBlank(message = "사용자 비밀번호는 필수 항목입니다.")
-	@Size(min = 4, message = "사용자 비밀번호는 4글자 이상이어야 합니다.")
 	private String memberLoginPwd;
+
+	@NotBlank(message = "사용자 비밀번호 확인은 필수 항목입니다.")
+	private String memberLoginPwd2;
 	
 	@NotBlank(message = "사용자 이메일은 필수 항목입니다.")
 	@Email(message = "email 형식에 맞지 않습니다.")
@@ -43,17 +41,39 @@ public class MemberVO {
 	@NotBlank(message = "사용자 주소는 필수 항목입니다.")
 	private String memberAddress;
 
-	private Date regDate;
-	private Date updateDate;
 
-	private List<AuthVO> authVOList;
-
-	public Collection<SimpleGrantedAuthority> getAuthorities(){
-		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		for(AuthVO auth : authVOList){
-			authorities.add(new SimpleGrantedAuthority(auth.getAuth()));
-		}
-		return authorities;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
 	}
-	
+
+	@Override
+	public String getPassword() {
+		return this.memberLoginPwd;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.memberLoginId;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }
