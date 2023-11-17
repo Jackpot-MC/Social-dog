@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>Modal</title>
+    <title>산책 장소 리뷰</title>
     <style>
         #modal.modal-overlay {
             width: 100%;
