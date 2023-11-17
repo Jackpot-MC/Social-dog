@@ -21,10 +21,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	
 	<script src="/resources/js/main.js"></script>
-
 </head>
 <body>
-	<div class="container-fluid">
+	<div id="wrap" class="container-fluid">
 		<header class="jumbotron mb-0 rounded-0">
 			<h1><i class="fa-solid fa-paw"></i> Social Dogs</h1>
             <p>반려견과 반려인 모두의 행복</p>
