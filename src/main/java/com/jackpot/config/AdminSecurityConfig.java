@@ -22,6 +22,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import lombok.extern.log4j.Log4j;
 
+import static org.apache.commons.io.filefilter.FileFilterUtils.and;
+
 
 @Configuration
 @Order(1)
@@ -47,11 +49,10 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().ignoringAntMatchers("/api/**");
 		
-		http.antMatcher("/admin/*")
+		http.antMatcher("/admin/notice/*")
 				.authorizeRequests()
 						.anyRequest()
 								.hasRole("ADMIN");
-
 
 		http.formLogin()
 			.loginPage("/admin/login?error=login_required")	// 로그인 안하고 접근한 경우 리다이렉트

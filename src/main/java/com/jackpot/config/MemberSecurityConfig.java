@@ -46,10 +46,13 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().ignoringAntMatchers("/api/**");
 
-        http.antMatcher("/member*")
-                .authorizeRequests()
-                .anyRequest()
-                .hasRole("USER");
+        http.authorizeRequests()
+                .antMatchers(
+                        "/review/*",
+                        "/participant/*",
+                        "/appointment/*",
+                        "/profile/*"
+                        ).access("hasRole('ROLE_USER')");//USER이상은 다적용
 
 
         http.formLogin()
