@@ -2,6 +2,8 @@ package com.jackpot.service;
 
 import java.util.List;
 
+import com.jackpot.domain.NoticeCriteria;
+import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.domain.ReviewVO;
 
 public interface ReviewService {
@@ -17,5 +19,7 @@ public interface ReviewService {
 	// 삭제
 	public boolean remove(Long reviewId);
 
-	public List<ReviewVO> getList();
+	public List<ReviewVO> getList(ReviewCriteria cri);
+	
+	public int getTotal(ReviewCriteria cri);
 }

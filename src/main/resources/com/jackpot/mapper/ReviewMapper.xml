@@ -11,17 +11,18 @@
 		<result property="placeId" column="place_id" />
 		<result property="reviewTitle" column="review_title" />
 		<result property="reviewContent" column="review_content" />
-		<result property="reviewDate" column="review_date" />
 		<result property="rating" column="rating" />
+		<result property="regDate" column="reg_date" />
+		<result property="updateDate" column="update_date" />
 	</resultMap>
 	
 	<insert id="create">
-		insert into review (member_id, place_id, review_title, review_content, review_date, rating)
-		values (#{memberId}, #{placeId}, #{reviewTitle}, #{reviewContent}, #{reviewDate}, #{rating})
+		insert into review (member_id, place_id, review_title, review_content, rating)
+		values (#{memberId}, #{placeId}, #{reviewTitle}, #{reviewContent}, #{rating})
 	</insert>
 	
 	<select id="get" resultMap="reviewMap">
-		select review_id, member_id, place_id, review_title, review_content, review_date, rating 
+		select review_id, member_id, place_id, review_title, review_content, rating, reg_date, update_date
 		from review where review_id = #{reviewId} 
 	</select>
 	
@@ -29,7 +30,6 @@
 		update review
 		set review_title = #{reviewTitle}, 
 			review_content = #{reviewContent}, 
-			review_date = #{reviewDate}, 
 			rating = #{rating}
 		where review_id = #{reviewId}
 	</update>
@@ -42,6 +42,16 @@
 	
 	<select id="getList" resultType="ReviewVO">
 		select * from review
+	</select>
+	
+	<select id="getListWithPaging" resultType="ReviewVO">
+		select * from review
+		order by review_id desc
+		limit #{offset}, #{amount}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from review
 	</select>
 	
 </mapper>

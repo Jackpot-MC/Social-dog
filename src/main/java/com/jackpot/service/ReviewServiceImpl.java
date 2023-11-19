@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.jackpot.domain.NoticeCriteria;
+import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.domain.ReviewVO;
 import com.jackpot.mapper.ReviewMapper;
 
@@ -17,32 +19,36 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public void register(ReviewVO review) {
+		log.info("insert......." + review);
 		reviewMapper.create(review);
-		Long reviewId = review.getReviewId();
 	}
 
 	@Override
 	public ReviewVO get(Long reviewId) {
-		ReviewVO review = reviewMapper.get(reviewId);
-		return review;
+		return reviewMapper.get(reviewId);
 	}
 
 	@Override
 	public boolean modify(ReviewVO review) {
-		int result = reviewMapper.update(review);
-		Long ReviewId = review.getReviewId();
-
+		log.info("update......." + review);
 		return reviewMapper.update(review) == 1;
 	}
 
 	@Override
 	public boolean remove(Long reviewId) {
+		log.info("remove......." + reviewId);
 		return reviewMapper.delete(reviewId) == 1;
 	}
 
 	@Override
-	public List<ReviewVO> getList() {
-		return reviewMapper.getList();
+	public List<ReviewVO> getList(ReviewCriteria cri) {
+		log.info("get List with criteria: " + cri);
+		return reviewMapper.getListWithPaging(cri);
 	}
 
+	@Override
+	public int getTotal(ReviewCriteria cri) {
+		log.info("get total count");
+		return reviewMapper.getTotalCount(cri);
+	}
 }
