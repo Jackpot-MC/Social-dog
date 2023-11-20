@@ -5,14 +5,9 @@ import com.jackpot.service.AdminService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,10 +24,10 @@ public class AdminSecurityController {
 
 
 
-    @GetMapping("/signup")//회원가입 페이지 호출
-    public void signup(@ModelAttribute("admin") AdminVO admin) {
-        log.info("회원가입 페이지 이동");
-    }
+//    @GetMapping("/signup")//회원가입 페이지 호출
+//    public void signup(@ModelAttribute("admin") AdminVO admin) {
+//        log.info("회원가입 페이지 이동");
+//    }
 
 //    @PostMapping("/signup")
 //    public String signup(//회원가입
