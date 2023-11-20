@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface AdminService {
 	
-	public AdminVO get(Long adminId);
+	public AdminVO get(String adminLoginId);
 	
 	public void register(AdminVO admin);
 	
