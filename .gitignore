@@ -236,6 +236,7 @@ $RECYCLE.BIN/
 target/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,intellij,java
+<<<<<<< HEAD
 social-dog.iml
 .idea/.gitignore
 .idea/compiler.xml
@@ -245,3 +246,7 @@ social-dog.iml
 .idea/modules.xml
 .idea/sqldialects.xml
 .idea/vcs.xml
+=======
+src/main/java/com/jackpot/config/RootConfig.java
+src/main/webapp/META-INF/MANIFEST.MF
+>>>>>>> feature-frontend

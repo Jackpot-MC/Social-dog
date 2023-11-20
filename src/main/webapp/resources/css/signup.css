@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #f7edd5;
+}
+
+.container {
+  max-width: 750px;
+
+}
+
+h2 {
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: #333333;
+}
+
+section#formHolder {
+  padding: 50px 0;
+}
+
+.form {
+  background: #fff;
+  height: 1000px;
+  width: 100%;
+  margin-top: 50px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  color: #4c4c4c;
+  position: relative;
+  overflow: hidden;
+}
+
+/* .form form .form-group {
+  margin-bottom: 5px;
+  position: relative;
+} */
+
+.form form .form-group.hasError input {
+  border-color: #f95959 !important;
+}
+.form form input:not([type=submit]) {
+  display: block;
+  padding: 10px 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  color: #444;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  z-index: 1;
+}
+.form form input:not([type=submit]).hasError {
+  border-color: #f95959;
+}
+
+.form form errors.error {
+  color: #f95959;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  display: none;
+}
+
+
+/* singup 버튼 */
+.form form .CTA {
+  margin-top: 30px;
+}
+.form form .CTA input {
+  font-size: 19px;
+  text-transform: uppercase;
+  padding: 5px 30px;
+  background: #f2bb15;
+  color: #fff;
+  border-radius: 30px;
+  margin-right: 20px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+}
+/* signup 버튼 끝 */
+
+/* 로그인하러가기 버튼 */
+.form form .CTA a.switch {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  color: #bbbbbb;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+.form form .CTA a.switch:hover {
+  color: #000;
+}
+/* 로그인하러가기 버튼 끝 */
+
