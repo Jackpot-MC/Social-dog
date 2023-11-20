@@ -10,7 +10,7 @@
 		<result property="memberLoginId" column="member_login_id" />
 		<result property="memberLoginPwd" column="member_login_pwd" />
 		<result property="memberName" column="member_name" />
-		<result property="memberAge" column="member_age" />
+		<result property="memberBirth" column="member_birth" />
 		<result property="memberEmail" column="member_email" />
 		<result property="memberAddress" column="member_address" />
 	</resultMap>
@@ -22,9 +22,9 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="join">
-		insert into member (member_login_id, member_login_pwd, member_name, member_age, member_email, member_address)
-		values(#{memberLoginId}, #{memberLoginPwd}, #{memberName}, #{memberAge}, #{memberEmail}, #{memberAddress})
+	<insert id="signup">
+		insert into member (member_login_id, member_login_pwd, member_name, member_birth, member_email, member_address)
+		values(#{memberLoginId}, #{memberLoginPwd}, #{memberName}, #{memberBirth}, #{memberEmail}, #{memberAddress})
 	</insert>
 	
 	<!--  회원 정보 수정 -->

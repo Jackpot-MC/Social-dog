@@ -25,5 +25,5 @@
 <body>
 	<div id="wrap" class="container-fluid">
 		<header>
-		</header>	
+		</header>
 	<%@ include file="menu.jsp"%>

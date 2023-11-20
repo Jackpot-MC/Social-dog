@@ -3,7 +3,6 @@ package com.jackpot.mapper;
 import com.jackpot.domain.AdminVO;
 import org.apache.ibatis.annotations.Mapper;
 
-
 @Mapper
 public interface AdminMapper {
 	

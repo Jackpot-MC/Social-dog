@@ -9,7 +9,7 @@ public interface MemberService {
 
 	public MemberVO get(String memberLoginId);
 	
-	public void join(MemberVO member) throws IOException;
+	public void signup(MemberVO member) throws IOException;
 	
 	public void update(MemberVO member) throws IOException;
 	

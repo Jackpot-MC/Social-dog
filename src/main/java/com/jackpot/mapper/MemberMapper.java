@@ -11,7 +11,7 @@ public interface MemberMapper {
 	public MemberVO get(String memberLoginId);
 
 	// 회원가입
-	public void join(MemberVO member);
+	public void signup(MemberVO member);
 	
 	// 회원정보수정
 	public int update(MemberVO member);

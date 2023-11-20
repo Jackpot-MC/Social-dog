@@ -3,6 +3,7 @@ package com.jackpot.service;
 import java.io.IOException;
 
 import com.jackpot.domain.AdminVO;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface AdminService {
 	

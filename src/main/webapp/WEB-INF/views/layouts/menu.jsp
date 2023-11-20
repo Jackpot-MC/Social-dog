@@ -31,7 +31,7 @@
 				
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
-				<a class="nav-link" href="/security/profile">
+				<a class="nav-link" href="/member/profile">
 					<img src="/security/avatar/sm/${memberName}" class="avatar-sm"/>
 					${memberName}
 				</a>
@@ -48,7 +48,7 @@
 		<sec:authorize access="isAnonymous()">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="/member/member_login">
+				<a class="nav-link" href="/member/login">
 					<i class="fa-solid fa-right-from-bracket"></i> 로그인
 				</a>
 			</li>
@@ -62,7 +62,7 @@
 </div>
 </nav>
 
-<form id="logoutForm" action="/security/logout" method="post">
+<form id="logoutForm" action="/member/logout" method="post">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 
