@@ -1,6 +1,7 @@
 package com.jackpot.mapper;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,7 @@ public class MemberMapperTest {
 		member.setMemberLoginId("user3");
 		member.setMemberLoginPwd("user1234");
 		member.setMemberName("김길동");
-		member.setMemberBirth(20);
+		member.setMemberBirth(new Date("2011-02-11"));
 		member.setMemberEmail("user3@gmail.com");
 		member.setMemberAddress("서울시 강남구");
 
