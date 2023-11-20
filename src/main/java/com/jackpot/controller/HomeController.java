@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jackpot.domain.MemberVO;
+import com.jackpot.domain.NoticeCriteria;
+import com.jackpot.domain.NoticePageDTO;
 import com.jackpot.service.MemberService;
+import com.jackpot.service.NoticeService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,7 +29,10 @@ import lombok.extern.log4j.Log4j;
 public class HomeController {
 	
 	@Autowired
-	MemberService service;
+	MemberService memberService;
+	
+	@Autowired
+	NoticeService noticeService;
 		
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -35,7 +41,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, 
-			@ModelAttribute("member") MemberVO member, Model model) {
+			@ModelAttribute("member") MemberVO member, @ModelAttribute("cri") NoticeCriteria cri, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -44,8 +50,15 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("member", service.get(member.getMemberAddress()));
+		model.addAttribute("member", memberService.get(member.getMemberAddress()));
 		
+		model.addAttribute("list", noticeService.getList(cri));
+		
+		int total = noticeService.getTotal(cri);
+		log.info("total: " + total);
+		
+		//model.addAttribute("pageMaker", new PageDTO(cri, 274)); // 임의로 273 요청
+		model.addAttribute("pageMaker", new NoticePageDTO(cri, total));		
 		
 		return "home";
 	}

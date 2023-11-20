@@ -19,9 +19,10 @@ public class ReviewVO {
 	@NotBlank(message = "내용은 필수 항목입니다.")
 	private String reviewContent;
 	
-	private Date reviewDate;
-	
 	@NotBlank(message = "별점은 필수 항목입니다.")
 	private Double rating;
+	
+	private Date regDate;
+	private Date updateDate;
 	
 }

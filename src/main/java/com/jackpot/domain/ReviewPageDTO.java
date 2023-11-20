@@ -3,7 +3,7 @@ package com.jackpot.domain;
 import lombok.Data;
 
 @Data
-public class PageDTO {
+public class ReviewPageDTO {
 	private int startPage;	// 페이지 블럭의 첫 페이지 번호
 	private int endPage;	// 페이지 블럭의 끝 페이지 번호
 	private boolean prev;	// 이전 페이지 존재 여부
@@ -12,14 +12,14 @@ public class PageDTO {
 	private int totalPage;	// 전체 페이지 수
 	private int total;		// 전체 데이터 건수
 	
-	private Criteria cri;	// 페이지 요청 정보 객체
+	private ReviewCriteria cri;	// 페이지 요청 정보 객체
 	
-	public PageDTO(Criteria cri, int total) {
-		this.cri = cri;
+	public ReviewPageDTO(ReviewCriteria cri2, int total) {
+		this.cri = cri2;
 		this.total = total;	// 전체 데이터 건수
 		
-		int amount = cri.getAmount();
-		int page = cri.getPageNum();
+		int amount = cri2.getAmount();
+		int page = cri2.getPageNum();
 		
 		totalPage = (int)(Math.ceil((float)total / amount));
 		endPage = (int)(Math.ceil(page / (double)amount)) * amount;

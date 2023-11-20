@@ -34,7 +34,7 @@ public class RootConfig {
 //		config.setJdbcUrl("jdbc:mysql://localhost:3306/glory_db");
 		config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
         config.setJdbcUrl("jdbc:log4jdbc:mysql://49.50.165.92:3306/social_dog_db");
-		config.setUsername("kim");
+		config.setUsername("seo");
         config.setPassword("gooddogDB777!");
 		
 		HikariDataSource dataSource = new HikariDataSource(config);

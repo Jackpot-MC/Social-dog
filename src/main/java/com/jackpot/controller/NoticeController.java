@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jackpot.domain.AdminVO;
-import com.jackpot.domain.Criteria;
+import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.domain.NoticeVO;
-import com.jackpot.domain.PageDTO;
+import com.jackpot.domain.NoticePageDTO;
 import com.jackpot.service.NoticeService;
 
 import lombok.AllArgsConstructor;
@@ -47,7 +47,7 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void list(@ModelAttribute("cri") Criteria cri, Model model) {
+	public void list(@ModelAttribute("cri") NoticeCriteria cri, Model model) {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
 		
@@ -55,7 +55,7 @@ public class NoticeController {
 		log.info("total: " + total);
 		
 		//model.addAttribute("pageMaker", new PageDTO(cri, 274)); // 임의로 273 요청
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("pageMaker", new NoticePageDTO(cri, total));
 	}
 	
 	@GetMapping("/register") // 로직이 없어서 Test X
@@ -81,7 +81,7 @@ public class NoticeController {
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
-	public void get(@RequestParam("noticeId") Long noticeId, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("noticeId") Long noticeId, @ModelAttribute("cri") NoticeCriteria cri, Model model) {
 		log.info("/get or modify");
 		model.addAttribute("notice", service.get(noticeId));
 	}
@@ -90,7 +90,7 @@ public class NoticeController {
 	public String modify(
 			@Valid @ModelAttribute("notice") NoticeVO notice,
 			Errors errors,
-			@ModelAttribute("cri") Criteria cri,
+			@ModelAttribute("cri") NoticeCriteria cri,
 			RedirectAttributes rttr) throws Exception{
 		log.info("modify:" + notice);
 		if(errors.hasErrors()) {
@@ -105,7 +105,7 @@ public class NoticeController {
 	
 	@PostMapping("/remove")
 	public String remove(@RequestParam("noticeId") Long noticeId,
-			@ModelAttribute("cri") Criteria cri,
+			@ModelAttribute("cri") NoticeCriteria cri,
 			RedirectAttributes rttr) {
 		log.info("remove..." + noticeId);
 		
