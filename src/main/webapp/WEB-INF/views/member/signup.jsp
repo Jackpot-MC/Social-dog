@@ -26,45 +26,46 @@ $(".selector").attr({
 	
 		<div class="signup form">
 			<form:form modelAttribute="member" 
-			           action="/member/signup0?_csrf=${_csrf.token}"
+			           action="/member/signup?_csrf=${_csrf.token}"
 						id="signup_form" style="width:500px" class="mx-auto">
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
 				<h2 class="mt-5">회원가입</h2>
+				<h6>반려견과의 일상을 소셜독과 함께해요!</h6>
 
 				<div class="form-group mt-5" id="info__id">
-					<form:label path="memberLoginId">아이디</form:label>
+					<form:label path="memberLoginId">아이디<span>*</span></form:label>
 					<form:input path="memberLoginId" cssClass="form-control" />
 					<form:errors path="memberLoginId" cssClass="error" />
 				</div>
 				<div class="form-group">
-					<form:label path="memberLoginPwd">비밀번호</form:label>
-					<form:input path="memberLoginPwd" cssClass="form-control" />
+					<form:label path="memberLoginPwd">비밀번호<span>*</span></form:label>
+	            	<form:input path="memberLoginPwd" type="password" cssClass="form-control"/>				
 					<form:errors path="memberLoginPwd" cssClass="error" />
 				</div>
 				<div class="form-group">
-					<form:label path="memberLoginPwd2">비밀번호 확인</form:label>
-					<form:input path="memberLoginPwd2" cssClass="form-control" />
+					<form:label path="memberLoginPwd2">비밀번호 확인<span>*</span></form:label>
+					<form:input path="memberLoginPwd2" type="password" cssClass="form-control" />
 					<form:errors path="memberLoginPwd2" cssClass="error" />
 				</div>
 				<div class="form-group">
-					<form:label path="memberName">이름</form:label>
+					<form:label path="memberName">이름<span>*</span></form:label>
 					<form:input path="memberName" cssClass="form-control" />
 					<form:errors path="memberName" cssClass="error" />
 				</div>
 				<div class="form-group">
-					<form:label path="memberBirth">생년월일</form:label>
+					<form:label path="memberBirth">생년월일<span>*</span></form:label>
 					<form:input type="date" path="memberBirth" cssClass="form-control" />
 					<form:errors path="memberBirth" cssClass="error" />
 				</div>
 
 				<div class="form-group">
-					<form:label path="memberEmail">이메일</form:label>
-					<form:input type="email" path="memberEmail" cssClass="form-control" />
+					<form:label path="memberEmail">이메일<span>*</span></form:label>
+					<form:input type="email" path="memberEmail" cssClass="form-control" placeholder="email@example.com"/>
 					<form:errors path="memberEmail" cssClass="error" />
 				</div>
 				
 				<div class="form-group">
-					<form:label path="memberAddress">주소</form:label>
+					<form:label path="memberAddress">주소<span>*</span></form:label>
 					<form:input path="memberAddress" cssClass="form-control" />
 					<form:errors path="memberAddress" cssClass="error" />
 				</div>
@@ -73,7 +74,7 @@ $(".selector").attr({
                     <input type="submit" value="Signup Now" class="signup_button">
                     <br>
                     <br>이미 회원이신가요?
-                    <a href="member_login" class="switch">로그인 하러가기</a>
+                    <a href="/member/login" class="switch">로그인 하러가기</a>
                 </div>
                 
 			</form:form>

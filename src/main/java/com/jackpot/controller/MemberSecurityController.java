@@ -62,13 +62,13 @@ public class MemberSecurityController {
     	log.info(member);
 		//1. 비밀번호-비밀번호 확인 일치 여부 판단
 		if (!member.getMemberLoginPwd().equals(member.getMemberLoginPwd2())) {
-			errors.rejectValue("password2", "비밀번호 불일치", "비밀번호 확인이 일치하지 않습니다.");
+			errors.rejectValue("memberLoginPwd", "비밀번호 불일치", "비밀번호가 일치하지 않습니다.");
 		}
 
 		//2. 아이디 중복을 거르기
 		if (!errors.hasFieldErrors("memberLoginId")) {
 			if (memberService.get(member.getMemberLoginId()) != null) {//id중복검사
-				errors.rejectValue("memberLoginId", "ID 중복", "이미 사용중인 ID입니다.");
+				errors.rejectValue("memberLoginId", "ID 중복", "이미 사용중인 아이디 입니다.");
 			}
 		}
 

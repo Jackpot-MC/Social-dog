@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-  max-width: 700px;
+  max-width: 750px;
 }
 
 h2 {
@@ -19,18 +19,14 @@ h6 {
   margin-bottom: 60px;
 }
 
-.form label span {
-  color: #f95959;
-}
-
 section#formHolder {
-  padding: 30px 0;
+  padding: 50px 0;
 }
 
 .form {
-  background: #fefdfa;
-  height: 950px;
-  width: 100%;
+  padding:50px;
+  height: 600px;
+  width: 500px;
   margin-top: 50px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
   color: #4c4c4c;
@@ -38,26 +34,36 @@ section#formHolder {
   overflow: hidden;
 }
 
-.form form .form-group {
+.form .form-group {
   margin-bottom: 5px;
   position: relative;
 } 
 
+ .form form input:not([type=submit]) {
+  background: none;
+  border: none;
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid #000000;
+  color: #444;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+} 
+
+
 .error {
   color: #f95959;
   font-size: 14px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: relative;
+  left: 30%;
 }
 
 .form input::placeholder {
   color: #949494;
 }
 
-/* singup 버튼 */
+/* login 버튼 */
 .CTA {
-  padding: 40px;
   margin-top: 30px;
 }
 .CTA input {
@@ -72,19 +78,19 @@ section#formHolder {
   border: none;
   font-family: "Montserrat", sans-serif;
 }
-/* signup 버튼 끝 */
+/* login 버튼 끝 */
 
-/* 로그인하러가기 버튼 */
-.form form .CTA a.switch {
-  font-size: 16px;
+/* join now 버튼 */
+.CTA a.switch {
+  font-size: 18px;
   font-weight: 400;
   font-family: "Montserrat", sans-serif;
-  color: #bbbbbb;
+  color: #6a6a6a;
   text-decoration: underline;
   transition: all 0.3s;
 }
-.form form .CTA a.switch:hover {
+.CTA a.switch:hover {
   color: #000;
 }
-/* 로그인하러가기 버튼 끝 */
+/* join now 버튼 끝 */
 

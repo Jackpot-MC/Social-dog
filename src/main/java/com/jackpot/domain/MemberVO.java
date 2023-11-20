@@ -25,27 +25,27 @@ public class MemberVO implements UserDetails{
 
 	private Long memberId;
 	
-	@NotBlank(message = "사용자 이름은 필수 항목입니다.")
+	@NotBlank(message = "이름을 입력해주세요.")
 	private String memberName;
 	
-	@NotNull(message = "사용자 나이는 필수 항목입니다.")
+	@NotNull(message = "생년월일을 입력해주세요.")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date memberBirth;
 	
-	@NotBlank(message = "사용자 아이디는 필수 항목입니다.")
+	@NotBlank(message = "아이디를 입력해주세요.")
 	private String memberLoginId;
 	
-	@NotBlank(message = "사용자 비밀번호는 필수 항목입니다.")
+	@NotBlank(message = "비밀번호를 입력해주세요.")
 	private String memberLoginPwd;
 
-	@NotBlank(message = "사용자 비밀번호 확인은 필수 항목입니다.")
+	@NotBlank(message = "비밀번호를 다시 입력해주세요.")
 	private String memberLoginPwd2;
 	
-	@NotBlank(message = "사용자 이메일은 필수 항목입니다.")
+	@NotBlank(message = "이메일을 입력해주세요.")
 	@Email(message = "email 형식에 맞지 않습니다.")
 	private String memberEmail;
 	
-	@NotBlank(message = "사용자 주소는 필수 항목입니다.")
+	@NotBlank(message = "주소를 입력해주세요.")
 	private String memberAddress;
 
 
