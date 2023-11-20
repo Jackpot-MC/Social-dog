@@ -5,26 +5,23 @@
 
 <nav class="navbar navbar-expand-md bg-primary navbar-dark sticky-top">
 	<a class="navbar-brand" href="/">
-		<i class="fa-solid fa-house"></i> Backend</a>
+		<i class="fa-solid fa-paw"></i> Social Dogs</a>
+		
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">>
 	
-		<!--좌측메뉴구성-->
+		<!--메뉴구성-->
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="/board/list">
-				<i class="fa-solid fa-chalkboard"></i>
-				게시판</a>
+			<li class="nav-item"><a class="nav-link" href="#">산책하기</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/travel/list?amount=12">
-				<i class="fa-solid fa-plane-departure"></i>
-				여행</a>
+			<li class="nav-item"><a class="nav-link" href="#">나의약속</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">메뉴3</a>
+			<li class="nav-item"><a class="nav-link" href="#">산책기록</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="/notice/list"></i>커뮤니티</a>
 			</li>
 		</ul>
 
@@ -51,12 +48,12 @@
 		<sec:authorize access="isAnonymous()">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="/security/login">
+				<a class="nav-link" href="/member/member_login">
 					<i class="fa-solid fa-right-from-bracket"></i> 로그인
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/security/signup">
+				<a class="nav-link" href="/member/signup">
 					<i class="fa-solid fa-user-plus"></i> 회원가입
 				</a>
 			</li>

@@ -24,9 +24,7 @@
 
 </head>
 <body>
-	<div class="container-fluid">
-		<header class="jumbotron mb-0 rounded-0">
-			<h1>Backend Study</h1>
-			<p>자바 기반의 백엔드 기술을 배웁니다.</p>
-		</header>
+	<div id="wrap" class="container-fluid">
+		<header>
+		</header>	
 	<%@ include file="menu.jsp"%>
