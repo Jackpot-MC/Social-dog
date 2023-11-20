@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberVO implements UserDetails {
+public class MemberVO implements UserDetails{
 
 
 	private Long memberId;
