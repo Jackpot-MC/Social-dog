@@ -237,3 +237,4 @@ target/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,intellij,java
 src/main/java/com/jackpot/config/RootConfig.java
+src/main/webapp/META-INF/MANIFEST.MF
