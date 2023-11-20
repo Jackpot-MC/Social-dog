@@ -3,15 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<nav class="navbar navbar-expand-md bg-primary navbar-dark sticky-top">
+<nav class="navbar navbar-expand-md bg-warning navbar-dark sticky-top">
 	<a class="navbar-brand" href="/">
-		<i class="fa-solid fa-paw"></i> Social Dogs</a>
-		
+    	<i class="fa-solid fa-paw"></i> Social Dogs</a>
+
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="collapsibleNavbar">>
+	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 	
 		<!--메뉴구성-->
 		<ul class="navbar-nav">
@@ -32,8 +32,8 @@
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
 				<a class="nav-link" href="/security/profile">
-					<img src="/security/avatar/sm/${username}" class="avatar-sm"/>
-					${username}
+					<img src="/security/avatar/sm/${memberName}" class="avatar-sm"/>
+					${memberName}
 				</a>
 			</li>
 			<li class="nav-item">
