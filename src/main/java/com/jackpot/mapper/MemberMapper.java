@@ -22,6 +22,6 @@ public interface MemberMapper {
 	public List<MemberVO> getList();
 	
 	// 로그인
-	public MemberVO login(MemberVO member);
+//	public MemberVO login(MemberVO member);
 	
 }

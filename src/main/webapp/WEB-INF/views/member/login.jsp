@@ -27,13 +27,13 @@
       <h1 class="mt-4"><i class="fa-solid fa-right-to-bracket"></i> 사용자 로그인</h1>
       	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
       	<div class="form-group mt-4">
-           	<label for="username"><i class="fa-solid fa-user"></i> 사용자 ID:</label>
-      		<input type="text" name="username" id="username" class="form-control" />		
+           	<label for="memberLoginId"><i class="fa-solid fa-user"></i> 사용자 ID:</label>
+      		<input type="text" name="memberLoginId" id="memberLoginId" class="form-control" />
       	</div>
 
       	<div class="form-group">
-           	<label for="password"><i class="fa-solid fa-lock"></i> 비밀번호:</label>
-      		<input type="password" name="password" id="password" class="form-control" />		
+           	<label for="memberLoginPwd"><i class="fa-solid fa-lock"></i> 비밀번호:</label>
+      		<input type="password" name="memberLoginPwd" id="memberLoginPwd" class="form-control" />
       	</div>
       	
        	<div class="form-group form-check">

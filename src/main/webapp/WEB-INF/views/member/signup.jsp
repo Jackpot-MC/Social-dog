@@ -17,12 +17,12 @@
         </div>
         <div class="form-group">
             <form:label path="memberLoginPwd">비밀번호</form:label>
-            <form:input path="memberLoginPwd" cssClass="form-control"/>
+            <form:input path="memberLoginPwd" type = "password" cssClass="form-control"/>
             <form:errors path="memberLoginPwd" cssClass="error"/>
         </div>
         <div class="form-group">
             <form:label path="memberLoginPwd2">비밀번호 확인</form:label>
-            <form:input path="memberLoginPwd2" cssClass="form-control"/>
+            <form:input path="memberLoginPwd2" type = "password" cssClass="form-control"/>
             <form:errors path="memberLoginPwd2" cssClass="error"/>
         </div>
         <div class="form-group">
