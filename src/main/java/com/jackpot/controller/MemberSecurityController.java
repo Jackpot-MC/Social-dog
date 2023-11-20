@@ -122,7 +122,7 @@ public class MemberSecurityController {
     }
 
     @PostMapping("/login")
-    public String loginPost(MemberVO member) throws IOException {
+    public String loginPost(MemberVO member){
         log.info("Post: " + member);
 
         return "/home";
