@@ -1,5 +1,6 @@
 package com.jackpot.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
 	ReviewMapper reviewMapper;
 
 	@Override
-	public void register(ReviewVO review) {
+	public void register(ReviewVO review) throws IOException {
 		log.info("insert......." + review);
 		reviewMapper.create(review);
 	}
@@ -29,7 +30,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public boolean modify(ReviewVO review) {
+	public boolean modify(ReviewVO review) throws IOException {
 		log.info("update......." + review);
 		return reviewMapper.update(review) == 1;
 	}
