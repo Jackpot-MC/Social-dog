@@ -14,12 +14,12 @@ public class ReviewPageDTO {
 	
 	private ReviewCriteria cri;	// 페이지 요청 정보 객체
 	
-	public ReviewPageDTO(ReviewCriteria cri2, int total) {
-		this.cri = cri2;
+	public ReviewPageDTO(ReviewCriteria cri, int total) {
+		this.cri = cri;
 		this.total = total;	// 전체 데이터 건수
 		
-		int amount = cri2.getAmount();
-		int page = cri2.getPageNum();
+		int amount = cri.getAmount();
+		int page = cri.getPageNum();
 		
 		totalPage = (int)(Math.ceil((float)total / amount));
 		endPage = (int)(Math.ceil(page / (double)amount)) * amount;
