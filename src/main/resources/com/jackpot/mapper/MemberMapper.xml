@@ -48,7 +48,7 @@
 		select * from member
 	</select>
 	
-	<!-- 로그인 -->
+<!--	&lt;!&ndash; 로그인 &ndash;&gt;-->
 <!--	<select id="login" resultType="MemberVO">-->
 <!--		select member_login_id, member_login_pwd-->
 <!--		from member-->

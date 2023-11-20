@@ -3,6 +3,7 @@ package com.jackpot.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jackpot.domain.AdminVO;
@@ -16,10 +17,13 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminMapper mapper;
+
+	@Autowired
+	PasswordEncoder pwEncoder;
 	
 	@Override
-	public AdminVO get(Long adminId) {
-		return mapper.get(adminId);
+	public AdminVO get(String adminLoginId) {
+		return mapper.get(adminLoginId);
 	}
 
 	@Override

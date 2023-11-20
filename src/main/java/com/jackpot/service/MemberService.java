@@ -17,7 +17,7 @@ public interface MemberService {
 
 	public List<MemberVO> getList() throws IOException;
 	
-	public MemberVO login(MemberVO member) throws IOException;
+//	public MemberVO login(MemberVO member) throws IOException;
 
 
 }
