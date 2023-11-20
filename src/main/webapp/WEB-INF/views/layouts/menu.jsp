@@ -5,6 +5,7 @@
 
 <nav class="navbar navbar-expand-md bg-warning navbar-dark sticky-top">
 	<a class="navbar-brand" href="/">
+    	<i class="fa-solid fa-paw"></i> Social Dogs</a>
 
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">
