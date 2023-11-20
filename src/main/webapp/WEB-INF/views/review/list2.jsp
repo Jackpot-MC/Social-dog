@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ include file="layouts/header.jsp"%>
+<%@ include file="../layouts/header.jsp"%>
 
 
  <script type="text/javascript"> 
@@ -28,7 +28,6 @@
     
 <div class="container themed-container">
 
-<h1>최신 공지사항 컨테이너</h1>
 
 </div>
   
@@ -39,15 +38,15 @@
     
 		<table class="table table-striped table-hover">
 			<tbody>
-				<c:forEach var="notice" items="${list}">
+				<c:forEach var="review" items="${list}">
 					<tr>
-						<td style="width:60px">${notice.noticeId}</td>
-						<td><a class="move" href="${cri.getLinkWithNoticeId('get', notice.noticeId)}">
-							${notice.noticeTitle}</a>
+						<td style="width:60px">${review.reviewId}</td>
+						<td><a class="move" href="${cri.getLinkWithReviewId('get', review.reviewId)}">
+							${review.reviewTitle}</a>
 						</td>
-						<td style="width:100px">${notice.adminLoginId}</td>
+						<td style="width:100px">${review.memberId}</td>
 						<td style="width:130px">
-							<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/>
+							<fmt:formatDate pattern="yyyy-MM-dd" value="${review.regDate}"/>
 						</td>
 					</tr>
 				</c:forEach>
@@ -56,6 +55,11 @@
     
     </div>
     <div class="col-md-8 themed-grid-col">
+      
+<div class="mt-4">
+	<i class="fa-solid fa-map-location-dot"></i>
+</div>
+
 
 <div class="map_wrap">
     <div id="map" style="width:100%; height:500px; position:relative;overflow:hidden;"></div>
@@ -639,4 +643,4 @@ function displayMarker(locPosition, message) {
 
 </div></div></div>
 
-<%@include file="layouts/footer.jsp"%>
+<%@include file="../layouts/footer.jsp"%>

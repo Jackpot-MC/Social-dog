@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jackpot.domain.AdminVO;
-import com.jackpot.domain.Criteria;
+import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.domain.NoticeVO;
 import com.jackpot.mapper.NoticeMapper;
 
@@ -52,14 +52,14 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> getList(Criteria cri) {
+	public List<NoticeVO> getList(NoticeCriteria cri) {
 		log.info("get List with criteria: " + cri);
 		
 		return mapper.getListWithPaging(cri);
 	}
 
 	@Override
-	public int getTotal(Criteria cri) {
+	public int getTotal(NoticeCriteria cri) {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
 	}

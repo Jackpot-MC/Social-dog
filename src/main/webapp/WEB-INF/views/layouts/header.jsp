@@ -24,8 +24,6 @@
 </head>
 <body>
 	<div id="wrap" class="container-fluid">
-		<header class="jumbotron mb-0 rounded-0">
-			<h1><i class="fa-solid fa-paw"></i> Social Dogs</h1>
-            <p>반려견과 반려인 모두의 행복</p>
-		</header>
+		<header>
+		</header>	
 	<%@ include file="menu.jsp"%>
