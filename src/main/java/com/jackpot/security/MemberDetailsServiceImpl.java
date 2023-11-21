@@ -3,12 +3,15 @@ package com.jackpot.security;
 import com.jackpot.domain.MemberVO;
 import com.jackpot.mapper.MemberMapper;
 import lombok.extern.log4j.Log4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Log4j
 public class MemberDetailsServiceImpl implements UserDetailsService {
+
+    @Autowired
     MemberMapper memberMapper;
     @Override
     public UserDetails loadUserByUsername(String memberLoginId) throws UsernameNotFoundException {

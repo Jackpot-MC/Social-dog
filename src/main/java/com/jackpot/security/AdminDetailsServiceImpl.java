@@ -3,6 +3,7 @@ package com.jackpot.security;
 import com.jackpot.domain.AdminVO;
 import com.jackpot.mapper.AdminMapper;
 import lombok.extern.log4j.Log4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @Log4j
 public class AdminDetailsServiceImpl implements UserDetailsService {
 
+    @Autowired
     AdminMapper adminMapper;
     @Override
     public UserDetails loadUserByUsername(String adminLoginId) throws UsernameNotFoundException {
