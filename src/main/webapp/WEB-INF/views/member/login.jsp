@@ -36,7 +36,7 @@
                     <input type="password" name="memberLoginPwd" id="memberLoginPwd" class="form-control"/>
                 </div>
 
-<!-- 				<div class="form-group form-check">
+<!-- 			<div class="form-group form-check">
 					<label class="form-check-label">
 					<input type="checkbox" name="remember-me" class="form-check-input" /> 로그인 유지
 					</label>
