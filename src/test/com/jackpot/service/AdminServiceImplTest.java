@@ -1,9 +1,5 @@
 package com.jackpot.service;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.jackpot.config.RootConfig;
-import com.jackpot.domain.AdminVO;
-import com.jackpot.mapper.AdminMapperTest;
 
 import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
