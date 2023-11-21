@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.Date"%>
 
-<%@ include file ="../layouts/header.jsp" %>
+<%@ include file ="../layouts/admin-header.jsp" %>
 <%
 	Date d = new Date();
 %>
