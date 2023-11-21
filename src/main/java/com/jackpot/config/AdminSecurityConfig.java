@@ -2,7 +2,7 @@ package com.jackpot.config;
 
 import javax.sql.DataSource;
 
-import com.jackpot.security.AdminDetailsServiceImpl;
+import com.jackpot.security.CustomUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,19 +14,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
-
 import lombok.extern.log4j.Log4j;
-
-import static org.apache.commons.io.filefilter.FileFilterUtils.and;
 
 
 @Configuration
-@Order(1)
 @EnableWebSecurity
 @Log4j
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -84,7 +79,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService customUserService() {
-        return new AdminDetailsServiceImpl();
+        return new CustomUserDetailsServiceImpl();
     }
 
     @Override

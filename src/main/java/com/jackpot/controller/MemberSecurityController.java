@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import com.jackpot.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ public class MemberSecurityController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    AdminService adminService;
 
     //메인 페이지 이동
     @GetMapping("/main")
@@ -68,8 +72,11 @@ public class MemberSecurityController {
 		//2. 아이디 중복을 거르기
 		if (!errors.hasFieldErrors("memberLoginId")) {
 			if (memberService.get(member.getMemberLoginId()) != null) {//id중복검사
-				errors.rejectValue("memberLoginId", "ID 중복", "이미 사용중인 ID입니다.");
+				errors.rejectValue("memberLoginId", "ID 중복", "이미 사용 중인 ID입니다.");
 			}
+            else if(adminService.get(member.getMemberLoginId())!=null){
+                errors.rejectValue("memberLoginId", "ID 중복", "이미 사용 중인 ID입니다.");
+            }
 		}
 
 		if (errors.hasErrors()) {

@@ -1,7 +1,6 @@
 package com.jackpot.config;
 
-import com.jackpot.security.MemberDetailsServiceImpl;
-
+import com.jackpot.security.CustomUserDetailsServiceImpl;
 import lombok.extern.log4j.Log4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,9 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
-
 import javax.sql.DataSource;
 
 @Configuration
-@Order(2)
 @EnableWebSecurity
 @Log4j
 public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -82,7 +79,7 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService customUserService() {
-        return new MemberDetailsServiceImpl();
+        return new CustomUserDetailsServiceImpl();
     }
 
     @Override
