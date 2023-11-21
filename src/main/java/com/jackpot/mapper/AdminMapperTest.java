@@ -1,8 +1,4 @@
-package com.jackpot.service;
-
-import static org.junit.Assert.*;
-
-import java.io.IOException;
+package com.jackpot.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,59 +9,65 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.jackpot.config.RootConfig;
 import com.jackpot.domain.AdminVO;
-import com.jackpot.mapper.AdminMapperTest;
 
 import lombok.extern.log4j.Log4j;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes= {RootConfig.class})
 @Log4j
-public class AdminServiceImplTest {
+public class AdminMapperTest {
 
 	@Autowired
-	private AdminService service;
+	private AdminMapper mapper;
 	
 	@Test
 	public void testGet() {
-		log.info(service.get(4L));
+		AdminVO admin = mapper.get("admin1");
+		
+		log.info(admin);
+		log.warn("성공");
 	}
-
+	
 //	@Test
-//	public void testRegister(){
+//	public void testInsert() {
 //		AdminVO admin = new AdminVO();
-//		admin.setAdminLoginId("admin2");
-//		admin.setAdminLoginPwd("admin2");
+//		admin.setAdminId(4L);
+//		admin.setAdminLoginId("admin4");
+//		admin.setAdminLoginPwd("admin4");
 //		log.info(admin);
 //		
-//		service.register(admin);
+//		mapper.insert(admin);
 //		
 //		log.info(admin);
 //	}
 
 //	@Test
-//	public void testModify() throws IOException {
-//		AdminVO admin = service.get("admin1");
+//	public void testUpdate() {
+//		AdminVO admin = mapper.get("admin1");
+//		log.info(admin);
 //		
 //		if(admin == null) {
 //			return;
 //		}
 //		
-//		admin.setAdminLoginPwd("admin112");
+//		admin.setAdminLoginPwd("admin111");
 //		log.info(admin);
 //		
-//		service.modify(admin);
+//		mapper.update(admin);
 //		
 //		log.info(admin);
 //	}
 
 //	@Test
-//	public void testRemove() {
-//		log.info("REMOVE RESULT: " + service.remove(5L));
+//	public void testDelete() {
+//		log.info("DELETE COUNT: " + mapper.delete(2L));
 //	}
 	
 //	@Test
-//	public void testRemoveLoginId() {
-//		log.info("REMOVE RESULT: " + service.removeLoginId("admin3"));
+//	public void testDeleteLoginId() {
+//		log.info("DELETE COUNT: " + mapper.deleteLoginId("admin3"));
 //	}
+
 
 }

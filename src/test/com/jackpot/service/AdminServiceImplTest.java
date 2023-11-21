@@ -1,4 +1,8 @@
-package com.jackpot.mapper;
+package com.jackpot.service;
+
+import static org.junit.Assert.*;
+
+import java.io.IOException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,65 +13,59 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.jackpot.config.RootConfig;
 import com.jackpot.domain.AdminVO;
+import com.jackpot.mapper.AdminMapperTest;
 
 import lombok.extern.log4j.Log4j;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes= {RootConfig.class})
 @Log4j
-public class AdminMapperTest {
+public class AdminServiceImplTest {
 
 	@Autowired
-	private AdminMapper mapper;
+	private AdminService service;
 	
 	@Test
 	public void testGet() {
-		AdminVO admin = mapper.get(1L);
-		
-		log.info(admin);
-		log.warn("성공");
+		log.info(service.get("admin1"));
 	}
-	
+
 //	@Test
-//	public void testInsert() {
+//	public void testRegister(){
 //		AdminVO admin = new AdminVO();
-//		admin.setAdminId(4L);
-//		admin.setAdminLoginId("admin4");
-//		admin.setAdminLoginPwd("admin4");
+//		admin.setAdminLoginId("admin2");
+//		admin.setAdminLoginPwd("admin2");
 //		log.info(admin);
 //		
-//		mapper.insert(admin);
+//		service.register(admin);
 //		
 //		log.info(admin);
 //	}
 
 //	@Test
-//	public void testUpdate() {
-//		AdminVO admin = mapper.get("admin1");
-//		log.info(admin);
+//	public void testModify() throws IOException {
+//		AdminVO admin = service.get("admin1");
 //		
 //		if(admin == null) {
 //			return;
 //		}
 //		
-//		admin.setAdminLoginPwd("admin111");
+//		admin.setAdminLoginPwd("admin112");
 //		log.info(admin);
 //		
-//		mapper.update(admin);
+//		service.modify(admin);
 //		
 //		log.info(admin);
 //	}
 
 //	@Test
-//	public void testDelete() {
-//		log.info("DELETE COUNT: " + mapper.delete(2L));
+//	public void testRemove() {
+//		log.info("REMOVE RESULT: " + service.remove(5L));
 //	}
 	
 //	@Test
-//	public void testDeleteLoginId() {
-//		log.info("DELETE COUNT: " + mapper.deleteLoginId("admin3"));
+//	public void testRemoveLoginId() {
+//		log.info("REMOVE RESULT: " + service.removeLoginId("admin3"));
 //	}
-
 
 }

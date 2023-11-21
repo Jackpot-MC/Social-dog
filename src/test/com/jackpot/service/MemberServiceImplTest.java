@@ -16,6 +16,8 @@ import com.jackpot.mapper.MemberMapperTest;
 
 import lombok.extern.log4j.Log4j;
 
+import java.util.Date;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class })
 @Log4j
@@ -40,7 +42,7 @@ public class MemberServiceImplTest {
 		member.setMemberLoginId("user4");
 		member.setMemberLoginPwd("user1234");
 		member.setMemberName("윤길동");
-		member.setMemberBirth(22);
+		member.setMemberBirth(new Date("2002-11-04"));
 		member.setMemberEmail("user4@gmail.com");
 		member.setMemberAddress("서울시 강남구");
 
