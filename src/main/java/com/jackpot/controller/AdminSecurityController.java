@@ -59,11 +59,11 @@ public class AdminSecurityController {
         log.info("login page");
     }
 
-//    @PostMapping("/login")
-//    public String loginPost(AdminVO adminVO) {
-//        log.info("login page");
-//        return "/home";
-//    }
+    @PostMapping("/login")
+    public String loginPost(AdminVO adminVO) {
+        log.info("login page");
+        return "/admin-home";
+    }
 
     @GetMapping("/logout")
     public void logout(){log.info("logout page");}
