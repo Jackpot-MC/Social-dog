@@ -2,6 +2,7 @@ package com.jackpot.mapper;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class AppointmentMapperTest {
 	public void testCreate() {
 		System.out.println("testCreate()");
 		AppointmentVO appointment = new AppointmentVO();
-		appointment.setAppointmentDate("2023-11-11");
+		appointment.setRegDate(new Date());
 		appointment.setAppointmentName("새로 생성한 약속");
 		appointment.setHostId(2L);
 		appointment.setPlaceId(1L);
@@ -49,7 +50,7 @@ public class AppointmentMapperTest {
 		System.out.println("testUpdate()");
 		AppointmentVO appointment = new AppointmentVO();
 		appointment.setAppointmentId(1L);
-		appointment.setAppointmentDate("2023-11-12");
+		appointment.setRegDate(new Date());
 		appointment.setAppointmentName("수정한 약속");
 		appointment.setHostId(2L);
 		appointment.setPlaceId(1L);

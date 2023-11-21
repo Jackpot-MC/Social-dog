@@ -8,23 +8,18 @@
 		<id property="appointmentId" column="appointment_id" />
 		<result property="appointmentId" column="appointment_id" />
 		<result property="appointmentName" column="appointment_name" />
-		<result property="appointmentDate" column="appointment_date" />
+		<result property="regDate" column="appointment_date" />
 		<result property="placeId" column="place_id" />
 		<result property="hostId" column="host_id" />
 
 	</resultMap>
 
-	<insert id="create" useGeneratedKeys="true"
-		keyProperty="appointment_id">
-		insert into appointment (appointment_id, appointment_name, appointment_date, place_id, host_id)
+	<insert id="insert">
+		insert into appointment (appointment_name, appointment_date, place_id,
+		host_id)
 		values
-		(#{appointment_id}, #{appointment_name}, #{appointment_date}, #{place_id}, #{host_id} )
-	</insert>
-
-	<insert id="insertSelectKey">
-		insert into appointment (appointment_name, appointment_date, place_id, host_id)
-		values
-		(#{appointmentName}, #{appointmentDate}, #{placeId}, #{hostId})
+		(#{appointment_name}, #{reg_date}, #{place_id},
+		#{host_id} )
 
 		<selectKey resultType="Long" keyProperty="appointmentId"
 			keyColumn="appointment_id" order="AFTER">
@@ -32,15 +27,26 @@
 		</selectKey>
 	</insert>
 
-    <update id="update">
-        update appointment
-        set appointment_name = #{appointmentName},appointment_date = #{appointmentDate}, place_id = #{placeId}
-        where appointment_id = #{appointmentId}
-    </update>
+	<update id="update">
+		update appointment
+		set appointment_name =
+		#{appointmentName},
+		appointment_date = #{regDate},
+		place_id =
+		#{placeId}
+		where appointment_id = #{appointmentId}
+	</update>
 
-	<select id="get" resultType="AppointmentVO">
-		select *
+	<select id="read" resultType="AppointmentVO">
+		select appointment_id,
+		appointment_name, appointment_date as reg_date, appointment.place_id, host_id, member_login_id, member_login_pwd
 		from appointment
+		left outer join member
+		on appointment.host_id = member_id
+		left outer join place
+		on appointment.place_id = place.place_id
+		left outer join place_type
+		on place.place_type_id = place_type.place_type_id
 		where
 		appointment_id = #{appointment_id}
 	</select>
@@ -54,5 +60,63 @@
 
 	<select id="getList" resultType="AppointmentVO">
 		select * from appointment
+		order
+		by appointment_id desc
+		limit 0, 10
 	</select>
+
+	<select id="getListWithPaging" resultType="AppointmentVO">
+		select appointment_id,
+		appointment_name, appointment_date as reg_date, appointment.place_id,
+		host_id,
+		member.member_login_id, member.member_login_pwd, place.place_spot, place.place_name, place_type.place_type_name
+		from appointment
+		left outer join member
+		on appointment.host_id = member.member_id
+		left outer join place
+		on appointment.place_id = place.place_id
+		left outer join place_type
+		on place.place_type_id = place_type.place_type_id
+		<where>
+			<include refid="criteria"></include>
+		</where>
+		order by member_id desc
+		limit #{offset}, #{amount}
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from appointment 
+		left outer join member
+		on appointment.host_id = member.member_id
+		left outer join place
+		on appointment.place_id = place.place_id
+		left outer join place_type
+		on place.place_type_id = place_type.place_type_id
+		<where>
+			<include refid="criteria"></include>
+		</where>
+	</select>
+
+	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
+		<trim prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							appointment_name like CONCAT('%',#{keyword},'%')
+						</when>
+						<when test="type == 'H'.toString()">
+							member.member_login_id like
+							CONCAT('%',#{keyword},'%')
+						</when>
+						<when test="type == 'L'.toString()">
+							place.place_name like
+							CONCAT('%',#{keyword},'%')
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
 </mapper>
