@@ -1,41 +1,70 @@
 package com.jackpot.service;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
+import com.jackpot.domain.MemberVO;
 import com.jackpot.mapper.AppointmentMapper;
 
+import lombok.extern.log4j.Log4j;
+
+@Service
+@Log4j
+@Transactional(rollbackFor = Exception.class)
 public class AppointmentServiceImpl implements AppointmentService {
 
-	AppointmentMapper appointmentMapper;
+	@Autowired
+	AppointmentMapper mapper;
 	
 	@Override
-	public void create(AppointmentVO appointment) {
-		appointmentMapper.insertSelectKey(appointment);
-		Long appointmentId = appointment.getAppointmentId();
-	}
-
-	@Override
 	public AppointmentVO get(Long appointmentId) {
-		AppointmentVO appointment = appointmentMapper.get(appointmentId);
-		return appointment;
+		return mapper.read(appointmentId);
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void register(AppointmentVO appointment) throws IOException {
+		log.info("insert: " + appointment);
+		mapper.insert(appointment);
 	}
 
 	@Override
-	public boolean update(AppointmentVO appointment) {
-		int result = appointmentMapper.update(appointment);
-		Long appointmentId = appointment.getAppointmentId();
+	public boolean modify(AppointmentVO appointment) throws IOException {
+		log.info("update: " + appointment);
+		int result = mapper.update(appointment);	
 		return result == 1;
 	}
 
 	@Override
-	public boolean delete(Long appointmentId) {
-		return appointmentMapper.delete(appointmentId);
+	public boolean remove(Long appointmentId) {
+		log.info("delete: " + appointmentId);
+		return mapper.delete(appointmentId);
 	}
 
 	@Override
-	public List<AppointmentVO> getList() {
-		return appointmentMapper.getList();
+	public List<AppointmentVO> getList(AppointmentCriteria cri) {
+		log.info("getListWithPaging: " + cri);
+		
+		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(AppointmentCriteria cri) {
+		log.info("getTotalCount");
+		return mapper.getTotalCount(cri);
+	}
+
+	@Override
+	public List<MemberVO> getMemberLoginId(MemberVO member) {
+		log.info("getMemberLoginId");
+		
+		return mapper.getMemberLoginIdMapper(member);
 	}
 
 }

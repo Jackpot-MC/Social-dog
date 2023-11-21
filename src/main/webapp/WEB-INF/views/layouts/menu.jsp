@@ -32,7 +32,7 @@
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
 				<a class="nav-link" href="/member/profile">
-					<img src="/security/avatar/sm/${memberName}" class="avatar-sm"/>
+					
 					${memberName}
 				</a>
 			</li>
