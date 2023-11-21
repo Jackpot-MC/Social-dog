@@ -117,16 +117,17 @@ public class MemberSecurityController {
 
     //로그인
     @GetMapping("/login")
-    public void login() {
+    public String login() {
         log.info("login page");
+        return "/admin/login";
     }
 
-//    @PostMapping("/login")
-//    public String loginPost(MemberVO member) throws IOException {
-//        log.info("Post: " + member);
-//
-//        return "/home";
-//    }
+    @PostMapping("/login")
+    public String loginPost(MemberVO member) throws IOException {
+        log.info("Post: " + member);
+
+        return "/home";
+    }
 
     //로그아웃
     @GetMapping("/logout")
