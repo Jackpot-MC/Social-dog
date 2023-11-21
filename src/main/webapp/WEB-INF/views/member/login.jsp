@@ -28,12 +28,12 @@
 
                 <div class="form-group mt-4">
                     <label for="memberLoginId"><i class="fa-solid fa-user"></i>아이디</label>
-                    <input type="text" name="memberLoginId" id="memberLoginId" class="form-control"/>
+                    <input type="text" name="username" id="memberLoginId" class="form-control"/>
                 </div>
 
                 <div class="form-group">
                     <label for="memberLoginPwd"><i class="fa-solid fa-lock"></i>비밀번호</label>
-                    <input type="password" name="memberLoginPwd" id="memberLoginPwd" class="form-control"/>
+                    <input type="password" name="password" id="memberLoginPwd" class="form-control"/>
                 </div>
 
 <!-- 				<div class="form-group form-check">
