@@ -31,75 +31,78 @@ import static org.apache.commons.io.filefilter.FileFilterUtils.and;
 @Log4j
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-		
-	protected void configure(HttpSecurity http) throws Exception {
-		
-		CharacterEncodingFilter filter = new CharacterEncodingFilter();
-		filter.setEncoding("UTF-8");
-		filter.setForceEncoding(true);
-		
-		http.addFilterBefore(filter, CsrfFilter.class);
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-		http.csrf().ignoringAntMatchers("/api/**");
-		
-		http.antMatcher("/admin/notice/*")
-				.authorizeRequests()
-						.anyRequest()
-								.hasRole("ADMIN");
+    protected void configure(HttpSecurity http) throws Exception {
 
-		http.formLogin()
-			.loginPage("/admin/login?error=login_required")	// 로그인 안하고 접근한 경우 리다이렉트
-			.loginProcessingUrl("/admin/login")
-			.defaultSuccessUrl("/admin/home")
-			.failureUrl("/admin/login?error=true");	// el : param.error
-		
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
 
-		http.logout()						// 로그아웃 설정 시작
-		  	.logoutUrl("/admin/logout")	// POST: 로그아웃 호출 url
-		  	.invalidateHttpSession(true)	// 세션 invalidate
-		  	.deleteCookies("remember-me", "JSESSION-ID")	// 삭제할 쿠키 목록
-			.logoutSuccessUrl("/admin/login");	// 로그아웃 이후 이동할 페이지
-		
-		
-		http.rememberMe()		// remember-me 기능 설정
-			.key("Galapagos")
-			.tokenRepository(persistentTokenRepository())
-			.tokenValiditySeconds(7*24*60*60);	// 7일
+        http.addFilterBefore(filter, CsrfFilter.class);
 
-		
-	}
+        http.csrf().ignoringAntMatchers("/api/**");
+
+        http.antMatcher("/admin/notice/*")
+                .authorizeRequests()
+                .anyRequest()
+                .hasRole("ADMIN");
+
+        http.formLogin()
+                .loginPage("/admin/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
+                .loginProcessingUrl("/admin/login")
+                .defaultSuccessUrl("/admin/home")
+                .failureUrl("/admin/login?error=true")
+                .usernameParameter("adminLoginId")
+                .passwordParameter("adminLoginPwd");
+        ;    // el : param.error
 
 
-	@Bean
-	public UserDetailsService customUserService() {
-		return new AdminDetailsServiceImpl();
-	}
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth)//사용자 인증방식
-						throws Exception {
-
-		auth
-			.userDetailsService(customUserService())
-			.passwordEncoder(passwordEncoder());
-
-	}
+        http.logout()                        // 로그아웃 설정 시작
+                .logoutUrl("/admin/logout")    // POST: 로그아웃 호출 url
+                .invalidateHttpSession(true)    // 세션 invalidate
+                .deleteCookies("remember-me", "JSESSION-ID")    // 삭제할 쿠키 목록
+                .logoutSuccessUrl("/admin/login");    // 로그아웃 이후 이동할 페이지
 
 
-	@Bean
-	public PersistentTokenRepository persistentTokenRepository() {
-		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
-		repo.setDataSource(dataSource);
-	
-		return repo;
-	}
+        http.rememberMe()        // remember-me 기능 설정
+                .key("Galapagos")
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(7 * 24 * 60 * 60);    // 7일
 
-	
+
+    }
+
+
+    @Bean
+    public UserDetailsService customUserService() {
+        return new AdminDetailsServiceImpl();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth)//사용자 인증방식
+            throws Exception {
+
+        auth
+                .userDetailsService(customUserService())
+                .passwordEncoder(passwordEncoder());
+
+    }
+
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+        repo.setDataSource(dataSource);
+
+        return repo;
+    }
+
+
 }

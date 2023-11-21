@@ -52,14 +52,16 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/participant/*",
                         "/appointment/*",
                         "/profile/*"
-                        ).access("hasRole('ROLE_USER')");//USER이상은 다적용
+                ).access("hasRole('ROLE_USER')");//USER이상은 다적용
 
 
         http.formLogin()
                 .loginPage("/member/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
                 .loginProcessingUrl("/member/login*")
                 .defaultSuccessUrl("/member/home")
-                .failureUrl("/member/login?error=true");    // el : param.error
+                .failureUrl("/member/login?error=true")
+                .usernameParameter("memberLoginId")
+                .passwordParameter("memberLoginPwd");    // el : param.error
 
 
         http.logout()                        // 로그아웃 설정 시작
