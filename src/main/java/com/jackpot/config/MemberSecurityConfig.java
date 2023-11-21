@@ -48,7 +48,7 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
-                        "/member-home",
+                        "/home",
                         "/review/*",
                         "/participant/*",
                         "/appointment/*",
