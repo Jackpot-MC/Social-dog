@@ -117,8 +117,9 @@ public class MemberSecurityController {
 
     //로그인
     @GetMapping("/login")
-    public void login() {
+    public String login() {
         log.info("login page");
+        return "/admin/login";
     }
 
     @PostMapping("/login")

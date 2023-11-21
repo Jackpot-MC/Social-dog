@@ -55,8 +55,9 @@ public class AdminSecurityController {
 //    }
 
     @GetMapping("/login")//로그인 페이지 호출
-    public void login() {
+    public String login() {
         log.info("login page");
+        return "admin/login";
     }
 
     @PostMapping("/login")
