@@ -137,5 +137,9 @@ public class MemberSecurityController {
 		return "redirect:/";
 	}
     
-    
+//    //로그아웃
+//    @GetMapping("/logout")
+//    public void logout() {
+//        log.info("logout page");
+//    }
 }

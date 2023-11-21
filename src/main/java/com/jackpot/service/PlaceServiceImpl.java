@@ -3,6 +3,7 @@ package com.jackpot.service;
 import com.jackpot.domain.PlaceVO;
 import com.jackpot.mapper.PlaceMapper;
 import lombok.extern.log4j.Log4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Log4j
 public class PlaceServiceImpl implements PlaceService{
 
+    @Autowired
     PlaceMapper placeMapper;
 
     @Override
