@@ -36,11 +36,12 @@ Date d = new Date();
 					<input type="password" name="memberLoginPwd" id="memberLoginPwd" class="form-control" />
 				</div>
 
-				<div class="form-group form-check">
-					<label class="form-check-label"> <input type="checkbox" name="remember-me" class="form-check-input" /> 로그인 유지
+<!-- 				<div class="form-group form-check">
+					<label class="form-check-label"> 
+					<input type="checkbox" name="remember-me" class="form-check-input" /> 로그인 유지
 					</label>
 				</div>
-
+ -->
 				<c:if test="${param.error == 'true'}">
 					<div class="error">사용자 ID 또는 비밀번호가 일치하지 않습니다.</div>
 				</c:if>

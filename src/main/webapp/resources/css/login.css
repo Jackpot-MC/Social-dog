@@ -55,7 +55,7 @@ section#formHolder {
   color: #f95959;
   font-size: 14px;
   position: relative;
-  left: 30%;
+  text-align: center;
 }
 
 .form input::placeholder {
@@ -64,7 +64,7 @@ section#formHolder {
 
 /* login 버튼 */
 .CTA {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 .CTA input {
   width: 100%;
