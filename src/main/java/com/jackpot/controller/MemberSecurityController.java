@@ -121,12 +121,12 @@ public class MemberSecurityController {
         log.info("login page");
     }
 
-    @PostMapping("/login")
-    public String loginPost(MemberVO member) throws IOException {
-        log.info("Post: " + member);
-
-        return "/home";
-    }
+//    @PostMapping("/login")
+//    public String loginPost(MemberVO member) throws IOException {
+//        log.info("Post: " + member);
+//
+//        return "/home";
+//    }
 
     //로그아웃
     @GetMapping("/logout")
