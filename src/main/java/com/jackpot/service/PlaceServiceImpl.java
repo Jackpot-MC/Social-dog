@@ -2,9 +2,13 @@ package com.jackpot.service;
 
 import com.jackpot.domain.PlaceVO;
 import com.jackpot.mapper.PlaceMapper;
+import lombok.extern.log4j.Log4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@Log4j
 public class PlaceServiceImpl implements PlaceService{
 
     PlaceMapper placeMapper;

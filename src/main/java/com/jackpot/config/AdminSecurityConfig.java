@@ -49,15 +49,17 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().ignoringAntMatchers("/api/**");
 
-        http.antMatcher("/admin/notice/*")
-                .authorizeRequests()
-                .anyRequest()
-                .hasRole("ADMIN");
+        http.authorizeRequests()
+                .antMatchers(
+                        "/admin-home",
+                        "/notice/modify",
+                        "/notice/register")
+                .access("hasRole('ROLE_ADMIN')");
 
         http.formLogin()
                 .loginPage("/admin/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
                 .loginProcessingUrl("/admin/login*")
-                .defaultSuccessUrl("/admin/home")
+                .defaultSuccessUrl("/admin-home")
                 .failureUrl("/admin/login?error=true")
                 .usernameParameter("adminLoginId")
                 .passwordParameter("adminLoginPwd");
@@ -67,14 +69,14 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout()                        // 로그아웃 설정 시작
                 .logoutUrl("/admin/logout")    // POST: 로그아웃 호출 url
                 .invalidateHttpSession(true)    // 세션 invalidate
-                .deleteCookies("remember-me", "JSESSION-ID")    // 삭제할 쿠키 목록
+//                .deleteCookies("remember-me", "JSESSION-ID")    // 삭제할 쿠키 목록
                 .logoutSuccessUrl("/admin/login");    // 로그아웃 이후 이동할 페이지
 
 
-        http.rememberMe()        // remember-me 기능 설정
-                .key("Galapagos")
-                .tokenRepository(persistentTokenRepository())
-                .tokenValiditySeconds(7 * 24 * 60 * 60);    // 7일
+//        http.rememberMe()        // remember-me 기능 설정
+//                .key("Galapagos")
+//                .tokenRepository(persistentTokenRepository())
+//                .tokenValiditySeconds(7 * 24 * 60 * 60);    // 7일
 
 
     }

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Log4j
 public class DogController {
 
-    @Autowired
-    private DogService dogService;
+//    @Autowired
+//    private DogService dogService;
 
 
 }

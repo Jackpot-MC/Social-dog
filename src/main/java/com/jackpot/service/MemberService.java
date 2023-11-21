@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import com.jackpot.domain.MemberVO;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface MemberService {
 
 	public MemberVO get(String memberLoginId);
