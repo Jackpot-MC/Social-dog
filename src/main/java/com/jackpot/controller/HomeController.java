@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.NoticeCriteria;
-import com.jackpot.domain.NoticePageDTO;
 import com.jackpot.service.MemberService;
 import com.jackpot.service.NoticeService;
 
@@ -53,12 +52,6 @@ public class HomeController {
 		model.addAttribute("member", memberService.get(member.getMemberAddress()));
 		
 		model.addAttribute("list", noticeService.getList(cri));
-		
-		int total = noticeService.getTotal(cri);
-		log.info("total: " + total);
-		
-		//model.addAttribute("pageMaker", new PageDTO(cri, 274)); // 임의로 273 요청
-		model.addAttribute("pageMaker", new NoticePageDTO(cri, total));		
 		
 		return "home";
 	}
