@@ -58,7 +58,7 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/member/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
                 .loginProcessingUrl("/member/login*")
-                .defaultSuccessUrl("/member/home")
+                .defaultSuccessUrl("/")
                 .failureUrl("/member/login?error=true")
                 .usernameParameter("memberLoginId")
                 .passwordParameter("memberLoginPwd");    // el : param.error
@@ -67,14 +67,14 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout()                        // 로그아웃 설정 시작
                 .logoutUrl("/member/logout")    // POST: 로그아웃 호출 url
                 .invalidateHttpSession(true)    // 세션 invalidate
-                .deleteCookies("remember-me", "JSESSION-ID")    // 삭제할 쿠키 목록
+                .deleteCookies("JSESSION-ID")    // 삭제할 쿠키 목록
                 .logoutSuccessUrl("/member/login");    // 로그아웃 이후 이동할 페이지
 
 
-        http.rememberMe()        // remember-me 기능 설정
-                .key("Galapagos")
-                .tokenRepository(persistentTokenRepository())
-                .tokenValiditySeconds(7 * 24 * 60 * 60);    // 7일
+//        http.rememberMe()        // remember-me 기능 설정
+//                .key("Galapagos")
+//                .tokenRepository(persistentTokenRepository())
+//                .tokenValiditySeconds(7 * 24 * 60 * 60);    // 7일
 
     }
 
