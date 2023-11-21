@@ -56,7 +56,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.formLogin()
                 .loginPage("/admin/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
-                .loginProcessingUrl("/admin/login")
+                .loginProcessingUrl("/admin/login*")
                 .defaultSuccessUrl("/admin/home")
                 .failureUrl("/admin/login?error=true")
                 .usernameParameter("adminLoginId")
