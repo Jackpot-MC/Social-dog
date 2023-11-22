@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="/resources/css/review/list.css" type="text/css" />
 
-<%@ include file="../layouts/member-header.jsp"%>
+<%@ include file="../layouts/header.jsp"%>
 
 
  <script type="text/javascript"> 

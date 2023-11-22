@@ -26,4 +26,4 @@
 	<div id="wrap" class="container-fluid">
 		<header>
 		</header>
-	<%@ include file="member-menu.jsp"%>
+	<%@ include file="menu.jsp"%>

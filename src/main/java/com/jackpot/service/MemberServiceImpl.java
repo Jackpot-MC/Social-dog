@@ -43,7 +43,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void update(MemberVO member) throws IOException {
 		log.info("update..." + member);
-		memberMapper.update(member);				
+
+		String encPassword = pwEncoder.encode(member.getPassword());
+		member.setMemberLoginPwd(encPassword);
+		member.setMemberLoginPwd2(encPassword);
+
+		memberMapper.update(member);
 	}
 
 	@Override
