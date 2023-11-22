@@ -2,63 +2,51 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ include file="layouts/header.jsp"%>
+<%@ include file="layouts/member-header.jsp"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 
 
  <script type="text/javascript">
-      // js코드
+ $(document).ready(function () {
+	 $('#map').on('click', '.review_btn', function(e) {
+		 var href = 'review/list';
+ 	    e.preventDefault();
+ 	 	$("#maindiv").load(href);
+	 });
+	 
+	 $('#map').on('click', '.appointment_btn', function(e) {
+		 var href = 'appointment/list';
+ 	    e.preventDefault();
+ 	 	$("#maindiv").load(href);
+	 });
+     
+/* 	 $('#map').on('click', '.place_detail_btn', function(e) {
+		 var href = place.place_url;
+ 	    e.preventDefault();
+ 	 	$("#maindiv").load(href);
+	 }); */
+ });
 </script>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+<div class="container">
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-<div class="container themed-container">
-
-<h1>최신 공지사항 컨테이너</h1>
+	<div class="card">
+		<h3 class="blue-text mt-1 text-center">최신 공지사항 컨테이너</h3>
+	</div>
 
 </div>
 
-<div class="container themed-container">
+<div class="container-fluid">
 
     <div class="row mb-3">
-    <div class="col-md-4 themed-grid-col">
-
-		<table class="table table-striped table-hover">
-			<tbody>
-				<c:forEach var="notice" items="${list}">
-					<tr>
-						<td style="width:60px">${notice.noticeId}</td>
-						<td><a class="move" href="${cri.getLinkWithNoticeId('get', notice.noticeId)}">
-							${notice.noticeTitle}</a>
-						</td>
-						<td style="width:100px">${notice.adminLoginId}</td>
-						<td style="width:130px">
-							<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
-    </div>
+    <div class="col-md-4 maindiv" id="maindiv">
+<%-- 	<%@ include file="review/list.jsp"%> --%>
+	</div>
+	
     <div class="col-md-8 themed-grid-col">
-
-<div class="map_wrap">
-    <div id="map" style="width:100%; height:500px; position:relative;overflow:hidden;"></div>
+	<div class="map_wrap">
+    <div id="map" style="width:100%; height:700px; position:relative;overflow:hidden;"></div>
 
     <!-- 키워드 검색
     <div id="menu_wrap" class="bg_white">
@@ -94,6 +82,23 @@
     </ul>
 </div>
 
+<div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<iframe id="embeddedTerm" src="https://place.map.kakao.com/8128910" style="width: 100%; height: 100%;"></iframe>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>	
+	</div>
+</div>
 
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2ef21ecaf963e1478e980c3e9d76aab&libraries=services,clusterer"></script>
 <script>
@@ -118,8 +123,6 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map);
-
-
 
 <%--
 // ------------------ 장소 검색 목록으로 표출 ---------------------
@@ -454,7 +457,7 @@ function removeMarker1() {
 
 // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 function displayPlaceInfo (place) {
-    var content = '<div class="placeinfo">' +
+    var content = '<div class="placeinfo" id="links">' +
                     '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';
 
     if (place.road_address_name) {
@@ -465,8 +468,11 @@ function displayPlaceInfo (place) {
     }
 
     content += '    <span class="tel">' + place.phone + '</span>' +
-                '</div>' +
-                '<div class="after"></div>';
+    			'<button type="button" class="place_btn appointment_btn"> 약속보기 </button>' +
+    			'<button type="button" class="place_btn review_btn"> 리뷰보기 </button>' +
+    			'<button type="button" class="place_btn place_detail_btn" data-toggle="modal" data-target="#modal-fullscreen-xl"> 상세보기 </button>' +
+    			'</div>' +
+               '<div class="after"></div>';
 
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
