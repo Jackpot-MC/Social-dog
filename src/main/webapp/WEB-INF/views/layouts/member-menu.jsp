@@ -27,11 +27,11 @@
 
 		<ul class="navbar-nav ml-auto">
 		<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal.username" var="username"/> <!-- username 스코프 생성 -->
+				<sec:authentication property="principal.memberLoginId" var="memberLoginId"/> <!-- username 스코프 생성 -->
 				
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
-				<a class="nav-link" href="/member/profile">
+				<a class="nav-link" href="/member/profile"> 마이페이지
 					${memberName}
 				</a>
 			</li>

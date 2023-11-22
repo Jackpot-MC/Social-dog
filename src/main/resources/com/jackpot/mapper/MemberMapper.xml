@@ -32,6 +32,8 @@
 		update member 
 		set
 			member_login_pwd = #{memberLoginPwd},
+			member_name = #{memberName},
+            member_birth = #{memberBirth},
 			member_email = #{memberEmail},
 			member_address = #{memberAddress}
 		where member_login_id = #{memberLoginId}
@@ -48,11 +50,4 @@
 		select * from member
 	</select>
 	
-<!--	&lt;!&ndash; 로그인 &ndash;&gt;-->
-<!--	<select id="login" resultType="MemberVO">-->
-<!--		select member_login_id, member_login_pwd-->
-<!--		from member-->
-<!--		where member_login_id = #{memberLoginId}-->
-<!--		and member_login_pwd = #{memberLoginPwd}-->
-<!--	</select>	-->
 </mapper>
