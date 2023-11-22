@@ -6,7 +6,6 @@ import com.jackpot.security.CustomUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,7 +23,7 @@ import lombok.extern.log4j.Log4j;
 @Configuration
 @EnableWebSecurity
 @Log4j
-public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
@@ -46,32 +45,35 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
-                        "/admin-home",
                         "/notice/modify",
                         "/notice/register")
-                .access("hasRole('ROLE_ADMIN')");
+                .access("hasRole('ROLE_ADMIN')")
+                .antMatchers(
+                        "/review/*",
+                        "/participant/*",
+                        "/appointment/*",
+                        "/profile/*"
+                ).access("hasRole('ROLE_USER')");//USER이상은 다적용
 
         http.formLogin()
-                .loginPage("/admin/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
-                .loginProcessingUrl("/admin/login*")
-                .defaultSuccessUrl("/admin-home")
-                .failureUrl("/admin/login?error=true")
-                .usernameParameter("adminLoginId")
-                .passwordParameter("adminLoginPwd");
-        ;    // el : param.error
+                .loginPage("/security/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
+                .loginProcessingUrl("/security/login*")
+                .defaultSuccessUrl("/")
+                .failureUrl("/security/login?error=true");
+        // el : param.error
 
 
         http.logout()                        // 로그아웃 설정 시작
-                .logoutUrl("/admin/logout")    // POST: 로그아웃 호출 url
+                .logoutUrl("/security/logout")    // POST: 로그아웃 호출 url
                 .invalidateHttpSession(true)    // 세션 invalidate
-                .deleteCookies( "JSESSION-ID")    // 삭제할 쿠키 목록
-                .logoutSuccessUrl("/admin/login");    // 로그아웃 이후 이동할 페이지
+                .deleteCookies("JSESSION-ID", "remember-me")    // 삭제할 쿠키 목록
+                .logoutSuccessUrl("/security/login");    // 로그아웃 이후 이동할 페이지
 
 
-//        http.rememberMe()        // remember-me 기능 설정
-//                .key("Galapagos")
-//                .tokenRepository(persistentTokenRepository())
-//                .tokenValiditySeconds(7 * 24 * 60 * 60);    // 7일
+        http.rememberMe()        // remember-me 기능 설정
+                .key("Galapagos")
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(7 * 24 * 60 * 60);    // 7일
 
 
     }

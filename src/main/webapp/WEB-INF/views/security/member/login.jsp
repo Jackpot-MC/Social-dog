@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.Date" %>
 
-<%@ include file="../layouts/member-header.jsp" %>
+<%@ include file="../../layouts/member-header.jsp" %>
 <link rel="stylesheet" href="/resources/css/login.css" type="text/css"/>
 <script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -58,4 +58,4 @@
         </div>
     </section>
 </div>
-<%@ include file="../layouts/footer.jsp" %>
+<%@ include file="../../layouts/footer.jsp" %>

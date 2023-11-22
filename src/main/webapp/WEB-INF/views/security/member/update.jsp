@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ include file="../layouts/member-header.jsp" %>
+<%@ include file="../../layouts/member-header.jsp" %>
 
 <sec:authentication property="principal.member" var="member"/>
 
@@ -44,4 +44,4 @@ pageEncoding="UTF-8"%>
 	</form:form>
 </div>
 
-<%@ include file="../layouts/footer.jsp" %>
+<%@ include file="../../layouts/footer.jsp" %>

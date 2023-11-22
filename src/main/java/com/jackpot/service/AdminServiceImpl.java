@@ -29,7 +29,9 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void register(AdminVO admin){		
 		log.info("insert......." + admin);
-		
+		String encPassword = pwEncoder.encode(admin.getPassword());
+		admin.setAdminLoginPwd(encPassword);
+		admin.setAdminLoginPwd2(encPassword);
 		mapper.insert(admin);
 	}
 
