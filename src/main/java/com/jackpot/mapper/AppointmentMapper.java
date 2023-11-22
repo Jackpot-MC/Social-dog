@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
-import com.jackpot.domain.MemberVO;
+import com.jackpot.domain.ParticipantVO;
 
 public interface AppointmentMapper {
 	public void insert(AppointmentVO appointment);
@@ -20,7 +20,7 @@ public interface AppointmentMapper {
 	public List<AppointmentVO> getListWithPaging(AppointmentCriteria cri);
 	
 	public int getTotalCount(AppointmentCriteria cri);
-
-	public List<MemberVO> getMemberLoginIdMapper(MemberVO member);
+	
+	public List<ParticipantVO> getParticipantList(Long appointmentId);
 
 }

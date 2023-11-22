@@ -3,8 +3,10 @@ pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"> // moment 날짜 포맷팅
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=531949ea4d79a7a9c534d7d834673f7a"></script>
+
+
 
 <%@ include file = "../layouts/header.jsp" %>
 
@@ -30,10 +32,36 @@ pageEncoding="UTF-8"%>
 </div>
 
 <hr>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>참가자</th>
+			<th>참가자 주소</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<c:forEach var="participant" items="${list}">
+			<tr>
+				<td style="width:200px">${participant.memberName }</td>
+				<td style="width:150px">${participant.memberAddress }</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+<h5>${appointment.placeName}</h5>
+<div id="map" style="width:500px;height:400px;"></div>
 
-<%-- <div>
-	${appointment.appointmentContent}
-</div> --%>
+<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(${appointment.placeSpot}),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+</script>
+
 
 <br>
 

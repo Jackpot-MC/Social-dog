@@ -25,5 +25,10 @@ public class AppointmentVO {
 //	private Date appointmentDate;
 	private Date regDate;
 	private String placeSpot;
+	private String placeName;
 	private String placeTypeName;
+	
+	private Long participantId;
+	private String memberId;
 }
+	

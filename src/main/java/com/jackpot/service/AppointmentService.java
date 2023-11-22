@@ -6,6 +6,7 @@ import java.util.List;
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
 import com.jackpot.domain.MemberVO;
+import com.jackpot.domain.ParticipantVO;
 
 public interface AppointmentService {
 	public AppointmentVO get(Long appointmentId);
@@ -19,6 +20,6 @@ public interface AppointmentService {
 	public List<AppointmentVO> getList(AppointmentCriteria cri);	
 	
 	public int getTotal(AppointmentCriteria cri);
-	
-	public List<MemberVO> getMemberLoginId(MemberVO admin);
+
+	public List<ParticipantVO> getParticipantList(Long appointmentId);
 }

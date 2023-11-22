@@ -83,6 +83,9 @@ public class AppointmentController {
 	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri, Model model) {
 		log.info("/get or modify");
 		model.addAttribute("appointment", service.get(appointmentId));
+		
+		log.info("getParticipantList");
+		model.addAttribute("list", service.getParticipantList(appointmentId));
 	}
 	
 	@PostMapping("/modify")

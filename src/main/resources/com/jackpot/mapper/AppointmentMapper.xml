@@ -11,6 +11,11 @@
 		<result property="regDate" column="appointment_date" />
 		<result property="placeId" column="place_id" />
 		<result property="hostId" column="host_id" />
+		<result property="appointmentId" column="appointment_id" />
+		<result property="participantId" column="participant_id" />
+		<result property="memberId" column="member_id" />
+		<result property="memberName" column="member_name" />
+		<result property="memberAddress" column="member_address" />
 
 	</resultMap>
 
@@ -39,13 +44,16 @@
 
 	<select id="read" resultType="AppointmentVO">
 		select appointment_id,
-		appointment_name, appointment_date as reg_date, appointment.place_id, host_id, member_login_id, member_login_pwd
-		from appointment
+		appointment_name, appointment_date as reg_date, place.place_spot,
+		place.place_name, host_id, member_login_id, member_login_pwd
+		from
+		appointment
 		left outer join member
 		on appointment.host_id = member_id
 		left outer join place
 		on appointment.place_id = place.place_id
-		left outer join place_type
+		left
+		outer join place_type
 		on place.place_type_id = place_type.place_type_id
 		where
 		appointment_id = #{appointment_id}
@@ -67,16 +75,22 @@
 
 	<select id="getListWithPaging" resultType="AppointmentVO">
 		select appointment_id,
-		appointment_name, appointment_date as reg_date, appointment.place_id,
+		appointment_name, appointment_date as reg_date,
+		appointment.place_id,
 		host_id,
-		member.member_login_id, member.member_login_pwd, place.place_spot, place.place_name, place_type.place_type_name
+		member.member_login_id,
+		member.member_login_pwd, place.place_spot, place.place_name,
+		place_type.place_type_name
 		from appointment
 		left outer join member
-		on appointment.host_id = member.member_id
+		on
+		appointment.host_id = member.member_id
 		left outer join place
-		on appointment.place_id = place.place_id
+		on
+		appointment.place_id = place.place_id
 		left outer join place_type
-		on place.place_type_id = place_type.place_type_id
+		on
+		place.place_type_id = place_type.place_type_id
 		<where>
 			<include refid="criteria"></include>
 		</where>
@@ -85,16 +99,33 @@
 	</select>
 
 	<select id="getTotalCount" resultType="int">
-		select count(*) from appointment 
+		select count(*) from appointment
 		left outer join member
 		on appointment.host_id = member.member_id
-		left outer join place
+		left outer
+		join place
 		on appointment.place_id = place.place_id
-		left outer join place_type
+		left outer join
+		place_type
 		on place.place_type_id = place_type.place_type_id
 		<where>
 			<include refid="criteria"></include>
 		</where>
+	</select>
+
+	<select id="getParticipantList" resultType="ParticipantVO">
+		SELECT
+		participant_id,
+		participant.member_id AS member_id,
+		appointment_id,
+		member.member_name AS member_name,
+		member.member_address
+		FROM
+		participant
+		LEFT OUTER JOIN
+		member ON participant.member_id = member.member_id
+		WHERE
+		appointment_id = #{appointment_id}
 	</select>
 
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
