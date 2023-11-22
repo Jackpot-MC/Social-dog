@@ -27,13 +27,13 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                 <div class="form-group mt-4">
-                    <label for="username"><i class="fa-solid fa-user"></i>아이디</label>
-                    <input type="text" name="username" id="username" class="form-control"/>
+                    <label for="loginId"><i class="fa-solid fa-user"></i>아이디</label>
+                    <input type="text" name="username" id="loginId" class="form-control"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="password"><i class="fa-solid fa-lock"></i>비밀번호</label>
-                    <input type="password" name="password" id="password" class="form-control"/>
+                    <label for="loginPwd"><i class="fa-solid fa-lock"></i>비밀번호</label>
+                    <input type="password" name="password" id="loginPwd" class="form-control"/>
                 </div>
 
                 <div class="form-group form-check">
