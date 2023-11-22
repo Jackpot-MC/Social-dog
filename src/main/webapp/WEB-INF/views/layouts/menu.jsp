@@ -52,7 +52,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/securit/signup">
+				<a class="nav-link" href="/security/signup">
 					<i class="fa-solid fa-user-plus"></i> 회원가입
 				</a>
 			</li>
