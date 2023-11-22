@@ -104,16 +104,16 @@ public class SecurityController {
             Errors errors) throws IOException {
         log.info(member);
         //1. 비밀번호-비밀번호 확인 일치 여부 판단
-        if (!member.getLoginPwd().equals(member.getLoginPwd2())) {
+        if (!member.getMemberLoginPwd().equals(member.getMemberLoginPwd2())) {
             errors.rejectValue("memberLoginPwd", "비밀번호 불일치", "비밀번호 확인이 일치하지 않습니다.");
         }
 
         //2. 아이디 중복을 거르기
         if (!errors.hasFieldErrors("memberLoginId")) {
-            if (memberService.get(member.getLoginId()) != null) {//id중복검사
+            if (memberService.get(member.getMemberLoginId()) != null) {//id중복검사
                 errors.rejectValue("memberLoginId", "ID 중복", "이미 사용 중인 ID입니다.");
             }
-            else if(adminService.get(member.getLoginId())!=null){
+            else if(adminService.get(member.getMemberLoginId())!=null){
                 errors.rejectValue("memberLoginId", "ID 중복", "이미 사용 중인 ID입니다.");
             }
         }
