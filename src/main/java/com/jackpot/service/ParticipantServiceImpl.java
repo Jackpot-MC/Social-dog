@@ -19,7 +19,6 @@ public class ParticipantServiceImpl implements ParticipantService {
 	public void create(ParticipantVO participant) {
 		participantMapper.insertSelectKey(participant);
 		Long participantId = participant.getParticipantId();
-
 	}
 
 	@Override

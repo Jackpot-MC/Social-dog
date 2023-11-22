@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/security")
@@ -129,7 +130,7 @@ public class SecurityController {
 			Errors errors) throws IOException {
 
 		// 1. 비밀번호, 비밀번호 확인 일치 여부
-		if(!member.getMemberLoginPwd().equals(member.getMemberLoginPwd())) {
+		if(!member.getLoginPwd().equals(member.getLoginPwd())) {
 			// 에러 추가
 			errors.rejectValue("getMemberLoginPwd2", "비밀번호 불일치", "비밀번호가 일치하지 않습니다.");
 		}
