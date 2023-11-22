@@ -72,7 +72,11 @@
 		</where>
 	</select>
 
+<<<<<<< HEAD
 	<select id="getAdminLoginIdMapper" resultType="MemberVO">
+=======
+	<select id="getmemberLoginIdMapper" resultType="memberVO">
+>>>>>>> e399448b9eb77ba34253e1800975032a5df62905
 		select * from member;
 	</select>
 	
