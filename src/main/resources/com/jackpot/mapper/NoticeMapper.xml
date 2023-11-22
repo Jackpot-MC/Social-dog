@@ -10,8 +10,8 @@
 		<result property="noticeTitle" column="notice_title" />
 		<result property="noticeContent" column="notice_content" />
 		<result property="memberId" column="member_id" />
-		<result property="loginId" column="member_login_id" />
-		<result property="loginPwd" column="member_login_pwd" />
+		<result property="memberloginId" column="member_login_id" />
+		<result property="memberloginPwd" column="member_login_pwd" />
 		<result property="regDate" column="reg_date" />
 		<result property="updateDate" column="update_date" />
 	</resultMap>
@@ -72,7 +72,7 @@
 		</where>
 	</select>
 
-	<select id="getAdminLoginIdMapper" resultType="MemberVO">
+	<select id="getMemberLoginIdMapper" resultType="MemberVO">
 		select * from member;
 	</select>
 	
