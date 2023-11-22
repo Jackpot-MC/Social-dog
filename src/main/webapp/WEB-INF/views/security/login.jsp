@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.Date"%>
 
-<%@ include file="../../layouts/admin-header.jsp"%>
+<%@ include file="../layouts/admin-header.jsp"%>
 <link rel="stylesheet" href="/resources/css/login.css" type="text/css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,20 +20,20 @@
 
 		<div style="width: 600px" class="mx-auto form">
 
-			<form action="/admin/login" method="post">
+			<form action="/login" method="post">
 				<h2 class="mt-4">LogIn 관리자용</h2>
 				<h6>반려견과 반려인 모두의 행복</h6>
 
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 				<div class="form-group mt-4">
-					<label for="adminLoginId"><i class="fa-solid fa-user"></i>아이디</label>
-					<input type="text" name="adminLoginId" id="adminLoginId" class="form-control" />
+					<label for="username"><i class="fa-solid fa-user"></i>아이디</label>
+					<input type="text" name="username" id="username" class="form-control" />
 				</div>
 
 				<div class="form-group">
-					<label for="adminLoginPwd"><i class="fa-solid fa-lock"></i>비밀번호</label>
-					<input type="password" name="adminLoginPwd" id="adminLoginPwd" class="form-control" />
+					<label for="password"><i class="fa-solid fa-lock"></i>비밀번호</label>
+					<input type="password" name="password" id="password" class="form-control" />
 				</div>
 
 <!-- 				<div class="form-group form-check">
@@ -52,10 +52,15 @@
 
 				<div class="CTA text-center">
 					<input type="submit" value="login" class="login"> <br>
-					<br>소셜독이 처음이신가요? <a href="/admin/signup" class="switch">Join now</a>
+					<br>소셜독이 처음이신가요? <a href="/security/member/signup" class="switch">Join now</a>
+				</div>
+
+				<div class="CTA text-center">
+					<input type="submit" value="login" class="login"> <br>
+					<br>관리자 등록 <a href="/security/admin/signup" class="switch">Join now</a>
 				</div>
 			</form>
 		</div>
 	</section>
 </div>
-<%@ include file="../../layouts/footer.jsp"%>
+<%@ include file="../layouts/footer.jsp"%>

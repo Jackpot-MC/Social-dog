@@ -62,20 +62,19 @@ public class SecurityController {
         return "redirect:/";//루트 페이지로 돌아가버리기
     }
 
-    @GetMapping("/admin/login")//로그인 페이지 호출
-    public String adminLogin() {
+    @GetMapping("/login")//로그인 페이지 호출
+    public void login() {
         log.info("login page");
-        return "/admin/login";
     }
 
-    @PostMapping("/admin/login")
-    public String adminLoginPost(AdminVO adminVO) {
-        log.info("login page");
-        return "/";
-    }
+//    @PostMapping("/admin/login")
+//    public String adminLoginPost(AdminVO adminVO) {
+//        log.info("login page");
+//        return "/";
+//    }
 
-    @GetMapping("/admin/logout")
-    public void adminLogout(){log.info("logout page");}
+//    @GetMapping("/admin/logout")
+//    public void adminLogout(){log.info("logout page");}
 
     @GetMapping("/member/info")
     public void get(HttpSession session, Model model) throws Exception {
@@ -163,21 +162,21 @@ public class SecurityController {
     }
 
     //로그인
-    @GetMapping("/member/login")
-    public String memberLogin() {
-        log.info("login page");
-        return "/member/login";
-    }
+//    @GetMapping("/member/login")
+//    public String memberLogin() {
+//        log.info("login page");
+//        return "/member/login";
+//    }
 
-    @PostMapping("/member/login")
-    public String memberLoginPost(MemberVO member) throws IOException {
-        log.info("Post: " + member);
-
-        return "/home";
-    }
+//    @PostMapping("/login")
+//    public String memberLoginPost(MemberVO member) throws IOException {
+//        log.info("Post: " + member);
+//
+//        return "/home";
+//    }
 
     //로그아웃
-    @GetMapping("/member/logout")
+    @GetMapping("/logout")
     public void memberLogout() {
         log.info("logout page");
     }
