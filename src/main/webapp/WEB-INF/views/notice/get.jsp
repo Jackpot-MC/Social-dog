@@ -16,13 +16,13 @@ pageEncoding="UTF-8"%>
 			});
 	
 		let noticeId = ${param.noticeId}; 	// 글번호
-		let adminId = '${adminId}';	// 작성자(로그인 유저)  
+		let memberId = '${memberId}';	// 작성자(로그인 유저)
 	});
 </script>
 
 <h1 class="page-header mt-4"><i class="far fa-file-alt"></i>${notice.noticeTitle}</h1>
 <div class="d-flex justify-content-between">
-	<div><i class="fas fa-user"></i>${notice.adminLoginId}</div>
+	<div><i class="fas fa-user"></i>${notice.loginId}</div>
 	<div>
 		<i class="fas fa-clock"></i>
 		<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}" />

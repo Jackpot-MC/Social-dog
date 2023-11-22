@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
 				<td><a class="move" href="${cri.getLinkWithNoticeId('get', notice.noticeId)}">
 					${notice.noticeTitle}</a>
 				</td>
-				<td style="width:100px">${notice.adminLoginId}</td>
+				<td style="width:100px">${notice.loginId}</td>
 				<td style="width:130px">
 					<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/>
 				</td>

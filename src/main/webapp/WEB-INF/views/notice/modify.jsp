@@ -33,7 +33,7 @@ $('#content').summernote('fontName', 'Arial');
 			<input type="hidden" name="type" value="${cri.type}"/>
 			<input type="hidden" name="keyword" value="${cri.keyword}"/>
 			<form:hidden path="noticeId"/>
-			<form:hidden path="adminId"/>
+			<form:hidden path="memberId"/>
 			
 			<div class="form-group">
 				<form:label path="noticeTitle">제목</form:label>
