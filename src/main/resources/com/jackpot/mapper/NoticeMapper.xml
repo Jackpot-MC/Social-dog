@@ -17,10 +17,14 @@
 	</resultMap>
 	
 	<select id = "read" resultMap="noticeMap">
-		select notice_id, notice_title, notice_content, notice.admin_id, admin.admin_login_id, admin.admin_login_pwd, reg_date, update_date
-		from notice left outer join admin
-		on notice.admin_id = admin.admin_id
+		select notice_id, notice_title, notice_content, notice.admin_id, member.member_login_id, member.member_login_pwd, reg_date, update_date
+		from notice left outer join member
+		on notice.admin_id = member.admin_id
 		where notice_id = #{noticeId}
+	</select>
+	
+	<select id = "readLatest" resultMap="noticeMap">
+		SELECT * FROM notice WHERE notice_id=(SELECT MAX(notice_id) FROM notice);
 	</select>
 	
 	<insert id = "insert">

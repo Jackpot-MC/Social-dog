@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.NoticeCriteria;
@@ -52,8 +53,8 @@ public class HomeController {
 		model.addAttribute("member", memberService.get(member.getMemberAddress()));
 		
 		model.addAttribute("list", noticeService.getList(cri));
+		model.addAttribute("noticeLatest", noticeService.getLatest());
 		
 		return "home";
-	}
-	
+	}	
 }
