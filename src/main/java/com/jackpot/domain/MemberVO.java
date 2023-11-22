@@ -1,59 +1,86 @@
 package com.jackpot.domain;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberVO {
+public class MemberVO implements UserDetails{
 
 
 	private Long memberId;
 	
-	@NotBlank(message = "사용자 이름은 필수 항목입니다.")
+	@NotBlank(message = "이름을 입력해주세요.")
 	private String memberName;
 	
-	@NotBlank(message = "사용자 나이는 필수 항목입니다.")
-	private int memberAge;
+	@NotNull(message = "생년월일을 입력해주세요.")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date memberBirth;
 	
-	@NotBlank(message = "사용자 아이디는 필수 항목입니다.")
-	@Size(min = 4, message = "사용자 id는 4글자 이상이어야 합니다.")
+	@NotBlank(message = "아이디를 입력해주세요.")
 	private String memberLoginId;
 	
-	@NotBlank(message = "사용자 비밀번호는 필수 항목입니다.")
-	@Size(min = 4, message = "사용자 비밀번호는 4글자 이상이어야 합니다.")
+	@NotBlank(message = "비밀번호를 입력해주세요.")
 	private String memberLoginPwd;
+
+	@NotBlank(message = "비밀번호를 다시 입력해주세요.")
+	private String memberLoginPwd2;
 	
-	@NotBlank(message = "사용자 이메일은 필수 항목입니다.")
+	@NotBlank(message = "이메일을 입력해주세요.")
 	@Email(message = "email 형식에 맞지 않습니다.")
 	private String memberEmail;
 	
-	@NotBlank(message = "사용자 주소는 필수 항목입니다.")
+	@NotBlank(message = "주소를 입력해주세요.")
 	private String memberAddress;
 
-	private Date regDate;
-	private Date updateDate;
 
-	private List<AuthVO> authVOList;
-
-	public Collection<SimpleGrantedAuthority> getAuthorities(){
-		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		for(AuthVO auth : authVOList){
-			authorities.add(new SimpleGrantedAuthority(auth.getAuth()));
-		}
-		return authorities;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
 	}
-	
+
+	@Override
+	public String getPassword() {
+		return this.memberLoginPwd;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.memberLoginId;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

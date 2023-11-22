@@ -22,6 +22,8 @@ public class ReviewVO {
 	@NotBlank(message = "별점은 필수 항목입니다.")
 	private Double rating;
 	
+	private String memberName; //FK
+	
 	private Date regDate;
 	private Date updateDate;
 	

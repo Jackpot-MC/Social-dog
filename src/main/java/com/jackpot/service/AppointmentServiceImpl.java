@@ -4,9 +4,15 @@ import java.util.List;
 
 import com.jackpot.domain.AppointmentVO;
 import com.jackpot.mapper.AppointmentMapper;
+import lombok.extern.log4j.Log4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
+@Log4j
 public class AppointmentServiceImpl implements AppointmentService {
 
+	@Autowired
 	AppointmentMapper appointmentMapper;
 	
 	@Override

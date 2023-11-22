@@ -1,5 +1,6 @@
-package com.jackpot.mapper;
+package java.com.jackpot.mapper;
 
+import com.jackpot.mapper.AdminMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class AdminMapperTest {
 	
 	@Test
 	public void testGet() {
-		AdminVO admin = mapper.get(1L);
+		AdminVO admin = mapper.get("admin1");
 		
 		log.info(admin);
 		log.warn("성공");

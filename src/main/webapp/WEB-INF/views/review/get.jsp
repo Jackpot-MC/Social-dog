@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"> // moment 날짜 포맷팅
 </script>
 
-<%@ include file = "../layouts/admin-header.jsp" %>
+<%@ include file = "../layouts/member-header.jsp" %>
 
 <script>
 	$(document).ready(async function(){		// fetch()를 사용하는 함수에 async 작성. 비동기 함수임을 선언
@@ -15,24 +15,22 @@ pageEncoding="UTF-8"%>
 				document.forms.removeForm.submit();
 			});
 	
-		let noticeId = ${param.noticeId}; 	// 글번호
-		let adminId = '${adminId}';	// 작성자(로그인 유저)  
 	});
 </script>
 
-<h1 class="page-header mt-4"><i class="far fa-file-alt"></i>${notice.noticeTitle}</h1>
+<h1 class="page-header mt-4"><i class="far fa-file-alt"></i>${review.reviewTitle}</h1>
 <div class="d-flex justify-content-between">
-	<div><i class="fas fa-user"></i>${notice.adminLoginId}</div>
+	<div><i class="fas fa-user"></i>${review.memberId}</div>
 	<div>
 		<i class="fas fa-clock"></i>
-		<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}" />
+		<fmt:formatDate pattern="yyyy-MM-dd" value="${review.regDate}" />
 	</div>
 </div>
 
 <hr>
 
 <div>
-	${notice.noticeContent}
+	${review.reviewContent}
 </div>
 
 <br>
@@ -40,7 +38,7 @@ pageEncoding="UTF-8"%>
 <div class="mt-4">
 	<a href="${cri.getLink('list')}" class="btn btn-primary list">
 		<i class="fas fa-list"></i>목록</a>
-	<a href="${cri.getLinkWithNoticeId('modify', notice.noticeId)}" class="btn btn-primary modify">
+	<a href="${cri.getLinkWithReviewId('modify', review.reviewId)}" class="btn btn-primary modify">
 		<i class="fas fa-edit"></i>수정</a>
 	<a href="#" class="btn btn-danger remove">
 		<i class="fas fa-trash-alt"></i>삭제</a>
@@ -48,11 +46,9 @@ pageEncoding="UTF-8"%>
 
 <form action="remove" method="post" name="removeForm">
 <!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  -->
-	<input type="hidden" name="noticeId" value="${notice.noticeId}" />
+	<input type="hidden" name="noticeId" value="${review.reviewId}" />
 	<input type="hidden" name="pageNum" value="${cri.pageNum}" />
 	<input type="hidden" name="amount" value="${cri.amount}" />
-	<input type="hidden" name="type" value="${cri.type}" />
-	<input type="hidden" name="keyword" value="${cri.keyword}" />
 </form>
 
 <%@ include file="../layouts/footer.jsp" %>

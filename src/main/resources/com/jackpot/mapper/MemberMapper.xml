@@ -10,7 +10,7 @@
 		<result property="memberLoginId" column="member_login_id" />
 		<result property="memberLoginPwd" column="member_login_pwd" />
 		<result property="memberName" column="member_name" />
-		<result property="memberAge" column="member_age" />
+		<result property="memberBirth" column="member_birth" />
 		<result property="memberEmail" column="member_email" />
 		<result property="memberAddress" column="member_address" />
 	</resultMap>
@@ -22,9 +22,9 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="join">
-		insert into member (member_login_id, member_login_pwd, member_name, member_age, member_email, member_address)
-		values(#{memberLoginId}, #{memberLoginPwd}, #{memberName}, #{memberAge}, #{memberEmail}, #{memberAddress})
+	<insert id="signup">
+		insert into member (member_login_id, member_login_pwd, member_name, member_birth, member_email, member_address)
+		values(#{memberLoginId}, #{memberLoginPwd}, #{memberName}, #{memberBirth}, #{memberEmail}, #{memberAddress})
 	</insert>
 	
 	<!--  회원 정보 수정 -->
@@ -34,7 +34,7 @@
 			member_login_pwd = #{memberLoginPwd},
 			member_email = #{memberEmail},
 			member_address = #{memberAddress}
-		where member_id = #{memberId}
+		where member_login_id = #{memberLoginId}
 	</update>
 	
 	<!-- 회원 정보 삭제 / 회원탈퇴 -->
@@ -48,11 +48,11 @@
 		select * from member
 	</select>
 	
-	<!-- 로그인 -->
-	<select id="login" resultType="MemberVO">
-		select member_login_id, member_login_pwd
-		from member
-		where member_login_id = #{memberLoginId}
-		and member_login_pwd = #{memberLoginPwd}
-	</select>	
+<!--	&lt;!&ndash; 로그인 &ndash;&gt;-->
+<!--	<select id="login" resultType="MemberVO">-->
+<!--		select member_login_id, member_login_pwd-->
+<!--		from member-->
+<!--		where member_login_id = #{memberLoginId}-->
+<!--		and member_login_pwd = #{memberLoginPwd}-->
+<!--	</select>	-->
 </mapper>

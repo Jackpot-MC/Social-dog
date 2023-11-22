@@ -3,6 +3,8 @@ package com.jackpot.service;
 import java.util.List;
 
 import com.jackpot.domain.DogVO;
+import org.springframework.stereotype.Service;
+
 
 public interface DogService {
 	// 등록

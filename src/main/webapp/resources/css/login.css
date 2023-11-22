@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #f7edd5;
+}
+
+.container {
+  max-width: 750px;
+}
+
+h2 {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #333333;
+}
+h6 {
+  margin-bottom: 60px;
+}
+
+section#formHolder {
+  padding: 50px 0;
+}
+
+.form {
+  padding:50px;
+  height: 600px;
+  width: 500px;
+  margin-top: 50px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  color: #4c4c4c;
+  position: relative;
+  overflow: hidden;
+}
+
+.form .form-group {
+  margin-bottom: 5px;
+  position: relative;
+} 
+
+ .form form input:not([type=submit]) {
+  background: none;
+  border: none;
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid #000000;
+  color: #444;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+} 
+
+
+.error {
+  color: #f95959;
+  font-size: 14px;
+  position: relative;
+  text-align: center;
+}
+
+.form input::placeholder {
+  color: #949494;
+}
+
+/* login 버튼 */
+.CTA {
+  margin-top: 50px;
+}
+.CTA input {
+  width: 100%;
+  font-size: 19px;
+  text-transform: uppercase;
+  padding: 5px 30px;
+  background: #f2bb15;
+  color: #fff;
+  border-radius: 30px;
+  margin-right: 20px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+}
+/* login 버튼 끝 */
+
+/* join now 버튼 */
+.CTA a.switch {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  color: #6a6a6a;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+.CTA a.switch:hover {
+  color: #000;
+}
+/* join now 버튼 끝 */
+

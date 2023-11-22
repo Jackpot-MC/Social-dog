@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jackpot.domain.AdminVO;
@@ -30,6 +33,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class NoticeController {
 	
+	@Autowired
 	private NoticeService service;
 	
 	@ModelAttribute("searchTypes")
@@ -42,18 +46,18 @@ public class NoticeController {
 		map.put("TC", "제목+내용");
 		map.put("TA", "제목+작성자");
 		map.put("TAC", "제목+작성자+내용");
-		
-		return map;		
+
+		return map;
 	}
-	
+
 	@GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
 	public void list(@ModelAttribute("cri") NoticeCriteria cri, Model model) {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
-		
+
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
-		
+
 		//model.addAttribute("pageMaker", new PageDTO(cri, 274)); // 임의로 273 요청
 		model.addAttribute("pageMaker", new NoticePageDTO(cri, total));
 	}
@@ -72,11 +76,11 @@ public class NoticeController {
 		if(errors.hasErrors()) {
 			return "notice/register";
 		}
-		
+
 		service.register(notice);
-		
+
 		rttr.addFlashAttribute("result", notice.getNoticeId());
-		
+
 		return "redirect:/notice/list"; // 요청 url
 	}
 	
