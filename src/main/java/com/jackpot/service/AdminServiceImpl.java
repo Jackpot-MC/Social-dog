@@ -38,6 +38,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void modify(AdminVO admin) throws IOException {
 		log.info("update......." + admin);
+
+		String encPassword = pwEncoder.encode(admin.getPassword());
+		admin.setAdminLoginPwd(encPassword);
+		admin.setAdminLoginPwd2(encPassword);
 		
 		mapper.update(admin);
 	}

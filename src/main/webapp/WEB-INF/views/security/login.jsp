@@ -53,12 +53,9 @@
                 <div class="CTA text-center">
                     <input type="submit" value="login" class="login"> <br>
                     <br>소셜독이 처음이신가요? <a href="/security/member/signup" class="switch">Join now</a>
-                </div>
-
-                <div class="CTA text-center">
-                    <input type="submit" value="login" class="login"> <br>
                     <br>관리자 등록 <a href="/security/admin/signup" class="switch">Join now</a>
                 </div>
+
             </form>
         </div>
     </section>

@@ -35,7 +35,7 @@ public class SecurityController {
     }
 
     @PostMapping("/admin/signup")
-    public String signup(//회원가입
+    public String adminSignup(//회원가입
                          @Valid @ModelAttribute("admin") AdminVO admin,
                          Errors errors) throws IOException {
         //1. 비밀번호-비밀번호 확인 일치 여부 판단
@@ -131,7 +131,7 @@ public class SecurityController {
     @GetMapping("/member/update")
     public void update(@ModelAttribute("member") MemberVO member, Model model) {
         log.info("update get...");
-        member.setMemberId(1L);
+        //member.setMemberId(1L);
     }
 
     @PostMapping("/member/update")
