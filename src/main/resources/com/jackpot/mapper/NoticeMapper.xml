@@ -9,9 +9,9 @@
 		<id property="noticeId" column="notice_id" />
 		<result property="noticeTitle" column="notice_title" />
 		<result property="noticeContent" column="notice_content" />
-		<result property="adminId" column="admin_id" />
-		<result property="adminLoginId" column="admin_login_id" />
-		<result property="adminLoginPwd" column="admin_login_pwd" />
+		<result property="memberId" column="member_id" />
+		<result property="loginId" column="member_login_id" />
+		<result property="loginPwd" column="member_login_pwd" />
 		<result property="regDate" column="reg_date" />
 		<result property="updateDate" column="update_date" />
 	</resultMap>

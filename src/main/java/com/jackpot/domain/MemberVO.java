@@ -1,8 +1,6 @@
 package com.jackpot.domain;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -20,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberVO implements UserDetails{
+public class MemberVO {
 
 
 	private Long memberId;
@@ -33,13 +31,13 @@ public class MemberVO implements UserDetails{
 	private Date memberBirth;
 	
 	@NotBlank(message = "아이디를 입력해주세요.")
-	private String memberLoginId;
+	private String loginId;
 	
 	@NotBlank(message = "비밀번호를 입력해주세요.")
-	private String memberLoginPwd;
+	private String loginPwd;
 
 	@NotBlank(message = "비밀번호를 다시 입력해주세요.")
-	private String memberLoginPwd2;
+	private String loginPwd2;
 	
 	@NotBlank(message = "이메일을 입력해주세요.")
 	@Email(message = "email 형식에 맞지 않습니다.")
@@ -48,39 +46,13 @@ public class MemberVO implements UserDetails{
 	@NotBlank(message = "주소를 입력해주세요.")
 	private String memberAddress;
 
+	private List<AuthVO> authList;
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-	}
-
-	@Override
-	public String getPassword() {
-		return this.memberLoginPwd;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.memberLoginId;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
+	public Collection<SimpleGrantedAuthority> getAuthorities(){
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for(AuthVO auth: authList){
+			authorities.add(new SimpleGrantedAuthority(auth.getAuth()));
+		}
+		return authorities;
 	}
 }

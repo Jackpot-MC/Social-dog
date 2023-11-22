@@ -3,14 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<%@ include file="../layouts/member-header.jsp"%>
+<%@ include file="../layouts/header.jsp"%>
 <link rel="stylesheet" href="/resources/css/signup.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  
 <script>
 $(document).ready(function () {
-};
+});
 
 $(".selector").attr({
     "type" : "date",
@@ -26,26 +26,26 @@ $(".selector").attr({
 	
 		<div class="signup form">
 			<form:form modelAttribute="member" 
-			           action="/member/signup?_csrf=${_csrf.token}"
+			           action="/security/signup?_csrf=${_csrf.token}"
 						id="signup_form" style="width:500px" class="mx-auto">
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
 				<h2 class="mt-5">회원가입</h2>
 				<h6>반려견과의 일상을 소셜독과 함께해요!</h6>
 
 				<div class="form-group mt-5" id="info__id">
-					<form:label path="memberLoginId">아이디<span>*</span></form:label>
-					<form:input path="memberLoginId" cssClass="form-control" />
-					<form:errors path="memberLoginId" cssClass="error" />
+					<form:label path="loginId">아이디<span>*</span></form:label>
+					<form:input path="loginId" cssClass="form-control" />
+					<form:errors path="loginId" cssClass="error" />
 				</div>
 				<div class="form-group">
-					<form:label path="memberLoginPwd">비밀번호<span>*</span></form:label>
-	            	<form:input path="memberLoginPwd" type="password" cssClass="form-control"/>				
-					<form:errors path="memberLoginPwd" cssClass="error" />
+					<form:label path="loginPwd">비밀번호<span>*</span></form:label>
+	            	<form:input path="loginPwd" type="password" cssClass="form-control"/>
+					<form:errors path="loginPwd" cssClass="error" />
 				</div>
 				<div class="form-group">
-					<form:label path="memberLoginPwd2">비밀번호 확인<span>*</span></form:label>
-					<form:input path="memberLoginPwd2" type="password" cssClass="form-control" />
-					<form:errors path="memberLoginPwd2" cssClass="error" />
+					<form:label path="loginPwd2">비밀번호 확인<span>*</span></form:label>
+					<form:input path="loginPwd2" type="password" cssClass="form-control" />
+					<form:errors path="loginPwd2" cssClass="error" />
 				</div>
 				<div class="form-group">
 					<form:label path="memberName">이름<span>*</span></form:label>
@@ -74,7 +74,7 @@ $(".selector").attr({
                     <input type="submit" value="Signup Now" class="signup_button">
                     <br>
                     <br>이미 회원이신가요?
-                    <a href="/member/login" class="switch">로그인 하러가기</a>
+                    <a href="security/login" class="switch">로그인 하러가기</a>
                 </div>
                 
 			</form:form>

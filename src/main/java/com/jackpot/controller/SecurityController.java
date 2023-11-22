@@ -1,11 +1,8 @@
 package com.jackpot.controller;
 
-import java.io.IOException;
-import java.security.Principal;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
+import com.jackpot.domain.MemberVO;
+import com.jackpot.service.MemberService;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,42 +12,44 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jackpot.domain.MemberVO;
-import com.jackpot.service.MemberService;
-
-import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
+@RequestMapping("/security")
 @Log4j
-@RequestMapping("/member")
-@AllArgsConstructor
-public class MemberSecurityController {
+public class SecurityController {
 
     @Autowired
     private MemberService memberService;
 
-    //메인 페이지 이동
-    @GetMapping("/main")
-    public void mainGet() {
-        log.info("메인 페이지 이동");
+
+    @GetMapping("/login")//로그인 페이지 호출
+    public void login() {
+        log.info("login page");
     }
 
-    //회원 정보 보기
-    @GetMapping("/info")
+    //로그아웃
+    @GetMapping("/logout")
+    public void memberLogout() {
+        log.info("logout page");
+    }
+
+    @GetMapping("member/info")
     public void get(HttpSession session, Model model) throws Exception {
         String id = (String) session.getAttribute("memberId");
         log.info(id);
         MemberVO member = memberService.get(id);
         model.addAttribute("memberVO", member);
+
+        /*
+         * model.addAttribute("memberVO",
+         * service.get((String)session.getAttribute("id")));
+         */
+
     }
-    
-    //로그인
-    @GetMapping("/login")
-    public void login() {
-        log.info("login page");
-    }
-  
+
     //회원가입
     @GetMapping("/signup")
     public void signup(@ModelAttribute("member") MemberVO member) {
@@ -64,31 +63,30 @@ public class MemberSecurityController {
             Errors errors) throws IOException {
     	log.info(member);
 		//1. 비밀번호-비밀번호 확인 일치 여부 판단
-		if (!member.getMemberLoginPwd().equals(member.getMemberLoginPwd2())) {
-			errors.rejectValue("memberLoginPwd", "비밀번호 불일치", "비밀번호가 일치하지 않습니다.");
+		if (!member.getLoginPwd().equals(member.getLoginPwd2())) {
+			errors.rejectValue("loginPwd", "비밀번호 불일치", "비밀번호가 일치하지 않습니다.");
 		}
 
 		//2. 아이디 중복을 거르기
-		if (!errors.hasFieldErrors("memberLoginId")) {
-			if (memberService.get(member.getMemberLoginId()) != null) {//id중복검사
-				errors.rejectValue("memberLoginId", "ID 중복", "이미 사용중인 아이디 입니다.");
+		if (!errors.hasFieldErrors("loginId")) {
+			if (memberService.get(member.getLoginId()) != null) {//id중복검사
+				errors.rejectValue("loginId", "ID 중복", "이미 사용중인 ID입니다.");
 			}
 		}
 
-		if (errors.hasFieldErrors()) {
-			return "member/signup";//에러나면 다시 가입 화면으로
+		if (errors.hasErrors()) {
+			return "/signup";//에러나면 다시 가입 화면으로
 		}
 
-		memberService.signup(member);
+        memberService.signup(member);
 
-		return "redirect:/";//루트로 되돌리기
+        return "redirect:/";//루트로 되돌리기
     }
 
     //회원 정보 수정
     @GetMapping("/update")
     public void update(@ModelAttribute("member") MemberVO member, Model model) {
         log.info("update get...");
-        member.setMemberId(1L);
     }
 
     @PostMapping("/update")
@@ -124,12 +122,12 @@ public class MemberSecurityController {
 			Principal principal) {
     	model.addAttribute("member", memberService.get(principal.getName()));
 	}
-	
+
 	@PostMapping("/profile")
 	public String profile(
 			@ModelAttribute("member") MemberVO member,
 			Errors errors) throws IOException {
-		
+
 		// 1. 비밀번호, 비밀번호 확인 일치 여부
 		if(!member.getMemberLoginPwd().equals(member.getMemberLoginPwd())) {
 			// 에러 추가

@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ include file="layouts/member-header.jsp"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+<%@ include file="layouts/header.jsp"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 
 
@@ -14,13 +14,13 @@
  	    e.preventDefault();
  	 	$("#maindiv").load(href);
 	 });
-	 
+
 	 $('#map').on('click', '.appointment_btn', function(e) {
 		 var href = 'appointment/list';
  	    e.preventDefault();
  	 	$("#maindiv").load(href);
 	 });
-     
+
 /* 	 $('#map').on('click', '.place_detail_btn', function(e) {
 		 var href = place.place_url;
  	    e.preventDefault();
@@ -43,7 +43,7 @@
     <div class="col-md-4 maindiv" id="maindiv">
 <%-- 	<%@ include file="review/list.jsp"%> --%>
 	</div>
-	
+
     <div class="col-md-8 themed-grid-col">
 	<div class="map_wrap">
     <div id="map" style="width:100%; height:700px; position:relative;overflow:hidden;"></div>
@@ -96,7 +96,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
-		</div>	
+		</div>
 	</div>
 </div>
 

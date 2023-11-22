@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"> // moment 날짜 포맷팅
 </script>
 
-<%@ include file = "../layouts/member-header.jsp" %>
+<%@ include file = "../layouts/header.jsp" %>
 
 <script>
 	$(document).ready(async function(){		// fetch()를 사용하는 함수에 async 작성. 비동기 함수임을 선언
