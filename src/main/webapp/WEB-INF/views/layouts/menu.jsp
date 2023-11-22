@@ -27,11 +27,11 @@
 
 		<ul class="navbar-nav ml-auto">
 		<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal.memberLoginId" var="memberLoginId"/> <!-- username 스코프 생성 -->
+				<sec:authentication property="principal.loginId" var="loginId"/> <!-- username 스코프 생성 -->
 				
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
-				<a class="nav-link" href="/member/profile"> 마이페이지
+				<a class="nav-link" href="/security/profile">
 					${memberName}
 				</a>
 			</li>
@@ -47,12 +47,12 @@
 		<sec:authorize access="isAnonymous()">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="/member/login">
+				<a class="nav-link" href="/security/login">
 					<i class="fa-solid fa-right-from-bracket"></i> 로그인
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/member/signup">
+				<a class="nav-link" href="/securit/signup">
 					<i class="fa-solid fa-user-plus"></i> 회원가입
 				</a>
 			</li>
@@ -61,7 +61,7 @@
 </div>
 </nav>
 
-<form id="logoutForm" action="/member/logout" method="post">
+<form id="logoutForm" action="/security/logout" method="post">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 

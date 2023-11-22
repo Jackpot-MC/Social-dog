@@ -2,7 +2,7 @@ package com.jackpot.mapper;
 
 import java.util.List;
 
-import com.jackpot.domain.AdminVO;
+import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.domain.NoticeVO;
 
@@ -23,5 +23,5 @@ public interface NoticeMapper {
 	
 	public int getTotalCount(NoticeCriteria cri);
 
-	public List<AdminVO> getAdminLoginIdMapper(AdminVO admin);
+	public List<MemberVO> getAdminLoginIdMapper(MemberVO admin);
 }

@@ -23,7 +23,7 @@ $(document).ready(function() {
 $('#content').summernote('fontName', 'Arial');
 </script>
 
-<%-- <sec:authentication property="principal.adminId" var="adminId"/> --%>
+<%-- <sec:authentication property="principal.memberId" var="memberId"/> --%>
 
 <h1 class="page-header mt-4"><i class="far fa-edit"></i>글 작성하기</h1>
 <div class="panel panel-default">
@@ -33,7 +33,7 @@ $('#content').summernote('fontName', 'Arial');
 			enctype="multipart/form-data">
 			<!-- menu.jsp에서 sec: 으로 ${username} 설정을 해 두어서 쓸 수 있음.
 			글 작성하기는 로그인해야만 보이는 화면이고, 그런 화면에는 menu가 반드시 있기 때문에 확정적으로 사용 가능 -->
-			<form:hidden path="adminId" value="${adminId}"/>
+			<form:hidden path="memberId" value="${memberId}"/>
 			
 			<div class="form-group">
 				<form:label path="noticeTitle">제목</form:label>

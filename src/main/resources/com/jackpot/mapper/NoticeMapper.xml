@@ -9,17 +9,17 @@
 		<id property="noticeId" column="notice_id" />
 		<result property="noticeTitle" column="notice_title" />
 		<result property="noticeContent" column="notice_content" />
-		<result property="adminId" column="admin_id" />
-		<result property="adminLoginId" column="admin_login_id" />
-		<result property="adminLoginPwd" column="admin_login_pwd" />
+		<result property="memberId" column="member_id" />
+		<result property="loginId" column="member_login_id" />
+		<result property="loginPwd" column="member_login_pwd" />
 		<result property="regDate" column="reg_date" />
 		<result property="updateDate" column="update_date" />
 	</resultMap>
 	
 	<select id = "read" resultMap="noticeMap">
-		select notice_id, notice_title, notice_content, notice.admin_id, member.member_login_id, member.member_login_pwd, reg_date, update_date
+		select notice_id, notice_title, notice_content, notice.member_id, member.member_login_id, member.member_login_pwd, reg_date, update_date
 		from notice left outer join member
-		on notice.admin_id = member.admin_id
+		on notice.member_id = member.member_id
 		where notice_id = #{noticeId}
 	</select>
 	
@@ -54,9 +54,9 @@
 	</select>
 
 	<select id="getListWithPaging" resultType="NoticeVO">
-		select notice_id, notice_title, notice_content, notice.admin_id, admin.admin_login_id, admin.admin_login_pwd, reg_date, update_date
-		from notice left outer join admin
-		on notice.admin_id = admin.admin_id
+		select notice_id, notice_title, notice_content, notice.member_id, member.member_login_id, member.member_login_pwd, reg_date, update_date
+		from notice left outer join member
+		on notice.member_id = member.member_id
 		<where>
 			<include refid="criteria"></include>
 		</where>
@@ -65,15 +65,15 @@
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(*) from notice left outer join admin
-		on notice.admin_id = admin.admin_id
+		select count(*) from notice left outer join member
+		on notice.member_id = member.member_id
 		<where>
 			<include refid="criteria"></include>
 		</where>
 	</select>
 
-	<select id="getAdminLoginIdMapper" resultType="AdminVO">
-		select * from admin;
+	<select id="getAdminLoginIdMapper" resultType="MemberVO">
+		select * from member;
 	</select>
 	
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
@@ -88,7 +88,7 @@
 							notice_content like CONCAT('%',#{keyword},'%')
 						</when>
 						<when test="type == 'A'.toString()">
-							admin.admin_login_id like CONCAT('%',#{keyword},'%')
+							member.member_login_id like CONCAT('%',#{keyword},'%')
 						</when>
 					</choose>
 				</trim>

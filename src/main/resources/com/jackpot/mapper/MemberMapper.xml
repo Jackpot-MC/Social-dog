@@ -7,8 +7,8 @@
 
 	<resultMap id="memberMap" type="com.jackpot.domain.MemberVO">
 		<id property="memberId" column="member_id" />
-		<result property="memberLoginId" column="member_login_id" />
-		<result property="memberLoginPwd" column="member_login_pwd" />
+		<result property="loginId" column="member_login_id" />
+		<result property="loginPwd" column="member_login_pwd" />
 		<result property="memberName" column="member_name" />
 		<result property="memberBirth" column="member_birth" />
 		<result property="memberEmail" column="member_email" />
@@ -50,4 +50,8 @@
 		select * from member
 	</select>
 	
+	<insert id = "insertAuth">
+		insert into auth(username, auth)
+		values(#{username}, #{auth})
+	</insert>
 </mapper>

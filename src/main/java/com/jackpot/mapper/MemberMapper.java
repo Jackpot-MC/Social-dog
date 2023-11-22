@@ -3,6 +3,7 @@ package com.jackpot.mapper;
 
 import java.util.List;
 
+import com.jackpot.domain.AuthVO;
 import com.jackpot.domain.MemberVO;
 
 public interface MemberMapper {
@@ -21,7 +22,6 @@ public interface MemberMapper {
 
 	public List<MemberVO> getList();
 	
-//	// 로그인
-//	public MemberVO login(MemberVO member);
+	public void insertAuth(AuthVO auth);
 	
 }

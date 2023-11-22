@@ -14,23 +14,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.jackpot.domain.AdminVO;
 import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.domain.NoticeVO;
 import com.jackpot.domain.NoticePageDTO;
 import com.jackpot.service.NoticeService;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
 @RequestMapping("/notice")
-@AllArgsConstructor
 public class NoticeController {
 	
 	@Autowired

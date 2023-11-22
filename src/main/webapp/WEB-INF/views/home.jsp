@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="layouts/header.jsp"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 
 
@@ -14,13 +14,13 @@
  	    e.preventDefault();
  	 	$("#maindiv").load(href);
 	 });
-	 
+
 	 $('#map').on('click', '.appointment_btn', function(e) {
 		 var href = 'appointment/list';
  	    e.preventDefault();
  	 	$("#maindiv").load(href);
 	 });
-     
+
 /* 	 $('#map').on('click', '.place_detail_btn', function(e) {
 		 var href = place.place_url;
  	    e.preventDefault();
@@ -43,12 +43,12 @@
     <div class="col-md-4 maindiv" id="maindiv">
 <%-- 	<%@ include file="review/list.jsp"%> --%>
 	</div>
-	
+
     <div class="col-md-8 themed-grid-col">
 	<div class="map_wrap">
     <div id="map" style="width:100%; height:700px; position:relative;overflow:hidden;"></div>
 
-    <!-- 키워드 검색 -->
+    <!-- 키워드 검색
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
@@ -62,7 +62,7 @@
         <ul id="placesList"></ul>
         <div id="pagination"></div>
     </div>
-   
+    -->
 
 
     <!-- 카테고리 -->
@@ -96,7 +96,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
-		</div>	
+		</div>
 	</div>
 </div>
 
@@ -124,7 +124,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map);
 
-
+<%--
 // ------------------ 장소 검색 목록으로 표출 ---------------------
 
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
@@ -134,12 +134,12 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 searchPlaces();
 
 // 키워드 검색을 요청하는 함수1 - 내 위치 기준 일부만
-async function searchPlaces() {
+/* async function searchPlaces() {
     var keyword = document.getElementById('keyword').value;
     const currentCoordinate = await getCurrentCoordinate();
     var options = {
             location: currentCoordinate,
-            radius: 20000,
+            radius: 10000,
             sort: kakao.maps.services.SortBy.DISTANCE,
           };
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -148,10 +148,10 @@ async function searchPlaces() {
     }
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch(keyword, placesSearchCB, options);
-}
+} */
 
 // 키워드 검색을 요청하는 함수2 - 전국
-/* function searchPlaces() {
+function searchPlaces() {
     var keyword = document.getElementById('keyword').value;
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
         alert('키워드를 입력해주세요!');
@@ -159,7 +159,7 @@ async function searchPlaces() {
     }
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch(keyword, placesSearchCB);
-} */
+}
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
@@ -342,7 +342,7 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
-
+--%>
 
 
 // ------------------ 카테고리별 장소 검색-------------------------
@@ -523,7 +523,7 @@ function changeCategoryClass(el) {
     }
 }
 
-const getCurrentCoordinate = async () => {
+/* const getCurrentCoordinate = async () => {
 	  return new Promise((res, rej) => {
 	    // HTML5의 geolocaiton으로 사용할 수 있는지 확인합니다.
 	    if (navigator.geolocation) {
@@ -540,7 +540,7 @@ const getCurrentCoordinate = async () => {
 	      rej(new Error("현재 위치를 불러올 수 없습니다."));
 	    }
 	  });
-	}; 
+	}; */
 
 
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다

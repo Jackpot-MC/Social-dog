@@ -3,11 +3,11 @@ package com.jackpot.service;
 import java.io.IOException;
 import java.util.List;
 
+import com.jackpot.domain.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jackpot.domain.AdminVO;
 import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.domain.NoticeVO;
 import com.jackpot.mapper.NoticeMapper;
@@ -70,10 +70,10 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<AdminVO> getAdminLoginId(AdminVO admin) {
+	public List<MemberVO> getAdminLoginId(MemberVO member) {
 		log.info("get AdminLoginId");
 		
-		return mapper.getAdminLoginIdMapper(admin);
+		return mapper.getAdminLoginIdMapper(member);
 	}
 
 }
