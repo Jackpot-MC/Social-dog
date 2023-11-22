@@ -9,6 +9,8 @@ import com.jackpot.domain.NoticeVO;
 public interface NoticeMapper {
 	public NoticeVO read(Long noticeId); // PK 전달
 	
+	public NoticeVO readLatest();
+	
 	public void insert(NoticeVO notice);
 	
 	public int update(NoticeVO notice);

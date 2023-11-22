@@ -26,6 +26,11 @@ public class NoticeServiceImpl implements NoticeService {
 	public NoticeVO get(Long noticeId) {
 		return mapper.read(noticeId);
 	}
+	
+	@Override
+	public NoticeVO getLatest() {
+		return mapper.readLatest();
+	}
 
 	@Transactional(rollbackFor = Exception.class)
 	@Override

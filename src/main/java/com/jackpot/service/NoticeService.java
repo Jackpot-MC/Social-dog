@@ -11,6 +11,8 @@ public interface NoticeService {
 
 	public NoticeVO get(Long noticeId);
 	
+	public NoticeVO getLatest();
+	
 	public void register(NoticeVO notice) throws IOException;
 	
 	public boolean modify(NoticeVO notice) throws IOException;
