@@ -24,9 +24,9 @@ public class NoticeVO {
 	@NotBlank(message = "공지사항 내용은 필수 항목입니다.")
 	private String noticeContent;
 	
-	private Long adminId; //FK
-	private String adminLoginId; //FK
-	private String adminLoginPwd;
+	private Long memberId; //FK
+	private String memberLoginId; //FK
+	private String memberLoginPwd;
 
 	private Date regDate;
 	private Date updateDate;

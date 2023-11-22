@@ -73,7 +73,7 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<MemberVO> getAdminLoginId(MemberVO member) {
 		log.info("get AdminLoginId");
 		
-		return mapper.getAdminLoginIdMapper(member);
+		return mapper.getMemberLoginIdMapper(member);
 	}
 
 }

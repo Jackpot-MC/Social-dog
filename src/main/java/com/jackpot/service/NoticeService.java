@@ -23,5 +23,5 @@ public interface NoticeService {
 	
 	public int getTotal(NoticeCriteria cri);
 	
-	public List<MemberVO> getAdminLoginId(MemberVO admin);
+	public List<MemberVO> getAdminLoginId(MemberVO member);
 }

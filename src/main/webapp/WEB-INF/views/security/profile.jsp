@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<%@ include file="../layouts/member-header.jsp"%>
+<%@ include file="../layouts/header.jsp"%>
 <link rel="stylesheet" href="/resources/css/profile.css" type="text/css" />
 
 <sec:authentication property="principal.username" var="username" />
