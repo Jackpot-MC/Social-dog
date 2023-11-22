@@ -30,8 +30,8 @@ public class AdminServiceImpl implements AdminService {
 	public void register(AdminVO admin){		
 		log.info("insert......." + admin);
 		String encPassword = pwEncoder.encode(admin.getPassword());
-		admin.setAdminLoginPwd(encPassword);
-		admin.setAdminLoginPwd2(encPassword);
+		admin.setLoginPwd(encPassword);
+		admin.setLoginPwd2(encPassword);
 		mapper.insert(admin);
 	}
 
@@ -40,8 +40,8 @@ public class AdminServiceImpl implements AdminService {
 		log.info("update......." + admin);
 
 		String encPassword = pwEncoder.encode(admin.getPassword());
-		admin.setAdminLoginPwd(encPassword);
-		admin.setAdminLoginPwd2(encPassword);
+		admin.setLoginPwd(encPassword);
+		admin.setLoginPwd2(encPassword);
 		
 		mapper.update(admin);
 	}
