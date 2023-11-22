@@ -2,16 +2,12 @@ package com.jackpot.service;
 
 import java.io.IOException;
 import java.util.List;
-
 import com.jackpot.domain.AuthVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.jackpot.domain.MemberVO;
 import com.jackpot.mapper.MemberMapper;
-
 import lombok.extern.log4j.Log4j;
 
 @Service
@@ -41,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.signup(member);
 
 		//3.auth테이블에 저장
-		AuthVO auth = new AuthVO(member.getLoginId(), "ROLE_USER");
+		AuthVO auth = AuthVO.builder().memberId(member.getMemberId()).username(member.getLoginId()).auth("ROLE_USER").build();
 
 		memberMapper.insertAuth(auth);
 	}

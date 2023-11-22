@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class AuthVO {
     private String username;
     private String auth;
+    private Long memberId;//fk
 }
