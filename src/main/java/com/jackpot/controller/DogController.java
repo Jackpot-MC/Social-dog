@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DogController {
 
 //    @Autowired
-    private DogService dogService;
+//    private DogService dogService;
 
 
 }

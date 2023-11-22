@@ -34,7 +34,7 @@
 			member_login_pwd = #{memberLoginPwd},
 			member_email = #{memberEmail},
 			member_address = #{memberAddress}
-		where member_id = #{memberId}
+		where member_login_id = #{memberLoginId}
 	</update>
 	
 	<!-- 회원 정보 삭제 / 회원탈퇴 -->

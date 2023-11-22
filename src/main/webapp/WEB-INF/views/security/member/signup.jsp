@@ -3,14 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<%@ include file="../layouts/header.jsp"%>
+<%@ include file="../../layouts/header.jsp"%>
 <link rel="stylesheet" href="/resources/css/signup.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  
 <script>
 $(document).ready(function () {
-};
+});
 
 $(".selector").attr({
     "type" : "date",
@@ -26,7 +26,7 @@ $(".selector").attr({
 	
 		<div class="signup form">
 			<form:form modelAttribute="member" 
-			           action="/member/signup?_csrf=${_csrf.token}"
+			           action="/security/member/signup?_csrf=${_csrf.token}"
 						id="signup_form" style="width:500px" class="mx-auto">
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
 				<h2 class="mt-5">회원가입</h2>
@@ -74,7 +74,7 @@ $(".selector").attr({
                     <input type="submit" value="Signup Now" class="signup_button">
                     <br>
                     <br>이미 회원이신가요?
-                    <a href="/member/login" class="switch">로그인 하러가기</a>
+                    <a href="security/login" class="switch">로그인 하러가기</a>
                 </div>
                 
 			</form:form>
@@ -82,4 +82,4 @@ $(".selector").attr({
 	</section>
 </div>
 
-<%@ include file="../layouts/footer.jsp"%>
+<%@ include file="../../layouts/footer.jsp"%>
