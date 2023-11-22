@@ -23,5 +23,5 @@ public interface NoticeMapper {
 	
 	public int getTotalCount(NoticeCriteria cri);
 
-	public List<MemberVO> getAdminLoginIdMapper(MemberVO admin);
+	public List<MemberVO> getMemberLoginIdMapper(MemberVO member);
 }

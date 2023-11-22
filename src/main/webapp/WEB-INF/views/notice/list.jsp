@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ include file = "../layouts/header.jsp" %>
+<%@ include file="../layouts/header.jsp"%>
 
 <h1>공지사항</h1>
 
@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
 				<td><a class="move" href="${cri.getLinkWithNoticeId('get', notice.noticeId)}">
 					${notice.noticeTitle}</a>
 				</td>
-				<td style="width:100px">${notice.loginId}</td>
+				<td style="width:100px">${notice.memberLoginId}</td>
 				<td style="width:130px">
 					<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}"/>
 				</td>

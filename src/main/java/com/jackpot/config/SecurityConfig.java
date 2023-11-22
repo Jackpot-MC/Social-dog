@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.formLogin()
                 .loginPage("/security/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
-                .loginProcessingUrl("/security/login*")
+                .loginProcessingUrl("/security/login")
                 .defaultSuccessUrl("/")
                 .failureUrl("/security/login?error=true");
         // el : param.error
