@@ -2,15 +2,19 @@ package com.jackpot.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.jackpot.domain.DogVO;
 import com.jackpot.mapper.DogMapper;
+
 import lombok.extern.log4j.Log4j;
-import org.springframework.stereotype.Service;
 
 @Service
 @Log4j
 public class DogServiceImpl implements DogService {
 
+	@Autowired
 	DogMapper dogMapper;
 
 	@Override
