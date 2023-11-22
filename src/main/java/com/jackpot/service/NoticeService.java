@@ -3,7 +3,7 @@ package com.jackpot.service;
 import java.io.IOException;
 import java.util.List;
 
-import com.jackpot.domain.AdminVO;
+import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.domain.NoticeVO;
 
@@ -21,5 +21,5 @@ public interface NoticeService {
 	
 	public int getTotal(NoticeCriteria cri);
 	
-	public List<AdminVO> getAdminLoginId(AdminVO admin);
+	public List<MemberVO> getAdminLoginId(MemberVO admin);
 }

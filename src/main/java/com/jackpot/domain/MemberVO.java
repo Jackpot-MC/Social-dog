@@ -1,8 +1,6 @@
 package com.jackpot.domain;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -20,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberVO implements UserDetails{
+public class MemberVO {
 
 
 	private Long memberId;
@@ -48,39 +46,13 @@ public class MemberVO implements UserDetails{
 	@NotBlank(message = "주소를 입력해주세요.")
 	private String memberAddress;
 
+	private List<AuthVO> authList;
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-	}
-
-	@Override
-	public String getPassword() {
-		return this.loginPwd;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.loginId;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
+	public Collection<SimpleGrantedAuthority> getAuthorities(){
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for(AuthVO auth: authList){
+			authorities.add(new SimpleGrantedAuthority(auth.getAuth()));
+		}
+		return authorities;
 	}
 }

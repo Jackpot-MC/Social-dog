@@ -31,7 +31,7 @@
 				
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
-				<a class="nav-link" href="/sdecurity/member/profile">
+				<a class="nav-link" href="/security/profile">
 					${memberName}
 				</a>
 			</li>
@@ -52,13 +52,8 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/security/member/signup">
+				<a class="nav-link" href="/securit/signup">
 					<i class="fa-solid fa-user-plus"></i> 회원가입
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/security/admin/signup">
-					<i class="fa-solid fa-user-plus"></i>관리자 회원가입
 				</a>
 			</li>
 		</ul>

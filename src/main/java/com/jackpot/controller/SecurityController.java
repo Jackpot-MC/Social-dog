@@ -1,8 +1,6 @@
 package com.jackpot.controller;
 
-import com.jackpot.domain.AdminVO;
 import com.jackpot.domain.MemberVO;
-import com.jackpot.service.AdminService;
 import com.jackpot.service.MemberService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,57 +22,19 @@ import java.io.IOException;
 public class SecurityController {
 
     @Autowired
-    AdminService adminService;
-
-    @Autowired
     MemberService memberService;
 
-    @GetMapping("/admin/signup")//회원가입 페이지 호출
-    public void signup(@ModelAttribute("admin") AdminVO admin) {
-        log.info("회원가입 페이지 이동");
-    }
-
-    @PostMapping("/admin/signup")
-    public String signup(//회원가입
-                         @Valid @ModelAttribute("admin") AdminVO admin,
-                         Errors errors) throws IOException {
-        //1. 비밀번호-비밀번호 확인 일치 여부 판단
-        if (!admin.getLoginPwd().equals(admin.getLoginPwd2())) {
-            errors.rejectValue("password2", "비밀번호 불일치", "비밀번호 확인이 일치하지 않습니다.");
-        }
-
-        //2. 아이디 중복을 거르기
-        if (!errors.hasFieldErrors("adminLoginId")) {
-            if (adminService.get(admin.getLoginId()) != null) {//id중복검사
-                errors.rejectValue("adminLoginId", "ID 중복", "이미 사용중인 ID입니다.");
-            }
-            else if(memberService.get(admin.getLoginId())!=null){
-                errors.rejectValue("adminLoginId", "ID 중복", "이미 사용 중인 ID입니다.");
-            }
-        }
-
-        if (errors.hasErrors()) {
-            return "/admin/signup";//에러나면 다시 가입 화면으로
-        }
-
-        adminService.register(admin);//문제 없으면 db에 정보 등록
-
-        return "redirect:/";//루트 페이지로 돌아가버리기
-    }
 
     @GetMapping("/login")//로그인 페이지 호출
     public void login() {
         log.info("login page");
     }
 
-//    @PostMapping("/admin/login")
-//    public String adminLoginPost(AdminVO adminVO) {
-//        log.info("login page");
-//        return "/";
-//    }
-
-//    @GetMapping("/admin/logout")
-//    public void adminLogout(){log.info("logout page");}
+    //로그아웃
+    @GetMapping("/logout")
+    public void memberLogout() {
+        log.info("logout page");
+    }
 
     @GetMapping("/member/info")
     public void get(HttpSession session, Model model) throws Exception {
@@ -111,9 +71,6 @@ public class SecurityController {
         //2. 아이디 중복을 거르기
         if (!errors.hasFieldErrors("memberLoginId")) {
             if (memberService.get(member.getLoginId()) != null) {//id중복검사
-                errors.rejectValue("memberLoginId", "ID 중복", "이미 사용 중인 ID입니다.");
-            }
-            else if(adminService.get(member.getLoginId())!=null){
                 errors.rejectValue("memberLoginId", "ID 중복", "이미 사용 중인 ID입니다.");
             }
         }
@@ -161,23 +118,4 @@ public class SecurityController {
         return "redirect:/";
     }
 
-    //로그인
-//    @GetMapping("/member/login")
-//    public String memberLogin() {
-//        log.info("login page");
-//        return "/member/login";
-//    }
-
-//    @PostMapping("/login")
-//    public String memberLoginPost(MemberVO member) throws IOException {
-//        log.info("Post: " + member);
-//
-//        return "/home";
-//    }
-
-    //로그아웃
-    @GetMapping("/logout")
-    public void memberLogout() {
-        log.info("logout page");
-    }
 }

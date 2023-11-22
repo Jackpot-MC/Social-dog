@@ -2,7 +2,7 @@ package com.jackpot.config;
 
 import javax.sql.DataSource;
 
-import com.jackpot.security.CustomUserDetailsServiceImpl;
+import com.jackpot.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,14 +46,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(
                         "/notice/modify",
-                        "/notice/register")
+                        "/notice/register",
+                        "/notice/remove")
                 .access("hasRole('ROLE_ADMIN')")
                 .antMatchers(
                         "/review/*",
                         "/participant/*",
                         "/appointment/*",
                         "/profile/*",
-                        "/security/member/update"
+                        "/security/update"
                 ).access("hasRole('ROLE_USER')");//USER이상은 다적용
 
         http.formLogin()
@@ -82,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService customUserService() {
-        return new CustomUserDetailsServiceImpl();
+        return new CustomUserDetailsService();
     }
 
     @Override

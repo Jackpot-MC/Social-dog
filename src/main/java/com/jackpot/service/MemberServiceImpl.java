@@ -3,6 +3,7 @@ package com.jackpot.service;
 import java.io.IOException;
 import java.util.List;
 
+import com.jackpot.domain.AuthVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,19 +33,25 @@ public class MemberServiceImpl implements MemberService {
 	public void signup(MemberVO member) throws IOException {
 		log.info("signup..." + member);
 		//1.비번 암호화
-		String encPassword = pwEncoder.encode(member.getPassword());
+		String encPassword = pwEncoder.encode(member.getLoginPwd());
 		member.setLoginPwd(encPassword);
 		member.setLoginPwd2(encPassword);
 
 		//2.member 저장
 		memberMapper.signup(member);
+
+		//3.auth테이블에 저장
+		AuthVO auth = new AuthVO(member.getLoginId(), "ROLE_USER");
+
+		memberMapper.insertAuth(auth);
 	}
+
 
 	@Override
 	public void update(MemberVO member) throws IOException {
 		log.info("update..." + member);
 
-		String encPassword = pwEncoder.encode(member.getPassword());
+		String encPassword = pwEncoder.encode(member.getLoginPwd());
 		member.setLoginPwd(encPassword);
 		member.setLoginPwd2(encPassword);
 
