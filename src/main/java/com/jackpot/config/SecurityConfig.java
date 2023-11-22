@@ -52,7 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/review/*",
                         "/participant/*",
                         "/appointment/*",
-                        "/profile/*"
+                        "/profile/*",
+                        "/security/member/update"
                 ).access("hasRole('ROLE_USER')");//USER이상은 다적용
 
         http.formLogin()
