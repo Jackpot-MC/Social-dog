@@ -22,13 +22,13 @@ public class AdminVO implements UserDetails {
 	private Long adminId;
 	
 	@NotBlank(message = "관리자 id는 필수 항목입니다.")
-	private String adminLoginId;
+	private String loginId;
 	
 	@NotBlank(message = "관리자 pwd는 필수 항목입니다.")
-	private String adminLoginPwd;
+	private String loginPwd;
 
 	@NotBlank(message = "관리자 pwd 확인은 필수 항목입니다.")
-	private String adminLoginPwd2;
+	private String loginPwd2;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -37,12 +37,12 @@ public class AdminVO implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return this.adminLoginPwd;
+		return this.loginPwd;
 	}
 
 	@Override
 	public String getUsername() {
-		return this.adminLoginPwd;
+		return this.loginPwd;
 	}
 
 	@Override

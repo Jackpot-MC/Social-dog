@@ -27,13 +27,13 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                 <div class="form-group mt-4">
-                    <label for="username"><i class="fa-solid fa-user"></i>아이디</label>
-                    <input type="text" name="username" id="username" class="form-control"/>
+                    <label for="loginId"><i class="fa-solid fa-user"></i>아이디</label>
+                    <input type="text" name="username" id="loginId" class="form-control"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="password"><i class="fa-solid fa-lock"></i>비밀번호</label>
-                    <input type="password" name="password" id="password" class="form-control"/>
+                    <label for="loginPwd"><i class="fa-solid fa-lock"></i>비밀번호</label>
+                    <input type="password" name="password" id="loginPwd" class="form-control"/>
                 </div>
 
                 <div class="form-group form-check">
@@ -53,12 +53,9 @@
                 <div class="CTA text-center">
                     <input type="submit" value="login" class="login"> <br>
                     <br>소셜독이 처음이신가요? <a href="/security/member/signup" class="switch">Join now</a>
-                </div>
-
-                <div class="CTA text-center">
-                    <input type="submit" value="login" class="login"> <br>
                     <br>관리자 등록 <a href="/security/admin/signup" class="switch">Join now</a>
                 </div>
+
             </form>
         </div>
     </section>

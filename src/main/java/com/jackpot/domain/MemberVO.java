@@ -33,13 +33,13 @@ public class MemberVO implements UserDetails{
 	private Date memberBirth;
 	
 	@NotBlank(message = "아이디를 입력해주세요.")
-	private String memberLoginId;
+	private String loginId;
 	
 	@NotBlank(message = "비밀번호를 입력해주세요.")
-	private String memberLoginPwd;
+	private String loginPwd;
 
 	@NotBlank(message = "비밀번호를 다시 입력해주세요.")
-	private String memberLoginPwd2;
+	private String loginPwd2;
 	
 	@NotBlank(message = "이메일을 입력해주세요.")
 	@Email(message = "email 형식에 맞지 않습니다.")
@@ -56,12 +56,12 @@ public class MemberVO implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		return this.memberLoginPwd;
+		return this.loginPwd;
 	}
 
 	@Override
 	public String getUsername() {
-		return this.memberLoginId;
+		return this.loginId;
 	}
 
 	@Override

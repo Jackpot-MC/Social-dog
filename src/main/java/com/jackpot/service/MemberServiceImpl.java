@@ -33,8 +33,8 @@ public class MemberServiceImpl implements MemberService {
 		log.info("signup..." + member);
 		//1.비번 암호화
 		String encPassword = pwEncoder.encode(member.getPassword());
-		member.setMemberLoginPwd(encPassword);
-		member.setMemberLoginPwd2(encPassword);
+		member.setLoginPwd(encPassword);
+		member.setLoginPwd2(encPassword);
 
 		//2.member 저장
 		memberMapper.signup(member);
@@ -45,8 +45,8 @@ public class MemberServiceImpl implements MemberService {
 		log.info("update..." + member);
 
 		String encPassword = pwEncoder.encode(member.getPassword());
-		member.setMemberLoginPwd(encPassword);
-		member.setMemberLoginPwd2(encPassword);
+		member.setLoginPwd(encPassword);
+		member.setLoginPwd2(encPassword);
 
 		memberMapper.update(member);
 	}
