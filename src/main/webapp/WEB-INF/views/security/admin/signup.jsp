@@ -26,7 +26,7 @@ $(".selector").attr({
 	
 		<div class="signup form">
 			<form:form modelAttribute="admin"
-			           action="/admin/signup?_csrf=${_csrf.token}"
+			           action="/security/admin/signup?_csrf=${_csrf.token}"
 						id="signup_form" style="width:500px" class="mx-auto">
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
 				<h2 class="mt-5">회원가입</h2>
@@ -53,7 +53,7 @@ $(".selector").attr({
                     <input type="submit" value="Signup Now" class="signup_button">
                     <br>
                     <br>이미 회원이신가요?
-                    <a href="/admin/login" class="switch">로그인 하러가기</a>
+                    <a href="/security/login" class="switch">로그인 하러가기</a>
                 </div>
                 
 			</form:form>
