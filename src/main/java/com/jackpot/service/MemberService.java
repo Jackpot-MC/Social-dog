@@ -18,8 +18,5 @@ public interface MemberService {
 	public int delete(String memberId)throws IOException;
 
 	public List<MemberVO> getList() throws IOException;
-	
-//	public MemberVO login(MemberVO member) throws IOException;
-
 
 }

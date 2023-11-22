@@ -48,7 +48,7 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
-                        "/home",
+                        "/",
                         "/review/*",
                         "/participant/*",
                         "/appointment/*",
@@ -58,11 +58,11 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.formLogin()
                 .loginPage("/member/login?error=login_required")    // 로그인 안하고 접근한 경우 리다이렉트
-                .loginProcessingUrl("/member/login*")
+                .loginProcessingUrl("/member/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/member/login?error=true")
-                .usernameParameter("memberLoginId")
-                .passwordParameter("memberLoginPwd");    // el : param.error
+                .failureUrl("/member/login?error=true");
+//                .usernameParameter("memberLoginId")
+//                .passwordParameter("memberLoginPwd");    // el : param.error
 
 
         http.logout()                        // 로그아웃 설정 시작

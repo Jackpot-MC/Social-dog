@@ -1,8 +1,8 @@
 package com.jackpot.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jackpot.domain.MemberVO;
 import com.jackpot.service.MemberService;
@@ -117,7 +120,9 @@ public class MemberSecurityController {
 
 	//마이페이지
     @GetMapping("/profile")
-	public void profile(@ModelAttribute("member") MemberVO member) {
+	public void profile(Model model,
+			Principal principal) {
+    	model.addAttribute("member", memberService.get(principal.getName()));
 	}
 	
 	@PostMapping("/profile")
@@ -136,10 +141,4 @@ public class MemberSecurityController {
 		memberService.update(member);
 		return "redirect:/";
 	}
-    
-//    //로그아웃
-//    @GetMapping("/logout")
-//    public void logout() {
-//        log.info("logout page");
-//    }
 }
