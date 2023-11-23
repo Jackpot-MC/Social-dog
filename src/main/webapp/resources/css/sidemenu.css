@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, fieldset{
+  margin: 0;
+  padding: 0;
+  border:0;
+  font-size:100%;
+  vertical-align:baseline;
+  outline:0;
+  line-height:auto;
+}
+a{
+  color:inherit;
+  text-decoration:none;
+}
+ul, li{
+  list-style:none;
+}
+
+.left{
+  float:left;
+}
+/* 
+.left {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #dfdfdf;
+}
+ */
+
+
+header{
+  width: 720px;  
+}
+.nav-top{
+  position: relative;
+  width: 100%;
+  padding: 15px 10px;
+}
+.btn-menu{
+  display: inline-block;
+  width: 25px;
+  margin-left: 10px;
+}
+/* 사이드메뉴 */
+.side-menu-wrap{
+  position: fixed;
+  left: 0;
+  top:0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.0);
+}
+.side-menu-box{
+  position: absolute;
+  left: 0;
+  width: 350px;
+  height: 100%;
+  background: #f7edd5;
+}
+.side-menu-top{
+padding: 30px;
+}
+.side-menu-profile{
+  padding-top:70px;
+}
+.list {
+  padding-top:30px;
+}
+.list > ul > li{
+  line-height:220%;
+}
+.snb{
+  padding-top:30px;
+  height: calc(100% - 155px);
+  overflow-y:scroll;
+  /* 스크롤바 안보이게 설정 */
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+.snb::-webkit-scrollbar{
+  display: none;
+}
+.snb > ul > li{
+  position: relative;
+  border-bottom: 1px solid #c5c5c5;
+}
+.snb > ul > li.doglist{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing:border-box;
+}
+.snb > ul > li > a{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing:border-box;
+}
+.snb > ul > li > a:after{
+  content:'';
+  display: inline-block;
+  position: absolute;
+  top: 24px;
+  right: 20px;
+  width: 15px;
+  height: 10px;
+  background: url('/resources/image/snb_icon.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.snb > ul > li.on > a:after{
+  background: url('/resources/image/snb_icon_on.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.snb > ul > li.on > a{
+  color: #e51737;
+}
+.snb > ul > li > ul{
+  display: none;
+}
+.snb > ul > li.on > ul{
+  display: block;
+}
+.snb > ul > li > ul > li a{
+  display: block;
+  padding: 7px 20px;
+  color: #8b8b8b;
+}
+.snb > ul > li > ul > li:first-child{
+  padding-top: 2px;
+}
+.snb > ul > li > ul > li:last-child{
+  padding-bottom: 20px;
+}
+
+i.fa-xmark {
+  padding-top:65px;
+  padding-right:10px;
+  float: right;
+  margin: 5px 10px 0 0;
+  cursor: pointer;
+}

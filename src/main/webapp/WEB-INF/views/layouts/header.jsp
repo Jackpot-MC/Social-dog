@@ -23,7 +23,7 @@
 	<script src="/resources/js/main.js"></script>
 </head>
 <body>
-	<div id="wrap" class="container-fluid">
+	<div id="wrap">
 		<header>
 		</header>
 	<%@ include file="menu.jsp"%>

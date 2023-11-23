@@ -32,7 +32,7 @@
 		<!-- 로그인 상태 -->
 			<li class="nav-item">
 				<a class="nav-link" href="/security/profile">
-					${memberName}
+					 ${member.memberName}님  
 				</a>
 			</li>
 			<li class="nav-item">

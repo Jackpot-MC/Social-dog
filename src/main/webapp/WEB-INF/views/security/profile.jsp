@@ -8,60 +8,13 @@
 
 <sec:authentication property="principal.username" var="username" />
 
-<style>
-.side-bar{
-    background-color: lightgray;
-    position: absolute;
-    top:0;
-    left:-260px;
-    width: 300px;
-    height: 100%;
-    transition: left 1s, background-color 3s;    //메뉴가 1초 동안 들어가고 3초 동안 색 천천히 바뀌기
-}
-
-.side-bar:hover{
-    left:0%;
-    background-color:black;
-    transition: left 3s, background-color 3s;   // 메뉴가 3초 동안 나오고 3초 동안 색 천천히 바뀌기
-}
-.side-bar>.icon>div{
-    text-align:right;
-    padding: 10px;
-    color: black;
-}
-.side-bar:hover>.icon>div:last-child{
-    display:block;
-    color: white;
-}
-
-.side-bar:hover>.icon>div:first-child{
-    display:none;
-}
-.side-bar>.icon>div:last-child{
-    display:none;
-}
-</style>
-
-<div class="side-bar">
-    <div class="icon">
-        <div>▼</div>
-        <div>▶</div>
-    </div>
-<nav class="menu">
-    <ul>
-        <li><a href="#">1차 메뉴아이템 1</a></li>
-        <li><a href="#">1차 메뉴아이템 2</a></li>
-        <li><a href="#">1차 메뉴아이템 3</a></li>...
-
-
-
 <div class="container">
 	<section id="formHolder">
 		<div class="d-flex my-3">
-			<form:form modelAttribute="member" action="/member/profile?_csrf=${_csrf.token}" 
+			<form:form modelAttribute="member" action="/security/profile?_csrf=${_csrf.token}" 
 						style="width:500px" class="mx-auto">
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
-				<h1 class="mt-4">마이페이지</h1>
+				<h1 class="mt-4">내 정보 수정</h1>
 
                 <div class="form-group mt-4">
                     <form:label path="loginId">아이디</form:label>
