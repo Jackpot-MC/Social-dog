@@ -13,31 +13,23 @@
 <div class="container">
 	<section id="formHolder">
 		<div class="d-flex my-3">
-			<form:form modelAttribute="member" action="/security/profile?_csrf=${_csrf.token}" 
+			<form:form modelAttribute="member" action="/security/pwdupdate?_csrf=${_csrf.token}" 
 						style="width:500px" class="mx-auto">
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
-				<h1 class="title">내 정보 수정</h1>
+				<h1 class="title">비밀번호 변경</h1>
 
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <form:label path="loginId">아이디</form:label>
                     <form:hidden path="loginId"  class="form-control" />
                     <div id="loginid" class="form-control">${loginId}</div>
                 </div>
-                <div class="form-group">
-                    <form:label path="memberName">이름</form:label>
-                    <form:input path="memberName" cssClass="form-control" />
+                <div class="form-group mt-4">
+                    <form:label path="loginPwd">새 비밀번호 입력</form:label>
+                    <form:password path="loginPwd" cssClass="form-control" />
                 </div>
                 <div class="form-group">
-                    <form:label path="memberBirth">생년월일</form:label>
-                    <form:input type="date" path="memberBirth"  cssClass="form-control" />
-                </div>
-                <div class="form-group">
-                    <form:label path="memberEmail">이메일</form:label>
-                    <form:input path="memberEmail" cssClass="form-control" />
-                </div>
-                <div class="form-group">
-                    <form:label path="memberAddress">주소</form:label>
-                    <form:input path="memberAddress" cssClass="form-control" />
+                    <form:label path="loginPwd2">새 비밀번호 확인</form:label>
+                    <form:password path="loginPwd2" cssClass="form-control" />
                 </div>
 
             	<div class="CTA text-center">

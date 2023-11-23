@@ -15,6 +15,8 @@ public interface MemberService {
 	
 	public void update(MemberVO member) throws IOException;
 	
+	public void pwdupdate(MemberVO member) throws IOException;
+	
 	public int delete(String memberId)throws IOException;
 
 	public List<MemberVO> getList() throws IOException;

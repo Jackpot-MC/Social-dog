@@ -7,47 +7,12 @@ body {
 .container {
   max-width: 800px;
 }
-section#formHolder {
-  padding: 50px 0;
+ 
+form h1.title {
+	text-align: center;
+	padding: 30px;
+	font-size:30px;
 }
-
-.form {
-  padding:50px;
-  height: 1000px;
-  width: 800px;
-  margin-top: 50px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  color: #4c4c4c;
-  position: relative;
-  overflow: hidden;
-}
-.form form label{
-  font-weight: 700;
-}
-
-.form form div.loginid:not() {
-  background: none;
-  border: none;
-  display: block;
-  padding: 10px 0;
-  border-bottom: 1px solid #000000;
-  color: #444;
-  font-size: 15px;
-  font-family: "Montserrat", sans-serif;
-} 
-
- .form form input:not([type=submit]) {
-  background: none;
-  border: none;
-  display: block;
-  padding: 10px 0;
-  border-bottom: 1px solid #000000;
-  color: #444;
-  font-size: 15px;
-  font-family: "Montserrat", sans-serif;
-} 
-
-
 
 /* 버튼 */
 .CTA {
