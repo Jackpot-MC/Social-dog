@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MemberService {
 
-	public MemberVO get(String memberLoginId);
+	public MemberVO get(String loginId);
 	
 	public void signup(MemberVO member) throws IOException;
 	

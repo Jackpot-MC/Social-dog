@@ -21,8 +21,8 @@ public class MemberServiceImpl implements MemberService {
 	private PasswordEncoder pwEncoder;
 
 	@Override
-	public MemberVO get(String memberLoginId) {
-		return memberMapper.get(memberLoginId);
+	public MemberVO get(String loginId) {
+		return memberMapper.get(loginId);
 	}
 	
 	@Override
@@ -37,7 +37,8 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.signup(member);
 
 		//3.auth테이블에 저장
-		AuthVO auth = AuthVO.builder().memberId(member.getMemberId()).username(member.getLoginId()).auth("ROLE_USER").build();
+		AuthVO auth = new AuthVO(member.getLoginId(),
+				"ROLE_USER", member.getMemberId());
 
 		memberMapper.insertAuth(auth);
 	}
@@ -54,8 +55,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int delete(String memberLoginId) throws IOException {
-		return memberMapper.delete(memberLoginId);
+	public int delete(String loginId) throws IOException {
+		return memberMapper.delete(loginId);
 	}
 	
 	@Override

@@ -5,44 +5,57 @@
 
 <mapper namespace="com.jackpot.mapper.MemberMapper">
 
+	<resultMap id = "authMap" type="com.jackpot.domain.AuthVO">
+		<result property="username" column="username" />
+		<result property="auth" column="auth" />
+		<result property="memberId" column="member_id" />
+	</resultMap>
+
 	<resultMap id="memberMap" type="com.jackpot.domain.MemberVO">
 		<id property="memberId" column="member_id" />
-		<result property="loginId" column="member_login_id" />
-		<result property="loginPwd" column="member_login_pwd" />
+		<result property="loginId" column="login_id" />
+		<result property="loginPwd" column="login_pwd" />
 		<result property="memberName" column="member_name" />
 		<result property="memberBirth" column="member_birth" />
 		<result property="memberEmail" column="member_email" />
 		<result property="memberAddress" column="member_address" />
+		<collection property="authList" resultMap="authMap" /> 
 	</resultMap>
 	
 	<!--  회원 조회 -->
 	<select id="get" resultMap="memberMap">
-		select * from member
-		where member_login_id = #{memberLoginId}
+		select member.member_id, login_id, login_pwd, member_name, member_birth, member_email, member_address, auth.auth 
+		from member left outer join auth
+		on member.member_id = auth.member_id
+		where member.login_id = #{loginId}
 	</select>
 	
 	<!-- 회원가입 -->
 	<insert id="signup">
-		insert into member (member_login_id, member_login_pwd, member_name, member_birth, member_email, member_address)
-		values(#{memberLoginId}, #{memberLoginPwd}, #{memberName}, #{memberBirth}, #{memberEmail}, #{memberAddress})
+		insert into member (login_id, login_pwd, member_name, member_birth, member_email, member_address)
+		values(#{loginId}, #{loginPwd}, #{memberName}, #{memberBirth}, #{memberEmail}, #{memberAddress})
+		
+		<selectKey resultType= "Long" keyProperty="memberId" keyColumn="member_id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	
 	<!--  회원 정보 수정 -->
 	<update id="update">
 		update member 
 		set
-			member_login_pwd = #{memberLoginPwd},
+			login_pwd = #{loginPwd},
 			member_name = #{memberName},
             member_birth = #{memberBirth},
 			member_email = #{memberEmail},
 			member_address = #{memberAddress}
-		where member_login_id = #{memberLoginId}
+		where login_id = #{loginId}
 	</update>
 	
 	<!-- 회원 정보 삭제 / 회원탈퇴 -->
 	<delete id="delete">
 		delete from member
-		where member_login_id = #{memberLoginId}
+		where login_id = #{loginId}
 	</delete>
 	
 	<!-- 회원 목록 -->
@@ -51,7 +64,7 @@
 	</select>
 	
 	<insert id = "insertAuth">
-		insert into auth(username, auth)
-		values(#{username}, #{auth})
+		insert into auth(username, auth, member_id)
+		values(#{username}, #{auth}, #{memberId})
 	</insert>
 </mapper>
