@@ -1,24 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="layouts/header.jsp"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<link rel="stylesheet" href="/resources/css/review/list.css" type="text/css" />
+<link rel="stylesheet" href="/resources/css/appointment/list.css" type="text/css" />
 
 
- <script type="text/javascript">
+
+<script type="text/javascript">
  $(document).ready(function () {
 	 $('#map').on('click', '.review_btn', function(e) {
-		 var href = 'review/list';
- 	    e.preventDefault();
- 	 	$("#maindiv").load(href);
+		 var href = 'review/list .content';
+ 	    e.preventDefault(); 	   
+ 	 	 $("#maindiv").load(href);
 	 });
-
 	 $('#map').on('click', '.appointment_btn', function(e) {
-		 var href = 'appointment/list';
+		 var href = 'appointment/list .content';
  	    e.preventDefault();
- 	 	$("#maindiv").load(href);
+	 	$("#maindiv").load(href);
 	 });
 
 /* 	 $('#map').on('click', '.place_detail_btn', function(e) {
@@ -39,69 +41,62 @@
 
 <div class="container-fluid">
 
-    <div class="row mb-3">
-    <div class="col-md-4 maindiv" id="maindiv">
-<%-- 	<%@ include file="review/list.jsp"%> --%>
-	</div>
-
-    <div class="col-md-8 themed-grid-col">
-	<div class="map_wrap">
-    <div id="map" style="width:100%; height:700px; position:relative;overflow:hidden;"></div>
-
-    <!-- 키워드 검색 -->
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="공원" id="keyword" size="15">
-                    <button type="submit">검색하기</button>
-                </form>
-            </div>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
-   
-
-
-    <!-- 카테고리 -->
-    <ul id="category">
-        <li id="BK9" data-order="0">
-            <span class="category_bg bank"></span>
-           	공원
-        </li>
-        <li id="MT1" data-order="1">
-            <span class="category_bg mart"></span>
-            화장실
-        </li>
-        <li id="PM9" data-order="2">
-            <span class="category_bg pharmacy"></span>
-            벤치
-        </li>
-    </ul>
-</div>
-
-<div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Modal title</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span></button>
-			</div>
-			<div class="modal-body">
-				<iframe id="embeddedTerm" src="https://place.map.kakao.com/8128910" style="width: 100%; height: 100%;"></iframe>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
+	<div class="row mb-3">
+		<div class="col-md-4 maindiv" id="maindiv">
+			<%-- 	<%@ include file="review/list.jsp"%> --%>
 		</div>
-	</div>
-</div>
 
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2ef21ecaf963e1478e980c3e9d76aab&libraries=services,clusterer"></script>
-<script>
+		<div class="col-md-8 themed-grid-col">
+			<div class="map_wrap">
+				<div id="map" style="width: 100%; height: 700px; position: relative; overflow: hidden;"></div>
+
+				<!-- 키워드 검색 -->
+				<div id="menu_wrap" class="bg_white">
+					<div class="option">
+						<div>
+							<form onsubmit="searchPlaces(); return false;">
+								키워드 :
+								<input type="text" value="공원" id="keyword" size="15">
+								<button type="submit">검색하기</button>
+							</form>
+						</div>
+					</div>
+					<hr>
+					<ul id="placesList"></ul>
+					<div id="pagination"></div>
+				</div>
+
+
+
+				<!-- 카테고리 -->
+				<ul id="category">
+					<li id="치킨" data-order="0"><span class="category_bg bank"></span> 공원</li>
+					<li id="피자" data-order="1"><span class="category_bg mart"></span> 화장실</li>
+					<li id="동물병원" data-order="2"><span class="category_bg pharmacy"></span> 벤치</li>
+				</ul>
+			</div>
+
+			<div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<iframe id="embeddedTerm" src="https://place.map.kakao.com/8128910" style="width: 100%; height: 100%;"></iframe>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2ef21ecaf963e1478e980c3e9d76aab&libraries=services,clusterer"></script>
+			<script>
 
 //마커를 담을 배열
 var markers = [];
@@ -373,18 +368,32 @@ function addEventHandle(target, type, callback) {
 }
 
 // 카테고리 검색을 요청하는 함수입니다
-function searchPlaces1() {
-    if (!currCategory) {
+async function searchPlaces1() {
+    if (!currCategory) {	//이 부분을 바꿔주면 무한루프에서 벗어날 수 있다?!
         return;
     }
-
+	console.log(currCategory);
     // 커스텀 오버레이를 숨깁니다
-    placeOverlay.setMap(null);
+    //placeOverlay.setMap(null);
 
     // 지도에 표시되고 있는 마커를 제거합니다
-    removeMarker1();
-
-    ps.categorySearch(currCategory, placesSearchCB1, {useMapBounds:true});
+    //removeMarker1();
+    /*  
+    ps.categorySearch(currCategory, placesSearchCB1, {useMapBounds:true}); */
+    var keyword = currCategory;	//임시로 입력한 키워드
+    	//document.getElementById('keyword').value;
+    const currentCoordinate = await getCurrentCoordinate();
+    var options = {
+            location: currentCoordinate,
+            radius: 10000,
+            sort: kakao.maps.services.SortBy.DISTANCE,
+          };
+    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+        alert('키워드를 입력해주세요!');
+        return false;
+    }
+    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+    ps.keywordSearch(keyword, placesSearchCB, options);
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -643,6 +652,8 @@ function displayMarker(locPosition, message) {
  
 </script>
 
-</div></div></div>
+		</div>
+	</div>
+</div>
 
 <%@include file="layouts/footer.jsp"%>
