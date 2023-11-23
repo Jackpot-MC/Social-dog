@@ -64,17 +64,17 @@
 				<h1 class="mt-4">마이페이지</h1>
 
                 <div class="form-group mt-4">
-                    <form:label path="memberLoginId">아이디</form:label>
-                    <form:hidden path="memberLoginId"  class="form-control" />
-                    <div id="loginid" class="form-control">${memberLoginId}</div>
+                    <form:label path="loginId">아이디</form:label>
+                    <form:hidden path="loginId"  class="form-control" />
+                    <div id="loginid" class="form-control">${loginId}</div>
                 </div>
                 <div class="form-group mt-4">
-                    <form:label path="memberLoginPwd">새 비밀번호 입력</form:label>
-                    <form:password path="memberLoginPwd" cssClass="form-control" />
+                    <form:label path="loginPwd">새 비밀번호 입력</form:label>
+                    <form:password path="loginPwd" cssClass="form-control" />
                 </div>
                 <div class="form-group">
-                    <form:label path="memberLoginPwd2">새 비밀번호 확인</form:label>
-                    <form:password path="memberLoginPwd2" cssClass="form-control" />
+                    <form:label path="loginPwd2">새 비밀번호 확인</form:label>
+                    <form:password path="loginPwd2" cssClass="form-control" />
                 </div>
                 <div class="form-group">
                     <form:label path="memberName">이름</form:label>

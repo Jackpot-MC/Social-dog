@@ -27,7 +27,7 @@
 
 		<ul class="navbar-nav ml-auto">
 		<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal.loginId" var="loginId"/> <!-- username 스코프 생성 -->
+				<sec:authentication property="principal.member.loginId" var="loginId"/> <!-- username 스코프 생성 -->
 				
 		<!-- 로그인 상태 -->
 			<li class="nav-item">

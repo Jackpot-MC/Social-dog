@@ -76,7 +76,7 @@ public class SecurityController {
 		}
 
 		if (errors.hasErrors()) {
-			return "/signup";//에러나면 다시 가입 화면으로
+			return "/security/signup";//에러나면 다시 가입 화면으로
 		}
 
         memberService.signup(member);
@@ -102,17 +102,17 @@ public class SecurityController {
     @GetMapping("/delete")
     public String delete(HttpSession session) throws IOException {
         log.info("delete get...");
-        String id = (String) session.getAttribute("memberLoginId");
+        String id = (String) session.getAttribute("loginId");
         if (id == null) {
             return "redirect:/";
         }
-        return "/member/deleteForm";//삭제완료 화면 미구현
+        return "/security/deleteForm";//삭제완료 화면 미구현
     }
 
     @PostMapping("/delete")
-    public String delete(String memberLoginId, HttpSession session) throws IOException {
-        log.info("delete post..." + memberLoginId);
-        memberService.delete(memberLoginId);
+    public String delete(String loginId, HttpSession session) throws IOException {
+        log.info("delete post..." + loginId);
+        memberService.delete(loginId);
         session.invalidate();
         return "redirect:/";
     }
@@ -135,7 +135,7 @@ public class SecurityController {
 			errors.rejectValue("getMemberLoginPwd2", "비밀번호 불일치", "비밀번호가 일치하지 않습니다.");
 		}
 		if(errors.hasFieldErrors()) {
-			return "member/profile";
+			return "/security/profile";
 		}
 		memberService.update(member);
 		return "redirect:/";

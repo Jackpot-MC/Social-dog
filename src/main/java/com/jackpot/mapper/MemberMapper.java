@@ -9,7 +9,7 @@ import com.jackpot.domain.MemberVO;
 public interface MemberMapper {
 
 	// 회원정보조회
-	public MemberVO get(String memberLoginId);
+	public MemberVO get(String loginId);
 
 	// 회원가입
 	public void signup(MemberVO member);
@@ -18,7 +18,7 @@ public interface MemberMapper {
 	public int update(MemberVO member);
 	
 	// 회원정보삭제 (회원탈퇴)
-	public int delete(String memberLoginId);
+	public int delete(String loginId);
 
 	public List<MemberVO> getList();
 	
