@@ -30,19 +30,20 @@ a:hover {
     padding-right: 40px;
     margin-top: 15px;
     padding-top: 20px;
-    padding-bottom: 5px
+    padding-bottom: 5px;
+    color: #FBC02D
 }
 
 .card-rating {
     width: 100%;
-	border-radius: 5px;
-    background-color: #FBC02D;
+    border-radius: 5px;
+    background-color: #fff;
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 15px;
     padding-top: 10px;
     padding-bottom: 15px;
-    color: #fff
+    color: #FBC02D
 }
 
 .rating-label {
@@ -54,7 +55,7 @@ td {
 }
 
 .star-active {
-    color: #fff;
+    color: #FBC02D;
     margin-top: 10px;
     margin-bottom: 10px
 }
@@ -77,11 +78,12 @@ td {
 }
 
 .blue-text {
-    color: #0091EA
+    color: #0091EA;
+    font-size: 16px
 }
 
-.content {
-    font-size: 18px
+.content-text {
+    font-size: 14px;
 }
 
 .profile-pic {

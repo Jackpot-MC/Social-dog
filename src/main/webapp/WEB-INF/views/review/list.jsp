@@ -28,11 +28,11 @@
       // js코드
 </script>
 
- <div class="container-fluid mx-auto" style="width:100%; height:700px; position:relative;overflow:auto;">
+ <div class="content container-fluid mx-auto" style="width:100%; height:700px; position:relative;overflow:auto;">
     <div class="row justify-content-center flex-column">
-            <div class="card-rating text-center">
+            <div class="card text-center">
                 <div class="row justify-content-center d-flex flex-column text-center">
-                            <h1 class="pt-1">${average}</h1>
+                            <h1>${average}</h1>
                         <div>                            
                         	<c:forEach begin="1" end="${average}">
                             <span class="fa fa-star star-active ml-1"></span>
@@ -49,7 +49,7 @@
                 <div class="row d-flex">
                     <div class=""> <img class="profile-pic" src="https://i.imgur.com/GJ5WWIB.jpeg"> </div>
                     <div class="d-flex flex-column">
-                        <h3 class="mt-2 mb-0">${review.memberName}</h3>
+                        <span class="mt-2 mb-0" style="color: #36260d;font-size: 22px;font-weight: 500;">${review.memberName}</span>
                         <div>
                             <p class="text-left"><span class="text-muted mr-2">${review.rating}</span>
                             <c:forEach begin="1" end="${review.rating}">
@@ -67,7 +67,7 @@
                 </div>
                 <div class="row text-left flex-column">
                     <h5 class="blue-text mt-1">"${review.reviewTitle}"</h5>
-                    <p class="content">${review.reviewContent}</p>
+                    <p class="content-text">${review.reviewContent}</p>
                 </div>
             </div>
            </c:forEach>
