@@ -45,7 +45,7 @@
 	<select id="read" resultType="AppointmentVO">
 		select appointment_id,
 		appointment_name, appointment_date as reg_date, place.place_spot,
-		place.place_name, host_id, member_login_id, member_login_pwd
+		place.place_name, host_id, login_id, login_pwd
 		from
 		appointment
 		left outer join member
@@ -78,8 +78,8 @@
 		appointment_name, appointment_date as reg_date,
 		appointment.place_id,
 		host_id,
-		member.member_login_id,
-		member.member_login_pwd, place.place_spot, place.place_name,
+		member.login_id,
+		member.login_pwd, place.place_spot, place.place_name,
 		place_type.place_type_name
 		from appointment
 		left outer join member
@@ -137,7 +137,7 @@
 							appointment_name like CONCAT('%',#{keyword},'%')
 						</when>
 						<when test="type == 'H'.toString()">
-							member.member_login_id like
+							member.login_id like
 							CONCAT('%',#{keyword},'%')
 						</when>
 						<when test="type == 'L'.toString()">
