@@ -36,7 +36,7 @@
             <div class="card-header no-border">
                 <img class="profile-pic-appointment-list ml-3" src="https://i.imgur.com/GJ5WWIB.jpeg">
                     <div class="d-flex flex-column">
-                        <h3 class="mt-2 mb-0">${appointment.loginId}</h3>
+                        <h3 class="mt-2 mb-0">${appointment.memberName}</h3>
                     </div>
             </div>
             <div class="card-body pt-2">

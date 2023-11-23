@@ -11,6 +11,9 @@
 
  <script type="text/javascript">
  $(document).ready(function () {
+	 	var href = 'appointment/list .content';
+	 	$("#maindiv").load(href);
+	 
 	 $('#map').on('click', '.review_btn', function(e) {
 		 var href = 'review/list .content';
  	    e.preventDefault(); 	    
