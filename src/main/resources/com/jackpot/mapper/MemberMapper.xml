@@ -44,11 +44,23 @@
 	<update id="update">
 		update member 
 		set
-			login_pwd = #{loginPwd},
 			member_name = #{memberName},
             member_birth = #{memberBirth},
 			member_email = #{memberEmail},
 			member_address = #{memberAddress}
+		where login_id = #{loginId}
+	</update>
+	
+	<update id="pwdupdate">
+		update member 
+		set
+			login_pwd = #{loginPwd}
+		where login_id = #{loginId}
+	</update>
+	
+	<update id = "updateAuth">
+		update auth set
+			auth = #{auth}
 		where login_id = #{loginId}
 	</update>
 	

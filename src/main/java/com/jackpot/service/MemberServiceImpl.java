@@ -47,11 +47,18 @@ public class MemberServiceImpl implements MemberService {
 	public void update(MemberVO member) throws IOException {
 		log.info("update..." + member);
 
+		memberMapper.update(member);
+	}
+	
+	@Override
+	public void pwdupdate(MemberVO member) throws IOException {
+		log.info("password update..." + member);
+
 		String encPassword = pwEncoder.encode(member.getLoginPwd());
 		member.setLoginPwd(encPassword);
 		member.setLoginPwd2(encPassword);
-
-		memberMapper.update(member);
+		
+		memberMapper.pwdupdate(member);
 	}
 
 	@Override
@@ -63,11 +70,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> getList() {
 		return memberMapper.getList();
 	}
+
+
 	
-//	@Override
-//	public MemberVO login(MemberVO member) {
-//		return memberMapper.login(member);
-//	}
 
 
 }
