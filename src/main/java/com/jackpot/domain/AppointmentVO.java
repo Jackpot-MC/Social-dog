@@ -19,8 +19,9 @@ public class AppointmentVO {
 	
 	private Long placeId;
 	private Long hostId;
-	private String memberLoginId;
-	private String memberLoginPwd;
+//	private String memberLoginId;
+//	private String memberLoginPwd;
+	private String loginId;
 
 //	private Date appointmentDate;
 	private Date regDate;
@@ -30,5 +31,6 @@ public class AppointmentVO {
 	
 	private Long participantId;
 	private String memberId;
+	private String memberName;
 }
 	

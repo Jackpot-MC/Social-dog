@@ -45,7 +45,7 @@
 	<select id="read" resultType="AppointmentVO">
 		select appointment_id,
 		appointment_name, appointment_date as reg_date, place.place_spot,
-		place.place_name, host_id, login_id, login_pwd
+		place.place_name, host_id, login_id
 		from
 		appointment
 		left outer join member
@@ -78,8 +78,8 @@
 		appointment_name, appointment_date as reg_date,
 		appointment.place_id,
 		host_id,
-		member.login_id,
-		member.login_pwd, place.place_spot, place.place_name,
+		member.member_name,
+		place.place_spot, place.place_name,
 		place_type.place_type_name
 		from appointment
 		left outer join member
