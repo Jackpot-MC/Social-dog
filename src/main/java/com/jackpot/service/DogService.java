@@ -14,7 +14,7 @@ public interface DogService {
 	public DogVO get(Long dogId);
 
 	// 수정
-	public void modify(DogVO dog);
+	public Boolean modify(DogVO dog);
 
 	// 삭제
 	public boolean remove(Long dogId);
