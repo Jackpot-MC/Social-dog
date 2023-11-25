@@ -3,6 +3,7 @@ package com.jackpot.domain;
 import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -19,8 +20,7 @@ public class ReviewVO {
 	@NotBlank(message = "내용은 필수 항목입니다.")
 	private String reviewContent;
 	
-	@NotBlank(message = "별점은 필수 항목입니다.")
-	private Double rating;
+	private int rating;
 	
 	private String memberName; //FK
 	
