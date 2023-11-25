@@ -29,7 +29,16 @@ footer {
 }
 
 
-/* 
+#nav-text {
+	font-size: 16px;
+	color : #fff;
+}
+
+#nav-text:hover {
+	font-size: 16px;
+	color : #6e2e1a;
+}
+
 키워드로 장소검색하고 목록으로 표출하기
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -68,7 +77,7 @@ footer {
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
- */
+
 
 /* 카테고리별 장소 검색하기 */
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
