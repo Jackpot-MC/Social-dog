@@ -17,7 +17,7 @@
 		<!-- nav 적용  -->
 		<ul id="nav1" class="nav justify-content-start">
 			<li class="nav-item"><a class="nav-link" href="/security/profile">내 정보 수정</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">강아지 정보 수정</a></li>
+			<li class="nav-item"><a class="nav-link" href="/dog/modify">강아지 정보 수정</a></li>
 			<li class="nav-item"><a class="nav-link" href="/security/pwdupdate">비밀번호 변경</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">알림</a></li>
 		</ul>
