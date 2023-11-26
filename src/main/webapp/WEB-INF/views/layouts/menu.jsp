@@ -14,11 +14,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<!--메뉴구성-->
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="/">산책하기</a></li>
+			<li class="nav-item"><a class="nav-link" id="nav-text" href="#">산책하기</a></li>
 			<li class="nav-item"><a class="nav-link" id="nav-text" href="#">나의약속</a></li>
 			<li class="nav-item"><a class="nav-link" id="nav-text" href="#">산책기록</a></li>
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="/notice/list"></i>커뮤니티</a>
-			</li>
+			<li class="nav-item"><a class="nav-link" id="nav-text" href="#">커뮤니티</a>
+			<li class="nav-item"><a class="nav-link" id="nav-text" href="/notice/list">공지사항</a>	</li>
 		</ul>
 
 		<ul class="navbar-nav ml-auto">
@@ -26,7 +26,7 @@
 				<sec:authentication property="principal.member.loginId"	var="loginId" />
 
 				<!-- 로그인 상태 -->
-				<li class="nav-item"><a class="nav-link" id="nav-text" href="/security/profile"> 마이페이지 </a></li>
+				<li class="nav-item"><a class="nav-link" id="nav-text" href="/security/mypage"> 마이페이지 </a></li>
 				<li class="nav-item"><a class="nav-link logout-link" id="nav-text" href="#">
 						<i class="fa-solid fa-right-from-bracket"></i> 로그아웃
 				</a></li>
