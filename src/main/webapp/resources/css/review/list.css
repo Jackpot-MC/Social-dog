@@ -7,7 +7,7 @@
 }
  
 body{
- -ms-overflow-style: none;
+	-ms-overflow-style: none;
  }
  
 ::-webkit-scrollbar {
@@ -31,19 +31,16 @@ a:hover {
     margin-top: 15px;
     padding-top: 20px;
     padding-bottom: 5px;
-    color: #FBC02D
 }
 
 .card-rating {
-    width: 100%;
     border-radius: 5px;
     background-color: #fff;
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 15px;
-    padding-top: 10px;
-    padding-bottom: 15px;
-    color: #FBC02D
+    padding-top: 20px;
+    padding-bottom: 5px;
 }
 
 .rating-label {
@@ -93,12 +90,113 @@ td {
     margin-right: 30px
 }
 
-.pic {
-    width: 80px;
-    height: 80px;
-    margin-right: 10px
-}
-
 .vote {
     cursor: pointer
+}
+
+/* 모달윈도우 */
+
+.review-comment-btn{
+    border:none;
+    background-color:#f7edd5;
+    color:black;
+}
+
+.review-comment-btn:hover{
+    border:none;
+    background-color:#F9A825;
+    color:black;
+}
+
+ .review-modal-center {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+}
+
+.review-comment-dialog {
+    width: d-inline-flex;
+    max-width: none;
+    height: d-flex;
+    margin: 0;
+}
+
+.review-cross {
+    padding: 10px;
+    color: #F9A825;
+    cursor: pointer;
+    font-size: 23px;
+ }
+
+.review-cross i{
+    
+    margin-top: -5px;
+    cursor: pointer;
+}
+
+.review-comment-box {
+    padding: 5px
+}
+
+.review-comment-area textarea {
+    resize: none;
+    border: 1px solid #F9A825
+}
+
+.review-comment-form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+}
+
+.review-comment-btn-send {
+    color: #fff;
+    background-color: #F9A825;
+    border-color: #F9A825
+}
+
+.review-comment-btn-send:hover {
+    color: #fff;
+    background-color: #F9A825;
+    border-color: #F9A825
+}
+
+.review-comment-rating {
+   display: inline-flex;
+    margin-top: -10px;
+    flex-direction: row-reverse;    
+}
+
+.review-comment-rating>input {
+    display: none
+}
+
+.review-comment-rating>label {
+    position: relative;
+    width: 28px;
+    font-size: 35px;
+    color: #F9A825;
+    cursor: pointer;
+}
+
+.review-comment-rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.review-comment-rating>label:hover:before,
+.review-comment-rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.review-comment-rating>input:checked~label:before {
+    opacity: 1
+}
+
+.review-comment-rating:hover>input:checked~label:before {
+    opacity: 0.4
 }

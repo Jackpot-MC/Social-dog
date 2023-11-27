@@ -8,6 +8,17 @@
 
 <link rel="stylesheet" href="/resources/css/profile.css" type="text/css" />
 
+<script>
+$(document).ready(function(){
+    $(".update").click(function(){
+        if(confirm("수정하시겠습니까?")){
+            document.formHolder.submit();
+        }
+    });
+});
+</script>
+
+
 <sec:authentication property="principal.username" var="username" />
 
 <div class="container">

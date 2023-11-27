@@ -114,6 +114,14 @@ public class SecurityController {
         return "redirect:/";
     }
     
+    //마이페이지
+    @GetMapping("/mypage")
+    public void mypage(Model model, Principal principal) {
+        model.addAttribute("member", memberService.get(principal.getName()));
+        log.info("mypage");
+
+    }
+    
 	//내정보수정
     @GetMapping("/profile")
 	public void profile(Model model, Principal principal) {

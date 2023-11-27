@@ -28,7 +28,7 @@
       // js코드
 </script>
 
- <div class="content container-fluid mx-auto" style="width:100%; height:700px; position:relative;overflow:auto;">
+ <div class="content container-fluid mx-auto" style="width:100%; height:700px; position:relative;overflow:auto;">    
     <div class="row justify-content-center flex-column">
             <div class="card text-center">
                 <div class="row justify-content-center d-flex flex-column text-center">
@@ -44,6 +44,32 @@
                 </div>
             </div>
             
+        <button type="button" class="btn review-comment-btn" data-toggle="modal" data-target="#review-comment-form"> 리뷰 작성하기 </button>
+          
+		<div class="modal fade review-modal-center" id="review-comment-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		    <div class="modal-dialog review-comment-dialog modal-dialog-centered" role="document">
+		        <div class="modal-content review-comment-content">
+		            <div class="text-right review-cross" data-dismiss="modal" aria-label="Close"> <i class="fa fa-times mr-2"></i> </div>
+		            <div class="card-body review-comment-card-body text-center"> <i class="fa-solid fa-dog fa-2xl" style="color: #ffc107;"></i>
+		                <div class="comment-box review-comment-box text-center mt-2">
+		                <h4>리뷰를 작성해 주세요!</h4>
+		                <div class="review-comment-rating">
+			                <input type="radio" name="review-comment-rating" value="5" id="5"><label for="5">☆</label>
+			                <input type="radio" name="review-comment-rating" value="4" id="4"><label for="4">☆</label>
+			                <input type="radio" name="review-comment-rating" value="3" id="3"><label for="3">☆</label>
+			                <input type="radio" name="review-comment-rating" value="2" id="2"><label for="2">☆</label>
+			                <input type="radio" name="review-comment-rating" value="1" id="1"><label for="1">☆</label>
+		                </div>
+		                <div class="comment-area review-comment-area"> <textarea class="form-control review-comment-form-control" placeholder="즐거웠던 경험을 얘기해 주세요." rows="4"></textarea> </div>
+		                    
+		                    <div class="text-center mt-4"> <button class="btn review-comment-btn-send send px-5">작성완료<i class="fa fa-long-arrow-right ml-1"></i></button>
+			            </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+		
 		<c:forEach var="review" items="${list}">
             <div class="card">
                 <div class="row d-flex">
