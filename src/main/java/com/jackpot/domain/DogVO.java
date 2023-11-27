@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class DogVO {
 
 	private long dogId;
