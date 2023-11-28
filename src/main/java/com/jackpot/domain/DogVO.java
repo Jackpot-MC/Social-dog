@@ -22,4 +22,8 @@ public class DogVO {
 	private String dogDescription;
 	private long memberId;	//FK
 
+	public void updatePhotoPath(String dogPhotoPath){
+		this.dogPhotoPath = dogPhotoPath;
+	}
+
 }
