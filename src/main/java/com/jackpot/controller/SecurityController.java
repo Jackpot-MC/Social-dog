@@ -1,8 +1,10 @@
 package com.jackpot.controller;
 
-import com.jackpot.domain.MemberVO;
-import com.jackpot.service.MemberService;
-import lombok.extern.log4j.Log4j;
+import java.io.IOException;
+import java.security.Principal;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,17 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import com.jackpot.domain.MemberVO;
+import com.jackpot.service.DogService;
+import com.jackpot.service.MemberService;
 
-import java.io.IOException;
-import java.security.Principal;
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/security")
@@ -30,6 +29,8 @@ public class SecurityController {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private DogService dogService;
 
     @GetMapping("/login")//로그인 페이지 호출
     public void login() {
@@ -41,12 +42,6 @@ public class SecurityController {
     public void memberLogout() {
         log.info("logout page");
     }
-
-	/*
-	 * @GetMapping("/info") public void get(Principal principal, Model model) throws
-	 * Exception { model.addAttribute("member",
-	 * memberService.get(principal.getName())); }
-	 */
     
     //회원가입
     @GetMapping("/signup")
@@ -114,6 +109,16 @@ public class SecurityController {
         return "redirect:/";
     }
     
+    //마이페이지
+    @GetMapping("/mypage")
+    public void mypage(Model model, Principal principal) {
+    	MemberVO member = memberService.get(principal.getName());
+        model.addAttribute("member", member);
+        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
+        log.info("mypage");
+
+    }
+    
 	//내정보수정
     @GetMapping("/profile")
 	public void profile(Model model, Principal principal) {
@@ -123,10 +128,23 @@ public class SecurityController {
 	@PostMapping("/profile")
 	public String profile(
 			@ModelAttribute("member") MemberVO member,
-			Errors errors) throws IOException {
+			Errors errors, Model model) throws IOException {
 
+		if("".equals(member.getMemberName())) {
+			errors.rejectValue("memberName", "공백", "이름을 입력해주세요.");
+		}
+		if("".equals(member.getMemberEmail())) {
+			errors.rejectValue("memberEmail", "공백", "이메일을 입력해주세요.");
+		}
+		if("".equals(member.getMemberAddress())) {
+			errors.rejectValue("memberAddress", "공백", "주소를 입력해주세요.");
+		}
+		if(errors.hasFieldErrors()) {
+			return "/security/profile";
+		}
 		memberService.update(member);
-		return "redirect:/";
+		model.addAttribute("result", "success");
+		return "/security/profile";
 	}
 	
     //비밀번호변경
@@ -138,15 +156,25 @@ public class SecurityController {
     @PostMapping("/pwdupdate")
     public String pwdupdate(
     		@ModelAttribute("member") MemberVO member,
-    		Errors errors) throws IOException {
+    		Errors errors, Model model) throws IOException {
     	
+    	
+    	// 비밀번호 공백 확인
+    	if("".equals(member.getLoginPwd())) {
+    		errors.rejectValue("loginPwd","공백", "비밀번호를 입력해주세요.");
+    	}
+    	// 비밀번호 확인
     	if(!member.getLoginPwd().equals(member.getLoginPwd2())) {
-    		errors.rejectValue("loginPwd","비밀번호 불일치", "비밀번호가 일치하지 않습니다.");
+    		errors.rejectValue("loginPwd2","비밀번호 불일치", "비밀번호가 일치하지 않습니다.");
     	}
     	if(errors.hasFieldErrors()) {
-    		return "/security/pwdchange";
+    		log.info("fail=====================================================");
+    		return "/security/pwdupdate";
     	}
     	memberService.pwdupdate(member);
-    	return "/security/profile";
+    	model.addAttribute("result", "success");
+    	log.info("updateed=====================================================");
+    	return "/security/pwdupdate";
     }
+
 }

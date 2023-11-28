@@ -15,4 +15,6 @@ public interface DogMapper {
 	public int delete(Long dogId); 
 	
 	public List<DogVO> getList();
+
+	public List<DogVO> getListByMemberId(Long memberId);
 }

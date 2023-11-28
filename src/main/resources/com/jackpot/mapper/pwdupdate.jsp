@@ -8,6 +8,30 @@
 
 <link rel="stylesheet" href="/resources/css/mypage.css" type="text/css" />
 
+<script>
+console.log("result", "${result}");
+if("${result}" == "success"){
+	alert("비밀번호가 변경되었습니다.");
+}
+
+$(document).ready(function(){
+    $("#editBtn").click(function(e){
+    	e.preventDefault();
+    	
+/*     	let myPass = $("#loginPwd").val();
+    	if( myPass == "" ) {
+    		alert("패스워드를 입력하세요");
+    		return;
+    	} */
+    	
+        if(confirm("수정하시겠습니까?")){
+            /* document.formHolder.submit(); */
+            $("#myForm").submit();
+        }
+    });
+    
+});
+</script>
 
 <sec:authentication property="principal.username" var="username" />
 
@@ -19,6 +43,11 @@
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
 				<h1 class="title">비밀번호 변경</h1>
 
+                <div class="form-group">
+                    <form:label path="loginId">아이디</form:label>
+                    <form:hidden path="loginId"  class="form-control" />
+                    <div id="loginid" class="form-control">${loginId}</div>
+                </div>
                 <div class="form-group">
                     <form:label path="loginPwd">새 비밀번호 입력</form:label>
                     <form:password path="loginPwd" cssClass="form-control" id="loginPwd"/>
@@ -42,27 +71,3 @@
 
 <%@ include file="../layouts/footer.jsp"%>
 
-
-<script>
-console.log("result", "${result}");
-if("${result}" == "success"){
-	alert("비밀번호가 변경되었습니다.");
-}
-
- $(document).ready(function(){
-    $("#editBtn").click(function(e){
-    	e.preventDefault();
-    	
-/*      	let myPass = $("#loginPwd").val();
-    	if( myPass == "" ) {
-    		alert("패스워드를 입력하세요");
-    		return;
-    	}  */
-    	
-        if(confirm("수정하시겠습니까?")){
-            $("#myForm").submit();
-        }
-    }); 
-});
-
-</script>

@@ -20,4 +20,6 @@ public interface DogService {
 	public boolean remove(Long dogId);
 
 	public List<DogVO> getList();
+	
+	public List<DogVO> getListByMemberId(Long memberId);
 }
