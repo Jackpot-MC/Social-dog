@@ -1,5 +1,6 @@
 package com.jackpot.controller;
 
+import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jackpot.domain.MemberVO;
-import com.jackpot.domain.NoticeCriteria;
-import com.jackpot.domain.NoticeVO;
 import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.domain.ReviewPageDTO;
 import com.jackpot.domain.ReviewVO;
@@ -54,12 +53,16 @@ public class ReviewController {
 	public void list(@ModelAttribute("cri") ReviewCriteria cri, 
 			@ModelAttribute("review") ReviewVO review,
 			@ModelAttribute("member") MemberVO member,
+			Principal principal,
 			Model model) {
+		
+		member.setLoginId(principal.getName());
 		log.info("list: " + cri);
 		log.info("list: " + review);
 		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("list-load", service.getList(cri));
 		model.addAttribute("average", service.getAverage(review));
-		model.addAttribute("member", memberService.get(member.getLoginId()));
+		model.addAttribute("member", member);
 		
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
@@ -89,7 +92,7 @@ public class ReviewController {
 		
 		log.info("register: " + review);
 		
-		return "redirect:home"; // 요청 url
+		return "redirect:/?mode=review"; // 요청 url
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기

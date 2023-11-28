@@ -22,9 +22,9 @@ public class ReviewVO {
 	
 	private int rating;
 	
-	private String memberName; //FK
-	
 	private Date regDate;
 	private Date updateDate;
 	
+	private String memberLoginId; //login_id
+	private String memberName; //member_name
 }

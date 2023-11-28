@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.NoticeCriteria;
@@ -40,7 +39,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, 
+	public String home(Locale locale, @ModelAttribute("mode") String mode,
 			@ModelAttribute("member") MemberVO member, @ModelAttribute("cri") NoticeCriteria cri, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		

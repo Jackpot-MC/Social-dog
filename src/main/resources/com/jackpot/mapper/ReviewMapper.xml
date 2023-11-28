@@ -12,21 +12,24 @@
 		<result property="reviewTitle" column="review_title" />
 		<result property="reviewContent" column="review_content" />
 		<result property="rating" column="rating" />
-		<result property="memberName" column="member_name" />
 		<result property="regDate" column="reg_date" />
 		<result property="updateDate" column="update_date" />
+		<result property="memberLoginId" column="login_id" />
+		<result property="memberName" column="member_name" />
 	</resultMap>
 	
 	<select id = "read" resultMap="reviewMap">
-		select review_id, review.member_id, place_id, review_title, review_content, rating, m.member_name, reg_date, update_date
+		select review_id, review.member_id, place_id, review_title, review_content, rating, reg_date, update_date, m.member_name
 		from review left outer join `member` m 
 		on review.member_id = m.member_id
 		where review_id = #{reviewId} 
 	</select>
 	
 	<insert id = "insert">
-		insert into review (member_id, place_id, review_title, review_content, rating)
-		values (#{memberId}, #{placeId}, #{reviewTitle}, #{reviewContent}, #{rating})
+		insert into review (member_id, place_id, review_title, review_content, rating, login_id, member_name)
+		values ((select member_id from member where member.login_id = #{memberLoginId}),
+		#{placeId}, #{reviewTitle}, #{reviewContent}, #{rating}, #{memberLoginId},
+		(select member_name from member where member.login_id = #{memberLoginId}));
 
 		<selectKey resultType= "Long" keyProperty="reviewId" keyColumn="review_id" order="AFTER">
 			SELECT LAST_INSERT_ID()
