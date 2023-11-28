@@ -18,11 +18,11 @@ public class ReviewCriteria {
 	
 	
 	public ReviewCriteria() {
-		this(1, 5);
+		this(1, 25);
 	}
 	
 	public ReviewCriteria(int pageNum) {
-		this(pageNum, 5);
+		this(pageNum, 25);
 	}
 	
 	public ReviewCriteria(int pageNum, int amount) {
