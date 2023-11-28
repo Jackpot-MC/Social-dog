@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -46,24 +48,45 @@
             
         <button type="button" class="btn review-comment-btn" data-toggle="modal" data-target="#review-comment-form"> 리뷰 작성하기 </button>
           
-		<div class="modal fade review-modal-center" id="review-comment-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		    <div class="modal-dialog review-comment-dialog modal-dialog-centered" role="document">
+		<div class="modal fade" id="review-comment-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		    <div class="modal-dialog modal-dialog-centered" role="document">
 		        <div class="modal-content review-comment-content">
 		            <div class="text-right review-cross" data-dismiss="modal" aria-label="Close"> <i class="fa fa-times mr-2"></i> </div>
 		            <div class="card-body review-comment-card-body text-center"> <i class="fa-solid fa-dog fa-2xl" style="color: #ffc107;"></i>
 		                <div class="comment-box review-comment-box text-center mt-2">
 		                <h4>리뷰를 작성해 주세요!</h4>
-		                <div class="review-comment-rating">
-			                <input type="radio" name="review-comment-rating" value="5" id="5"><label for="5">☆</label>
-			                <input type="radio" name="review-comment-rating" value="4" id="4"><label for="4">☆</label>
-			                <input type="radio" name="review-comment-rating" value="3" id="3"><label for="3">☆</label>
-			                <input type="radio" name="review-comment-rating" value="2" id="2"><label for="2">☆</label>
-			                <input type="radio" name="review-comment-rating" value="1" id="1"><label for="1">☆</label>
+		                <form:form modelAttribute="review" 
+			           action="/review/list?_csrf=${_csrf.token}"
+						id="review_comment_form">
+						
+<%-- 						<input type="hidden" name="reviewId" value="${review.reviewId}"/> --%>
+						<input type="hidden" name="memberId" value="41"/>
+ 						<input type="hidden" name="memberName" value="${member.memberName}"/>
+						<input type="hidden" name="placeId" value="14"/>
+<%-- 						<input type="hidden" name="regDate" value="${review.regDate}"/>
+						<input type="hidden" name="updateDate" value="${review.updateDate}"/> --%>
+						
+ 		                    <div class="review-comment-rating form-group">
+						        <form:radiobutton name="rating" path="rating" value="5" id="5"/><label for="5">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="4" id="4"/><label for="4">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="3" id="3"/><label for="3">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="2" id="2"/><label for="2">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="1" id="1"/><label for="1">☆</label>
+						    </div>
+								                
+		                <div class="form-group">
+							<form:label path="reviewTitle">제목</form:label>
+			            	<form:input path="reviewTitle" cssClass="form-control"/>
+							<form:errors path="reviewTitle" cssClass="error" />
+						</div>
+		                
+		                <div class="comment-area review-comment-area form-group">
+		                내용 <form:textarea path="reviewContent" rows="4"/>
 		                </div>
-		                <div class="comment-area review-comment-area"> <textarea class="form-control review-comment-form-control" placeholder="즐거웠던 경험을 얘기해 주세요." rows="4"></textarea> </div>
 		                    
-		                    <div class="text-center mt-4"> <button class="btn review-comment-btn-send send px-5">작성완료<i class="fa fa-long-arrow-right ml-1"></i></button>
+		                    <div class="text-center mt-4"> <button class="submit btn review-comment-btn-send send px-5">작성완료<i class="fa fa-long-arrow-right ml-1"></i></button>
 			            </div>
+			            </form:form>
 			            </div>
 			        </div>
 			    </div>
@@ -94,9 +117,17 @@
                 <div class="row text-left flex-column">
                     <h5 class="blue-text mt-1">"${review.reviewTitle}"</h5>
                     <p class="content-text">${review.reviewContent}</p>
+                
+                <c:if test="${review.memberId == member.memberId}">
+	                <div class="ml-auto">
+	                     <i class="fa-solid fa-trash" style="color: #cfd8dc;"></i>
+	                </div>
+	            </c:if>
                 </div>
             </div>
            </c:forEach>
+           
+           <button type="button" class="btn review-load-btn"> 더보기 </button>
     </div>
 </div>
 

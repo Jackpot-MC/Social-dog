@@ -20,6 +20,8 @@ pageEncoding="UTF-8"%>
 	});
 </script>
 
+<sec:authentication property="principal.username" var="username" />
+
 <h1 class="page-header mt-4"><i class="far fa-file-alt"></i>${notice.noticeTitle}</h1>
 <div class="d-flex justify-content-between">
 	<div><i class="fas fa-user"></i>${notice.memberLoginId}</div>
