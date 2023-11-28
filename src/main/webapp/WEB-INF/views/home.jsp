@@ -34,10 +34,11 @@
  });
 </script>
 
-<div class="container">
+<div class="container-fluid">
 
-	<div class="card">
-		<h3 class="blue-text mt-1 text-center">최신 공지사항 컨테이너</h3>
+	<div class="card" style="background-color: #f7edd5;">
+		<a href="${cri.getLinkWithNoticeId('notice/get', noticeLatest.noticeId)}">
+		<h3 class="blue-text mt-1 text-center">[<fmt:formatDate pattern="yyyy-MM-dd" value="${noticeLatest.regDate}"/>}] ${noticeLatest.noticeTitle}</h3></a>
 	</div>
 
 </div>
@@ -51,7 +52,7 @@
 
     <div class="col-md-8 themed-grid-col">
 	<div class="map_wrap">
-    <div id="map" style="width:100%; height:700px; position:relative;overflow:hidden;"></div>
+    <div id="map" style="width:100%; height:700px; position:relative;overflow:hidden; margin-top:15px;"></div>
 
     <!-- 키워드 검색 -->
     <div id="menu_wrap" class="bg_white">
@@ -87,8 +88,8 @@
 </div>
 
 <div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
+	<div class="modal-dialog place-detail-modal-dialog" role="document">
+		<div class="modal-content place-detail-modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Modal title</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">

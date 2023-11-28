@@ -29,8 +29,8 @@ a:hover {
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 15px;
-    padding-top: 20px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .card-rating {
@@ -94,6 +94,13 @@ td {
     cursor: pointer
 }
 
+/* 더보기 */
+.review-load-btn{
+    border:none;
+    background-color:#f7edd5;
+    color:black;
+}
+
 /* 모달윈도우 */
 
 .review-comment-btn{
@@ -108,17 +115,15 @@ td {
     color:black;
 }
 
- .review-modal-center {
+.review-modal-center {
   margin: auto;
-  width: 50%;
-  height: 50%;
+  width: d-flex;
+  height: d-flex;
   padding: 10px;
 }
 
-.review-comment-dialog {
-    width: d-inline-flex;
-    max-width: none;
-    height: d-flex;
+.review-comment-content {
+    width: 100%;
     margin: 0;
 }
 
@@ -141,6 +146,8 @@ td {
 
 .review-comment-area textarea {
     resize: none;
+    width: 100%;
+    height: 100%;
     border: 1px solid #F9A825
 }
 
@@ -149,7 +156,7 @@ td {
     background-color: #fff;
     border-color: #ffffff;
     outline: 0;
-    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+    box-shadow: 0 0 0 1px rgb(255, 193, 7) !important
 }
 
 .review-comment-btn-send {

@@ -11,7 +11,6 @@
 	border-radius: 50%;
 }
 
-
 /* footer 하단 고정*/
 html, body {
     height: 100%
@@ -116,14 +115,14 @@ footer {
     color:black;
 }
 
-  .modal-dialog {
+  .place-detail-modal-dialog {
     width: 100%;
     max-width: none;
     height: 100%;
     margin: 0;
   }
   
-  .modal-content {
+  .place-detail-modal-content {
     height: 100%;
     border: 0;
     border-radius: 0;
