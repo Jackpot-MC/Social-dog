@@ -67,4 +67,18 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return mapper.getParticipantList(appointmentId);
 	}
 
+	@Override
+	public void attend(ParticipantVO participant) {
+		log.info("attend: " + participant);
+		mapper.attend(participant);
+		
+	}
+
+	@Transactional(rollbackFor = Exception.class)	
+	@Override
+	public boolean absent(Long participantId) {
+		log.info("delete: " + participantId);
+		return mapper.delete(participantId);
+	}
+	
 }

@@ -127,6 +127,23 @@
 		WHERE
 		appointment_id = #{appointment_id}
 	</select>
+	
+	<insert id="attend">
+		insert into participant (member_id, appointment_id)
+		values
+		(#{member_id}, #{appointment_id})
+		<selectKey resultType="Long" keyProperty="participantId"
+			keyColumn="participant_id" order="AFTER">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+	</insert>
+	
+	<delete id="absent">
+		delete
+		from participant
+		where 
+		participant_id = #{participant_id}
+	</delete>
 
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
 		<trim prefixOverrides="OR">

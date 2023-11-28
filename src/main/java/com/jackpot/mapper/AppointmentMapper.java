@@ -22,5 +22,8 @@ public interface AppointmentMapper {
 	public int getTotalCount(AppointmentCriteria cri);
 	
 	public List<ParticipantVO> getParticipantList(Long appointmentId);
-
+	
+	public void attend(ParticipantVO participant);
+	
+	public boolean absent(Long participantId);
 }

@@ -22,4 +22,8 @@ public interface AppointmentService {
 	public int getTotal(AppointmentCriteria cri);
 
 	public List<ParticipantVO> getParticipantList(Long appointmentId);
+	
+	public void attend(ParticipantVO participant);
+	
+	public boolean absent(Long participantId);
 }

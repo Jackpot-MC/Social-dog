@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
 
 <h1 class="page-header mt-4"><i class="far fa-file-alt"></i>${appointment.appointmentName}</h1>
 <div class="d-flex justify-content-between">
-	<div><i class="fas fa-user"></i>${appointment.memberLoginId}</div>
+	<div><i class="fas fa-user"></i>${appointment.memberName}</div>
 	<div>
 		<i class="fas fa-clock"></i>
 		<fmt:formatDate pattern="yyyy-MM-dd" value="${appointment.regDate}" />
