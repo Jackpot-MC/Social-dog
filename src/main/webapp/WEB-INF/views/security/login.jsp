@@ -4,7 +4,7 @@
 <%@page import="java.util.Date" %>
 
 <%@ include file="../layouts/header.jsp" %>
-<link rel="stylesheet" href="/resources/css/login.css" type="text/css"/>
+<link rel="stylesheet" href="/resources/css/security/login.css" type="text/css"/>
 <script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
