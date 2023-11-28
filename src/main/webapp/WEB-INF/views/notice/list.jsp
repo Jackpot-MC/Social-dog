@@ -36,7 +36,7 @@
 							<td style="width: 60px">${notice.noticeId}</td>
 							<td class="th-title2"><a class="move" href="${cri.getLinkWithNoticeId('get', notice.noticeId)}">
 									${notice.noticeTitle}</a></td>
-							<td>${notice.memberId}</td>
+							<td>${notice.memberLoginId}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.regDate}" /></td>
 						</tr>
 					</c:forEach>
