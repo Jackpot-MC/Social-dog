@@ -6,7 +6,7 @@
 <%@ include file="../layouts/header.jsp"%>
 <%@ include file="../security/profilemenu.jsp" %>
 
-<link rel="stylesheet" href="/resources/css/mypage.css" type="text/css" />
+<link rel="stylesheet" href="/resources/css/security/mypage.css" type="text/css" />
 
 
 <sec:authentication property="principal.username" var="username" />

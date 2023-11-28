@@ -207,3 +207,35 @@ td {
 .review-comment-rating:hover>input:checked~label:before {
     opacity: 0.4
 }
+
+/* 더보기 버튼 */
+/* .card-review {
+    display: none;
+}
+.card-review.active {
+    display: block;
+}
+.is_comp.card-review:after {
+    display: none;
+}
+.review-load-btn, .lists, .main {
+    display: block;
+}
+.main {
+    max-width: 640px;
+    margin: 0 auto;
+}
+.lists {
+    margin-bottom: 4rem;
+}
+.lists__item {
+    padding: 20px;
+    background: #EEE;
+}
+.lists__item:nth-child(2n) {
+    background: #59b1eb;
+    color: #fff;
+}
+.review-load-btn {
+    text-align: center;
+} */
