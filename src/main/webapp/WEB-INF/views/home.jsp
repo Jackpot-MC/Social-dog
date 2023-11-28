@@ -11,17 +11,23 @@
 
 
 <script type="text/javascript">
- $(document).ready(function () {
-	 $('#map').on('click', '.review_btn', function(e) {
-		 var href = 'review/list .content';
- 	    e.preventDefault(); 	   
- 	 	 $("#maindiv").load(href);
-	 });
-	 $('#map').on('click', '.appointment_btn', function(e) {
-		 var href = 'appointment/list .content';
- 	    e.preventDefault();
-	 	$("#maindiv").load(href);
-	 });
+var href = 'appointment/list .content';
+$("#maindiv").load(href);
+$(document).ready(function () {
+ 	var href = 'appointment/list .content';
+ 	$("#maindiv").load(href);
+ 
+ $('#map').on('click', '.review_btn', function(e) {
+	 var href = 'review/list .content';
+	    e.preventDefault(); 	    
+	 	 $("#maindiv").load(href);
+ });
+
+ $('#map').on('click', '.appointment_btn', function(e) {
+	 var href = 'appointment/list .content';
+	    e.preventDefault();
+ 	$("#maindiv").load(href);
+ });
 
 /* 	 $('#map').on('click', '.place_detail_btn', function(e) {
 		 var href = place.place_url;
@@ -70,9 +76,9 @@
 
 				<!-- 카테고리 -->
 				<ul id="category">
-					<li id="치킨" data-order="0"><span class="category_bg bank"></span> 공원</li>
-					<li id="피자" data-order="1"><span class="category_bg mart"></span> 화장실</li>
-					<li id="동물병원" data-order="2"><span class="category_bg pharmacy"></span> 벤치</li>
+					<li id="치킨" data-order="0"><span class="category_bg bank"></span>치킨</li>
+					<li id="공원" data-order="1"><span class="category_bg mart"></span>공원</li>
+					<li id="동물병원" data-order="2"><span class="category_bg pharmacy"></span>동물병원</li>
 				</ul>
 			</div>
 
