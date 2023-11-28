@@ -46,4 +46,9 @@ public class DogServiceImpl implements DogService {
 		return dogMapper.getList();
 	}
 
+	@Override
+	public List<DogVO> getListByMemberId(Long memberId) {
+		return dogMapper.getListByMemberId(memberId);
+	}
+
 }

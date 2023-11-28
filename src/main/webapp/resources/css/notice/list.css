@@ -29,7 +29,7 @@ section.notice {
   /*   padding-right: 124px; */
   margin: 0 auto;
   width: 80%;
-  max-width: 564px;
+  max-width: 400px;
 }
 #board-search .search-window .search-wrap input {
   height: 40px;
@@ -45,10 +45,10 @@ section.notice {
 }
 #board-search .search-window .search-wrap .btn {
   position: absolute;
-  right: 0;
+  right: -36%;
   top: 0;
   bottom: 0;
-  width: 108px;
+  width: 90px;
   padding: 0;
   font-size: 16px;
 }

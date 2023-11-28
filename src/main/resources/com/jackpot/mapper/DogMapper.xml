@@ -41,12 +41,16 @@
 	<delete id="delete">
 		delete
 		from dog
-		where dog_id = #{dog_id}
+		where dog_id = #{dogId}
 	</delete>
 	
 	<select id="getList" resultType="DogVO">
 		select * from dog
 	</select>
 	
+	<select id="getListByMemberId" parameterType="Long" resultType="DogVO">
+		select * from dog
+		where member_id = #{memberId}
+	</select>
 	
 </mapper>

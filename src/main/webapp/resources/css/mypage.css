@@ -1,0 +1,108 @@
+@charset "UTF-8";
+    
+body {
+	font-family: "Montserrat", sans-serif;
+}
+
+.container {
+	max-width: 800px;
+}
+
+form h1.title {
+	text-align: center;
+	padding: 10px;
+	font-size: 25px;
+}
+
+form h5 {
+	padding-top:10px;
+	text-align: center;
+}
+
+form h6.welcomeM {
+	text-align: center;
+}
+
+.error {
+	color: #f95959;
+	font-size: 14px;
+}
+
+/* 버튼 */
+.CTA {
+	margin-top: 50px;
+}
+
+.CTA button.update {
+	width: 30%;
+	font-size: 15px;
+	text-transform: uppercase;
+	padding: 5px 30px;
+	background: #f2bb15;
+	color: #fff;
+	border-radius: 30px;
+	margin-right: 20px;
+	border: none;
+	font-family: "Montserrat", sans-serif;
+}
+
+.CTA button.reset {
+	width: 30%;
+	font-size: 15px;
+	text-transform: uppercase;
+	padding: 5px 30px;
+	background: #717171;
+	color: #fff;
+	border-radius: 30px;
+	margin-right: 20px;
+	border: none;
+	font-family: "Montserrat", sans-serif;
+}
+/* 버튼 끝 */
+.cardHolder {
+	padding: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+.card-margin {
+	padding-top:15px;
+	padding-bottom:10px;
+	margin-left: 1rem;
+}
+
+.card-dog {
+	width: 210px;
+}
+
+.card {
+	border: 0;
+	box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+	-ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+}
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #ffffff;
+	background-clip: border-box;
+	border: 1px solid #e6e4e9;
+	border-radius: 8px;
+}
+
+.dog-profile {
+	background-color: #f7edd5;
+	font-size: 15px;
+}
+
+.dog-pic {
+	width: 100%;
+	height: 130px;
+	margin: auto;
+    display: block;
+}

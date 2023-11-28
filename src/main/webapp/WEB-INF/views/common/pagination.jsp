@@ -2,9 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<style>
+.page-item:active{
+background: #494a4b;
+}
+.page-link{
+color: #494a4b;
+}
+.i{
+color: #494a4b;
+}
+</style>
+
 <ul class="pagination justify-content-center">
 	<c:if test="${pageMaker.cri.pageNum > 1}">
-		<li class="page-item">
+		<li class="page-item" >
 			<a class="page-link" href="${pageMaker.cri.getLink(1)}"> <!-- 1은 페이지 번호 -->
 				<i class="fa-solid fa-backward"></i>
 			</a>
@@ -20,7 +32,7 @@
 	</c:if>
 	
 	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-		<li class="page-item ${ pageMaker.cri.pageNum == num ? 'active' : '' }">
+		<li class="page-item ${ pageMaker.cri.pageNum == num ? 'active' : '' }" style="background: #494a4b;">
 			<a class="page-link" href="${cri.getLink(num)}">${num}</a>
 		</li>	
 	</c:forEach>
@@ -28,7 +40,7 @@
 	<c:if test="${pageMaker.next}">
 		<li class="page-item">
 			<a class="page-link" href="${cri.getLink(pageMaker.endPage+1)}">
-				<i class="fa-solid fa-caret-right"></i>
+				<i class="fa-solid fa-caret-right" ></i>
 			</a>
 		</li>
 	</c:if>

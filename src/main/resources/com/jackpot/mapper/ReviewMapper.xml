@@ -58,7 +58,7 @@
 		<where>
 			<include refid="criteria"></include>
 		</where>
-		order by review_id
+		order by review_id desc
 		limit #{offset}, #{amount}
 	</select>
 	

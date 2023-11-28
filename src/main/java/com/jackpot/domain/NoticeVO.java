@@ -25,7 +25,7 @@ public class NoticeVO {
 	private String noticeContent;
 	
 	private Long memberId; //FK
-	private String memberLoginId; //FK
+	private String memberLoginId;
 	private String memberLoginPwd;
 
 	private Date regDate;

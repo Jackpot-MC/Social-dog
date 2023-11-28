@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
 </div>
 
 <form action="remove" method="post" name="removeForm">
-<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  -->
+ 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="noticeId" value="${review.reviewId}" />
 	<input type="hidden" name="pageNum" value="${cri.pageNum}" />
 	<input type="hidden" name="amount" value="${cri.amount}" />
