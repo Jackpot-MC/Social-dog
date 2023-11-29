@@ -20,5 +20,5 @@ public interface ReviewMapper {
 	
 	public int getTotalCount(ReviewCriteria cri);
 	
-	public int getAverage(ReviewVO review);
+	public int getAverage();
 }
