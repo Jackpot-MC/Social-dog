@@ -28,4 +28,6 @@ public interface AppointmentService {
 	public void attend(Long appointmentId, Long memberId);
 	
 	public boolean absent(Long appointmentId, Long memberId);
+	
+	public int checkAttendance(Long appointmentId, Long memberId);
 }

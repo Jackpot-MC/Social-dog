@@ -27,6 +27,12 @@
 			document.forms.absentForm.submit();
 		});
 	
+	if (${checkAttendance} > 0){
+		$('.attend').hide();
+	}	else{
+		$('.absent').hide();
+	}
+		
 		let appointmentId = ${param.appointmentId}; 	// 글번호
 		let memberId = '${memberId}';	// 작성자(로그인 유저)  
 	});

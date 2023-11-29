@@ -84,5 +84,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 		log.info("getMemberId: " + loginId);
 		return mapper.getMemberId(loginId);
 	}
+
+	@Override
+	public int checkAttendance(Long appointmentId, Long memberId) {
+		log.info("checkAttendance: Is " + memberId + "in " + appointmentId);
+		return mapper.checkAttendance(appointmentId, memberId);
+	}
 	
 }
