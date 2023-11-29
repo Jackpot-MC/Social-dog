@@ -27,5 +27,5 @@ public interface AppointmentService {
 	
 	public void attend(Long appointmentId, Long memberId);
 	
-	public boolean absent(Long participantId);
+	public boolean absent(Long appointmentId, Long memberId);
 }

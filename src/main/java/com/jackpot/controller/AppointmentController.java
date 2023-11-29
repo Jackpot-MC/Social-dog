@@ -134,4 +134,15 @@ public class AppointmentController {
 		
 		return "redirect:/appointment/get?appointmentId=" + appointmentId;
 	}
+	
+	@PostMapping("/absent")
+	public String absent(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId, Model model) {
+		
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("appointmentId", appointmentId);
+
+		service.absent(appointmentId, memberId);
+		
+		return "redirect:/appointment/get?appointmentId=" + appointmentId;
+	}
 }
