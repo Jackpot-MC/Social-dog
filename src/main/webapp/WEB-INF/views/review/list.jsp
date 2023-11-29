@@ -85,9 +85,8 @@
 		                <h4>리뷰를 작성해 주세요!</h4>
 		                <form:form modelAttribute="review"
 							id="review_comment_form">
-
-						<input type="hidden" name="memberLoginId" value="${member.loginId}"/>
-						<input type="hidden" name="placeId" value="14"/>
+						<form:hidden path="memberLoginId" value="${member.loginId}"/>
+						<form:hidden path="placeId" value="14"/>
 						
  		                    <div class="review-comment-rating form-group">
 						        <form:radiobutton name="rating" path="rating" value="5" id="5"/><label for="5">☆</label>
@@ -143,13 +142,14 @@
                     <h5 class="blue-text mt-1">"${review.reviewTitle}"</h5>
                     <p class="content-text">${review.reviewContent}</p>
                 
- <%--                <c:if test="${review.memberLoginId eq member.loginId}"> --%>
- [${member.loginId}] [${review.memberLoginId}]
-	                <div class="ml-auto">
+                <div class="ml-auto">
+				<c:if test="${review.memberLoginId eq member.loginId}">
+	                   <a href="#" class="btn review-modify" data-toggle="modal" data-target="#review-modify-form">
+	                   <i class="fa-solid fa-pen-to-square" style="color: #cfd8dc;"></i></a>
 	                   <a href="#" class="btn remove">
 	                   <i class="fa-solid fa-trash" style="color: #cfd8dc;"></i></a>
-	                </div>
-	<%--             </c:if> --%>
+				</c:if>
+				</div>
                 </div>
             </div>
            </c:forEach>

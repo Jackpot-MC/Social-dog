@@ -12,25 +12,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppointmentVO {
+
 	private Long appointmentId;
-	
 	@NotBlank(message = "약속 이름은 필수 항목입니다.")
 	private String appointmentName;
-	
 	private Long placeId;
 	private Long hostId;
-//	private String memberLoginId;
-//	private String memberLoginPwd;
-	private String loginId;
-
-//	private Date appointmentDate;
 	private Date regDate;
+
 	private String placeSpot;
 	private String placeName;
 	private String placeTypeName;
 	
 	private Long participantId;
-	private String memberId;
+	private Long memberId;
 	private String memberName;
 }
-	

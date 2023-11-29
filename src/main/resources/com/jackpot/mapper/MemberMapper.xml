@@ -79,4 +79,5 @@
 		insert into auth(username, auth, member_id)
 		values(#{username}, #{auth}, #{memberId})
 	</insert>
+	
 </mapper>

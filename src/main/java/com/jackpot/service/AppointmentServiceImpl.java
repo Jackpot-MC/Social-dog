@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
-import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.ParticipantVO;
 import com.jackpot.mapper.AppointmentMapper;
 
@@ -71,7 +70,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public void attend(Long appointmentId, Long memberId) {
 		log.info(memberId + "attends " + appointmentId);
 		mapper.attend(appointmentId, memberId);
-		
 	}
 
 	@Transactional(rollbackFor = Exception.class)	
