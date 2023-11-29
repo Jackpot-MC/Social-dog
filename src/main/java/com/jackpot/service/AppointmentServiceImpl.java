@@ -68,9 +68,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public void attend(ParticipantVO participant) {
-		log.info("attend: " + participant);
-		mapper.attend(participant);
+	public void attend(Long appointmentId, Long memberId) {
+		log.info(memberId + "attends " + appointmentId);
+		mapper.attend(appointmentId, memberId);
 		
 	}
 
@@ -79,6 +79,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public boolean absent(Long participantId) {
 		log.info("delete: " + participantId);
 		return mapper.delete(participantId);
+	}
+
+	@Override
+	public Long getMemberId(String loginId) {
+		log.info("getMemberId: " + loginId);
+		return mapper.getMemberId(loginId);
 	}
 	
 }

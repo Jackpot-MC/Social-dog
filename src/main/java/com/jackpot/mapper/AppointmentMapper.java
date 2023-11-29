@@ -23,7 +23,9 @@ public interface AppointmentMapper {
 	
 	public List<ParticipantVO> getParticipantList(Long appointmentId);
 	
-	public void attend(ParticipantVO participant);
+	public Long getMemberId(String loginId);
+	
+	public void attend(Long appointmentId, Long memberId);
 	
 	public boolean absent(Long participantId);
 }
