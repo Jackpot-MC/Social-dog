@@ -20,6 +20,6 @@ public interface ReviewService {
 	
 	public int getTotal(ReviewCriteria cri);
 	
-	public int getAverage(ReviewVO review);
+	public int getAverage();
 	
 }
