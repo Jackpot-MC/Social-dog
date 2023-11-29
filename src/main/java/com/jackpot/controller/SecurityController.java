@@ -102,7 +102,7 @@ public class SecurityController {
         if (id == null) {
             return "redirect:/";
         }
-        return "/security/deleteForm";//삭제완료 화면 미구현
+        return "/deleteForm";//삭제완료 화면 미구현
     }
 
     @PostMapping("/delete")
