@@ -1,10 +1,12 @@
 package com.jackpot.controller;
 
+import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -80,12 +82,18 @@ public class AppointmentController {
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
-	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri, Model model) {
+	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
+		
+		String loginId = principal.getName();
+		
 		log.info("/get or modify");
 		model.addAttribute("appointment", service.get(appointmentId));
 		
 		log.info("getParticipantList");
 		model.addAttribute("list", service.getParticipantList(appointmentId));
+		
+		log.info("getMemberId");
+		model.addAttribute("memberId", service.getMemberId(loginId));
 	}
 	
 	@PostMapping("/modify")
@@ -114,5 +122,16 @@ public class AppointmentController {
 		service.remove(appointmentId);
 		
 		return "redirect:" + cri.getLink("/appointment/list"); // 요청 url
+	}
+	
+	@PostMapping("/attend")
+	public String attend(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId, Model model) {
+		
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("appointmentId", appointmentId);
+
+		service.attend(appointmentId, memberId);
+		
+		return "redirect:/appointment/get?appointmentId=" + appointmentId;
 	}
 }

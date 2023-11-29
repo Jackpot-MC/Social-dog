@@ -22,5 +22,10 @@ public interface AppointmentService {
 
 	public List<ParticipantVO> getParticipantList(Long appointmentId);
 
-	public List <AppointmentVO> getListByHostId(Long hostId);
+	public Long getMemberId(String loginId);
+	
+	public void attend(Long appointmentId, Long memberId);
+	
+	public boolean absent(Long participantId);
+
 }

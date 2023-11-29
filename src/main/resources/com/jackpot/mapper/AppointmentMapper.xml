@@ -6,12 +6,11 @@
 	<resultMap id="appointmentMap"
 		type="com.jackpot.domain.AppointmentVO">
 		<id property="appointmentId" column="appointment_id" />
-		<result property="appointmentId" column="appointment_id" />
+<!-- 		<result property="appointmentId" column="appointment_id" /> -->
 		<result property="appointmentName" column="appointment_name" />
 		<result property="regDate" column="appointment_date" />
 		<result property="placeId" column="place_id" />
 		<result property="hostId" column="host_id" />
-		<result property="appointmentId" column="appointment_id" />
 		<result property="participantId" column="participant_id" />
 		<result property="memberId" column="member_id" />
 		<result property="memberName" column="member_name" />
@@ -127,6 +126,30 @@
 		WHERE
 		appointment_id = #{appointment_id}
 	</select>
+	
+	<select id="getMemberId" resultType="Long">
+		select member.member_id from member
+		left outer join participant
+		on member.member_id = participant.member_id
+		where login_id = #{login_id}
+	</select>
+	
+	<insert id="attend" parameterType="Long">
+		insert into participant (appointment_id, member_id)
+		values
+		(#{arg0}, #{arg1})
+		<selectKey resultType="Long" keyProperty="participantId"
+			keyColumn="participant_id" order="AFTER">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+	</insert>
+	
+	<delete id="absent">
+		delete
+		from participant
+		where 
+		participant_id = #{participant_id}
+	</delete>
 
 	<select id="getListByHostId" parameterType="Long" resultType="AppointmentVO">
 		select * from appointment

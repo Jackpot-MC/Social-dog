@@ -54,7 +54,7 @@
                         <li class="widget-49-meeting-item"><span>장소 종류: ${appointment.placeTypeName}</span></li>
                     </ul>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">상세보기</a>
+                        <a href="appointment/get?appointmentId=${appointment.appointmentId }" class="btn btn-sm btn-flash-border-primary">상세보기</a>
                         <a href="#" class="btn btn-sm btn-flash-border-primary" style="color:#0091EA;">참여하기</a>
                     </div>
                 </div>
