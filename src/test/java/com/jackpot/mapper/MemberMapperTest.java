@@ -36,8 +36,8 @@ public class MemberMapperTest {
 	public void testJoin() {
 		MemberVO member = new MemberVO();
 
-		member.setMemberLoginId("user3");
-		member.setMemberLoginPwd("user1234");
+		member.setLoginId("user3");
+		member.setLoginPwd("user1234");
 		member.setMemberName("김길동");
 		member.setMemberBirth(new Date("2011-02-11"));
 		member.setMemberEmail("user3@gmail.com");
@@ -50,7 +50,7 @@ public class MemberMapperTest {
 	public void testUpdate() {
 		MemberVO member = memberMapper.get("user1");
 		
-		member.setMemberLoginPwd("update1234");
+		member.setLoginPwd("update1234");
 		memberMapper.update(member);
 	}
 	

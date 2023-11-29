@@ -6,7 +6,8 @@
 <%@ include file="../layouts/header.jsp"%>
 <link rel="stylesheet" href="/resources/css/notice/list.css"
 	type="text/css" />
-
+	
+<sec:authentication property="principal.username" var="username" />
 
 
 <section class="notice">
@@ -44,8 +45,8 @@
 			</table>
 
 			<div class="text-right">
-				<a href="register" class="btn btn-primary"> <i
-					class="far fa-edit"></i> 글쓰기
+				<a href="register" class="btn btn-dark" style="height:30px;"> 
+				<i class="far fa-edit"></i> 글쓰기
 				</a>
 			</div>
 

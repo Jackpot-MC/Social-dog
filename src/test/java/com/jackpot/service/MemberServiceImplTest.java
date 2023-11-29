@@ -39,8 +39,8 @@ public class MemberServiceImplTest {
 	public void testJoin() {
 		MemberVO member = new MemberVO();
 
-		member.setMemberLoginId("user4");
-		member.setMemberLoginPwd("user1234");
+		member.setLoginId("user4");
+		member.setLoginPwd("user1234");
 		member.setMemberName("윤길동");
 		member.setMemberBirth(new Date("2002-11-04"));
 		member.setMemberEmail("user4@gmail.com");
@@ -53,7 +53,7 @@ public class MemberServiceImplTest {
 	public void testUpdate() {
 		MemberVO member = memberMapper.get("user6");
 		
-		member.setMemberLoginPwd("update1234");
+		member.setLoginPwd("update1234");
 		memberMapper.update(member);
 	}
 	

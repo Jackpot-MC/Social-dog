@@ -19,7 +19,7 @@
 	</resultMap>
 	
 	<select id = "read" resultMap="reviewMap">
-		select review_id, review.member_id, place_id, review_title, review_content, rating, reg_date, update_date, m.member_name
+		select review_id, review.member_id, place_id, review_title, review_content, rating, reg_date, update_date, m.login_id, m.member_name
 		from review left outer join `member` m 
 		on review.member_id = m.member_id
 		where review_id = #{reviewId} 
@@ -28,7 +28,8 @@
 	<insert id = "insert">
 		insert into review (member_id, place_id, review_title, review_content, rating, login_id, member_name)
 		values ((select member_id from member where member.login_id = #{memberLoginId}),
-		#{placeId}, #{reviewTitle}, #{reviewContent}, #{rating}, #{memberLoginId},
+		#{placeId}, #{reviewTitle}, #{reviewContent}, #{rating},
+		(select login_id from member where member.login_id = #{memberLoginId}),
 		(select member_name from member where member.login_id = #{memberLoginId}));
 
 		<selectKey resultType= "Long" keyProperty="reviewId" keyColumn="review_id" order="AFTER">
@@ -49,13 +50,15 @@
 		where review_id = #{reviewId}
 	</delete>
 	
-	<select id="getList" resultType="com.jackpot.domain.ReviewVO">
-		select review_id, member_id, place_id, review_title, review_content, rating, reg_date, update_date
-		from review
+	<select id="getList" resultType="com.jackpot.domain.ReviewVO" resultMap="reviewMap">
+		select review_id, review.member_id, place_id, review_title, review_content, rating, reg_date, update_date, m.login_id, m.member_name
+		from review left outer join `member` m 
+		on review.member_id = m.member_id
+		order by review_id desc
 	</select>
 
-	<select id="getListWithPaging" resultType="ReviewVO">
-		select review_id, review.member_id, place_id, review_title, review_content, rating, m.member_name, reg_date, update_date
+	<select id="getListWithPaging" resultType="ReviewVO" resultMap="reviewMap">
+		select review_id, review.member_id, place_id, review_title, review_content, rating, reg_date, update_date, m.login_id, m.member_name
 		from review left outer join `member` m 
 		on review.member_id = m.member_id
 		<where>
