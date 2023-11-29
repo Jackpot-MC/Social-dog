@@ -17,7 +17,7 @@
 <div class="container">
 	<div class="d-flex my-3">
 		<form:form modelAttribute="member"
-			action="/security/mypage?_csrf=${_csrf.token}" style="width:800px"
+			action="/security/mypage?_csrf=${_csrf.token}" style="width:900px"
 			class="mx-auto">
 
 			<h1 class="title">마이페이지</h1>
@@ -26,7 +26,6 @@
 			<div class="cardHolder" style="display: flex;">
 				<c:forEach var="dog" items="${dogList}">
 					<div class="card card-margin">
-
 						<div class="card-dog">
 							<img src="/resources/images/${dog.dogPhotoPath}" class="dog-pic">
 
@@ -43,7 +42,20 @@
 					</div>
 				</c:forEach>
 			</div>
-
+			
+			<div>
+				<h6>나의 약속</h6>
+					<c:forEach var="appointment" items="${appointmentList}">
+						<div>
+							<ul>
+								<li>${appointment.appointmentName}</li>
+								<li><fmt:formatDate pattern="yyyy-MM-dd" value="${appointment.regDate}"/></li>
+								<li>${appointment.placeId}</li>
+							
+							</ul>						
+						</div>
+					</c:forEach>
+			</div>
 		</form:form>
 	</div>
 </div>

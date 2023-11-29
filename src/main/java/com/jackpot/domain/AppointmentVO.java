@@ -30,7 +30,7 @@ public class AppointmentVO {
 	private String placeTypeName;
 	
 	private Long participantId;
-	private String memberId;
+	private Long memberId;
 	private String memberName;
 }
 	
