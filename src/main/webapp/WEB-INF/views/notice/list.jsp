@@ -6,7 +6,8 @@
 <%@ include file="../layouts/header.jsp"%>
 <link rel="stylesheet" href="/resources/css/notice/list.css"
 	type="text/css" />
-
+	
+<sec:authentication property="principal.username" var="username" />
 
 
 <section class="notice">
