@@ -26,5 +26,4 @@ public interface MemberMapper {
 	public List<MemberVO> getList();
 	
 	public void insertAuth(AuthVO auth);
-	
 }

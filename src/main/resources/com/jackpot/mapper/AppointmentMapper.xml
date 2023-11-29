@@ -128,6 +128,12 @@
 		appointment_id = #{appointment_id}
 	</select>
 
+	<select id="getListByHostId" parameterType="Long" resultType="AppointmentVO">
+		select * from appointment
+		where host_id = #{memberId}
+	</select>
+	
+	
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
 		<trim prefixOverrides="OR">
 			<foreach item="type" collection="typeArr">
