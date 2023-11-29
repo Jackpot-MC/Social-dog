@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
-import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.ParticipantVO;
 import com.jackpot.mapper.AppointmentMapper;
 
@@ -65,6 +64,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<ParticipantVO> getParticipantList(Long appointmentId) {
 		log.info("getParticipantList");
 		return mapper.getParticipantList(appointmentId);
+	}
+
+	@Override
+	public List<AppointmentVO> getListByHostId(Long hostId) {
+		return mapper.getListByHostId(hostId);
 	}
 
 }

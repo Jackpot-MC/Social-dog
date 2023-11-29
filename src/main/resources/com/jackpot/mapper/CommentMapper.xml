@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.galapagos.mapper.CommentMapper">
+	<resultMap id="CommentMap" type="CommentVO">
+		<id property="no" column="no" />
+		<result property="bno" column="bno" />
+		<result property="content" column="c_content" />
+		<result property="loginId" column="c_loginId" />
+		<result property="regDate" column="c_reg_date" />
+		<result property="updateDate" column="c_update_date" />
+		
+		<collection property="replyList"
+					ofType="org.galapagos.domain.ReplyVO" > <!-- Java에서는 List로, JSON에서는 배열로 저장됨 -->
+			<id property="no" column="r_no" />
+			<result property="cno" column="cno" />
+			<result property="content" column="r_content" />
+			<result property="loginId" column="r_loginId" />
+			<result property="regDate" column="r_reg_date" />
+			<result property="updateDate" column="r_update_date" />
+		</collection>
+	</resultMap>
+
+	<select id="readAll" resultMap="CommentMap">
+		select
+			c.no, c.bno, c.content c_content, c.loginId c_loginId,
+			c.reg_date c_reg_date, c.update_date c_update_date,
+			r.no r_no, r.cno, r.content r_content, r.loginId r_loginId,
+			r.reg_date r_reg_date, r.update_date r_update_date
+		from tbl_comment c left outer join tbl_reply r
+			on c.no = r.cno
+		where bno = #{bno}
+	</select>
+	
+	<select id="get" resultMap="CommentMap">
+		select
+			c.no, c.bno, c.content c_content, c.loginId c_loginId,
+			c.reg_date c_reg_date, c.update_date c_update_date,
+			r.no r_no, r.cno, r.content r_content, r.loginId r_loginId,
+			r.reg_date r_reg_date, r.update_date r_update_date
+		from tbl_comment c left outer join tbl_reply r
+			on c.no = r.cno
+		where c.no = #{no}
+	</select>
+	
+	<insert id="create">
+		insert into tbl_comment (bno, loginId, content)
+		values(#{bno}, #{loginId}, #{content})
+		<selectKey resultType="Long" keyProperty="no"
+			keyColumn="no" order="AFTER"> <!-- insert 문 안의 selectKey의 역할 중요 -->
+			SELECT LAST_INSERT_ID()
+		</selectKey>	
+	</insert>
+
+	<update id="update">
+		update tbl_comment
+		set
+			content = #{content},
+			update_date = now()
+		where no = #{no} order by #{bno} desc
+	</update>
+	
+	<delete id = "delete">
+		delete from tbl_comment
+		where no = #{no}
+	</delete>
+</mapper>

@@ -49,8 +49,8 @@ public class DogController {
 
     //개 리스트 조회
     @GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-    public void list(@ModelAttribute("review") ReviewVO review, Model model) {
-        log.info("list: " + review);
+    public void list(@ModelAttribute("dogId") DogVO dog, Model model) {
+        log.info("list: " + dog);
         model.addAttribute("list", service.getList());
     }
 

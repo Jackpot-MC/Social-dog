@@ -19,6 +19,12 @@ public class AppointmentVO {
 	private Long placeId;
 	private Long hostId;
 	private Date regDate;
-	private String memberId;
-}
+
+	private String placeSpot;
+	private String placeName;
+	private String placeTypeName;
 	
+	private Long participantId;
+	private Long memberId;
+	private String memberName;
+}

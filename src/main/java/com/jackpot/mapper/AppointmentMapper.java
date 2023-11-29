@@ -23,4 +23,6 @@ public interface AppointmentMapper {
 	
 	public List<ParticipantVO> getParticipantList(Long appointmentId);
 
+	public List<AppointmentVO> getListByHostId(Long hostId);
+
 }
