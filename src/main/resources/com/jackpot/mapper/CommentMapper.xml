@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.galapagos.mapper.CommentMapper">
+<mapper namespace="com.jackpot.mapper.CommentMapper">
 	<resultMap id="CommentMap" type="CommentVO">
 		<id property="no" column="no" />
 		<result property="bno" column="bno" />
@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="updateDate" column="c_update_date" />
 		
 		<collection property="replyList"
-					ofType="org.galapagos.domain.ReplyVO" > <!-- Java에서는 List로, JSON에서는 배열로 저장됨 -->
+					ofType="com.jackpot.domain.ReplyVO" > <!-- Java에서는 List로, JSON에서는 배열로 저장됨 -->
 			<id property="no" column="r_no" />
 			<result property="cno" column="cno" />
 			<result property="content" column="r_content" />
