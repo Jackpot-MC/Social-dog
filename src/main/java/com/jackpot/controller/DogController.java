@@ -39,9 +39,6 @@ public class DogController {
         return "redirect:/dog/list"; // 요청 url
     }
 
-    //개 사진 변경 및 등록
-
-
     //개 삭제
     @PostMapping("/remove")
     public String remove(@RequestParam("dogId") Long dogId) {
@@ -75,7 +72,4 @@ public class DogController {
         }
         return "redirect: /dog/list";
     }
-
-
-
 }
