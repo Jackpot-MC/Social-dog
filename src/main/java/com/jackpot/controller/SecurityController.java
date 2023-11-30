@@ -119,7 +119,7 @@ public class SecurityController {
     	MemberVO member = memberService.get(principal.getName());
         model.addAttribute("member", member);
         model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
-        model.addAttribute("appointmentList", appointmentService.getListByHostId(member.getMemberId()));
+
         log.info("mypage");
 
     }
