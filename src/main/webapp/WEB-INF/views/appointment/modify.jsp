@@ -34,6 +34,7 @@ $('#content').summernote('fontName', 'Arial');
 			<input type="hidden" name="keyword" value="${cri.keyword}"/>
 			<form:hidden path="appointmentId"/>
 			<form:hidden path="hostId"/>
+
 			
 			<div class="form-group">
 				<form:label path="appointmentName">약속 이름</form:label>
@@ -42,9 +43,8 @@ $('#content').summernote('fontName', 'Arial');
 			</div>
 			
 			<div class="form-group">
-				<form:label path="place_spot">내용</form:label> <!-- id는 summernote 용 --> 
-				<form:textarea path="place_spot" cssClass="form-control"></form:textarea>
-				<form:errors path="place_spot" cssClass="error"/>
+				<form:label path="appointmentDate">약속 날짜</form:label>
+				<form:input type="datetime-local" path="appointmentDate" cssClass="form-control"/>
 			</div>
 			
 			<button type="submit" class="btn btn-primary">
