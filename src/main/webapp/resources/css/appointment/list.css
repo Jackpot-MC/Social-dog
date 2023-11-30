@@ -23,14 +23,49 @@ a:hover {
     color: #455A64
 }
 
+.card3 {
+    border: 0;
+    box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 1px solid #e6e4e9;
+    border-radius: 8px;
+  
+  .go-corner {
+    opacity: 0.7;
+  }
+
+  &:hover {
+    border: 1px solid #FFC868;
+    box-shadow: 0px 0px 999px 999px rgba(255, 255, 255, 0.5);
+    z-index: 500;
+  }
+}
+
+.card3:hover {
+  p{color: #FFC868}
+  .go-corner {
+    transition: opactiy 0.3s linear;
+    opacity: 1;
+  }
+}
+
 .profile-pic-appointment-list {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 100%;
 }
 
 .card-margin {
-    margin-bottom: 0.4rem;
+    margin: 12px;
 }
 
 .card {
@@ -39,8 +74,6 @@ a:hover {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
     -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
     -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-}
-.card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -52,12 +85,12 @@ a:hover {
     border-radius: 8px;
 }
 
-.card .card-header.no-border {
+.card3 .card-header.no-border {
     border: 0;
 }
-.card .card-header {
-    background: none;
-    padding: 0 0.9375rem;
+.card3 .card-header {
+    background: #f7edd5;
+    padding: 1rem;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -77,7 +110,6 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #f7edd5;
   width: flex;
   height: 40px;
 }
@@ -310,18 +342,21 @@ a:hover {
 
 .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-meeting-time {
   color: #8f4218;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .widget-49 .widget-49-meeting-points {
   font-weight: 400;
   font-size: 13px;
-  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
 }
 
 .widget-49 .widget-49-meeting-points .widget-49-meeting-item {
-  display: list-item;
+  font-size: 16px;
+  font-weight: 500;
   color: #727686;
 }
 
@@ -332,6 +367,7 @@ a:hover {
 
 .widget-49 .widget-49-meeting-action {
   text-align: center;
+  margin-top: 10px;
 }
 
 .widget-49 .widget-49-meeting-action a {

@@ -49,7 +49,7 @@ public class AppointmentController {
 
 	
 	@GetMapping("/list") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Model model) {
+	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
 		
@@ -57,6 +57,11 @@ public class AppointmentController {
 		log.info("total: " + total);
 		
 		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
+		
+		String loginId = principal.getName();
+		
+		log.info("getMemberId");
+		model.addAttribute("memberId", service.getMemberId(loginId));
 	}
 	
 	@GetMapping("/register") // 로직이 없어서 Test X
@@ -133,5 +138,16 @@ public class AppointmentController {
 		service.attend(appointmentId, memberId);
 		
 		return "redirect:/appointment/get?appointmentId=" + appointmentId;
+	}
+	
+	@GetMapping("/attend_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
+	public void attend_appointment(@ModelAttribute("cri") AppointmentCriteria cri, Model model) {
+		log.info("list: " + cri);
+		model.addAttribute("list", service.getList(cri));
+		
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		
+		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
 	}
 }
