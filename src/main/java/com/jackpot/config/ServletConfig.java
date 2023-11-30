@@ -44,7 +44,7 @@ public class ServletConfig implements WebMvcConfigurer {
 
 		resolver.setMaxInMemorySize(1024*1024); //1MB
 
-		resolver.setUploadTempDir(new FileSystemResource("e:\\Temp\\upload\\tmp"));
+		resolver.setUploadTempDir(new FileSystemResource("c:\\Temp\\upload\\tmp"));
 		resolver.setDefaultEncoding("UTF-8");
 
 		return resolver;

@@ -45,7 +45,7 @@
 		<i class="fas fa-user"></i>${appointment.memberName}</div>
 	<div>
 		<i class="fas fa-clock"></i>
-		<fmt:formatDate pattern="yyyy-MM-dd" value="${appointment.regDate}" />
+		<fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${appointment.appointmentDate}" />
 	</div>
 </div>
 
@@ -102,7 +102,7 @@
 </div>
 
 <form action="remove" method="post" name="removeForm">
-	<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  -->
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="appointmentId"
 		value="${appointment.appointmentId}" /> <input type="hidden"
 		name="pageNum" value="${cri.pageNum}" /> <input type="hidden"
