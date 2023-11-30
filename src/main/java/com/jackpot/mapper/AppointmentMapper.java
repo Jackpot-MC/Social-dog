@@ -27,6 +27,7 @@ public interface AppointmentMapper {
 	
 	public void attend(Long appointmentId, Long memberId);
 	
-	public boolean absent(Long participantId);
-
+	public boolean absent(Long participantId, Long memberId);
+	
+	public int checkAttendance(Long appointmentId, Long memberId);
 }

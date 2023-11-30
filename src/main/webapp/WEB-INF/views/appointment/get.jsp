@@ -22,7 +22,17 @@
 			if(!confirm('참가하시겠습니까?')) return;
 			document.forms.attendForm.submit();
 		});
+		$('.absent').click(function(){ 
+			if(!confirm('참가 취소하시겠습니까?')) return;
+			document.forms.absentForm.submit();
+		});
 	
+	if (${checkAttendance} > 0){
+		$('.attend').hide();
+	}	else{
+		$('.absent').hide();
+	}
+		
 		let appointmentId = ${param.appointmentId}; 	// 글번호
 		let memberId = '${memberId}';	// 작성자(로그인 유저)  
 	});
@@ -104,6 +114,16 @@
 <form action="attend" method="post" name="attendForm">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" 
+		name="appointmentId"
+		value="${appointment.appointmentId}" /> 
+	<input type="hidden" 
+		name="memberId" 
+		value="${memberId}" />
+</form>
+
+<form action="absent" method="post" name="absentForm">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="hidden" 
 		name="appointmentId"
 		value="${appointment.appointmentId}" /> 
 	<input type="hidden" 

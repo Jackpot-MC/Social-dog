@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
+import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.ParticipantVO;
 
 public interface AppointmentService {
@@ -21,11 +22,12 @@ public interface AppointmentService {
 	public int getTotal(AppointmentCriteria cri);
 
 	public List<ParticipantVO> getParticipantList(Long appointmentId);
-
+	
 	public Long getMemberId(String loginId);
 	
 	public void attend(Long appointmentId, Long memberId);
 	
-	public boolean absent(Long participantId);
-
+	public boolean absent(Long appointmentId, Long memberId);
+	
+	public int checkAttendance(Long appointmentId, Long memberId);
 }

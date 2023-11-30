@@ -74,15 +74,21 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Transactional(rollbackFor = Exception.class)	
 	@Override
-	public boolean absent(Long participantId) {
-		log.info("delete: " + participantId);
-		return mapper.delete(participantId);
+	public boolean absent(Long appointmentId, Long memberId) {
+		log.info(memberId + "absent from " + appointmentId);
+		return mapper.absent(appointmentId, memberId);
 	}
 
 	@Override
 	public Long getMemberId(String loginId) {
 		log.info("getMemberId: " + loginId);
 		return mapper.getMemberId(loginId);
+	}
+
+	@Override
+	public int checkAttendance(Long appointmentId, Long memberId) {
+		log.info("checkAttendance: Is " + memberId + "in " + appointmentId);
+		return mapper.checkAttendance(appointmentId, memberId);
 	}
 	
 }

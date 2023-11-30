@@ -134,7 +134,7 @@
 		where login_id = #{login_id}
 	</select>
 	
-	<insert id="attend" parameterType="Long">
+	<insert id="attend">
 		insert into participant (appointment_id, member_id)
 		values
 		(#{arg0}, #{arg1})
@@ -148,14 +148,18 @@
 		delete
 		from participant
 		where 
-		participant_id = #{participant_id}
+		appointment_id = #{arg0}
+		and
+		member_id = #{arg1}
 	</delete>
 
-	<select id="getListByHostId" parameterType="Long" resultType="AppointmentVO">
-		select * from appointment
-		where host_id = #{memberId}
+	<select id="checkAttendance" resultType="int">
+		select count(*) from participant
+		where
+		appointment_id = #{arg0}
+		and
+		member_id = #{arg1}
 	</select>
-	
 	
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
 		<trim prefixOverrides="OR">
