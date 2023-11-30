@@ -178,7 +178,7 @@ public class SecurityController {
     	}
     	memberService.pwdupdate(member);
     	model.addAttribute("result", "success");
-    	log.info("updateed=====================================================");
+    	log.info("updated=====================================================");
     	return "/security/pwdupdate";
     }
 

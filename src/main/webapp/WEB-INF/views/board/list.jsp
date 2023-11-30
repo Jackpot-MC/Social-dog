@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@include file="../layouts/header.jsp"%>
 <link rel="stylesheet" href="/resources/css/notice/list.css" type="text/css" />
@@ -38,15 +39,23 @@
 					<c:forEach var="board" items="${list}">
 						<tr>
 							<td style="width: 60px">${board.bno}</td>
-							<td class="th-title2">
-								<a style="font-weight:700;" class="move" href="${cri.getLinkWithBno('get', board.bno)}">
-									${board.title}</a>						
-									<br>
-									<br><span style="color:#808080;">${board.content}</span>
-							</td>
-							<td>${board.loginId}</td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}" /></td>
-							
+								<td class="th-title2">
+									<a style="font-weight:700; padding-bottom:10px;" class="move" href="${cri.getLinkWithBno('get', board.bno)}">
+										${board.title}
+									</a><br>						
+										<span style="color:#808080; font-size:14px;">
+											<c:choose>
+										        <c:when test="${fn:length(board.content) gt 148}">
+											        <c:out value="${fn:substring(board.content, 0, 147)}"/>...
+										        </c:when>
+										        <c:otherwise>
+											        <c:out value="${board.content}"/>
+										        </c:otherwise>
+											</c:choose>
+										</span>
+								</td>
+								<td>${board.loginId}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>

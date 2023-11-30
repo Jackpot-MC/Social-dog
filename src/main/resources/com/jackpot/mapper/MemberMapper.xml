@@ -80,4 +80,9 @@
 		values(#{username}, #{auth}, #{memberId})
 	</insert>
 	
+	<select id="getMemberIdByLoginId" resultType="Long">
+		select member_id from member
+		where login_id = #{login_id}
+	</select>
+	
 </mapper>

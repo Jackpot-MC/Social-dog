@@ -46,6 +46,19 @@ form h6.welcomeM {
 	font-family: "Montserrat", sans-serif;
 }
 
+.CTA button.dogRegister {
+	width: 130px;
+	font-size: 15px;
+	text-transform: uppercase;
+	padding: 5px 10px;
+	background: #f2bb15;
+	color: #fff;
+	border-radius: 30px;
+	margin-right: 20px;
+	border: none;
+	font-family: "Montserrat", sans-serif;
+}
+
 .CTA button.reset {
 	width: 30%;
 	font-size: 15px;
@@ -60,7 +73,8 @@ form h6.welcomeM {
 }
 /* 버튼 끝 */
 .cardHolder {
-	padding: 30px;
+	padding-top:30px;
+	padding-bottom:10px;
 	display: flex;
 	justify-content: center;
 }
@@ -72,7 +86,7 @@ form h6.welcomeM {
 }
 
 .card-dog {
-	width: 210px;
+	width: 220px;
 }
 
 .card {

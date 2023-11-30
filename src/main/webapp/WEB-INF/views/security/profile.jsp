@@ -8,7 +8,6 @@
 
 <link rel="stylesheet" href="/resources/css/security/mypage.css" type="text/css" />
 
-
 <sec:authentication property="principal.username" var="username" />
 
 <div class="container">
@@ -53,7 +52,6 @@
 		</div>
 	</section>
 </div>
-
 
 <%@ include file="../layouts/footer.jsp"%>
 

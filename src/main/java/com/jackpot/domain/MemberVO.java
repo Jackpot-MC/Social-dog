@@ -56,4 +56,6 @@ public class MemberVO {
 		}
 		return authorities;
 	}
+	
+	
 }

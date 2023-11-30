@@ -4,10 +4,12 @@ import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.*;
 
 @Builder
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class DogVO {
@@ -16,6 +18,8 @@ public class DogVO {
 	@NotBlank(message = "반려견 이름은 필수 항목입니다.")
 	private String dogName;
 	private String dogKind;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dogBirth;
 	private String dogPhotoPath;
 	private String dogFavorite;
