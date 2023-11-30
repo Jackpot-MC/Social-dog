@@ -26,4 +26,7 @@ public class BoardVO {
 	private Date regDate;
 	private Date updateDate;
 	
+	public String getSummary() {
+		return content.replace("<p>", "").replace("</p>", " ").replace("<br>", " ");
+	}
 }

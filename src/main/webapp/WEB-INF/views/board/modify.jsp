@@ -5,9 +5,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <%@include file="../layouts/header.jsp"%>
-<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.min.css">
 <link rel="stylesheet" href="/resources/css/notice/list.css" type="text/css" />
 
+<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.min.css">
 <script src="/resources/js/summernote/summernote-lite.min.js"></script>
 <script src="/resources/js/summernote/lang/summernote-ko-KR.min.js"></script>
 <script src="/resources/js/rest.js"></script>
@@ -15,11 +15,12 @@
 <script>
 $(document).ready(function() {
 	$('#content').summernote({
-		height : 300, 
-		lang : "ko-KR", 
+		height : 300, // 에디터 높이
+		focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+		lang : "ko-KR", // 한글 설정
 	});
 	
-	// 첨부파일
+/* 	// 첨부파일
 	const attaches = $('[name="files"]');
 	const attachList = $('#attach-list');
 	
@@ -47,8 +48,8 @@ $(document).ready(function() {
 			$(this).parent().remove();
 		} else{
 			alert('파일 삭제 실패');
-		}
-	});
+		} 
+	});*/
 
 
 /* 
@@ -89,7 +90,7 @@ $(document).ready(function() {
 						<form:errors path="title" cssClass="error" />
 					</div>
 
-					<!-- 첨부파일 -->
+<%-- 					<!-- 첨부파일 -->
 					<div class="my-3">
 						<label for="attaches">첨부파일</label>
 						<c:forEach var="file" items="${board.attaches}">
@@ -108,7 +109,7 @@ $(document).ready(function() {
 						<label for="attaches">추가 첨부파일</label>
 						<div id="attach-list" class="my-1"></div>
 						<input type="file" class="form-control" multiple name="files" />
-					</div>
+					</div> --%>
 
 					<!-- 내용 -->
 					<div class="form-group">
@@ -134,18 +135,6 @@ $(document).ready(function() {
 		</div>
 	</div>
 </section>
-
-<%-- 
-<form id="getForm" action="/board/get" method="get">
-	<input type="hidden" id="bno" name="bno" value="${board.bno}"/>
-	<input type="hidden" name="pageNum" value="${cri.pageNum}"/>
-	<input type="hidden" name="amount" value="${cri.amount}"/>
-	<!-- 수정후 목록으로 돌아왔을때 검색한 값이 유지되도록 함 -->
-	<input type="hidden" name="type" value="${cri.type}"/>
-	<input type="hidden" name="keyword" value="${cri.keyword}"/>
-</form>
- --%>
-
 
 <%@include file="../layouts/footer.jsp"%>
 
