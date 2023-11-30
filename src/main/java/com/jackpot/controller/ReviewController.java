@@ -52,7 +52,6 @@ public class ReviewController {
 	@GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
 	public void list(@ModelAttribute("cri") ReviewCriteria cri,
 			@ModelAttribute("review") ReviewVO review,
-			@ModelAttribute("member") MemberVO member,
 			Principal principal,
 			Model model) {
 		
@@ -83,7 +82,6 @@ public class ReviewController {
 	@PostMapping("/list") // POST 요청의 리턴 타입은 String
 	public String list(
 			@Valid @ModelAttribute("review") ReviewVO review,
-			@ModelAttribute("member") MemberVO member,
 			Principal principal,
 			Errors errors,
 			RedirectAttributes rttr) throws Exception {
