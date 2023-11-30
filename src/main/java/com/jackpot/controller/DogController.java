@@ -1,6 +1,7 @@
 package com.jackpot.controller;
 
 import com.jackpot.domain.*;
+import com.jackpot.service.AwsService;
 import com.jackpot.service.DogService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.validation.Valid;
-import java.security.Principal;
+
 
 @Controller
 @RequestMapping("/dog")
@@ -20,6 +19,9 @@ public class DogController {
 
     @Autowired
     private DogService service;
+
+    @Autowired
+    private AwsService awsService;
 
     //개 등록
     @GetMapping("/register") // 로직이 없어서 Test X
