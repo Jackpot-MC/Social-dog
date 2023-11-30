@@ -91,6 +91,8 @@ public class AppointmentController {
 		
 		String loginId = principal.getName();
 		
+		Long memberId = service.getMemberId(loginId);
+		
 		log.info("/get or modify");
 		model.addAttribute("appointment", service.get(appointmentId));
 		
@@ -98,7 +100,10 @@ public class AppointmentController {
 		model.addAttribute("list", service.getParticipantList(appointmentId));
 		
 		log.info("getMemberId");
-		model.addAttribute("memberId", service.getMemberId(loginId));
+		model.addAttribute("memberId", memberId);
+		
+		log.info("checkAttendance");
+		model.addAttribute("checkAttendance", service.checkAttendance(appointmentId, memberId));
 	}
 	
 	@PostMapping("/modify")
@@ -149,5 +154,16 @@ public class AppointmentController {
 		log.info("total: " + total);
 		
 		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
+}
+  
+	@PostMapping("/absent")
+	public String absent(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId, Model model) {
+		
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("appointmentId", appointmentId);
+
+		service.absent(appointmentId, memberId);
+		
+		return "redirect:/appointment/get?appointmentId=" + appointmentId;
 	}
 }
