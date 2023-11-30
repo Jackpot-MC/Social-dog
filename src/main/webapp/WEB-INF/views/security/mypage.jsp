@@ -61,7 +61,7 @@
 								<ul style="list-style:none; padding-left:3px;">
 								<li>견종: ${dog.dogKind}</li>
 	              				<li>생일: <fmt:formatDate pattern="yyyy-MM-dd" value="${dog.dogBirth}"/></li>
-								<li>관심사: ${dog.dogFavorite}</li>
+								<%-- <li>관심사: ${dog.dogFavorite}</li> --%>
 								<li>소개: ${dog.dogDescription}</li>
 								</ul>
 							</div>

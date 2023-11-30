@@ -33,9 +33,6 @@ public class SecurityController {
     @Autowired
     private DogService dogService;
 
-    @Autowired
-    private AppointmentService appointmentService;
-    
     @GetMapping("/login")//로그인 페이지 호출
     public void login() {
         log.info("login page");
