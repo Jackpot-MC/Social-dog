@@ -71,4 +71,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.getList();
 	}
 
+	@Override
+	public Long getMemberIdByLoginId(String loginId) {
+		return memberMapper.getMemberIdByLoginId(loginId);
+	}
+
 }

@@ -25,4 +25,5 @@ public class BoardVO {
 	
 	private Date regDate;
 	private Date updateDate;
+	
 }

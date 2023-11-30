@@ -1,17 +1,25 @@
 package com.jackpot.controller;
 
-import com.jackpot.domain.*;
-import com.jackpot.service.DogService;
-import lombok.extern.log4j.Log4j;
+import java.security.Principal;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
-import java.security.Principal;
+import com.jackpot.domain.DogVO;
+import com.jackpot.domain.MemberVO;
+import com.jackpot.service.DogService;
+import com.jackpot.service.MemberService;
+
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/dog")
@@ -21,22 +29,30 @@ public class DogController {
     @Autowired
     private DogService service;
 
+    @Autowired
+    private MemberService memberService;
+    
     //개 등록
     @GetMapping("/register") // 로직이 없어서 Test X
     public void register(@ModelAttribute("dog") DogVO dog) {
-        log.info("register");
+    	log.info("register");
     }
 
     @PostMapping("/register") // POST 요청의 리턴 타입은 String
     public String register(
-            @Valid @ModelAttribute("dog") DogVO dog,
+            @ModelAttribute("dog") DogVO dog, Principal principal, Model model,
             Errors errors) throws Exception {
         log.info("register: " + dog);
+        
+        String loginId = principal.getName();
+        dog.setMemberId(memberService.getMemberIdByLoginId(loginId));
+    	//model.addAttribute("member", memberService.getMemberIdByLoginId(loginId));
+    	
         if (errors.hasErrors()) {
-            return "dog/register";
+            return "/dog/register";
         }
         service.register(dog);
-        return "redirect:/dog/list"; // 요청 url
+        return "redirect:/security/mypage"; // 요청 url
     }
 
     //개 삭제

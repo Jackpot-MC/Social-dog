@@ -12,6 +12,15 @@
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 
 
+<style>
+.card-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+</style>
+
+
 <sec:authentication property="principal.username" var="username" />
 
 <div class="container">
@@ -22,6 +31,24 @@
 
 			<h1 class="title">마이페이지</h1>
 			<h6 class="welcomeM">${member.memberName}(${member.loginId})님 반갑습니다.</h6>
+		
+			<!-- Modal button-->
+            <div class="CTA text-right" style="padding-right:20px;" >
+			<button type="button" class="dogRegister"
+				data-toggle="modal" data-target="#registerModal" onclick="openRegisterModal()">
+				강아지 등록
+			</button>
+			</div>
+		    
+		    <!-- Modal -->
+			<div class="modal fade" id="registerModal" tabindex="-1"
+				aria-labelledby="registerModalLabel" aria-hidden="true">
+				<div class="model-dialog">
+					<div class="modal-content" style="width:500px;  transform: translate(100%, 20%);">
+						<!-- 강아지 등록 페이지 /dog/register.jsp -->
+					</div>
+				</div>
+			</div>
 
 			<div class="cardHolder" style="display: flex;">
 				<c:forEach var="dog" items="${dogList}">
@@ -35,29 +62,26 @@
 								<li>견종: ${dog.dogKind}</li>
 	              				<li>생일: <fmt:formatDate pattern="yyyy-MM-dd" value="${dog.dogBirth}"/></li>
 								<li>관심사: ${dog.dogFavorite}</li>
-								<li>참고: ${dog.dogDescription}</li>
+								<li>소개: ${dog.dogDescription}</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
-			
-			<div>
-				<h6>나의 약속</h6>
-					<c:forEach var="appointment" items="${appointmentList}">
-						<div>
-							<ul>
-								<li>${appointment.appointmentName}</li>
-								<li><fmt:formatDate pattern="yyyy-MM-dd" value="${appointment.regDate}"/></li>
-								<li>${appointment.placeId}</li>
-							
-							</ul>						
-						</div>
-					</c:forEach>
-			</div>
 		</form:form>
 	</div>
 </div>
 
 <%@ include file="../layouts/footer.jsp"%>
+
+
+<script>
+function openRegisterModal(){
+	$('.modal-content').load("/dog/register");
+}
+
+$('#anyModal').on('hidden.bs.modal', function () {
+	  // something
+	})
+</script>

@@ -12,6 +12,12 @@ color: #494a4b;
 .i{
 color: #494a4b;
 }
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #494a4b;
+    border-color: #494a4b;
+}
 </style>
 
 <ul class="pagination justify-content-center">
@@ -32,7 +38,7 @@ color: #494a4b;
 	</c:if>
 	
 	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-		<li class="page-item ${ pageMaker.cri.pageNum == num ? 'active' : '' }" style="background: #494a4b;">
+		<li class="page-item ${ pageMaker.cri.pageNum == num ? 'active' : '' }">
 			<a class="page-link" href="${cri.getLink(num)}">${num}</a>
 		</li>	
 	</c:forEach>

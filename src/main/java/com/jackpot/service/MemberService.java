@@ -20,5 +20,6 @@ public interface MemberService {
 	public int delete(String memberId)throws IOException;
 
 	public List<MemberVO> getList() throws IOException;
-
+	
+	public Long getMemberIdByLoginId(String loginId);
 }

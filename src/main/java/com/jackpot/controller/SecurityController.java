@@ -119,7 +119,6 @@ public class SecurityController {
     	MemberVO member = memberService.get(principal.getName());
         model.addAttribute("member", member);
         model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
-        model.addAttribute("appointmentList", appointmentService.getListByHostId(member.getMemberId()));
         log.info("mypage");
 
     }
@@ -178,7 +177,7 @@ public class SecurityController {
     	}
     	memberService.pwdupdate(member);
     	model.addAttribute("result", "success");
-    	log.info("updateed=====================================================");
+    	log.info("updated=====================================================");
     	return "/security/pwdupdate";
     }
 

@@ -53,4 +53,6 @@
 		where member_id = #{memberId}
 	</select>
 	
+
+	
 </mapper>
