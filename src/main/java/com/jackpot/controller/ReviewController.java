@@ -1,5 +1,6 @@
 package com.jackpot.controller;
 
+import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.jackpot.domain.NoticeCriteria;
-import com.jackpot.domain.NoticeVO;
+import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.domain.ReviewPageDTO;
 import com.jackpot.domain.ReviewVO;
+import com.jackpot.service.MemberService;
 import com.jackpot.service.ReviewService;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ import lombok.extern.log4j.Log4j;
 public class ReviewController {
 	
 	private ReviewService service;
+	private MemberService memberService;
 	
 	@ModelAttribute("searchTypes")
 	public Map<String, String> searchTypes() {
@@ -48,11 +50,23 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void list(@ModelAttribute("cri") ReviewCriteria cri, @ModelAttribute("review") ReviewVO review, Model model) {
-		log.info("list: " + cri);
-		log.info("list: " + review);
+	public void list(@ModelAttribute("cri") ReviewCriteria cri,
+			@ModelAttribute("review") ReviewVO review,
+			@ModelAttribute("member") MemberVO member,
+			Principal principal,
+			Model model) {
+		
+		/* member.setLoginId(principal.getName()); */
+
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("average", service.getAverage(review));
+		model.addAttribute("average", service.getAverage());
+		/* model.addAttribute("member", member); */
+		model.addAttribute("member", memberService.get(principal.getName()));
+		
+		log.info("list..........................: " + cri);
+		log.info("reviewModify: " + review);
+		log.info("member...................: " + memberService.get(principal.getName()));
+		log.info("principal.......................: " + principal);
 		
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
@@ -66,21 +80,25 @@ public class ReviewController {
 		log.info("register");
 	}
 
-	@PostMapping("/register") // POST 요청의 리턴 타입은 String
-	public String register(
+	@PostMapping("/list") // POST 요청의 리턴 타입은 String
+	public String list(
 			@Valid @ModelAttribute("review") ReviewVO review,
+			@ModelAttribute("member") MemberVO member,
+			Principal principal,
 			Errors errors,
 			RedirectAttributes rttr) throws Exception {
 		log.info("register: " + review);
 		if(errors.hasErrors()) {
-			return "review/register";
+			return "/";
 		}
 		
 		service.register(review);
 		
 		rttr.addFlashAttribute("result", review.getReviewId());
 		
-		return "redirect:/review/list"; // 요청 url
+		log.info("register: " + review);
+		
+		return "redirect:/?mode=review"; // 요청 url
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
@@ -114,6 +132,6 @@ public class ReviewController {
 		
 		service.remove(reviewId);
 		
-		return "redirect:" + cri.getLink("/review/list"); // 요청 url
+		return "redirect:/?mode=review"; // 요청 url
 	}
 }

@@ -30,12 +30,10 @@ public class DogServiceImpl implements DogService {
 	}
 
 	@Override
-	public void modify(DogVO dog) {
+	public Boolean modify(DogVO dog) {
 		int result = dogMapper.update(dog);
-		Long DogId = dog.getDogId();
-		
-//		return 
-		dogMapper.update(dog);
+
+		return result == 1;
 	}
 
 	@Override
@@ -46,6 +44,11 @@ public class DogServiceImpl implements DogService {
 	@Override
 	public List<DogVO> getList() {
 		return dogMapper.getList();
+	}
+
+	@Override
+	public List<DogVO> getListByMemberId(Long memberId) {
+		return dogMapper.getListByMemberId(memberId);
 	}
 
 }

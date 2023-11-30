@@ -10,8 +10,8 @@
 		<result property="noticeTitle" column="notice_title" />
 		<result property="noticeContent" column="notice_content" />
 		<result property="memberId" column="member_id" />
-		<result property="memberloginId" column="login_id" />
-		<result property="memberloginPwd" column="login_pwd" />
+		<result property="memberLoginId" column="login_id" />
+		<result property="memberLoginPwd" column="login_pwd" />
 		<result property="regDate" column="reg_date" />
 		<result property="updateDate" column="update_date" />
 	</resultMap>
@@ -47,13 +47,13 @@
 		delete from notice where notice_id = #{noticeId}
 	</delete>
 	
-	<select id="getList" resultType="com.jackpot.domain.NoticeVO">
+	<select id="getList" resultType="com.jackpot.domain.NoticeVO" resultMap="noticeMap">
 		select * from notice
 		order by notice_id desc
 		limit 0, 10
 	</select>
 
-	<select id="getListWithPaging" resultType="NoticeVO">
+	<select id="getListWithPaging" resultType="NoticeVO" resultMap="noticeMap">
 		select notice_id, notice_title, notice_content, notice.member_id, member.login_id, member.login_pwd, reg_date, update_date
 		from notice left outer join member
 		on notice.member_id = member.member_id

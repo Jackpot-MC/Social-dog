@@ -1,5 +1,9 @@
 package com.jackpot.domain;
 
+import java.util.Date;
+
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +12,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppointmentVO {
+
 	private Long appointmentId;
+	@NotBlank(message = "약속 이름은 필수 항목입니다.")
 	private String appointmentName;
-	private String appointmentDate;
 	private Long placeId;
 	private Long hostId;
+	private Date regDate;
+
+	private String placeSpot;
+	private String placeName;
+	private String placeTypeName;
+	
+	private Long participantId;
+	private Long memberId;
+	private String memberName;
 }

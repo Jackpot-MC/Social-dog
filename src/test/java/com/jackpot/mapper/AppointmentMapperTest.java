@@ -2,6 +2,7 @@ package com.jackpot.mapper;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -26,30 +27,30 @@ public class AppointmentMapperTest {
 	@Autowired
 	AppointmentMapper appointmentMapper;
 	
-//	@Test
+	@Test
 	public void testCreate() {
 		System.out.println("testCreate()");
 		AppointmentVO appointment = new AppointmentVO();
-		appointment.setAppointmentDate("2023-11-11");
+		appointment.setRegDate(new Date());
 		appointment.setAppointmentName("새로 생성한 약속");
 		appointment.setHostId(2L);
 		appointment.setPlaceId(1L);
-		appointmentMapper.insertSelectKey(appointment);
+		appointmentMapper.insert(appointment);
 	}
 
-//	@Test
+	@Test
 	public void testGet() {
 		System.out.println("testGet()");
-		AppointmentVO appointment = appointmentMapper.get(1L);
+		AppointmentVO appointment = appointmentMapper.read(5L);
 		log.info(appointment);
 	}
 
-//	@Test
+	@Test
 	public void testUpdate() {
 		System.out.println("testUpdate()");
 		AppointmentVO appointment = new AppointmentVO();
 		appointment.setAppointmentId(1L);
-		appointment.setAppointmentDate("2023-11-12");
+		appointment.setRegDate(new Date());
 		appointment.setAppointmentName("수정한 약속");
 		appointment.setHostId(2L);
 		appointment.setPlaceId(1L);
@@ -57,7 +58,7 @@ public class AppointmentMapperTest {
 		log.info(chk_success);
 	}
 
-//	@Test
+	@Test
 	public void testDelete() {
 		System.out.println("testDelete()");
 		boolean chk_success = appointmentMapper.delete(1L);
@@ -73,9 +74,5 @@ public class AppointmentMapperTest {
 		}
 	}
 
-//	@Test
-	public void testInsertSelectKey() {
-		fail("Not yet implemented");
-	}
 
 }

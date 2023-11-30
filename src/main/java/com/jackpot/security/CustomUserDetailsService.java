@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    MemberMapper memberMapper;
+    private MemberMapper memberMapper;
 
     @Override
     public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {

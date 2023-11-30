@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ParticipantVO {
 	private Long participantId;
-	private Long memberId;
 	private Long appointmentId;
 
+	private String memberName;
+	private String memberAddress;
 }

@@ -2,18 +2,32 @@ package com.jackpot.mapper;
 
 import java.util.List;
 
+import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
+import com.jackpot.domain.ParticipantVO;
 
 public interface AppointmentMapper {
-	public void create(AppointmentVO appointment);
+	public void insert(AppointmentVO appointment);
 
-	public AppointmentVO get(Long appointmentId);
+	public AppointmentVO read(Long appointmentId);
 
 	public int update(AppointmentVO appointment);
 	
 	public boolean delete(Long appointmentId);
 
 	public List<AppointmentVO> getList();
-
-	public void insertSelectKey(AppointmentVO appointment);
+	
+	public List<AppointmentVO> getListWithPaging(AppointmentCriteria cri);
+	
+	public int getTotalCount(AppointmentCriteria cri);
+	
+	public List<ParticipantVO> getParticipantList(Long appointmentId);
+	
+	public Long getMemberId(String loginId);
+	
+	public void attend(Long appointmentId, Long memberId);
+	
+	public boolean absent(Long participantId, Long memberId);
+	
+	public int checkAttendance(Long appointmentId, Long memberId);
 }

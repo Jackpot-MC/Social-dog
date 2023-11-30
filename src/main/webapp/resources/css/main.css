@@ -11,7 +11,6 @@
 	border-radius: 50%;
 }
 
-
 /* footer 하단 고정*/
 html, body {
     height: 100%
@@ -29,6 +28,15 @@ footer {
 }
 
 
+#nav-text {
+	font-size: 16px;
+	color : #fff;
+}
+
+#nav-text:hover {
+	font-size: 16px;
+	color : #6e2e1a;
+}
 
 키워드로 장소검색하고 목록으로 표출하기
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
@@ -107,14 +115,14 @@ footer {
     color:black;
 }
 
-  .modal-dialog {
+  .place-detail-modal-dialog {
     width: 100%;
     max-width: none;
     height: 100%;
     margin: 0;
   }
   
-  .modal-content {
+  .place-detail-modal-content {
     height: 100%;
     border: 0;
     border-radius: 0;
