@@ -56,7 +56,7 @@
                            <%--  <span class="widget-49-pro-title">${appointment.appointmentName}</span> --%>
                             <div class="widget-49-date-primary">
                             	<span class="widget-49-meeting-time">시간 | 
-                            	<fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${appointment.regDate}"/></span>
+                            	<fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${appointment.appointmentDate}"/></span>
                         	</div>
                         </div>
                     </div>

@@ -8,7 +8,7 @@
 		<id property="appointmentId" column="appointment_id" />
 <!-- 		<result property="appointmentId" column="appointment_id" /> -->
 		<result property="appointmentName" column="appointment_name" />
-		<result property="regDate" column="appointment_date" />
+		<result property="appointmentDate" column="appointment_date" />
 		<result property="placeId" column="place_id" />
 		<result property="hostId" column="host_id" />
 		<result property="participantId" column="participant_id" />
@@ -35,7 +35,7 @@
 		update appointment
 		set appointment_name =
 		#{appointmentName},
-		appointment_date = #{regDate},
+		appointment_date = #{appointmentDate},
 		place_id =
 		#{placeId}
 		where appointment_id = #{appointmentId}
@@ -43,8 +43,8 @@
 
 	<select id="read" resultType="AppointmentVO">
 		select appointment_id,
-		appointment_name, appointment_date as reg_date, place.place_spot,
-		place.place_name, host_id, login_id
+		appointment_name, appointment_date, place.place_spot,
+		place.place_name, member_name
 		from
 		appointment
 		left outer join member
@@ -74,7 +74,7 @@
 
 	<select id="getListWithPaging" resultType="AppointmentVO">
 		select appointment_id,
-		appointment_name, appointment_date as reg_date,
+		appointment_name, appointment_date,
 		appointment.place_id,
 		host_id,
 		member.member_name,
@@ -132,6 +132,7 @@
 		left outer join participant
 		on member.member_id = participant.member_id
 		where login_id = #{login_id}
+		limit 1
 	</select>
 	
 	<insert id="attend">

@@ -110,17 +110,17 @@ public class AppointmentController {
 	public String modify(
 			@Valid @ModelAttribute("appointment") AppointmentVO appointment,
 			Errors errors,
-			@ModelAttribute("cri") AppointmentCriteria cri,
 			RedirectAttributes rttr) throws Exception{
 		log.info("modify:" + appointment);
 		if(errors.hasErrors()) {
+			log.info(errors);
 			return "appointment/modify";
 		}
 		if (service.modify(appointment)) {
 			// Flash --> 1회성
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:" + cri.getLinkWithAppointmentId("/appointment/get", appointment.getAppointmentId());
+		return "redirect:/appointment/get?appointmentId=" + appointment.getAppointmentId();
 	}
 	
 	@PostMapping("/remove")
