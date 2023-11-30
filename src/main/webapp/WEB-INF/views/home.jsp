@@ -68,8 +68,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
           pattern="yyyy-MM-dd"
           value="${noticeLatest.regDate}"
         />}] ${noticeLatest.noticeTitle}
-      </h3></a
-    >
+      </h3></a>
   </div>
 </div>
 
