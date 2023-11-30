@@ -18,7 +18,7 @@
 							content like CONCAT('%',#{keyword},'%')
 						</when>
 						<when test="type == 'W'.toString()">
-							loginId like CONCAT('%',#{keyword},'%')
+							login_id like CONCAT('%',#{keyword},'%')
 						</when>
 					</choose>
 				</trim>
@@ -31,16 +31,14 @@
 		<![CDATA[select * from board]]> <!-- CDATA = Compiled data 컴파일된 데이터 -->
 	</select>
 
-
-
 	<insert id="insert">
-		insert into board (title, content, loginId)
+		insert into board (title, content, login_id)
 		values
 		(#{title}, #{content}, #{loginId})
 	</insert>
 
 	<insert id="insertSelectKey">
-		insert into board (title, content, loginId)
+		insert into board (title, content, login_id)
 		values (#{title},
 		#{content}, #{loginId})
 

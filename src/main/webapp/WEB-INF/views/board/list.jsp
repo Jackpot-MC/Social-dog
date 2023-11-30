@@ -49,8 +49,9 @@
 											        <c:out value="${fn:substring(board.content, 0, 147)}"/>...
 										        </c:when>
 										        <c:otherwise>
-											        <c:out value="${board.content}"/>
-										        </c:otherwise>
+											        <c:out value="${board.summary}"></c:out>
+<%-- 											        <p class="card-text">${board.summary}</p>
+ --%>										        </c:otherwise>
 											</c:choose>
 										</span>
 								</td>
