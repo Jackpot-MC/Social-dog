@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			c.reg_date c_reg_date, c.update_date c_update_date,
 			r.no r_no, r.cno, r.content r_content, r.loginId r_loginId,
 			r.reg_date r_reg_date, r.update_date r_update_date
-		from tbl_comment c left outer join tbl_reply r
+		from comment c left outer join tbl_reply r
 			on c.no = r.cno
 		where bno = #{bno}
 	</select>
@@ -40,13 +40,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			c.reg_date c_reg_date, c.update_date c_update_date,
 			r.no r_no, r.cno, r.content r_content, r.loginId r_loginId,
 			r.reg_date r_reg_date, r.update_date r_update_date
-		from tbl_comment c left outer join tbl_reply r
+		from comment c left outer join tbl_reply r
 			on c.no = r.cno
 		where c.no = #{no}
 	</select>
 	
 	<insert id="create">
-		insert into tbl_comment (bno, loginId, content)
+		insert into comment (bno, loginId, content)
 		values(#{bno}, #{loginId}, #{content})
 		<selectKey resultType="Long" keyProperty="no"
 			keyColumn="no" order="AFTER"> <!-- insert 문 안의 selectKey의 역할 중요 -->
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<update id="update">
-		update tbl_comment
+		update comment
 		set
 			content = #{content},
 			update_date = now()
@@ -63,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id = "delete">
-		delete from tbl_comment
+		delete from comment
 		where no = #{no}
 	</delete>
 </mapper>
