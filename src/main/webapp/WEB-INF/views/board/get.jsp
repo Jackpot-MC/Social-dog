@@ -62,7 +62,7 @@ $(document).ready(async function(){
 				<div><i class="fas fa-user"></i>${board.loginId}</div>
 			</div>
 
-		<div class="text-right">
+<%-- 		<div class="text-right">
 			<c:forEach var="file" items="${board.attaches}">
 				<div class="attach-file-item">
 					<a href="/board/download/${file.no}" class="file-link"> <i
@@ -71,7 +71,7 @@ $(document).ready(async function(){
 					</a>
 				</div>
 			</c:forEach>
-		</div>
+		</div> --%>
 		<hr>
 		<div>${board.content}</div>
 

@@ -61,12 +61,12 @@ $(document).ready(function() {
 						<form:errors path="title" cssClass="error" />
 					</div>
 
-					<div class="form-group">
+<!-- 					<div class="form-group">
 						<label for="attaches">첨부파일</label>
 						<div id="attach-list" class="my-1"></div>
-						<!-- 파일 목록 출력 영역 -->
+						파일 목록 출력 영역
 						<input type="file" class="form-control" multiple name="files" />
-					</div>
+					</div> -->
 
 					<div class="form-group">
 						<form:label path="content">내용</form:label>
