@@ -80,9 +80,9 @@
 				<ul id="category">
 					<li id="공원" data-order="0"><span class="category_bg bank"></span>공원</li>
 					<li id="화장실" data-order="1"><span class="category_bg mart"></span>화장실</li>
-					<li id="벤치" data-order="2"><span class="category_bg oil"></span>벤치</li>
-					<li id="배변봉투" data-order="3"><span class="category_bg cafe"></span>배변봉투</li>
-					<li id="동물병원" data-order="4"><span class="category_bg pharmacy"></span>동물병원</li>
+					<li id="벤치" data-order="2"><span class="category_bg pharmacy"></span>벤치</li>
+					<li id="배변봉투" data-order="3"><span class="category_bg oil"></span>배변봉투</li>
+					<li id="동물병원" data-order="4"><span class="category_bg cafe"></span>동물병원</li>
 				</ul>
 			</div>
 
@@ -189,6 +189,10 @@
             fragment = document.createDocumentFragment(),
             bounds = new kakao.maps.LatLngBounds(),
             listStr = '';
+          
+          var order = document
+          .getElementById(currCategory)
+          .getAttribute('data-order');
 
           // 검색 결과 목록에 추가된 항목들을 제거합니다
           removeAllChildNods(listEl);
@@ -199,7 +203,7 @@
           for (var i = 0; i < places.length; i++) {
             // 마커를 생성하고 지도에 표시합니다
             var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-              marker = addMarker(placePosition, i),
+              marker = addMarker(placePosition, order),
               itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
             // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -297,32 +301,6 @@
 
           return marker;
         }
-        
-/*         // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-        function addMarker1(position, order) {
-          var imageSrc =
-              '../resources/images/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-            imageSize = new kakao.maps.Size(27, 28), // 마커 이미지의 크기
-            imgOptions = {
-              spriteSize: new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
-              spriteOrigin: new kakao.maps.Point(46, order * 36), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-              offset: new kakao.maps.Point(11, 28), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-            },
-            markerImage = new kakao.maps.MarkerImage(
-              imageSrc,
-              imageSize,
-              imgOptions
-            ),
-            marker = new kakao.maps.Marker({
-              position: position, // 마커의 위치
-              image: markerImage,
-            });
-
-          marker.setMap(map); // 지도 위에 마커를 표출합니다
-          markers.push(marker); // 배열에 생성된 마커를 추가합니다
-
-          return marker;
-        } */
 
         // 지도 위에 표시되고 있는 마커를 모두 제거합니다
         function removeMarker() {
@@ -488,111 +466,12 @@
           }
         }
 
-        // 지도에 마커를 표출하는 함수입니다
-        function displayPlaces1(places) {
-          // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-          // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-          var order = document
-            .getElementById(currCategory)
-            .getAttribute('data-order');
-
-          for (var i = 0; i < places.length; i++) {
-            // 마커를 생성하고 지도에 표시합니다
-            var marker = addMarker1(
-              new kakao.maps.LatLng(places[i].y, places[i].x),
-              order
-            );
-
-            // 마커와 검색결과 항목을 클릭 했을 때
-            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
-            (function (marker, place) {
-              kakao.maps.event.addListener(marker, 'click', function () {
-                displayPlaceInfo(place);
-              });
-            })(marker, places[i]);
-          }
-        }
-
-        // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-        function addMarker1(position, order) {
-          var imageSrc =
-              '../resources/images/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-            imageSize = new kakao.maps.Size(27, 28), // 마커 이미지의 크기
-            imgOptions = {
-              spriteSize: new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
-              spriteOrigin: new kakao.maps.Point(46, order * 36), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-              offset: new kakao.maps.Point(11, 28), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-            },
-            markerImage = new kakao.maps.MarkerImage(
-              imageSrc,
-              imageSize,
-              imgOptions
-            ),
-            marker = new kakao.maps.Marker({
-              position: position, // 마커의 위치
-              image: markerImage,
-            });
-
-          marker.setMap(map); // 지도 위에 마커를 표출합니다
-          markers.push(marker); // 배열에 생성된 마커를 추가합니다
-
-          return marker;
-        }
-
         // 지도 위에 표시되고 있는 마커를 모두 제거합니다
         function removeMarker1() {
           for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(null);
           }
           markers = [];
-        }
-
-        // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
-        function displayPlaceInfo(place) {
-          var content =
-            '<div class="placeinfo" id="links">' +
-            '   <a class="title" href="' +
-            place.place_url +
-            '" target="_blank" title="' +
-            place.place_name +
-            '">' +
-            place.place_name +
-            '</a>';
-
-          if (place.road_address_name) {
-            content +=
-              '    <span title="' +
-              place.road_address_name +
-              '">' +
-              place.road_address_name +
-              '</span>' +
-              '  <span class="jibun" title="' +
-              place.address_name +
-              '">(지번 : ' +
-              place.address_name +
-              ')</span>';
-          } else {
-            content +=
-              '    <span title="' +
-              place.address_name +
-              '">' +
-              place.address_name +
-              '</span>';
-          }
-
-          content +=
-            '    <span class="tel">' +
-            place.phone +
-            '</span>' +
-            '<button type="button" class="place_btn appointment_btn"> 약속보기 </button>' +
-            '<button type="button" class="place_btn review_btn"> 리뷰보기 </button>' +
-            '<button type="button" class="place_btn place_detail_btn" data-toggle="modal" data-target="#modal-fullscreen-xl"> 상세보기 </button>' +
-            '</div>' +
-            '<div class="after"></div>';
-
-          contentNode.innerHTML = content;
-          placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-          placeOverlay.setMap(map);
         }
 
         // 각 카테고리에 클릭 이벤트를 등록합니다
