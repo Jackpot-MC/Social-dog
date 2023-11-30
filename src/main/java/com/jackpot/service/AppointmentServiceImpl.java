@@ -67,8 +67,28 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public List<AppointmentVO> getListByHostId(Long hostId) {
-		return mapper.getListByHostId(hostId);
+	public void attend(Long appointmentId, Long memberId) {
+		log.info(memberId + "attends " + appointmentId);
+		mapper.attend(appointmentId, memberId);
 	}
 
+	@Transactional(rollbackFor = Exception.class)	
+	@Override
+	public boolean absent(Long appointmentId, Long memberId) {
+		log.info(memberId + "absent from " + appointmentId);
+		return mapper.absent(appointmentId, memberId);
+	}
+
+	@Override
+	public Long getMemberId(String loginId) {
+		log.info("getMemberId: " + loginId);
+		return mapper.getMemberId(loginId);
+	}
+
+	@Override
+	public int checkAttendance(Long appointmentId, Long memberId) {
+		log.info("checkAttendance: Is " + memberId + "in " + appointmentId);
+		return mapper.checkAttendance(appointmentId, memberId);
+	}
+	
 }

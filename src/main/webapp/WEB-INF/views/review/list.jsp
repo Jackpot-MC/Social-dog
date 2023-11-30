@@ -48,13 +48,32 @@
 	} */
 
 	$(document).ready(async function(){		// fetch()를 사용하는 함수에 async 작성. 비동기 함수임을 선언
-		$('.remove').click(function(){ //post라서 .list, .modify와 달리 별도 처리 필요
+		$('.remove-review').click(function(e){ //post라서 .list, .modify와 달리 별도 처리 필요
+				e.preventDefault();	
 				if(!confirm('정말 삭제할까요?')) return;
 				
 				//form을 얻어서 submit() 호출
 				//console.log(document.forms);
-				document.forms.removeForm.submit();
+				$(this).document.forms.removeFormReview.submit();
 			});
+	
+		$('.comment-add-btn').click(function(e) {
+			// 1.ajax || fetch 써서 컨트롤러한테 데ㅣ터 달라고 하기 
+			// 2. 데잍어 가져왓으면 dom 조작해서 가져온 데이터 뿌리기 (this)
+			// 
+			
+			// dom
+			
+			createComment(bno, writer);
+			
+			
+		});
+		
+		function deleteRow(ths){
+		    var ths = $(ths);
+		    
+		    ths.document.forms.removeFormReview.submit();
+		};
 	
 </script>
 
@@ -73,9 +92,11 @@
                     	</div>
                 </div>
             </div>
-            
+        
+        <!-- 리뷰 작성하기 모달 윈도우 버튼 -->
         <button type="button" class="btn review-comment-btn" data-toggle="modal" data-target="#review-comment-form"> 리뷰 작성하기 </button>
           
+        <!-- 리뷰 작성하기 모달 윈도우 -->
 		<div class="modal fade" id="review-comment-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		    <div class="modal-dialog modal-dialog-centered" role="document">
 		        <div class="modal-content review-comment-content">
@@ -85,9 +106,48 @@
 		                <h4>리뷰를 작성해 주세요!</h4>
 		                <form:form modelAttribute="review"
 							id="review_comment_form">
-
-						<input type="hidden" name="memberLoginId" value="${member.loginId}"/>
-						<input type="hidden" name="placeId" value="14"/>
+						<form:hidden path="memberLoginId" value="${member.loginId}"/>
+						<form:hidden path="placeId" value="14"/>
+						
+ 		                    <div class="review-comment-rating form-group">
+						        <form:radiobutton name="rating" path="rating" value="5" id="5"/><label for="5">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="4" id="4"/><label for="4">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="3" id="3"/><label for="3">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="2" id="2"/><label for="2">☆</label>
+						        <form:radiobutton name="rating" path="rating" value="1" id="1"/><label for="1">☆</label>
+						    </div>
+								                
+		                <div class="form-group">
+							<form:label path="reviewTitle">제목</form:label>
+			            	<form:input path="reviewTitle" cssClass="form-control"/>
+							<form:errors path="reviewTitle" cssClass="error" />
+						</div>
+		                
+		                <div class="comment-area review-comment-area form-group">
+		                내용 <form:textarea path="reviewContent" rows="4"/>
+		                </div>
+		                    
+		                    <div class="text-center mt-4"> <button class="btn review-comment-btn-send px-5">작성완료<i class="fa fa-long-arrow-right ml-1"></i></button>
+			            </div>
+			            </form:form>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+		
+		<!-- 리뷰 수정하기 모달 윈도우 -->
+		<div class="modal fade" id="review-modify-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		    <div class="modal-dialog modal-dialog-centered" role="document">
+		        <div class="modal-content review-comment-content">
+		            <div class="text-right review-cross" data-dismiss="modal" aria-label="Close"> <i class="fa fa-times mr-2"></i> </div>
+		            <div class="card-body review-comment-card-body text-center"> <i class="fa-solid fa-dog fa-2xl" style="color: #ffc107;"></i>
+		                <div class="comment-box review-comment-box text-center mt-2">
+		                <h4>리뷰를 작성해 주세요!</h4>
+		                <form:form modelAttribute="review"
+							id="review_comment_form">
+						<form:hidden path="memberLoginId" value="${member.loginId}"/>
+						<form:hidden path="placeId" value="14"/>
 						
  		                    <div class="review-comment-rating form-group">
 						        <form:radiobutton name="rating" path="rating" value="5" id="5"/><label for="5">☆</label>
@@ -143,13 +203,15 @@
                     <h5 class="blue-text mt-1">"${review.reviewTitle}"</h5>
                     <p class="content-text">${review.reviewContent}</p>
                 
- <%--                <c:if test="${review.memberLoginId eq member.loginId}"> --%>
- [${member.loginId}] [${review.memberLoginId}]
-	                <div class="ml-auto">
-	                   <a href="#" class="btn remove">
+                <div class="ml-auto">
+				<c:if test="${review.memberLoginId eq member.loginId}">
+	                   <a href="#" class="btn review-modify" data-toggle="modal" data-target="#review-modify-form">
+	                   <i class="fa-solid fa-pen-to-square" style="color: #cfd8dc;"></i></a>
+	                   <a href="#" class="btn remove-review">
+	                   <button type="button" onclick="deleteRow(this);">X</button>           
 	                   <i class="fa-solid fa-trash" style="color: #cfd8dc;"></i></a>
-	                </div>
-	<%--             </c:if> --%>
+				</c:if>
+				</div>
                 </div>
             </div>
            </c:forEach>
@@ -158,7 +220,7 @@
 
            <button type="button" class="btn review-load-btn" id="review-load-btn"> 더보기 </button>
            
-           <form action="remove" method="post" name="removeForm">
+           <form action="remove-review" method="post" name="removeFormReview">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input type="hidden" name="reviewId" value="${review.reviewId}" />
 				<input type="hidden" name="pageNum" value="${cri.pageNum}" />

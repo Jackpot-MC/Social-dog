@@ -64,8 +64,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int getAverage(ReviewVO review) {
-		return mapper.getAverage(review);
+	public int getAverage() {
+		return mapper.getAverage();
 	}
 
 }

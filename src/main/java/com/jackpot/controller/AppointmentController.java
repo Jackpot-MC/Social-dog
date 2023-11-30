@@ -1,10 +1,12 @@
 package com.jackpot.controller;
 
+import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -47,7 +49,7 @@ public class AppointmentController {
 
 	
 	@GetMapping("/list") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Model model) {
+	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
 		
@@ -55,6 +57,11 @@ public class AppointmentController {
 		log.info("total: " + total);
 		
 		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
+		
+		String loginId = principal.getName();
+		
+		log.info("getMemberId");
+		model.addAttribute("memberId", service.getMemberId(loginId));
 	}
 	
 	@GetMapping("/register") // 로직이 없어서 Test X
@@ -80,12 +87,23 @@ public class AppointmentController {
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
-	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri, Model model) {
+	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
+		
+		String loginId = principal.getName();
+		
+		Long memberId = service.getMemberId(loginId);
+		
 		log.info("/get or modify");
 		model.addAttribute("appointment", service.get(appointmentId));
 		
 		log.info("getParticipantList");
 		model.addAttribute("list", service.getParticipantList(appointmentId));
+		
+		log.info("getMemberId");
+		model.addAttribute("memberId", memberId);
+		
+		log.info("checkAttendance");
+		model.addAttribute("checkAttendance", service.checkAttendance(appointmentId, memberId));
 	}
 	
 	@PostMapping("/modify")
@@ -114,5 +132,38 @@ public class AppointmentController {
 		service.remove(appointmentId);
 		
 		return "redirect:" + cri.getLink("/appointment/list"); // 요청 url
+	}
+	
+	@PostMapping("/attend")
+	public String attend(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId, Model model) {
+		
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("appointmentId", appointmentId);
+
+		service.attend(appointmentId, memberId);
+		
+		return "redirect:/appointment/get?appointmentId=" + appointmentId;
+	}
+	
+	@GetMapping("/attend_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
+	public void attend_appointment(@ModelAttribute("cri") AppointmentCriteria cri, Model model) {
+		log.info("list: " + cri);
+		model.addAttribute("list", service.getList(cri));
+		
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		
+		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
+}
+  
+	@PostMapping("/absent")
+	public String absent(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId, Model model) {
+		
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("appointmentId", appointmentId);
+
+		service.absent(appointmentId, memberId);
+		
+		return "redirect:/appointment/get?appointmentId=" + appointmentId;
 	}
 }

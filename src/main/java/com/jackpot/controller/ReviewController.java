@@ -50,19 +50,22 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void list(@ModelAttribute("cri") ReviewCriteria cri, 
+	public void list(@ModelAttribute("cri") ReviewCriteria cri,
 			@ModelAttribute("review") ReviewVO review,
-			@ModelAttribute("member") MemberVO member,
 			Principal principal,
 			Model model) {
 		
-		member.setLoginId(principal.getName());
-		log.info("list: " + cri);
-		log.info("list: " + review);
+		/* member.setLoginId(principal.getName()); */
+
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("list-load", service.getList(cri));
-		model.addAttribute("average", service.getAverage(review));
-		model.addAttribute("member", member);
+		model.addAttribute("average", service.getAverage());
+		/* model.addAttribute("member", member); */
+		model.addAttribute("member", memberService.get(principal.getName()));
+		
+		log.info("list..........................: " + cri);
+		log.info("reviewModify: " + review);
+		log.info("member...................: " + memberService.get(principal.getName()));
+		log.info("principal.......................: " + principal);
 		
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
@@ -79,6 +82,7 @@ public class ReviewController {
 	@PostMapping("/list") // POST 요청의 리턴 타입은 String
 	public String list(
 			@Valid @ModelAttribute("review") ReviewVO review,
+			Principal principal,
 			Errors errors,
 			RedirectAttributes rttr) throws Exception {
 		log.info("register: " + review);
@@ -126,6 +130,6 @@ public class ReviewController {
 		
 		service.remove(reviewId);
 		
-		return "redirect:" + cri.getLink("/review/list"); // 요청 url
+		return "redirect:/?mode=review"; // 요청 url
 	}
 }
