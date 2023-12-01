@@ -23,9 +23,7 @@
 				<i class="far fa-edit"></i>내 강아지를 등록해주세요!
 			</h4>
 
-			<form:form modelAttribute="dog"
-				action="/dog/register?_csrf=${_csrf.token}"
-				enctype="multipart/form-data" id="myForm">
+			<form:form modelAttribute="dog" action="/dog/register?_csrf=${_csrf.token}" id="myForm">
 
 				<form:hidden path="memberId" value="${dog.memberId}" />
 
@@ -52,12 +50,18 @@
 					<form:textarea path="dogDescription" cssClass="form-control"></form:textarea>
 					<form:errors path="dogDescription" cssClass="error" />
 				</div>
+				
+				<div class="form-group row">
+					<label class="">강아지 프로필 사진</label>
+					<input type="file" class="form-control" name="dogPhotoPath" value="${dog.dogPhotoPath}" >
+				</div>	
 
 				<!--  Modal Footer -->
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-dark" id="editBtn">등록</button>
 					<button type="button" class="btn btn-dark" data-dismiss="modal">취소</button>
 				</div>
+				
 
 			</form:form>
 		</div>
