@@ -41,10 +41,11 @@
 			</div>
 		    
 		    <!-- Modal -->
-			<div class="modal fade" id="registerModal" tabindex="-1"
+			<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
 				aria-labelledby="registerModalLabel" aria-hidden="true">
-				<div class="model-dialog">
-					<div class="modal-content" style="width:500px;  transform: translate(100%, 20%);">
+				<div class="modal-dialog modal-dialog-centered">
+				
+					<div class="modal-content" >
 						<!-- 강아지 등록 페이지 /dog/register.jsp -->
 					</div>
 				</div>
@@ -61,7 +62,7 @@
 								<ul style="list-style:none; padding-left:3px;">
 								<li>견종: ${dog.dogKind}</li>
 	              				<li>생일: <fmt:formatDate pattern="yyyy-MM-dd" value="${dog.dogBirth}"/></li>
-								<li>관심사: ${dog.dogFavorite}</li>
+								<%-- <li>관심사: ${dog.dogFavorite}</li> --%>
 								<li>소개: ${dog.dogDescription}</li>
 								</ul>
 							</div>
