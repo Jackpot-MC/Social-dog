@@ -20,9 +20,7 @@
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="/security/mypage">마이페이지</a></li>
 			<li class="nav-item"><a class="nav-link" href="/security/profile">내 정보 수정</a></li>
-			<li class="nav-item"><a class="nav-link" href="/dog/modify">강아지 정보 수정</a></li>
 			<li class="nav-item"><a class="nav-link" href="/security/pwdupdate">비밀번호 변경</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">즐겨찾는 장소</a></li>
 		</ul>
 	</nav>
 </section>

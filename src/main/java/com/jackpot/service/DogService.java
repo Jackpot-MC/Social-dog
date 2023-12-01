@@ -11,10 +11,10 @@ public interface DogService {
 	public void register(DogVO dog);
 
 	// 조회
-	public DogVO get(Long dogId);
+	public DogVO get(Long memberId);
 
 	// 수정
-	public Boolean modify(DogVO dog);
+	public void modify(DogVO dog);
 
 	// 삭제
 	public boolean remove(Long dogId);
@@ -22,4 +22,5 @@ public interface DogService {
 	public List<DogVO> getList();
 	
 	public List<DogVO> getListByMemberId(Long memberId);
+	
 }
