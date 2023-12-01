@@ -150,6 +150,7 @@
             return false;
           }
           // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+          console.log("searchPlaces call keywordSearch")
           ps.keywordSearch(keyword, placesSearchCB, options);
         }
 
@@ -169,8 +170,9 @@
           if (status === kakao.maps.services.Status.OK) {
             // 정상적으로 검색이 완료됐으면
             // 검색 목록과 마커를 표출합니다
-            displayPlaces(data);
-
+            console.log("======")
+           	displayPlaces(data);
+            console.log("======>>>>>>>>>>")
             // 페이지 번호를 표출합니다
             displayPagination(pagination);
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
@@ -381,7 +383,6 @@
                 '</span>' +
                 '<button type="button" class="place_btn appointment_btn"> 약속보기 </button>' +
                 '<button type="button" class="place_btn review_btn"> 리뷰보기 </button>' +
-                '<button type="button" class="place_btn place_detail_btn" data-toggle="modal" data-target="#modal-fullscreen-xl"> 상세보기 </button>' +
                 '</div>' +
                 '<div class="after"></div>';
 
@@ -399,7 +400,7 @@
 
         // ------------------ 카테고리별 장소 검색-------------------------
         // 지도에 idle 이벤트를 등록합니다
-        kakao.maps.event.addListener(map, 'idle', searchPlaces1);
+        // kakao.maps.event.addListener(map, 'idle', searchPlaces1);
 
         // 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다
         contentNode.className = 'placeinfo_wrap';
@@ -450,6 +451,7 @@
             alert('키워드를 입력해주세요!');
             return false;
           }
+          console.log("searchPlaces1 call keywordSearch")
           // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
           ps.keywordSearch(keyword, placesSearchCB, options);
         }
