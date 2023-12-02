@@ -104,9 +104,8 @@
 					</div>
 				</div>
 			</div>
-
+			<!-- 카카오맵 API 관련 코드 -->
 			<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2ef21ecaf963e1478e980c3e9d76aab&libraries=services,clusterer"></script>
-			<!-- 카카오맵 API .JS 코드 -->
 			<script src="/resources/js/map.js"></script>
 		</div>
 	</div>
