@@ -72,11 +72,15 @@ public class DogController {
         model.addAttribute("list", service.getList());
     }
 
-    @GetMapping({"/get", "/modify"})
+    @GetMapping("/get")
     public void get(@RequestParam("memberId") Long memberId, Model model) {
-        log.info("get or modify ");
+        log.info("get ");
     }
-
+    
+    @GetMapping("/modify")
+    public void modify(@RequestParam("memberId") Long memberId, Model model) {
+        log.info("modify ");
+    }
     
     @PostMapping("/modify")
     public String modify(
