@@ -1,12 +1,16 @@
 package com.jackpot.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -14,24 +18,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentPageDTO;
 import com.jackpot.domain.AppointmentVO;
+import com.jackpot.domain.MemberVO;
+import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.service.AppointmentService;
+import com.jackpot.service.MemberService;
+import com.jackpot.service.NoticeService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/appointment")
+/* @RequestMapping("/appointment") */
 @AllArgsConstructor
 public class AppointmentController {
 
 	private AppointmentService service;
+	
+	private MemberService memberService;
+	
+	private NoticeService noticeService;
 
 	@ModelAttribute("searchTypes")
 	public Map<String, String> searchTypes() {
@@ -47,7 +60,7 @@ public class AppointmentController {
 		return map;
 	}
 
-	@GetMapping("/list") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
+	@GetMapping("/appointment/list") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
 	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
@@ -63,12 +76,12 @@ public class AppointmentController {
 		model.addAttribute("memberId", service.getMemberId(loginId));
 	}
 
-	@GetMapping("/register") // 로직이 없어서 Test X
+	@GetMapping("/appointment/register") // 로직이 없어서 Test X
 	public void register(@ModelAttribute("appointment") AppointmentVO appointment) {
 		log.info("register");
 	}
 
-	@PostMapping("/register") // POST 요청의 리턴 타입은 String
+	@PostMapping("/appointment/register") // POST 요청의 리턴 타입은 String
 	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, Errors errors,
 			RedirectAttributes rttr) throws Exception {
 		log.info("register: " + appointment);
@@ -83,7 +96,7 @@ public class AppointmentController {
 		return "redirect:/appointment/list"; // 요청 url
 	}
 
-	@GetMapping({ "/get", "/modify" }) // get : 상세보기, modify: 수정 화면으로 가기
+	@GetMapping({ "/appointment/get", "/appointment/modify" }) // get : 상세보기, modify: 수정 화면으로 가기
 	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri,
 			Principal principal, Model model) {
 
@@ -104,7 +117,7 @@ public class AppointmentController {
 		model.addAttribute("checkAttendance", service.checkAttendance(appointmentId, memberId));
 	}
 
-	@PostMapping("/modify")
+	@PostMapping("/appointment/modify")
 	public String modify(@Valid @ModelAttribute("appointment") AppointmentVO appointment, Errors errors,
 			RedirectAttributes rttr) throws Exception {
 		log.info("modify:" + appointment);
@@ -119,7 +132,7 @@ public class AppointmentController {
 		return "redirect:/appointment/get?appointmentId=" + appointment.getAppointmentId();
 	}
 
-	@PostMapping("/remove")
+	@PostMapping("/appointment/remove")
 	public String remove(@RequestParam("appointmentId") Long appointmentId,
 			@ModelAttribute("cri") AppointmentCriteria cri, RedirectAttributes rttr) {
 		log.info("remove..." + appointmentId);
@@ -129,7 +142,7 @@ public class AppointmentController {
 		return "redirect:" + cri.getLink("/appointment/list"); // 요청 url
 	}
 
-	@PostMapping("/attend")
+	@PostMapping("/appointment/attend")
 	public String attend(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId,
 			Model model) {
 
@@ -141,7 +154,7 @@ public class AppointmentController {
 		return "redirect:/appointment/get?appointmentId=" + appointmentId;
 	}
 
-	@GetMapping("/attend_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
+	@GetMapping("/appointment/attend_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
 	public void attend_appointment(@ModelAttribute("cri") AppointmentCriteria cri, Model model) {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
@@ -152,7 +165,7 @@ public class AppointmentController {
 		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
 	}
 
-	@GetMapping("/my_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
+	@GetMapping("/appointment/my_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
 	public void my_appointment(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
 		log.info("my_appointment: " + cri);
 
@@ -169,7 +182,7 @@ public class AppointmentController {
 		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
 	}
 
-	@PostMapping("/absent")
+	@PostMapping("/appointment/absent")
 	public String absent(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId,
 			Model model) {
 
@@ -179,5 +192,12 @@ public class AppointmentController {
 		service.absent(appointmentId, memberId);
 
 		return "redirect:/appointment/get?appointmentId=" + appointmentId;
+	}
+	
+	@GetMapping("/walk")
+	public void walk(@ModelAttribute("member") MemberVO member, Model model) {
+
+		model.addAttribute("member", memberService.get(member.getMemberAddress()));
+		
 	}
 }
