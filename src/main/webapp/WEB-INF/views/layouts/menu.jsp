@@ -14,9 +14,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<!--메뉴구성-->
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="#">산책하기</a></li>
+			<li class="nav-item"><a class="nav-link" id="nav-text" href="/walk">산책하기</a></li>
 			<li class="nav-item"><a class="nav-link" id="nav-text" href="/appointment/my_appointment">나의약속</a></li>
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="#">산책기록</a></li>
+			<li class="nav-item"><a class="nav-link" id="nav-text" href="/appointment/attend_appointment">산책기록</a></li>
 			<li class="nav-item"><a class="nav-link" id="nav-text" href="/board/list">커뮤니티</a>
 			<li class="nav-item"><a class="nav-link" id="nav-text" href="/notice/list">공지사항</a>	</li>
 		</ul>
