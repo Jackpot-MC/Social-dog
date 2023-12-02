@@ -22,8 +22,8 @@
 		insert into appointment (appointment_name, appointment_date, place_id,
 		host_id)
 		values
-		(#{appointment_name}, #{reg_date}, #{place_id},
-		#{host_id} )
+		(#{appointmentName}, #{appointmentDate}, #{placeId},
+		#{hostId} )
 
 		<selectKey resultType="Long" keyProperty="appointmentId"
 			keyColumn="appointment_id" order="AFTER">
