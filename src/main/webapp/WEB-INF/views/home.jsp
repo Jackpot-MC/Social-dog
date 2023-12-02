@@ -38,13 +38,55 @@
 	});
 </script>
 
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/resources/images/banner01.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h2 class="our_text">새로 나온 반려견 간식</h2>
+        <h1 class="gifts_text">건강한 오리 육포</h1>
+        <p class="standerd_text">엄선된 오리 고기로만 만들었습니다.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/resources/images/banner02.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+		<h2 class="our_text">소중한 반려견 사진 촬영은</h2>
+        <h1 class="gifts_text">앙꼬네 애견 스튜디오</h1>
+        <p class="standerd_text">더 빠른 시간을 살아가는 반려견들을 위한 촬영 스튜디오입니다.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/resources/images/banner03.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+		<h2 class="our_text">놀러오세요</h2>
+        <h1 class="gifts_text">댕댕이 놀이터</h1>
+        <p class="standerd_text">가끔 마음껏 달리고 싶은 대형견들을 위한 놀이터</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </button>
+</div>
+
 <div class="container-fluid">
 	<div class="card" style="background-color: #f7edd5">
 		<a href="${cri.getLinkWithNoticeId('notice/get', noticeLatest.noticeId)}">
 			<h3 class="blue-text mt-1 text-center">
 				[
 				<fmt:formatDate pattern="yyyy-MM-dd" value="${noticeLatest.regDate}" />
-				}] ${noticeLatest.noticeTitle}
+				] ${noticeLatest.noticeTitle}
 			</h3>
 		</a>
 	</div>
@@ -62,7 +104,7 @@
 
 				<!-- 키워드 검색 -->
 				<div id="menu_wrap" class="bg_white">
-					<div class="option">
+<!-- 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
 								키워드 :
@@ -70,7 +112,7 @@
 								<button type="submit">검색하기</button>
 							</form>
 						</div>
-					</div>
+					</div> -->
 					<hr />
 					<ul id="placesList"></ul>
 					<div id="pagination"></div>
@@ -86,24 +128,6 @@
 				</ul>
 			</div>
 
-			<div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<iframe id="embeddedTerm" src="https://place.map.kakao.com/8128910" style="width: 100%; height: 100%"></iframe>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
 			<!-- 카카오맵 API 관련 코드 -->
 			<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2ef21ecaf963e1478e980c3e9d76aab&libraries=services,clusterer"></script>
 			<script src="/resources/js/map.js"></script>
