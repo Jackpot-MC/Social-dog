@@ -18,4 +18,5 @@ public interface DogMapper {
 
 	public List<DogVO> getListByMemberId(Long memberId);
 	
+	public DogVO getDogByDogId(Long dogId);
 }

@@ -78,8 +78,11 @@ public class DogController {
     }
     
     @GetMapping("/modify")
-    public void modify(@RequestParam("memberId") Long memberId, Model model) {
-        log.info("modify ");
+    public void modify(@ModelAttribute("dog") DogVO dog, Model model) {
+        
+    	model.addAttribute("dog", service.getDogByDogId(dog.getDogId()));
+    	log.info("dog get modify---------------------- ");
+        
     }
     
     @PostMapping("/modify")
@@ -87,7 +90,8 @@ public class DogController {
     		@Valid @ModelAttribute("dog") DogVO dog, Principal principal,
     		Errors errors, Model model) throws Exception {
     	
-        log.info("modify post------------" + dog);
+    	
+        log.info("dog modify post------------" + dog);
         String loginId = principal.getName();
         dog.setMemberId(memberService.getMemberIdByLoginId(loginId));
         

@@ -93,49 +93,7 @@
 								aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered">
 									<div class="modal-content">
-
-										<!-- Modal Body -->
-										<div class="modal-body">
-											<div class="modal-body" style="padding: 50px;">
-												<div class="dogModify">
-
-													<h4 style="padding-bottom: 30px; text-align: center;">
-														<i class="far fa-edit"></i>강아지 정보 수정
-													</h4>
-
-													<form action="dog/modify" name="modify" method="post">
-														<input type="hidden" name="id" value="${member.memberId}">
-														<input type="hidden" name="id" value="${dog.dogId}">
-
-														<div class="form-group row">
-															<label class="">이름</label> 
-															<input type="text" class="form-control" name="dogName"	value="${dog.dogName}">
-														</div>
-														<div class="form-group row">
-															<label class="">견종</label> 
-															<input type="text" class="form-control" name="dogKind"	value="${dog.dogKind}">
-														</div>
-														<div class="form-group row">
-															<label>생일</label> 
-															<input type="date" class="form-control" name="dogBirth" value="${dog.dogBirth}" >
-														</div>
-														<div class="form-group row">
-															<label class="">강아지 소개</label> 
-															<input type="text" class="form-control" name="dogDescription" value="${dog.dogDescription}">
-														</div>
-														<div class="form-group row">
-															<label class="">강아지 프로필 사진</label>
-															<input type="file" class="form-control" name="dogPhotoPath" value="${dog.dogPhotoPath}" >
-														</div>
-														<div style="float: right;">
-															<button class="btn btn-dark" type="submit">수정</button>
-															<input class="btn btn-dark" type="button" value="취소" data-dismiss="modal">
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-										<!-- Modal body 끝 -->
+										<!-- dog/modify content -->
 									</div>
 								</div>
 							</div>
@@ -156,4 +114,7 @@
 		$('.modal-content').load("/dog/register");
 	}
 
+	function openModifyModal(){
+		$('.modal-content').load("/dog/modify");
+	}
 </script>
