@@ -33,7 +33,7 @@
 			dog_birth = #{dogBirth}, 
 			dog_photo_path = #{dogPhotoPath}, 
 			dog_description = #{dogDescription}
-		where member_id = #{memberId}
+		where member_id = #{memberId} and dog_id = #{dogId}
 	</update>
 	
 	<delete id="delete">
