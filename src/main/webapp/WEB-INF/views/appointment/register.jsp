@@ -31,7 +31,7 @@ $('#content').summernote('fontName', 'Arial');
 		<form:form modelAttribute="appointment" role="form"
 			action="?_csrf=${_csrf.token}"
 			enctype="multipart/form-data">
-			<form:hidden path="memberLoginId" value="${memberId}"/>
+			<form:hidden path="memberId" value="${memberId}"/>
 			
 				<form:label path="appointmentName">제목</form:label>
 				<form:input path="appointmentName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
