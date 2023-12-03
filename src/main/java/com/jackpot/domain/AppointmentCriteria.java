@@ -63,7 +63,7 @@ public class AppointmentCriteria {
 	}
 	
 	public String getLinkWithAppointmentId(String base, Long appointmentId) { //Criteria에 없는 정보를 더 추가
-		return getLink(base, pageNum) + "&memberId=" + appointmentId;
+		return getLink(base, pageNum) + "&appointmentId=" + appointmentId;
 	}
 	
 }

@@ -27,13 +27,41 @@
 		</header>
 
  <script type="text/javascript"> 
-      // js코드
+	$(document).ready(async function(){		// fetch()를 사용하는 함수에 async 작성. 비동기 함수임을 선언
+		$('.absent-appointment').click(function(e){ //post라서 .list, .modify와 달리 별도 처리 필요
+				e.preventDefault();	
+				if(!confirm('정말 참가 취소할까요?')) return;
+				
+				//form을 얻어서 submit() 호출
+				//console.log(document.forms);
+				$(this).document.forms.absentAppointment.submit();
+			});
+	
+		$('.attend-appointment').click(function(e) {
+			e.preventDefault();	
+			if(!confirm('정말 참가할까요?')) return;
+			
+			//form을 얻어서 submit() 호출
+			//console.log(document.forms);
+			$(this).document.forms.attendAppointment.submit();
+		});
+		
+		function deleteRow(ths){
+		    var ths = $(ths);
+		    
+		    ths.document.forms.removeFormReview.submit();
+		};
+	
 </script>
+	
+	        
 	
 <div class="content container-fluid mx-auto" style="width:100%; height:700px; position:relative;overflow:auto;">
     <div class="row justify-content-center flex-column">
-     <button type="button" class="btn review-comment-btn" style="width:100%; padding:10px; margin:auto;"> 약속 만들기 </button>
-    
+
+    <!-- 약속 작성하기 모달 윈도우 버튼 -->
+        <button type="button" class="btn register-appointment-btn" style="width:100%; padding:10px; margin:auto; data-toggle="modal" onclick="location.href='appointment/register'"> 약속 작성하기 </button>
+
    	 <c:forEach var="appointment" items="${list}">
          <div class="card3 card-margin" style="padding:0;">
             <div class="card-header">
