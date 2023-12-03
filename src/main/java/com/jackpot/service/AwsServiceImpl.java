@@ -109,12 +109,26 @@ public class AwsServiceImpl implements AwsService{
 //    }
 
     @Override
-    public void uploadFile(String folderName, String objectName, String filePath) {
+    public void uploadFile(String objectName, String filePath) {
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(0L);
+        objectMetadata.setContentType("application/x-directory");
+        try{
+            s3.putObject(bucketName, objectName, new File(filePath));
+            System.out.printf("Object %s가 생성되었습니다.\n", objectName);
+        }catch (AmazonS3Exception e){
+            e.printStackTrace();
+        }catch (SdkClientException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void uploadFolder(String folderName) {
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(0L);
         objectMetadata.setContentType("application/x-directory");
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, folderName, new ByteArrayInputStream(new byte[0]), objectMetadata);
-
         try{
             s3.putObject(putObjectRequest);
             System.out.printf("Folder %s가 생성되었습니다.\n", folderName);
@@ -124,14 +138,6 @@ public class AwsServiceImpl implements AwsService{
             e.printStackTrace();
         }
 
-        try{
-            s3.putObject(bucketName, objectName, new File(filePath));
-            System.out.printf("Object %s가 생성되었습니다.\n", objectName);
-        }catch (AmazonS3Exception e){
-            e.printStackTrace();
-        }catch (SdkClientException e){
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -242,5 +248,16 @@ public class AwsServiceImpl implements AwsService{
         } catch (SdkClientException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void copyFolder(String sourceKey, String destinationKey) {
+        CopyObjectRequest copyObjectRequest = new CopyObjectRequest()
+                .withSourceBucketName(bucketName)
+                .withSourceKey(sourceKey)
+                .withDestinationBucketName(bucketName)
+                .withDestinationKey(destinationKey);
+
+        s3.copyObject(copyObjectRequest);
     }
 }

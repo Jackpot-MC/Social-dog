@@ -14,7 +14,7 @@
     <section id="formHolder">
         <div class="d-flex my-3">
             <form:form modelAttribute="dog" action="/dog/modify?_csrf=${_csrf.token}"
-                       style="width:500px" class="mx-auto">
+                       style="width:500px" class="mx-auto" enctype="multipart/form-data">
                 <!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
                 <h1 class="title">강아지 정보 수정</h1>
 

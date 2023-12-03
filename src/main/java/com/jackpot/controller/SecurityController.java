@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.Principal;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import com.jackpot.service.AwsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,9 @@ public class SecurityController {
 
     @Autowired
     private DogService dogService;
+
+    @Autowired
+    private AwsService awsService;
 
     @Autowired
     private AppointmentService appointmentService;
@@ -72,6 +77,7 @@ public class SecurityController {
 		}
 
         memberService.signup(member);
+        awsService.uploadFolder(member.getLoginId());
         return "redirect:/";//루트로 되돌리기
     }
 
@@ -83,9 +89,11 @@ public class SecurityController {
 
     @PostMapping("/update")
     public String update(MemberVO member) throws IOException {
-
+        String sourceKey = member.getLoginId();
         log.info("update post..." + member);
         memberService.update(member);
+        awsService.copyFolder(sourceKey, member.getLoginId());
+        awsService.deleteFile(sourceKey);
         return "redirect:/";
     }
         
