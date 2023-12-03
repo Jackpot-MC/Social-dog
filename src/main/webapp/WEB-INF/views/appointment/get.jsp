@@ -95,7 +95,7 @@
 <br>
 
 <div class="mt-4">
-	<a href="${cri.getLink('list')}" class="btn btn-dark list"> <i
+	<a href="/appointment/my_appointment" class="btn btn-dark list"> <i
 		class="fas fa-list"></i>목록
 	</a> <a
 		href="${cri.getLinkWithAppointmentId('modify', appointment.appointmentId)}"
