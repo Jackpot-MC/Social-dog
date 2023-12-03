@@ -17,7 +17,7 @@
 		<result property="memberAddress" column="member_address" />
 	</resultMap>
 
-	<insert id="insert">
+  
 		insert into appointment (appointment_name, content, appointment_date, place_id, host_id)
 		values (#{appointment_name}, #{content}, #{reg_date}, #{place_id}, #{host_id})
 

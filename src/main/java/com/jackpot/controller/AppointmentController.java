@@ -1,24 +1,17 @@
 package com.jackpot.controller;
 
 import java.security.Principal;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,7 +19,6 @@ import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentPageDTO;
 import com.jackpot.domain.AppointmentVO;
 import com.jackpot.domain.MemberVO;
-import com.jackpot.domain.NoticeCriteria;
 import com.jackpot.service.AppointmentService;
 import com.jackpot.service.MemberService;
 import com.jackpot.service.NoticeService;
@@ -74,16 +66,28 @@ public class AppointmentController {
 
 		log.info("getMemberId");
 		model.addAttribute("memberId", service.getMemberId(loginId));
+		
+		
 	}
 
 	@GetMapping("/appointment/register") // 로직이 없어서 Test X
-	public void register(@ModelAttribute("appointment") AppointmentVO appointment) {
-		log.info("register");
+	public void register(@ModelAttribute("appointment") AppointmentVO appointment, Principal principal, Model model) {
+		String loginId = principal.getName();
+
+		Long hostId = service.getMemberId(loginId);
+		
+		log.info("setHostId" + hostId);
+		model.addAttribute("hostId", hostId);
+		
+		log.info("register" + appointment);
+		
 	}
 
 	@PostMapping("/appointment/register") // POST 요청의 리턴 타입은 String
-	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, Errors errors,
+	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, Errors errors, 
 			RedirectAttributes rttr) throws Exception {
+		
+		
 		log.info("register: " + appointment);
 		if (errors.hasErrors()) {
 			return "appointment/register";
