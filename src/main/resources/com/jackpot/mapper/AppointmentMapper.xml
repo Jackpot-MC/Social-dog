@@ -67,8 +67,7 @@
 
 	<select id="getList" resultType="AppointmentVO">
 		select * from appointment
-		order
-		by appointment_id desc
+		order by appointment_date desc
 		limit 0, 10
 	</select>
 
@@ -93,7 +92,7 @@
 		<where>
 			<include refid="criteria"></include>
 		</where>
-		order by member_id desc
+		order by appointment_date desc
 		limit #{offset}, #{amount}
 	</select>
 
