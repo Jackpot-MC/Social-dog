@@ -31,19 +31,24 @@ $('#content').summernote('fontName', 'Arial');
 		<form:form modelAttribute="appointment" role="form"
 			action="?_csrf=${_csrf.token}"
 			enctype="multipart/form-data">
-			<form:hidden path="memberId" value="${memberId}"/>
-			
+			<form:hidden path="hostId" value="${hostId }"/>
+				
+			<div class="form-group">
 				<form:label path="appointmentName">제목</form:label>
 				<form:input path="appointmentName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
 				<form:errors path="appointmentName" cssClass="error"/>
 			</div>
 
  			<div class="form-group">
-				<form:label path="placeSpot">내용</form:label> <!-- id는 summernote 용 --> 
-				<form:select path="type" items="${searchTypes}" class="form-select rounded-0 ml-1"/>
-				<form:textarea path="placeSpot" cssClass="form-control"></form:textarea>
-				<form:errors path="placeSpot" cssClass="error"/>
+				<form:label path="placeId">약속 장소</form:label> <!-- id는 summernote 용 --> 
+				<form:textarea path="placeId" cssClass="form-control"></form:textarea>
+				<form:errors path="placeId" cssClass="error"/>
 			</div> 
+			
+			<div class="form-group">
+				<form:label path="appointmentDate">약속 날짜</form:label>
+				<form:input type="datetime-local" path="appointmentDate" cssClass="form-control"/>
+			</div>
 			
 			<button type="submit" class="btn btn-primary">
 				<i class="fas fa-undo"></i>확인</button>	
@@ -52,7 +57,9 @@ $('#content').summernote('fontName', 'Arial');
 			<a href="javascript:history.back()" class="btn btn-primary"> <!--history.back() : 캐시된 것을 가져옴-->
 				<i class="fas fa-list"></i>목록</a>
 		</form:form>
+		</div>
+		
 	</div>
-</div>
+
 
 <%@ include file="../layouts/footer.jsp" %>
