@@ -97,7 +97,7 @@ public class AppointmentController {
 
 		rttr.addFlashAttribute("result", appointment.getAppointmentId());
 
-		return "redirect:/appointment/list"; // 요청 url
+		return "redirect:/walk"; // 요청 url
 	}
 
 	@GetMapping({ "/appointment/get", "/appointment/modify" }) // get : 상세보기, modify: 수정 화면으로 가기
@@ -143,7 +143,7 @@ public class AppointmentController {
 
 		service.remove(appointmentId);
 
-		return "redirect:" + cri.getLink("/appointment/list"); // 요청 url
+		return "redirect:" + cri.getLink("/walk"); // 요청 url
 	}
 
 	@PostMapping("/appointment/attend")
