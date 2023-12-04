@@ -78,6 +78,11 @@
 </table>
 <hr>
 
+<div>
+${appointment.content}
+</div>
+<hr>
+
 <h5>${appointment.placeName}</h5>
 <div id="map" style="width: 500px; height: 400px;"></div>
 

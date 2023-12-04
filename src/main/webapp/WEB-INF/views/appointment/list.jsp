@@ -60,7 +60,9 @@
     <div class="row justify-content-center flex-column">
 
     <!-- 약속 작성하기 모달 윈도우 버튼 -->
-        <button type="button" class="btn register-appointment-btn" style="width:100%; padding:10px; margin:auto; data-toggle="modal" onclick="location.href='appointment/register'"> 약속 작성하기 </button>
+        <button type="button" class="btn register-appointment-btn" style="width:100%; padding:10px; margin:auto;"
+                data-toggle="modal" onclick="location.href='appointment/register'"> 약속 작성하기 </button>
+
 
    	 <c:forEach var="appointment" items="${list}">
          <div class="card3 card-margin" style="padding:0;">

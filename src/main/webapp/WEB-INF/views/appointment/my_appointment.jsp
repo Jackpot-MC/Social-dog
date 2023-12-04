@@ -50,7 +50,7 @@
 											        <c:out value="${fn:substring(appointment.placeName, 0, 147)}"/>...
 										        </c:when>
 										        <c:otherwise>
-											        <c:out value="${appointment.placeSpot}"></c:out>
+											        <c:out value="${appointment.content}"></c:out>
 									        </c:otherwise>
 											</c:choose>
 										</span>
