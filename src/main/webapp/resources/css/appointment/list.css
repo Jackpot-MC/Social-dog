@@ -59,13 +59,13 @@ a:hover {
 }
 
 .profile-pic-appointment-list {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 100%;
 }
 
 .card-margin {
-    margin: 12px;
+    margin-top:15px;
 }
 
 .card {
@@ -88,9 +88,14 @@ a:hover {
 .card3 .card-header.no-border {
     border: 0;
 }
+
+.card3{
+    padding-top:10px;
+    padding-bottom:10px;	
+}
 .card3 .card-header {
     background: #f7edd5;
-    padding: 1rem;
+    padding: 5px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -117,14 +122,14 @@ a:hover {
 .widget-49 .widget-49-title-wrapper .widget-49-date-primary .widget-49-date-day {
   color: #4e73e5;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 15px;;
   line-height: 1;
 }
 
 .widget-49 .widget-49-title-wrapper .widget-49-date-primary .widget-49-date-month {
   color: #4e73e5;
   line-height: 1;
-  font-size: 1rem;
+  font-size: 15px;
   text-transform: uppercase;
 }
 
@@ -142,14 +147,14 @@ a:hover {
 .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-day {
   color: #dde1e9;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 15px;
   line-height: 1;
 }
 
 .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-month {
   color: #dde1e9;
   line-height: 1;
-  font-size: 1rem;
+  font-size: 15px;
   text-transform: uppercase;
 }
 
@@ -336,13 +341,13 @@ a:hover {
 
 .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-pro-title {
   color: #36260d;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 500;
 }
 
 .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-meeting-time {
   color: #8f4218;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -355,7 +360,7 @@ a:hover {
 }
 
 .widget-49 .widget-49-meeting-points .widget-49-meeting-item {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: #727686;
 }
@@ -370,7 +375,8 @@ a:hover {
   margin-top: 10px;
 }
 
-.widget-49 .widget-49-meeting-action a {
+
+/* .widget-49 .widget-49-meeting-action a {
   text-transform: uppercase;
 }
 
@@ -379,3 +385,5 @@ a:hover {
     background-color:#f7edd5;
     color:black;
 }
+*/
+
