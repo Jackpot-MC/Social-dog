@@ -63,6 +63,7 @@
         <button type="button" class="btn register-appointment-btn" style="width:100%; padding:10px; margin:auto;"
                 data-toggle="modal" onclick="location.href='appointment/register'"> 약속 작성하기 </button>
 
+
    	 <c:forEach var="appointment" items="${list}">
          <div class="card3 card-margin" style="padding:0;">
             <div class="card-header">
