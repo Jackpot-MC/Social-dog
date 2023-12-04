@@ -74,6 +74,14 @@
 		order by appointment_date desc
 		limit #{offset}, #{amount}
 	</select>
+	
+	<update id="setPlaceIdFromPlaceName">
+		UPDATE appointment 
+		set place_id = 
+			(select place_id from place
+			 where place_name = #{arg1})
+		where appointment_id = #{arg0}
+	</update>
 
 	<select id="getTotalCount" resultType="int">
 		select count(*) from appointment
