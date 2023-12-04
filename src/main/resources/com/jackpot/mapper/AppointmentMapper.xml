@@ -18,14 +18,19 @@
 	</resultMap>
 
   
-		insert into appointment (appointment_name, content, appointment_date, place_id, host_id)
-		values (#{appointment_name}, #{content}, #{reg_date}, #{place_id}, #{host_id})
+  	<insert id="insert">
+		insert into appointment (appointment_name, appointment_date, place_id,
+		host_id)
+		values
+		(#{appointmentName}, #{appointmentDate}, #{placeId},
+		#{hostId} )
 
 		<selectKey resultType="Long" keyProperty="appointmentId"
 			keyColumn="appointment_id" order="AFTER">
 			SELECT LAST_INSERT_ID();
 		</selectKey>
 	</insert>
+  
 
 	<update id="update">
 		update appointment
