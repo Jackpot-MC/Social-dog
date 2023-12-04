@@ -35,6 +35,8 @@
             글 작성하기는 로그인해야만 보이는 화면이고, 그런 화면에는 menu가 반드시 있기 때문에 확정적으로 사용 가능 -->
             <form:hidden path="memberId" value="${memberId}"/>
 
+            <input type="file" name="photo" />
+
             <div class="form-group">
                 <form:label path="dogName">강아지 이름</form:label>
                 <form:input path="dogName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->

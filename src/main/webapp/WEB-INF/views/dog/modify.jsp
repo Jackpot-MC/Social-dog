@@ -18,6 +18,8 @@
                 <!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
                 <h1 class="title">강아지 정보 수정</h1>
 
+                <input type="file" name="photo" />
+
                 <div class="form-group">
                     <form:label path="dogId">아이디</form:label>
                     <form:input path="dogId" class="form-control"/>
