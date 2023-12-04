@@ -3,22 +3,23 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+<link rel="stylesheet" href="/resources/css/layouts/menu.css" type="text/css" />
 
 <nav class="navbar navbar-expand-md bg-warning navbar-dark sticky-top">
 	<a class="navbar-brand" href="/">
-	<img class="socialDog-logo mr-auto" style="width:120px;margin:0px;padding:0px;" src="../resources/images/SocialDog-logo-white.png"/></a>
+	<img class="socialDog-logo mr-auto" style="width:145px;margin:0px;padding:0px;" src="../resources/images/SocialDog-logo-white.png"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<!--메뉴구성-->
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="/walk">산책하기</a></li>
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="/appointment/my_appointment">나의약속</a></li>
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="/appointment/attend_appointment">산책기록</a></li>
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="/board/list">커뮤니티</a>
-			<li class="nav-item"><a class="nav-link" id="nav-text" href="/notice/list">공지사항</a>	</li>
+		<ul class="navbar-nav ml-auto justify-content-center">
+			<li class="nav-item-first"><a class="nav-link" id="nav-text" href="/walk">산책하기</a></li>
+			<li class="nav-item-first"><a class="nav-link" id="nav-text" href="/appointment/my_appointment">나의약속</a></li>
+			<li class="nav-item-first"><a class="nav-link" id="nav-text" href="/appointment/attend_appointment">산책기록</a></li>
+			<li class="nav-item-first"><a class="nav-link" id="nav-text" href="/board/list">커뮤니티</a>
+			<li class="nav-item-first"><a class="nav-link" id="nav-text" href="/notice/list">공지사항</a>	</li>
 		</ul>
 
 		<ul class="navbar-nav ml-auto">
