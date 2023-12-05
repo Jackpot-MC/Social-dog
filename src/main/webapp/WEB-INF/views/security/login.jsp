@@ -21,7 +21,7 @@
         <div style="width: 600px" class="mx-auto form">
 
             <form action="/security/login" method="post">
-                <h2 class="mt-4">LogIn</h2>
+                <h2 class="mt-4">로그인</h2>
                 <h6>반려견과 반려인 모두의 행복</h6>
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -51,11 +51,12 @@
                 </c:if>
 
                 <div class="CTA text-center">
-                    <input type="submit" value="login" class="login"> <br>
-                    <br>소셜독이 처음이신가요? <a href="/security/signup" class="switch">Join now</a>
+                    <input type="submit" value="로그인" class="login" style="font-size: 16px;"> <br>
+                    <br>소셜독이 처음이신가요? <a href="/security/signup" class="switch" style="font-size: 16px;">가입하기</a>
                 </div>
             </form>
         </div>
     </section>
 </div>
+
 <%@ include file="../layouts/footer.jsp" %>

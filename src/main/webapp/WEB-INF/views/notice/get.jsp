@@ -23,7 +23,7 @@
 	});
 </script>
 
-<sec:authentication property="principal.username" var="username" />
+<%-- <sec:authentication property="principal.username" var="username" /> --%>
 
 <section class="notice">
 	<div class="page-title">

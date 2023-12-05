@@ -50,10 +50,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/notice/remove")
                 .access("hasRole('ROLE_ADMIN')")
                 .antMatchers(
-                        "/review/*",
+                		"/walk",
+                		"/review/*",
                         "/participant/*",
                         "/appointment/*",
-                        "/profile/*",
+                        "/board/get",
+                        "/board/register",
+                        "/board/modify",
+                        "/security/profile",
+                        "/security/mypage",
                         "/security/update"
                 ).access("hasRole('ROLE_USER')");//USER이상은 다적용
 

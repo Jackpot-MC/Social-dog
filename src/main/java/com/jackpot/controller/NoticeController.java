@@ -1,5 +1,6 @@
 package com.jackpot.controller;
 
+import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.NoticeCriteria;
-import com.jackpot.domain.NoticeVO;
 import com.jackpot.domain.NoticePageDTO;
+import com.jackpot.domain.NoticeVO;
 import com.jackpot.service.NoticeService;
 
 import lombok.extern.log4j.Log4j;
@@ -58,18 +60,19 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/register") // 로직이 없어서 Test X
-	public void register(@ModelAttribute("notice") NoticeVO notice) {
+	public void register(@ModelAttribute("notice") NoticeVO notice,
+			Principal principal) {		
 		log.info("register");
 	}
 
 	@PostMapping("/register") // POST 요청의 리턴 타입은 String
 	public String register(
-			@Valid @ModelAttribute("notice") NoticeVO notice,
+			@Valid @ModelAttribute("notice") NoticeVO notice,			
 			Errors errors,
 			RedirectAttributes rttr) throws Exception {
 		log.info("register: " + notice);
 		if(errors.hasErrors()) {
-			return "notice/register";
+			return "error_page";
 		}
 
 		service.register(notice);

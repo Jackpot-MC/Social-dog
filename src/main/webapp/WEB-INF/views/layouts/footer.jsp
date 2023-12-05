@@ -6,7 +6,7 @@
 
 	<footer class="text-center p-3 footer mt-5">
 	     <div class="section_footer">
-         <div class="container">
+         <div class="container-footer">
             <div class="footer_section_2">
                <div class="row">
                   <div class="col">

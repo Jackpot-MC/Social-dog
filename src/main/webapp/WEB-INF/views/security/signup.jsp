@@ -71,7 +71,7 @@ $(".selector").attr({
 				</div>
 
 				<div class="CTA text-center">
-                    <input type="submit" value="Signup Now" class="signup_button">
+                    <input type="submit" value="가입하기" class="signup_button" style="font-size: 16px;">
                     <br>
                     <br>이미 회원이신가요?
                     <a href="security/login" class="switch">로그인 하러가기</a>
