@@ -46,7 +46,7 @@
     <div class="row justify-content-center flex-column">
          <div class="card3 card-margin" style="padding:0;">
             <div class="card-header">
-           	 <a href="/walk">
+           	 <a href="/walk?mode=appointment">
             	<i class="fa-solid fa-arrow-left fa-lg ml-3" style="color: #212529;"></i></a>
                 <img class="profile-pic-appointment-list ml-3" src="https://i.imgur.com/GJ5WWIB.jpeg">
                     <div class="d-flex flex-column">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                    <div class="widget-49-meeting-action">
-                   		<a href="/walk" class="btn btn-sm btn-flash-border-primary">
+                   		<a href="/walk?mode=appointment" class="btn btn-sm btn-flash-border-primary">
                    			<i class="fa-solid fa-arrow-left" style="color: #212529;"></i> 뒤로가기</a>
 						<a href="${cri.getLinkWithAppointmentId('modify', appointment.appointmentId)}"
 							class="btn modify"> <i class="fas fa-edit"></i> 수정

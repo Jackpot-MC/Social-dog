@@ -19,10 +19,10 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			
- 			var href = 'appointment/walk_banner .content';
-			$("#maindiv").load(href);
+/*  			var href = 'appointment/walk_banner .content';
+			$("#maindiv").load(href); */
 			
-/*    			let mode = '${mode}';
+    		let mode = '${mode}';
 			if (mode === '') {
 				var href = 'appointment/walk_banner .content';
 				$("#maindiv").load(href);
@@ -30,10 +30,10 @@
 			else if (mode === 'review') {
 				var href = 'review/list .content';
 				$("#maindiv").load(href);
-			} else {
+			} else if(mode === 'appointment') {
 				var href = 'appointment/list .content';
 				$("#maindiv").load(href);
-			}  */
+			}
 
 			$('#map').on('click', '.review_btn', function(e) {
 				var href = 'review/list .content';
