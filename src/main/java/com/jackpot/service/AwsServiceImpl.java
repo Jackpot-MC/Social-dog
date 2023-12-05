@@ -1,11 +1,17 @@
 package com.jackpot.service;
 
 import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
 import com.jackpot.mapper.DogMapper;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -16,6 +22,24 @@ import java.util.List;
 @Service
 @Log4j
 public class AwsServiceImpl implements AwsService{
+
+    private final String endPoint = "https://kr.object.ncloudstorage.com";
+    private final String regionName = "kr-standard";
+
+    @Value("${access_key}")
+    private String accessKey;
+
+    @Value("${secret_key")
+    private String secretKey;
+
+    //s3 client
+    @Bean
+    public AmazonS3Client amazonS3Client() {
+        return (AmazonS3Client) AmazonS3ClientBuilder.standard()
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
+                .build();
+    }
 
     @Autowired
     private DogMapper dogMapper;
