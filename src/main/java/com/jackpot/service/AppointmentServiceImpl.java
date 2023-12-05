@@ -32,12 +32,21 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public void register(AppointmentVO appointment) throws IOException {
 		log.info("insert: " + appointment);
 		mapper.insert(appointment);
+		
+		Long appointmentId = appointment.getAppointmentId();
+		String placeName = appointment.getPlaceName();
+		mapper.setPlaceIdFromPlaceName(appointmentId, placeName);
 	}
 
 	@Override
 	public boolean modify(AppointmentVO appointment) throws IOException {
 		log.info("update: " + appointment);
 		int result = mapper.update(appointment);	
+		
+		Long appointmentId = appointment.getAppointmentId();
+		String placeName = appointment.getPlaceName();
+		mapper.setPlaceIdFromPlaceName(appointmentId, placeName);
+		
 		return result == 1;
 	}
 

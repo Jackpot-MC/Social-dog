@@ -22,6 +22,7 @@ public class AppointmentVO {
 	private Long hostId;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date appointmentDate;
+	private String content;
 
 	private String placeSpot;
 	private String placeName;

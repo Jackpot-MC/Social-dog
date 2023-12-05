@@ -78,6 +78,11 @@
 </table>
 <hr>
 
+<div>
+${appointment.content}
+</div>
+<hr>
+
 <h5>${appointment.placeName}</h5>
 <div id="map" style="width: 500px; height: 400px;"></div>
 
@@ -95,7 +100,7 @@
 <br>
 
 <div class="mt-4">
-	<a href="${cri.getLink('list')}" class="btn btn-dark list"> <i
+	<a href="/appointment/my_appointment" class="btn btn-dark list"> <i
 		class="fas fa-list"></i>목록
 	</a> <a
 		href="${cri.getLinkWithAppointmentId('modify', appointment.appointmentId)}"

@@ -19,6 +19,8 @@ public interface AppointmentMapper {
 	
 	public List<AppointmentVO> getListWithPaging(AppointmentCriteria cri);
 	
+	public int setPlaceIdFromPlaceName(Long appointmentId, String place_name);
+	
 	public int getTotalCount(AppointmentCriteria cri);
 	
 	public List<ParticipantVO> getParticipantList(Long appointmentId);

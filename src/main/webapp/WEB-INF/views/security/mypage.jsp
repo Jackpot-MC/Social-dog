@@ -59,8 +59,8 @@
 				<c:forEach var="dog" items="${dogList}">
 					<div class="card card-margin">
 						<div class="card-dog">
-							<img src="/resources/images/${dog.dogPhotoPath}" class="dog-pic">
-
+							<img src="/resources/images/${dog.dogPhotoPath}" class="dog-pic"
+                            	onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
 							<h5>${dog.dogName}</h5>
 							<div class="dog-profile">
 								<ul style="list-style: none; padding-left: 10px; font-size:16px;">
