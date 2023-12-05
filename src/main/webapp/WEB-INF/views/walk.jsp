@@ -18,14 +18,22 @@
 	<header> </header>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			let mode = '${mode}';
-			if (mode === 'review') {
-				var href = 'appointment/walk_banner';
-				$("#maindiv").load(href);
-			} else {
-				var href = 'appointment/walk_banner';
+			
+ 			var href = 'appointment/walk_banner .content';
+			$("#maindiv").load(href);
+			
+/*    			let mode = '${mode}';
+			if (mode === '') {
+				var href = 'appointment/walk_banner .content';
 				$("#maindiv").load(href);
 			}
+			else if (mode === 'review') {
+				var href = 'review/list .content';
+				$("#maindiv").load(href);
+			} else {
+				var href = 'appointment/list .content';
+				$("#maindiv").load(href);
+			}  */
 
 			$('#map').on('click', '.review_btn', function(e) {
 				var href = 'review/list .content';

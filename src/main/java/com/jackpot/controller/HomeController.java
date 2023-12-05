@@ -39,7 +39,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, @ModelAttribute("mode") String mode,
+	public String home(Locale locale,
 			@ModelAttribute("member") MemberVO member, @ModelAttribute("cri") NoticeCriteria cri, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
