@@ -38,7 +38,13 @@
 				e.preventDefault();
 				$("#maindiv").load(href);
 			});
-
+			
+/*  			$('#maindiv').on('click', '.detail-btn', function(e) {
+				var href = 'appointment/get?appointmentId=${appointment.appointmentId}';
+				e.preventDefault();
+				$("#maindiv").load(href);
+			}); */
+ 			
 			/* 	 $('#map').on('click', '.place_detail_btn', function(e) {
 					 var href = place.place_url;
 			 	    e.preventDefault();
