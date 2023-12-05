@@ -59,8 +59,8 @@
 				<c:forEach var="dog" items="${dogList}">
 					<div class="card card-margin">
 						<div class="card-dog">
-							<img src="/resources/images/${dog.dogPhotoPath}" class="dog-pic">
-
+							<%-- <img src="/resources/images/${dog.dogPhotoPath}" class="dog-pic"> --%>
+							<img src="/dog/avatar/lg/${dog.dogName}" class="dog-pic">
 							<h5>${dog.dogName}</h5>
 							<div class="dog-profile">
 								<ul style="list-style: none; padding-left: 10px; font-size:16px;">
