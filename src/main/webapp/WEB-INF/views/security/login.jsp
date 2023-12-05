@@ -51,11 +51,12 @@
                 </c:if>
 
                 <div class="CTA text-center">
-                    <input type="submit" value="login" class="login"> <br>
-                    <br>소셜독이 처음이신가요? <a href="/security/signup" class="switch">가입하기</a>
+                    <input type="submit" value="로그인" class="login" style="font-size: 16px;"> <br>
+                    <br>소셜독이 처음이신가요? <a href="/security/signup" class="switch" style="font-size: 16px;">가입하기</a>
                 </div>
             </form>
         </div>
     </section>
 </div>
+
 <%@ include file="../layouts/footer.jsp" %>

@@ -22,25 +22,24 @@
 			<li class="nav-item-first"><a class="nav-link" id="nav-text" href="/notice/list">공지사항</a>	</li>
 		</ul>
 
-		<ul class="navbar-nav ml-auto">
-			<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal.member.loginId"	var="loginId" />
-
+		<sec:authorize access="isAuthenticated()">
+			<sec:authentication property="principal.member.loginId"	var="loginId" />
+				<ul class="navbar-nav ml-auto">
 				<!-- 로그인 상태 -->
 				<li class="nav-item"><a class="nav-link" id="nav-text" href="/security/mypage"> 마이페이지 </a></li>
 				<li class="nav-item"><a class="nav-link logout-link" id="nav-text" href="#">
 						<i class="fa-solid fa-right-from-bracket"></i> 로그아웃
 				</a></li>
-			</sec:authorize>
-		</ul>
+				</ul>
+		</sec:authorize>
 
 		<!-- 로그아웃 된 상태 -->
 		<sec:authorize access="isAnonymous()">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/security/login">
+				<li class="nav-item"><a class="nav-link" id="nav-text" href="/security/login">
 						<i class="fa-solid fa-right-from-bracket"></i> 로그인
 				</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link" id="nav-text" 
 					href="/security/signup"> <i class="fa-solid fa-user-plus"></i>
 						회원가입
 				</a></li>
