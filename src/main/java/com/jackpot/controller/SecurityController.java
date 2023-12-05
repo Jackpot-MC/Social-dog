@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jackpot.domain.DogVO;
 import com.jackpot.domain.MemberVO;
-import com.jackpot.service.AppointmentService;
 import com.jackpot.service.DogService;
 import com.jackpot.service.MemberService;
 
@@ -33,9 +33,6 @@ public class SecurityController {
     @Autowired
     private DogService dogService;
 
-    @Autowired
-    private AppointmentService appointmentService;
-    
     @GetMapping("/login")//로그인 페이지 호출
     public void login() {
         log.info("login page");
@@ -122,6 +119,20 @@ public class SecurityController {
 
         log.info("mypage");
 
+    }
+    
+    @PostMapping("/mypage")
+    public String mypagePost(@ModelAttribute("dog") DogVO dog, Model model, Principal principal, Errors errors) {
+        String loginId = principal.getName();
+        dog.setMemberId(memberService.getMemberIdByLoginId(loginId));
+        
+        log.info("mypage post");
+        if(errors.hasErrors()) {
+			return "/security/profile";
+		}
+
+        dogService.modify(dog);
+        return "redirect:/security/mypage"; // 요청 url
     }
     
 	//내정보수정

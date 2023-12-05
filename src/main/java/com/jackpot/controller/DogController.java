@@ -1,5 +1,6 @@
 package com.jackpot.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -65,27 +66,38 @@ public class DogController {
 
     //개 리스트 조회
     @GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-    public void list(@ModelAttribute("dogId") DogVO dog, Model model) {
+    public void list(@ModelAttribute("dogId") DogVO dog, 
+    		Model model) {
         log.info("list: " + dog);
         model.addAttribute("list", service.getList());
     }
 
-    //개 상세 조회
-    @GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
-    public void get(@RequestParam("dogId") Long dogId, Model model) {
-        log.info("/get or modify");
-        model.addAttribute("dog", service.get(dogId));
+    @GetMapping("/get")
+    public void get(@RequestParam("memberId") Long memberId, Model model) {
+        log.info("get ");
     }
-
-    //개 정보 수정
+    
+    @GetMapping("/modify")
+    public void modify(@RequestParam("memberId") Long memberId, Model model) {
+        log.info("modify ");
+    }
+    
     @PostMapping("/modify")
     public String modify(
-            @Valid @ModelAttribute("dog") DogVO dog,
-            Errors errors) throws Exception {
-        log.info("modify:" + dog);
-        if (errors.hasErrors()) {
-            return "dog/modify";
-        }
-        return "redirect: /dog/list";
+    		@Valid @ModelAttribute("dog") DogVO dog, Principal principal,
+    		Errors errors, Model model) throws Exception {
+    	
+        log.info("modify post------------" + dog);
+        String loginId = principal.getName();
+        dog.setMemberId(memberService.getMemberIdByLoginId(loginId));
+        
+        if(errors.hasErrors()) {
+			return "dog/modify";
+		}
+
+        service.modify(dog);
+        return "redirect:/security/mypage"; // 요청 url
     }
+    
+    
 }

@@ -17,26 +17,24 @@
 	</resultMap>
 	
 	<insert id="create">
-		insert into dog (dog_name, dog_kind, dog_birth, dog_photo_path, dog_favorite, dog_description, member_id)
-		values (#{dogName}, #{dogKind}, #{dogBirth}, #{dogPhotoPath}, #{dogFavorite}, #{dogDescription}, #{memberId})
+		insert into dog (dog_name, dog_kind, dog_birth, dog_photo_path, dog_description, member_id)
+		values (#{dogName}, #{dogKind}, #{dogBirth}, #{dogPhotoPath}, #{dogDescription}, #{memberId})
 	</insert>
 	
-	<select id="get" resultMap="dogMap">
-		select dog_id, dog_name, dog_kind, dog_birth, dog_photo_path, dog_favorite, dog_description 
-		from dog where dog_id = #{dogId} 
+	<select id="get" parameterType="Long" resultType="DogVO">
+		select * from dog 
+		where member_id = #{memberId} 
 	</select>
 	
-	<update id="update">
+	<update id="modify">
 		update dog
 		set dog_name = #{dogName}, 
 			dog_kind = #{dogKind}, 
 			dog_birth = #{dogBirth}, 
 			dog_photo_path = #{dogPhotoPath}, 
-			dog_favorite = #{dogFavorite}, 
 			dog_description = #{dogDescription}
-		where dog_id = #{dogId}
+		where member_id = #{memberId} and dog_id = #{dogId}
 	</update>
-	
 	
 	<delete id="delete">
 		delete

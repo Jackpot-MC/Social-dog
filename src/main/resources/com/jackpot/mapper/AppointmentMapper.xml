@@ -8,105 +8,86 @@
 		<id property="appointmentId" column="appointment_id" />
 <!-- 		<result property="appointmentId" column="appointment_id" /> -->
 		<result property="appointmentName" column="appointment_name" />
-		<result property="regDate" column="appointment_date" />
+		<result property="appointmentDate" column="appointment_date" />
 		<result property="placeId" column="place_id" />
 		<result property="hostId" column="host_id" />
 		<result property="participantId" column="participant_id" />
 		<result property="memberId" column="member_id" />
 		<result property="memberName" column="member_name" />
 		<result property="memberAddress" column="member_address" />
-
 	</resultMap>
 
-	<insert id="insert">
-		insert into appointment (appointment_name, appointment_date, place_id,
-		host_id)
+  
+  	<insert id="insert">
+		insert into appointment (appointment_name, content, appointment_date, place_name, host_id)
 		values
-		(#{appointment_name}, #{reg_date}, #{place_id},
-		#{host_id} )
+		(#{appointmentName}, #{content}, #{appointmentDate}, #{placeName}, #{hostId} )
 
 		<selectKey resultType="Long" keyProperty="appointmentId"
 			keyColumn="appointment_id" order="AFTER">
 			SELECT LAST_INSERT_ID();
 		</selectKey>
 	</insert>
+  
 
 	<update id="update">
 		update appointment
-		set appointment_name =
-		#{appointmentName},
-		appointment_date = #{regDate},
-		place_id =
-		#{placeId}
+		set 
+			appointment_name = #{appointmentName},
+			content = #{content},
+			appointment_date = #{appointmentDate},
+			place_id = #{placeId}
 		where appointment_id = #{appointmentId}
 	</update>
 
 	<select id="read" resultType="AppointmentVO">
-		select appointment_id,
-		appointment_name, appointment_date as reg_date, place.place_spot,
-		place.place_name, host_id, login_id
-		from
-		appointment
-		left outer join member
-		on appointment.host_id = member_id
-		left outer join place
-		on appointment.place_id = place.place_id
-		left
-		outer join place_type
-		on place.place_type_id = place_type.place_type_id
-		where
-		appointment_id = #{appointment_id}
+		select appointment_id, appointment_name, content, appointment_date, 
+		place.place_spot, appointment.place_name, member_name
+		from appointment
+		left outer join member on appointment.host_id = member_id
+		left outer join place on appointment.place_id = place.place_id
+		left outer join place_type on place.place_type_id = place_type.place_type_id
+		where appointment_id = #{appointment_id}
 	</select>
 
 	<delete id="delete">
-		delete
-		from appointment
-		where appointment_id =
-		#{appointment_id}
+		delete from appointment
+		where appointment_id = #{appointment_id}
 	</delete>
 
 	<select id="getList" resultType="AppointmentVO">
 		select * from appointment
-		order
-		by appointment_id desc
+		order by appointment_date
 		limit 0, 10
 	</select>
 
 	<select id="getListWithPaging" resultType="AppointmentVO">
-		select appointment_id,
-		appointment_name, appointment_date as reg_date,
-		appointment.place_id,
-		host_id,
-		member.member_name,
-		place.place_spot, place.place_name,
-		place_type.place_type_name
+		select appointment_id, appointment_name, content, appointment_date, appointment.place_name, host_id,
+		member.member_name, place.place_spot, place.place_name, place_type.place_type_name
 		from appointment
-		left outer join member
-		on
-		appointment.host_id = member.member_id
-		left outer join place
-		on
-		appointment.place_id = place.place_id
-		left outer join place_type
-		on
-		place.place_type_id = place_type.place_type_id
+		left outer join member on appointment.host_id = member.member_id
+		left outer join place on appointment.place_id = place.place_id
+		left outer join place_type on place.place_type_id = place_type.place_type_id
 		<where>
 			<include refid="criteria"></include>
 		</where>
-		order by member_id desc
+		order by appointment_date desc
 		limit #{offset}, #{amount}
 	</select>
+	
+	<update id="setPlaceIdFromPlaceName">
+		UPDATE appointment 
+		set place_id = 
+			(select place_id from place
+			 where place_name = #{arg1})
+		where appointment_id = #{arg0}
+	</update>
 
 	<select id="getTotalCount" resultType="int">
 		select count(*) from appointment
-		left outer join member
-		on appointment.host_id = member.member_id
-		left outer
-		join place
-		on appointment.place_id = place.place_id
-		left outer join
-		place_type
-		on place.place_type_id = place_type.place_type_id
+		left outer join member on appointment.host_id = member.member_id
+		left outer join place on appointment.place_id = place.place_id
+		left outer join place_type on place.place_type_id = place_type.place_type_id
 		<where>
 			<include refid="criteria"></include>
 		</where>
@@ -114,24 +95,21 @@
 
 	<select id="getParticipantList" resultType="ParticipantVO">
 		SELECT
-		participant_id,
-		participant.member_id AS member_id,
-		appointment_id,
-		member.member_name AS member_name,
-		member.member_address
-		FROM
-		participant
-		LEFT OUTER JOIN
-		member ON participant.member_id = member.member_id
-		WHERE
-		appointment_id = #{appointment_id}
+			participant_id,
+			participant.member_id AS member_id,
+			appointment_id,
+			member.member_name AS member_name,
+			member.member_address
+		FROM participant
+		LEFT OUTER JOIN member on participant.member_id = member.member_id
+		WHERE appointment_id = #{appointment_id}
 	</select>
 	
 	<select id="getMemberId" resultType="Long">
 		select member.member_id from member
-		left outer join participant
-		on member.member_id = participant.member_id
+		left outer join participant on member.member_id = participant.member_id
 		where login_id = #{login_id}
+		limit 1
 	</select>
 	
 	<insert id="attend">
@@ -145,8 +123,7 @@
 	</insert>
 	
 	<delete id="absent">
-		delete
-		from participant
+		delete from participant
 		where 
 		appointment_id = #{arg0}
 		and
@@ -159,6 +136,25 @@
 		appointment_id = #{arg0}
 		and
 		member_id = #{arg1}
+	</select>
+	
+	<select id="getMyList" resultType="AppointmentVO">
+		select appointment.appointment_id, appointment_name, content, appointment_date, appointment.place_name, host_id,
+		member.member_name, place.place_name, place_type.place_type_name
+		from appointment
+		left outer join member
+		on host_id = member.member_id
+		left join participant
+		on appointment.appointment_id = participant.appointment_id
+		left outer join place
+		on appointment.place_id = place.place_id 
+		left outer join place_type
+		on place.place_type_id = place_type.place_type_id 
+		where 
+		host_id = #{member_id}
+		or
+		participant.member_id  = #{member_id}
+		order by appointment_date
 	</select>
 	
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->

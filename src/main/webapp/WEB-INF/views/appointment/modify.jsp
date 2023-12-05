@@ -11,6 +11,25 @@ pageEncoding="UTF-8"%>
 <script src="/resources/js/summernote/summernote-lite.min.js"></script>
 <script src="/resources/js/summernote/lang/summernote-ko-KR.min.js"></script>
 
+<style>
+section.modify {
+  padding: 80px 0;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin-bottom: 60px;
+}
+.page-title h3 {
+  font-size: 28px;
+  color: #333333;
+  font-weight: 400;
+  text-align: center;
+}
+
+</style>
+
 <script>
 $(document).ready(function() {
 	$('#content').summernote({
@@ -23,7 +42,13 @@ $(document).ready(function() {
 $('#content').summernote('fontName', 'Arial');
 </script>
 
-<h1 class="page-header mt-4"><i class="far fa-edit mt-4"></i>글 수정하기</h1>
+<section class="modify">
+	<div class="page-title">
+		<div class="container">
+			<h3>약속 수정하기</h3>
+		</div>
+	</div>
+	
 <div class="panel panel-default">
 	<div class="panel-body">
 		<form:form modelAttribute="appointment" role="form" action="?_csrf=${_csrf.token}"
@@ -34,17 +59,23 @@ $('#content').summernote('fontName', 'Arial');
 			<input type="hidden" name="keyword" value="${cri.keyword}"/>
 			<form:hidden path="appointmentId"/>
 			<form:hidden path="hostId"/>
+
 			
 			<div class="form-group">
-				<form:label path="appointmentName">약속 이름</form:label>
+				<form:label path="appointmentName">제목</form:label>
 				<form:input path="appointmentName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
 				<form:errors path="appointmentName" cssClass="error"/>
 			</div>
+
+			<div class="form-group">
+				<form:label path="content">약속 내용</form:label>
+				<form:textarea path="content" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
+				<form:errors path="content" cssClass="error"/>
+			</div>
 			
 			<div class="form-group">
-				<form:label path="place_spot">내용</form:label> <!-- id는 summernote 용 --> 
-				<form:textarea path="place_spot" cssClass="form-control"></form:textarea>
-				<form:errors path="place_spot" cssClass="error"/>
+				<form:label path="appointmentDate">약속 날짜</form:label>
+				<form:input type="datetime-local" path="appointmentDate" cssClass="form-control"/>
 			</div>
 			
 			<button type="submit" class="btn btn-primary">
@@ -56,5 +87,5 @@ $('#content').summernote('fontName', 'Arial');
 		</form:form>
 	</div>
 </div>
-
+</section>
 <%@ include file="../layouts/footer.jsp" %>

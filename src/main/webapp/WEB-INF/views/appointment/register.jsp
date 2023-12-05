@@ -11,6 +11,26 @@ pageEncoding="UTF-8"%>
 <script src="/resources/js/summernote/summernote-lite.min.js"></script>
 <script src="/resources/js/summernote/lang/summernote-ko-KR.min.js"></script>
 
+<style>
+section.register {
+  padding: 80px 0;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin-bottom: 60px;
+}
+.page-title h3 {
+  font-size: 28px;
+  color: #333333;
+  font-weight: 400;
+  text-align: center;
+}
+
+</style>
+
+
 <script>
 $(document).ready(function() {
 	$('#content').summernote({
@@ -25,34 +45,53 @@ $('#content').summernote('fontName', 'Arial');
 
 <%-- <sec:authentication property="principal.memberId" var="memberId"/> --%>
 
-<h1 class="page-header mt-4"><i class="far fa-edit"></i>글 작성하기</h1>
+<section class="register">
+	<div class="page-title">
+		<div class="container">
+			<h3>약속 만들기</h3>
+		</div>
+	</div>
+	
 <div class="panel panel-default">
 	<div class="panel-body">
 		<form:form modelAttribute="appointment" role="form"
 			action="?_csrf=${_csrf.token}"
 			enctype="multipart/form-data">
-			<form:hidden path="memberLoginId" value="${memberId}"/>
-			
+			<form:hidden path="hostId" value="${hostId }"/>
+				
+			<div class="form-group">
 				<form:label path="appointmentName">제목</form:label>
 				<form:input path="appointmentName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
 				<form:errors path="appointmentName" cssClass="error"/>
 			</div>
 
  			<div class="form-group">
-				<form:label path="placeSpot">내용</form:label> <!-- id는 summernote 용 --> 
-				<form:select path="type" items="${searchTypes}" class="form-select rounded-0 ml-1"/>
-				<form:textarea path="placeSpot" cssClass="form-control"></form:textarea>
-				<form:errors path="placeSpot" cssClass="error"/>
+				<form:label path="placeName">약속 장소</form:label> <!-- id는 summernote 용 --> 
+				<form:input path="placeName" cssClass="form-control"></form:input>
+				<form:errors path="placeName" cssClass="error"/>
 			</div> 
 			
-			<button type="submit" class="btn btn-primary">
+			<div class="form-group">
+				<form:label path="content">약속 내용</form:label>
+				<form:textarea path="content" cssClass="form-control"/> 
+				<form:errors path="content" cssClass="error"/>
+			</div>
+			
+			<div class="form-group">
+				<form:label path="appointmentDate">약속 날짜</form:label>
+				<form:input type="datetime-local" path="appointmentDate" cssClass="form-control"/>
+			</div>
+			
+			<button type="submit" class="btn btn-dark">
 				<i class="fas fa-undo"></i>확인</button>	
-			<button type="reset" class="btn btn-primary">
+			<button type="reset" class="btn btn-dark">
 				<i class="fas fa-undo"></i>취소</button>	
-			<a href="javascript:history.back()" class="btn btn-primary"> <!--history.back() : 캐시된 것을 가져옴-->
+			<a href="javascript:history.back()" class="btn btn-dark"> <!--history.back() : 캐시된 것을 가져옴-->
 				<i class="fas fa-list"></i>목록</a>
 		</form:form>
+		</div>
+		
 	</div>
-</div>
+</section>
 
 <%@ include file="../layouts/footer.jsp" %>

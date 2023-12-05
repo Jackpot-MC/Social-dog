@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,9 @@ public class AppointmentVO {
 	private String appointmentName;
 	private Long placeId;
 	private Long hostId;
-	private Date regDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private Date appointmentDate;
+	private String content;
 
 	private String placeSpot;
 	private String placeName;
