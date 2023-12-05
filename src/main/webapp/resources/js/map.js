@@ -108,6 +108,34 @@ function displayPlaces(places) {
     (function (marker, place) {
       kakao.maps.event.addListener(marker, 'click', function () {
         displayInfowindow(marker, place);
+        var placeKakaoName = place.place_name;
+        var placeId = place.id;
+        var placeAddress = place.address_name;
+        var placeRoadAddress = place.road_address_name;
+        var placeCategory = order;
+        var placeX = place.x;
+        var placeY = place.y;
+
+        window.localStorage.setItem('placeKakaoName', placeKakaoName);
+			  console.log(window.localStorage.getItem('placeKakaoName'));
+
+        window.localStorage.setItem('placeId', placeId);
+			  console.log(window.localStorage.getItem('placeId'));
+
+        window.localStorage.setItem('placeAddress', placeAddress);
+			  console.log(window.localStorage.getItem('placeAddress'));
+
+        window.localStorage.setItem('placeRoadAddress', placeRoadAddress);
+			  console.log(window.localStorage.getItem('placeRoadAddress'));
+
+        window.localStorage.setItem('placeCategory', placeCategory);
+			  console.log(window.localStorage.getItem('placeCategory'));
+        
+        window.localStorage.setItem('placeX', placeX);
+			  console.log(window.localStorage.getItem('placeX'));
+
+        window.localStorage.setItem('placeY', placeY);
+			  console.log(window.localStorage.getItem('placeY'));
       });
 
       kakao.maps.event.addListener(map, 'click', function () {

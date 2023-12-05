@@ -14,6 +14,7 @@ public class PlaceVO {
     private String placeName;
     private String placeSpot;
     private Long placeTypeId;
+    private Long placeKakaoId;
 
     public void updatePlace(String placeName, String placeSpot, Long placeTypeId){
         this.placeName = placeName;

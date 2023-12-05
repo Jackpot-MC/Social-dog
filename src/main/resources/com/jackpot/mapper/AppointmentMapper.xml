@@ -11,10 +11,21 @@
 		<result property="appointmentDate" column="appointment_date" />
 		<result property="placeId" column="place_id" />
 		<result property="hostId" column="host_id" />
+		<result property="content" column="content" />	
+		<result property="placeName" column="place_name" />	
 		<result property="participantId" column="participant_id" />
 		<result property="memberId" column="member_id" />
 		<result property="memberName" column="member_name" />
 		<result property="memberAddress" column="member_address" />
+	</resultMap>
+	
+	<resultMap id="placeMap"
+		type="com.jackpot.domain.PlaceVO">
+		<id property="placeId" column="place_id" />
+		<result property="placeName" column="place_name" />
+		<result property="placeSpot" column="place_spot" />
+		<result property="placeTypeId" column="place_type_id" />
+		<result property="placeKakaoId" column="place_kakao_id" />
 	</resultMap>
 
   
@@ -29,6 +40,16 @@
 		</selectKey>
 	</insert>
   
+    <insert id="insertPlace">
+		insert into appointment (place_name, place_type_id, place_kakao_id)
+		values
+		(#{placeName}, #{placeTypeId}, #{placeKakaoId})
+
+		<selectKey resultType="Long" keyProperty="placeId"
+			keyColumn="place_id" order="AFTER">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+	</insert>
 
 	<update id="update">
 		update appointment

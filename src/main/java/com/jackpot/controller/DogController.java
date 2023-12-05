@@ -1,8 +1,10 @@
 package com.jackpot.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +13,21 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jackpot.domain.DogVO;
 import com.jackpot.domain.MemberVO;
 import com.jackpot.service.DogService;
+import com.jackpot.service.DogServiceImpl;
 import com.jackpot.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/dog")
@@ -42,7 +49,8 @@ public class DogController {
     @PostMapping("/register") // POST 요청의 리턴 타입은 String
     public String register(
             @ModelAttribute("dog") DogVO dog, Principal principal, Model model,
-            Errors errors) throws Exception {
+            Errors errors,
+			MultipartFile avatar) throws IOException {
         log.info("register: " + dog);
         
         String loginId = principal.getName();
@@ -52,7 +60,7 @@ public class DogController {
         if (errors.hasErrors()) {
             return "/dog/register";
         }
-        service.register(dog);
+        service.register(dog, avatar);
         return "redirect:/security/mypage"; // 요청 url
     }
 
@@ -85,7 +93,8 @@ public class DogController {
     @PostMapping("/modify")
     public String modify(
     		@Valid @ModelAttribute("dog") DogVO dog, Principal principal,
-    		Errors errors, Model model) throws Exception {
+    		Errors errors,
+			MultipartFile avatar, Model model) throws Exception {
     	
         log.info("modify post------------" + dog);
         String loginId = principal.getName();
@@ -95,9 +104,32 @@ public class DogController {
 			return "dog/modify";
 		}
 
-        service.modify(dog);
+        service.modify(dog, avatar);
         return "redirect:/security/mypage"; // 요청 url
     }
     
-    
+	@GetMapping("/avatar/{size}/{dogName}")
+	@ResponseBody
+	public void avatar(@PathVariable("size") String size,
+						@PathVariable("dogName") String dogName,
+						HttpServletResponse response) throws IOException {
+		
+		File src = new File(DogServiceImpl.AVATAR_UPLOAD_DIR, dogName + ".png");
+		
+		if(!src.exists()) {	// 파일이 존재하지 않으면
+			src = new File(DogServiceImpl.AVATAR_UPLOAD_DIR, "unknown.png");
+		}
+		
+		response.setHeader("Content-Type", "image/png");
+		
+		if(size.equals("sm")) {
+			Thumbnails.of(src)
+					.size(80, 80)
+					.toOutputStream(response.getOutputStream());
+		} else {
+			Thumbnails.of(src)
+			.size(250, 250)
+			.toOutputStream(response.getOutputStream());
+		}
+	}
 }

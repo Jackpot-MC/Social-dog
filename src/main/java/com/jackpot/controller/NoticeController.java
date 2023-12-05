@@ -84,7 +84,7 @@ public class NoticeController {
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
 	public void get(@RequestParam("noticeId") Long noticeId, @ModelAttribute("cri") NoticeCriteria cri, Model model) {
-		log.info("/get or modify");
+		log.info("/get or modify..............." + noticeId);
 		model.addAttribute("notice", service.get(noticeId));
 	}
 	

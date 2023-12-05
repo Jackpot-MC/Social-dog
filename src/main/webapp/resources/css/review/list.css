@@ -33,6 +33,16 @@ a:hover {
     padding-bottom: 10px;
 }
 
+.card-review-register {
+    border-radius: 5px;
+    background-color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .card-rating {
     border-radius: 5px;
     background-color: #fff;
@@ -119,7 +129,7 @@ td {
   margin: auto;
   width: d-flex;
   height: d-flex;
-  padding: 10px;
+  padding: 5px;
 }
 
 .review-comment-content {

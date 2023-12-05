@@ -19,6 +19,8 @@ import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentPageDTO;
 import com.jackpot.domain.AppointmentVO;
 import com.jackpot.domain.MemberVO;
+import com.jackpot.domain.PlaceVO;
+import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.service.AppointmentService;
 import com.jackpot.service.MemberService;
 import com.jackpot.service.NoticeService;
@@ -37,7 +39,8 @@ public class AppointmentController {
 	private MemberService memberService;
 	
 	private NoticeService noticeService;
-
+	
+	
 	@ModelAttribute("searchTypes")
 	public Map<String, String> searchTypes() {
 		Map<String, String> map = new LinkedHashMap<String, String>();
@@ -71,7 +74,9 @@ public class AppointmentController {
 	}
 
 	@GetMapping("/appointment/register") // 로직이 없어서 Test X
-	public void register(@ModelAttribute("appointment") AppointmentVO appointment, Principal principal, Model model) {
+	public void register(@ModelAttribute("appointment") AppointmentVO appointment, 
+			@ModelAttribute("place") PlaceVO place,
+			Principal principal, Model model) {
 		String loginId = principal.getName();
 
 		Long hostId = service.getMemberId(loginId);
@@ -84,7 +89,9 @@ public class AppointmentController {
 	}
 
 	@PostMapping("/appointment/register") // POST 요청의 리턴 타입은 String
-	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, Errors errors, 
+	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, 
+			@ModelAttribute("place") PlaceVO place,
+			Errors errors, 
 			RedirectAttributes rttr) throws Exception {
 		
 		
@@ -94,13 +101,15 @@ public class AppointmentController {
 		}
 
 		service.register(appointment);
+		
+		/* service.registerPlace(place); */
 
 		rttr.addFlashAttribute("result", appointment.getAppointmentId());
 
 		return "redirect:/walk"; // 요청 url
 	}
 
-	@GetMapping({ "/appointment/get", "/appointment/modify" }) // get : 상세보기, modify: 수정 화면으로 가기
+	@GetMapping({ "/appointment/get", "/appointment/modify", "/appointment/my_appointment_get" }) // get : 상세보기, modify: 수정 화면으로 가기
 	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri,
 			Principal principal, Model model) {
 
@@ -193,6 +202,7 @@ public class AppointmentController {
 	
 	@GetMapping("/walk")
 	public void walk(@ModelAttribute("mode") String mode,
+			@ModelAttribute("cri") ReviewCriteria cri,
 			@ModelAttribute("member") MemberVO member, Model model) {
 
 		model.addAttribute("member", memberService.get(member.getMemberAddress()));

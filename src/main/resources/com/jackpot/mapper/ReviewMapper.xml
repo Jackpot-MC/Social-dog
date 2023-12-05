@@ -79,6 +79,11 @@
 		SELECT CONVERT(AVG(rating), SIGNED INTEGER) AS 'average' FROM review
 	</select>
 	
+	<select id="getReviewId" resultType="Long">
+		select review.review_id from review
+		where review.login_id = #{member.loginId}
+	</select>
+	
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
 		<trim prefixOverrides = "OR">
 			<foreach item = "type" collection="typeArr">

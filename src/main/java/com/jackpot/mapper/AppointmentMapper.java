@@ -5,9 +5,12 @@ import java.util.List;
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
 import com.jackpot.domain.ParticipantVO;
+import com.jackpot.domain.PlaceVO;
 
 public interface AppointmentMapper {
 	public void insert(AppointmentVO appointment);
+	
+	public void insertPlace(PlaceVO place);
 
 	public AppointmentVO read(Long appointmentId);
 

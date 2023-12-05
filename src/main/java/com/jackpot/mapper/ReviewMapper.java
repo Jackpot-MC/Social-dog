@@ -21,4 +21,6 @@ public interface ReviewMapper {
 	public int getTotalCount(ReviewCriteria cri);
 	
 	public int getAverage();
+	
+	public Long getReviewId(String loginId);
 }
