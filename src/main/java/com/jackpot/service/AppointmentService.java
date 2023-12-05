@@ -30,4 +30,6 @@ public interface AppointmentService {
 	public boolean absent(Long appointmentId, Long memberId);
 	
 	public int checkAttendance(Long appointmentId, Long memberId);
+	
+	public List<AppointmentVO> getMyList(Long memberId);
 }
