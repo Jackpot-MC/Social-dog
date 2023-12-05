@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#board-search .search-window {
+  padding: 10px 0;
+  background-color: #f9f7f9;
+}
+#board-search .search-window .search-wrap {
+  position: relative;
+  left: 17%;
+  /*   padding-right: 124px; */
+  margin: 0 auto;
+  width: 80%;
+  max-width: 400px;
+}
+#board-search .search-window .search-wrap input {
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+#board-search .search-window .search-wrap input:focus {
+  border-color: #333;
+  outline: 0;
+  border-width: 1px;
+}
+#board-search .search-window .search-wrap .btn {
+  position: absolute;
+  right: -36%;
+  top: 0;
+  bottom: 0;
+  width: 90px;
+  padding: 0;
+  font-size: 16px;
+}

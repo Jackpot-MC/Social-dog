@@ -23,7 +23,7 @@
 	
 	<select id="get" parameterType="Long" resultType="DogVO">
 		select * from dog 
-		where member_id = #{memberId} 
+		where dog_id = #{dogId} 
 	</select>
 	
 	<select id="getDogByDogId" parameterType="Long" resultType="DogVO">

@@ -80,9 +80,9 @@
 								style="margin: 0; padding: 0; padding-right: 10px;">
 								<ul style="margin:0; padding:0">
 									<li style="list-style:none; text-align:right; font-size:14px; padding-right:10px;">
-										<a href="/dog/modify" class="dogModify" data-toggle="modal"
-										data-target="#modifyModal" onclick="openModifyModal()">수정</a>
-										<a href="/dog/remove">삭제</a>
+										<a class="dogModify" data-toggle="modal"
+										data-target="#modifyModal" onclick="openModifyModal(${dog.dogId})">수정</a>
+										<a class="dogModify" onclick="deleteDog(${dog.dogId})">삭제</a>
 									</li>
 								</ul>
 							</div>
@@ -104,17 +104,30 @@
 			</div>
 		</form:form>
 	</div>
+	
+		<form action="/dog/remove?_csrf=${_csrf.token}" method="post" id="removeForm">
+	  		<input type="hidden" name="dogId" value="" id="removeDogId"> 
+		</form>
+
 </div>
 
-<%@ include file="../layouts/footer.jsp"%>
 
+<%@ include file="../layouts/footer.jsp"%>
 
 <script>
 	function openRegisterModal() {
 		$('.modal-content').load("/dog/register");
 	}
 
-	function openModifyModal(){
-		$('.modal-content').load("/dog/modify");
+	function openModifyModal(dogId){
+		console.log("dogId:" + dogId);
+		$('.modal-content').load("/dog/modify?dogId="+dogId);
+	}
+	
+	function deleteDog(dogId) {
+		$("#removeDogId").val(dogId);
+		$("#removeForm").submit();
 	}
 </script>
+
+

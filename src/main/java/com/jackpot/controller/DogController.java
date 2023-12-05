@@ -56,14 +56,6 @@ public class DogController {
         return "redirect:/security/mypage"; // 요청 url
     }
 
-    //개 삭제
-    @PostMapping("/remove")
-    public String remove(@RequestParam("dogId") Long dogId) {
-        log.info("remove..." + dogId);
-        service.remove(dogId);
-        return "/deleteForm";
-    }
-
     //개 리스트 조회
     @GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
     public void list(@ModelAttribute("dogId") DogVO dog, 
@@ -79,8 +71,8 @@ public class DogController {
     
     @GetMapping("/modify")
     public void modify(@ModelAttribute("dog") DogVO dog, Model model) {
-        
-    	model.addAttribute("dog", service.getDogByDogId(dog.getDogId()));
+        log.info("dogId:" + dog.getDogId());
+    	model.addAttribute("dog", service.get(dog.getDogId()));
     	log.info("dog get modify---------------------- ");
         
     }
@@ -103,5 +95,11 @@ public class DogController {
         return "redirect:/security/mypage"; // 요청 url
     }
     
-    
+    //개 삭제
+    @PostMapping("/remove")
+    public String remove(@RequestParam("dogId") Long dogId) {
+        log.info("remove..." + dogId);
+        service.remove(dogId);
+        return "redirect:/security/mypage";
+    }
 }
