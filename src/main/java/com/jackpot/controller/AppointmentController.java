@@ -204,4 +204,9 @@ public class AppointmentController {
 		model.addAttribute("member", memberService.get(member.getMemberAddress()));
 		
 	}
+	
+	@GetMapping("/appointment/walk_banner")
+	public void walk_banner() {
+		
+	}
 }

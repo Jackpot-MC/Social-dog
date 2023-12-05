@@ -20,10 +20,10 @@
 		$(document).ready(function() {
 			let mode = '${mode}';
 			if (mode === 'review') {
-				var href = 'review/list .content';
+				var href = 'appointment/walk_banner';
 				$("#maindiv").load(href);
 			} else {
-				var href = 'appointment/list .content';
+				var href = 'appointment/walk_banner';
 				$("#maindiv").load(href);
 			}
 

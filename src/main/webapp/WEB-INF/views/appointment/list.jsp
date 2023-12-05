@@ -12,9 +12,6 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="/resources/css/main.css" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/review/list.css" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/appointment/list.css" type="text/css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -120,7 +117,7 @@
                         <a href="appointment/get?appointmentId=${appointment.appointmentId}" 
                         	class="btn btn-sm btn-flash-border-primary detail-btn"
                         	 data-target="get">상세보기</a>
-                        <a href="#" class="btn btn-sm btn-flash-border-primary attend">참여하기</a>
+                        <!-- <a href="#" class="btn btn-sm btn-flash-border-primary attend">참여하기</a> -->
 <!-- 						<a href="#" class="btn btn-primary attend">
 							<i class="fa-solid fa-arrow-right-to-bracket"></i> 참여</a>
 						<a href="#" class="btn btn-danger absent">
