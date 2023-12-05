@@ -57,7 +57,7 @@
 
 	<select id="getList" resultType="AppointmentVO">
 		select * from appointment
-		order by appointment_date desc
+		order by appointment_date
 		limit 0, 10
 	</select>
 
@@ -136,6 +136,25 @@
 		appointment_id = #{arg0}
 		and
 		member_id = #{arg1}
+	</select>
+	
+	<select id="getMyList" resultType="AppointmentVO">
+		select appointment.appointment_id, appointment_name, content, appointment_date, appointment.place_name, host_id,
+		member.member_name, place.place_name, place_type.place_type_name
+		from appointment
+		left outer join member
+		on host_id = member.member_id
+		left join participant
+		on appointment.appointment_id = participant.appointment_id
+		left outer join place
+		on appointment.place_id = place.place_id 
+		left outer join place_type
+		on place.place_type_id = place_type.place_type_id 
+		where 
+		host_id = #{member_id}
+		or
+		participant.member_id  = #{member_id}
+		order by appointment_date
 	</select>
 	
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->

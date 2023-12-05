@@ -6,7 +6,7 @@
 <mapper namespace="com.jackpot.mapper.ReplyMapper">
 
 	<select id="get" resultType="ReplyVO">
-		select * from tbl_reply
+		select * from reply
 		where no = #{no}
 	</select>
 
@@ -15,12 +15,12 @@
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 		
-		insert into tbl_reply(cno, loginId, content)
+		insert into reply(cno, login_id, content)
 		values(#{cno}, #{loginId}, #{content})
 	</insert>
 	
 	<update id="update">
-		update tbl_reply
+		update reply
 		set
 			content = #{content},
 			update_date = now()
@@ -28,7 +28,7 @@
 	</update>
 	
 	<delete id = "delete">
-		delete from tbl_reply
+		delete from reply
 		where no = #{no}
 	</delete>
 </mapper>

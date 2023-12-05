@@ -9,32 +9,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		let mode = '${mode}';
-		if (mode === 'review') {
-			var href = 'review/list .content';
-			$("#maindiv").load(href);
-		} else {
-			var href = 'appointment/list .content';
-			$("#maindiv").load(href);
-		}
 
-		$('#map').on('click', '.review_btn', function(e) {
-			var href = 'review/list .content';
-			e.preventDefault();
-			$("#maindiv").load(href);
-		});
-
-		$('#map').on('click', '.appointment_btn', function(e) {
-			var href = 'appointment/list .content';
-			e.preventDefault();
-			$("#maindiv").load(href);
-		});
-
-		/* 	 $('#map').on('click', '.place_detail_btn', function(e) {
-				 var href = place.place_url;
-		 	    e.preventDefault();
-		 	 	$("#maindiv").load(href);
-			 }); */
 	});
 </script>
 

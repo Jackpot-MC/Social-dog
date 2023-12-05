@@ -170,21 +170,14 @@ public class AppointmentController {
 	}
 
 	@GetMapping("/appointment/my_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void my_appointment(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
-		log.info("my_appointment: " + cri);
+	public void my_appointment(Principal principal, Model model) {
+		String loginId = principal.getName();		
+		Long memberId = service.getMemberId(loginId);
+		log.info("my_appointment: " + memberId);
+		
+		model.addAttribute("my_appointment_list", service.getMyList(memberId));
 
-		String loginId = principal.getName();
-
-		log.info("getMemberId");
-		model.addAttribute("memberId", service.getMemberId(loginId));
-
-		model.addAttribute("my_appointment_list", service.getList(cri));
-
-		int total = service.getTotal(cri);
-		log.info("total: " + total);
-
-		model.addAttribute("pageMaker", new AppointmentPageDTO(cri, total));
-	}
+		}
 
 	@PostMapping("/appointment/absent")
 	public String absent(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId,
@@ -199,9 +192,15 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("/walk")
-	public void walk(@ModelAttribute("member") MemberVO member, Model model) {
+	public void walk(@ModelAttribute("mode") String mode,
+			@ModelAttribute("member") MemberVO member, Model model) {
 
 		model.addAttribute("member", memberService.get(member.getMemberAddress()));
+		
+	}
+	
+	@GetMapping("/appointment/walk_banner")
+	public void walk_banner() {
 		
 	}
 }

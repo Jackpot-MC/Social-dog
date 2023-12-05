@@ -26,27 +26,7 @@
 		<header>
 		</header>
 
- <script type="text/javascript">  
-/*  $(window).on('load', function () {
-		load('#card-review', '1');
-
-		$("#review-load-btn").on("click", function () {
-			load('#card-review', '1', '#review-load-btn');
-		})
-	});
-	function load(id, cnt, btn) {
-		var girls_list = id + " .card-review:not(.active)";
-		var girls_length = $(girls_list).length;
-		var girls_total_cnt;
-		if (cnt < girls_length) {
-			girls_total_cnt = cnt;
-		} else {
-			girls_total_cnt = girls_length;
-			$(btn).hide();
-		}
-		$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-	} */
-
+ <script type="text/javascript"> 
 	$(document).ready(async function(){		// fetch()를 사용하는 함수에 async 작성. 비동기 함수임을 선언
 		$('.remove-review').click(function(e){ //post라서 .list, .modify와 달리 별도 처리 필요
 				e.preventDefault();	
@@ -54,10 +34,10 @@
 				
 				//form을 얻어서 submit() 호출
 				//console.log(document.forms);
-				$(this).document.forms.removeFormReview.submit();
+				document.forms.removeFormReview.submit();
 			});
 	
-		$('.comment-add-btn').click(function(e) {
+/* 		$('.comment-add-btn').click(function(e) {
 			// 1.ajax || fetch 써서 컨트롤러한테 데ㅣ터 달라고 하기 
 			// 2. 데잍어 가져왓으면 dom 조작해서 가져온 데이터 뿌리기 (this)
 			// 
@@ -65,15 +45,12 @@
 			// dom
 			
 			createComment(bno, writer);
-			
-			
-		});
+		}); */
 		
-		function deleteRow(ths){
-		    var ths = $(ths);
-		    
-		    ths.document.forms.removeFormReview.submit();
-		};
+		function openReviewModifyModal() {
+			$('.modal-modify-content').load("../review/modify");
+		}
+	});
 	
 </script>
 
@@ -81,7 +58,7 @@
     <div class="row justify-content-center flex-column">
             <div class="card text-center">
                 <div class="row justify-content-center d-flex flex-column text-center">
-                            <h1>${average}</h1>
+                            <h3 class="mb-0">${average}</h3>
                         <div>                            
                         	<c:forEach begin="1" end="${average}">
                             <span class="fa fa-star star-active ml-1"></span>
@@ -96,6 +73,17 @@
         <!-- 리뷰 작성하기 모달 윈도우 버튼 -->
         <button type="button" class="btn review-comment-btn" data-toggle="modal" data-target="#review-comment-form"> 리뷰 작성하기 </button>
           
+        <!-- 리뷰 수정하기 모달 윈도우 -->
+		<div class="modal fade" id="review-modify-form" tabindex="-1"
+			role="dialog" aria-labelledby="reviewModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-modify-content">
+					
+				</div>
+			</div>
+		</div>
+			
         <!-- 리뷰 작성하기 모달 윈도우 -->
 		<div class="modal fade" id="review-comment-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -136,7 +124,7 @@
 			</div>
 		</div>
 		
-		<!-- 리뷰 수정하기 모달 윈도우 -->
+<%-- 		<!-- 리뷰 수정하기 모달 윈도우 : modify.jsp로 이동 -->
 		<div class="modal fade" id="review-modify-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		    <div class="modal-dialog modal-dialog-centered" role="document">
 		        <div class="modal-content review-comment-content">
@@ -174,16 +162,17 @@
 			        </div>
 			    </div>
 			</div>
-		</div>
+		</div> --%>
 		
+		<!-- 리뷰 리스트 출력하기 -->
 <!-- 		<div id="card-review" class="main">
 		<div class="lists"> -->
 		<c:forEach var="review" items="${list}" begin="0" end="4">
             <div class="card">
                 <div class="row d-flex lists__item card-review">
-                    <div class=""> <img class="profile-pic" src="https://i.imgur.com/GJ5WWIB.jpeg"> </div>
+                    <div class=""> <img class="profile-pic mt-2" src="https://i.imgur.com/GJ5WWIB.jpeg"> </div>
                     <div class="d-flex flex-column">
-                        <span class="mt-2 mb-0" style="color: #36260d;font-size: 22px;font-weight: 500;">${review.memberName}</span>
+                        <span class="mt-2 mb-0" style="color: #36260d;font-size: 17px;font-weight: 500;">${review.memberName}</span>
                         <div>
                             <p class="text-left"><span class="text-muted mr-2">${review.rating}</span>
                             <c:forEach begin="1" end="${review.rating}">
@@ -204,11 +193,12 @@
                     <p class="content-text">${review.reviewContent}</p>
                 
                 <div class="ml-auto">
+                <!-- 로그인한 사용자 = 작성자이면, 수정/삭제 버튼 출력 -->
 				<c:if test="${review.memberLoginId eq member.loginId}">
-	                   <a href="#" class="btn review-modify" data-toggle="modal" data-target="#review-modify-form">
+	                   <a href="#" class="btn review-modify" data-toggle="modal" data-target="#review-modify-form"
+	                      onclick="openReviewModifyModal()">
 	                   <i class="fa-solid fa-pen-to-square" style="color: #cfd8dc;"></i></a>
-	                   <a href="#" class="btn remove-review">
-	                   <button type="button" onclick="deleteRow(this);">X</button>           
+	                   <a href="#" class="btn remove-review">      
 	                   <i class="fa-solid fa-trash" style="color: #cfd8dc;"></i></a>
 				</c:if>
 				</div>
@@ -218,18 +208,21 @@
 <!--            </div>
            </div> -->
 
+			<!-- 더보기 버튼 : 아직 작동 안 함 -->
            <button type="button" class="btn review-load-btn" id="review-load-btn"> 더보기 </button>
-           
-           <form action="remove-review" method="post" name="removeFormReview">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="reviewId" value="${review.reviewId}" />
-				<input type="hidden" name="pageNum" value="${cri.pageNum}" />
-				<input type="hidden" name="amount" value="${cri.amount}" />
-				<input type="hidden" name="type" value="${cri.type}" />
-				<input type="hidden" name="keyword" value="${cri.keyword}" />
-			</form>
+       
     </div>
 </div>
+
+<!-- 삭제하기 form -->
+<form action="remove-review" method="post" name="removeFormReview">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" name="reviewId" value="${review.reviewId}" />
+	<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+	<input type="hidden" name="amount" value="${cri.amount}" />
+	<input type="hidden" name="type" value="${cri.type}" />
+	<input type="hidden" name="keyword" value="${cri.keyword}" />
+</form>
 
 </body>
 </html>
