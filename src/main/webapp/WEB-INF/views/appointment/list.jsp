@@ -12,14 +12,16 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="/resources/css/main.css" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/review/list.css" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/appointment/list.css" type="text/css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/resources/js/list.js"></script>
+	
+	<link rel="stylesheet" href="/resources/css/notice/list.css" type="text/css" />
+	<link rel="stylesheet" href="/resources/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="/resources/css/review/list.css" type="text/css" />
+	<link rel="stylesheet" href="/resources/css/appointment/list.css" type="text/css" />
 
 </head>
 <body>
@@ -46,11 +48,24 @@
 			$(this).document.forms.attendAppointment.submit();
 		});
 		
-		function deleteRow(ths){
-		    var ths = $(ths);
-		    
-		    ths.document.forms.removeFormReview.submit();
-		};
+			$('.attend').click(function(){ 
+				if(!confirm('참가하시겠습니까?')) return;
+				document.forms.attendForm.submit();
+			});
+			$('.absent').click(function(){ 
+				if(!confirm('참가 취소하시겠습니까?')) return;
+				document.forms.absentForm.submit();
+			});
+		
+		if (${checkAttendance} > 0){
+			$('.attend').hide();
+		}	else{
+			$('.absent').hide();
+		}
+			
+			let appointmentId = ${param.appointmentId}; 	// 글번호
+			let memberId = '${memberId}';	// 작성자(로그인 유저)  
+		});
 	
 </script>
 	
@@ -100,15 +115,13 @@
 
                     <div class="widget-49-meeting-action">
                         <a href="appointment/get?appointmentId=${appointment.appointmentId}" 
-                        	class="btn btn-sm btn-flash-border-primary">상세보기</a>
-                        <c:choose>
-							<c:when test="${appointment.hostId == memberId}">
-								<a href="#" class="btn btn-sm btn-flash-border-primary" style="color:#0091EA;">취소하기</a>
-							</c:when>
-							<c:otherwise>
-								<a href="#" class="btn btn-sm btn-flash-border-primary" style="color:#0091EA;">참여하기</a>
-							</c:otherwise>
-						</c:choose>
+                        	class="btn btn-sm btn-flash-border-primary detail-btn"
+                        	 data-target="get">상세보기</a>
+                        <!-- <a href="#" class="btn btn-sm btn-flash-border-primary attend">참여하기</a> -->
+<!-- 						<a href="#" class="btn btn-primary attend">
+							<i class="fa-solid fa-arrow-right-to-bracket"></i> 참여</a>
+						<a href="#" class="btn btn-danger absent">
+							<i class="fa-solid fa-right-from-bracket"></i> 불참</a> -->
                     </div>
                 </div>
             </div>
@@ -116,5 +129,26 @@
         </c:forEach>
     </div>
 </div>
+
+<form action="attend" method="post" name="attendForm">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" 
+		name="appointmentId"
+		value="${appointment.appointmentId}" /> 
+	<input type="hidden" 
+		name="memberId" 
+		value="${memberId}" />
+</form>
+
+<form action="absent" method="post" name="absentForm">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="hidden" 
+		name="appointmentId"
+		value="${appointment.appointmentId}" /> 
+	<input type="hidden" 
+		name="memberId" 
+		value="${memberId}" />
+</form>
+
 </body>
 </html>

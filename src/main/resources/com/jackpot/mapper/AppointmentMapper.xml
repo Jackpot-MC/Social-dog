@@ -57,7 +57,7 @@
 
 	<select id="getList" resultType="AppointmentVO">
 		select * from appointment
-		order by appointment_date desc
+		order by appointment_date
 		limit 0, 10
 	</select>
 

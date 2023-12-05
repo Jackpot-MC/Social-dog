@@ -199,9 +199,15 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("/walk")
-	public void walk(@ModelAttribute("member") MemberVO member, Model model) {
+	public void walk(@ModelAttribute("mode") String mode,
+			@ModelAttribute("member") MemberVO member, Model model) {
 
 		model.addAttribute("member", memberService.get(member.getMemberAddress()));
+		
+	}
+	
+	@GetMapping("/appointment/walk_banner")
+	public void walk_banner() {
 		
 	}
 }

@@ -57,15 +57,17 @@ public class ReviewController {
 		
 		/* member.setLoginId(principal.getName()); */
 
+		log.info("list..........................: " + cri);
 		model.addAttribute("list", service.getList(cri));
+		
 		model.addAttribute("average", service.getAverage());
 		/* model.addAttribute("member", member); */
-		model.addAttribute("member", memberService.get(principal.getName()));
 		
-		log.info("list..........................: " + cri);
-		log.info("reviewModify: " + review);
 		log.info("member...................: " + memberService.get(principal.getName()));
 		log.info("principal.......................: " + principal);
+		model.addAttribute("member", memberService.get(principal.getName()));
+		
+		log.info("reviewModify: " + review);
 		
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
@@ -100,9 +102,13 @@ public class ReviewController {
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
-	public void get(@RequestParam("reviewId") Long reviewId, @ModelAttribute("cri") ReviewCriteria cri, Model model) {
+	public void get(@RequestParam("reviewId") Long reviewId, @ModelAttribute("cri") ReviewCriteria cri,
+			Principal principal, Model model) {
 		log.info("/get or modify");
 		model.addAttribute("review", service.get(reviewId));
+		
+		log.info("principal.......................: " + principal);
+		model.addAttribute("member", memberService.get(principal.getName()));
 	}
 	
 	@PostMapping("/modify")

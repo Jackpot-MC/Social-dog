@@ -1,29 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <%@ include file="../layouts/header.jsp" %>
+<%@ include file="../security/profilemenu.jsp" %>
 
-<!-- summernote -->
-<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.min.css">
-<script src="/resources/js/summernote/summernote-lite.min.js"></script>
-<script src="/resources/js/summernote/lang/summernote-ko-KR.min.js"></script>
+<link rel="stylesheet" href="/resources/css/main.css" type="text/css" />
+<link rel="stylesheet" href="/resources/css/review/list.css" type="text/css" />
+
+
+<sec:authentication property="principal.username" var="username"/>
 
 <script>
-$(document).ready(function() {
-	$('#content').summernote({
-		height: 300, // 에디터높이
-		focus: true, // 에디터로딩후포커스를맞출지여부
-		lang: "ko-KR",// 한글설정
-	});
-});
-// 기본글꼴설정
-$('#content').summernote('fontName', 'Arial');
+
 </script>
 
-<h1 class="page-header mt-4"><i class="far fa-edit mt-4"></i>글 수정하기</h1>
+<!-- 리뷰 수정하기 모달 윈도우 -->
+<!-- <div class="container">
+    <section id="formHolder"> -->
+            <div class="text-right review-cross" data-dismiss="modal" aria-label="Close"> <i class="fa fa-times mr-2"></i> </div>
+            <div class="card-body review-comment-card-body text-center"> <i class="fa-solid fa-dog fa-2xl" style="color: #ffc107;"></i>
+                <div class="comment-box review-comment-box text-center mt-2">
+                <h4>리뷰를 작성해 주세요!</h4>
+                <form:form modelAttribute="review" action="/dog/modify?_csrf=${_csrf.token}"
+					id="review_modify_form">
+				<form:hidden path="memberLoginId" value="${member.loginId}"/>
+				<form:hidden path="placeId" value="14"/>
+				
+	                    <div class="review-comment-rating form-group">
+				        <form:radiobutton name="rating" path="rating" value="5" id="5"/><label for="5">☆</label>
+				        <form:radiobutton name="rating" path="rating" value="4" id="4"/><label for="4">☆</label>
+				        <form:radiobutton name="rating" path="rating" value="3" id="3"/><label for="3">☆</label>
+				        <form:radiobutton name="rating" path="rating" value="2" id="2"/><label for="2">☆</label>
+				        <form:radiobutton name="rating" path="rating" value="1" id="1"/><label for="1">☆</label>
+				    </div>
+						                
+                <div class="form-group">
+					<form:label path="reviewTitle">제목</form:label>
+	            	<form:input path="reviewTitle" cssClass="form-control"/>
+					<form:errors path="reviewTitle" cssClass="error" />
+				</div>
+                
+                <div class="comment-area review-comment-area form-group">
+                내용 <form:textarea path="reviewContent" rows="4"/>
+                </div>
+                    
+                    <div class="text-center mt-4"> <button class="btn review-comment-btn-send px-5">작성완료<i class="fa fa-long-arrow-right ml-1"></i></button>
+	            </div>
+	            </form:form>
+	            </div>
+	      </div>
+<!-- 	</section>
+</div> -->
+
+<%-- <h1 class="page-header mt-4"><i class="far fa-edit mt-4"></i>글 수정하기</h1>
 <div class="panel panel-default">
 	<div class="panel-body">
 		<form:form modelAttribute="notice" role="form" action="?_csrf=${_csrf.token}"
@@ -48,13 +79,13 @@ $('#content').summernote('fontName', 'Arial');
 			</div>
 			
 			<button type="submit" class="btn btn-primary">
-				<i class="fas fa-check"></i>확인</button>	
+				<i class="fas fa-undo"></i>확인</button>	
 			<button type="reset" class="btn btn-primary">
 				<i class="fas fa-undo"></i>취소</button>	
-			<a href="${cri.getLinkWithNoticeId('get', notice.noticeId)}" class="btn btn-primary get">
+			<a href="${cri.getLinkWithNoticeId('get', notice.noticeId)}" class="btn btn-dark btn-primary get">
 				<i class="fas fa-list"></i>돌아가기</a>
 		</form:form>
 	</div>
-</div>
+</div> --%>
 
 <%@ include file="../layouts/footer.jsp" %>

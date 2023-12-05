@@ -18,11 +18,19 @@
 	<header> </header>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			let mode = '${mode}';
-			if (mode === 'review') {
+			
+/*  			var href = 'appointment/walk_banner .content';
+			$("#maindiv").load(href); */
+			
+    		let mode = '${mode}';
+			if (mode === '') {
+				var href = 'appointment/walk_banner .content';
+				$("#maindiv").load(href);
+			}
+			else if (mode === 'review') {
 				var href = 'review/list .content';
 				$("#maindiv").load(href);
-			} else {
+			} else if(mode === 'appointment') {
 				var href = 'appointment/list .content';
 				$("#maindiv").load(href);
 			}
@@ -38,7 +46,13 @@
 				e.preventDefault();
 				$("#maindiv").load(href);
 			});
-
+			
+/*  			$('#maindiv').on('click', '.detail-btn', function(e) {
+				var href = 'appointment/get?appointmentId=${appointment.appointmentId}';
+				e.preventDefault();
+				$("#maindiv").load(href);
+			}); */
+ 			
 			/* 	 $('#map').on('click', '.place_detail_btn', function(e) {
 					 var href = place.place_url;
 			 	    e.preventDefault();
