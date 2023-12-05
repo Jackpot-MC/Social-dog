@@ -32,4 +32,6 @@ public interface AppointmentMapper {
 	public boolean absent(Long participantId, Long memberId);
 	
 	public int checkAttendance(Long appointmentId, Long memberId);
+	
+	public List<AppointmentVO> getMyList(Long memberId);
 }
