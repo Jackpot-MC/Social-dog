@@ -19,13 +19,11 @@ function createCommentTemplate(comment, loginId) {
 			<div class="comment-title my-2 d-flex justify-content-between">
 				<div>
 					<strong class="loginId">
-						<img src = "/security/avatar/sm/${comment.loginId}"
-							class="avatar-sm">
 							${comment.loginId}
 					</strong>
 					<span class="text-muted ml-3 comment-date">
-						${moment(comment.regDate).format('YYYY-MM-DD hh:mm')}
-					rr</span>
+						${moment(comment.regDate).format('YYYY-MM-DD HH:mm')}
+					</span>
 				</div>
 				<div class="btn-group">
 					${loginId && (loginId != comment.loginId) ? replyAddable : ''}

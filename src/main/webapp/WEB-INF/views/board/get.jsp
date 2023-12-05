@@ -89,7 +89,7 @@ $(document).ready(async function(){
 			<div class="bg-light p-2 rounded my-5">
 				<div>${loginId == null ? '댓글을 작성하려면 먼저 로그인하세요.' : '댓글 작성'}</div>
 				<div>
-					<textarea class="form-control new-comment-content" rows="3"
+					<textarea class="form-control new-comment-content" rows="3" placeholder="댓글을 입력해주세요."
 						${loginId == null ? 'disabled' : ''}></textarea>
 					<div class="text-right">
 						<button class="btn btn-primary btn-sm my-2 comment-add-btn"
