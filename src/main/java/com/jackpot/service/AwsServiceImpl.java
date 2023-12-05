@@ -23,24 +23,6 @@ import java.util.List;
 @Log4j
 public class AwsServiceImpl implements AwsService{
 
-    private final String endPoint = "https://kr.object.ncloudstorage.com";
-    private final String regionName = "kr-standard";
-
-    @Value("${access_key}")
-    private String accessKey;
-
-    @Value("${secret_key")
-    private String secretKey;
-
-    //s3 client
-    @Bean
-    public AmazonS3Client amazonS3Client() {
-        return (AmazonS3Client) AmazonS3ClientBuilder.standard()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
-                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
-                .build();
-    }
-
     @Autowired
     private DogMapper dogMapper;
 
