@@ -65,13 +65,6 @@
 			
 			let appointmentId = ${param.appointmentId}; 	// 글번호
 			let memberId = '${memberId}';	// 작성자(로그인 유저)  
-			
-			let placeKakaoId2 = window.localStorage.getItem('placeId');
-			if(window.localStorage.getItem('placeId')){
-				 document.getElementById("appointment-placeId").innerHTML="장소ID: " + placeKakaoId2;
-				 console.log(placeKakaoId2);
-				}
-
 		});
 	
 </script>
@@ -86,7 +79,7 @@
                 data-toggle="modal" onclick="location.href='appointment/register'"> 약속 작성하기 </button>
                 
    	 <c:forEach var="appointment" items="${list}">
-    	<c:if test="${appointment.placeKakaoId == placeKakaoId2}">
+		<span id="appointment-placeId"></span>
          <div class="card3 card-margin" style="padding:0;">
             <div class="card-header">
                 <img class="profile-pic-appointment-list ml-3" src="https://i.imgur.com/GJ5WWIB.jpeg">
@@ -134,7 +127,6 @@
                 </div>
             </div>
           </div>
-           </c:if> 
         </c:forEach>
     </div>
 </div>
