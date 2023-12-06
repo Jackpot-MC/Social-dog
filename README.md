@@ -1,4 +1,4 @@
-![logo](./src/main/webapp/resources/images/SocialDog-logo.png)
+![logo](./src/main/webapp/resources/images/SocialDog_logo_yellow.png)
 
 # SocialDog
 이웃 강아지와 함께 산책을 합시다!
