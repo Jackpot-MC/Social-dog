@@ -11,7 +11,7 @@ public interface DogService {
 	public void register(DogVO dog);
 
 	// 조회
-	public DogVO get(Long memberId);
+	public DogVO get(Long dogId);
 
 	// 수정
 	public void modify(DogVO dog);
