@@ -65,12 +65,6 @@
 			
 			let appointmentId = ${param.appointmentId}; 	// 글번호
 			let memberId = '${memberId}';	// 작성자(로그인 유저)  
-			
-			if(window.localStorage.getItem('placeName')){
-				 const placeName = window.localStorage.getItem('placeName')
-				 console.log(placeName);
-				 document.getElementById("walk_container").innerHTML=placeName;
-				}
 		});
 	
 </script>
@@ -83,8 +77,9 @@
     <!-- 약속 작성하기 모달 윈도우 버튼 -->
         <button type="button" class="btn register-appointment-btn" style="width:100%; padding:10px; margin:auto;"
                 data-toggle="modal" onclick="location.href='appointment/register'"> 약속 작성하기 </button>
-
+                
    	 <c:forEach var="appointment" items="${list}">
+		<span id="appointment-placeId"></span>
          <div class="card3 card-margin" style="padding:0;">
             <div class="card-header">
                 <img class="profile-pic-appointment-list ml-3" src="https://i.imgur.com/GJ5WWIB.jpeg">
@@ -113,6 +108,7 @@
                         	<div class="widget-49-meeting-points">
                         		<span class="widget-49-meeting-item">
                         		장소  | ${appointment.placeName}<br>
+                        		카카오맵ID  | ${appointment.placeKakaoId}<br>
                         		주최자 <i class="fa-solid fa-paw" style="color: #ffc107;"></i> ${appointment.memberName}</span>
                     		</div>
                         </div>

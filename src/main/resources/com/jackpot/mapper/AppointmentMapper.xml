@@ -13,6 +13,7 @@
 		<result property="hostId" column="host_id" />
 		<result property="content" column="content" />	
 		<result property="placeName" column="place_name" />	
+		<result property="placeKakaoId" column="place_kakao_id" />	
 		<result property="participantId" column="participant_id" />
 		<result property="memberId" column="member_id" />
 		<result property="memberName" column="member_name" />
@@ -30,9 +31,9 @@
 
   
   	<insert id="insert">
-		insert into appointment (appointment_name, content, appointment_date, place_name, host_id)
+		insert into appointment (appointment_name, content, appointment_date, place_name, host_id, place_kakao_id)
 		values
-		(#{appointmentName}, #{content}, #{appointmentDate}, #{placeName}, #{hostId} )
+		(#{appointmentName}, #{content}, #{appointmentDate}, #{placeName}, #{hostId}, #{placeKakaoId} )
 
 		<selectKey resultType="Long" keyProperty="appointmentId"
 			keyColumn="appointment_id" order="AFTER">
@@ -83,7 +84,7 @@
 	</select>
 
 	<select id="getListWithPaging" resultType="AppointmentVO">
-		select appointment_id, appointment_name, content, appointment_date, appointment.place_name, host_id,
+		select appointment_id, appointment_name, content, appointment_date, appointment.place_name, host_id, appointment.place_kakao_id,
 		member.member_name, place.place_spot, place.place_name, place_type.place_type_name
 		from appointment
 		left outer join member on appointment.host_id = member.member_id

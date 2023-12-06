@@ -40,53 +40,85 @@ $(document).ready(function() {
 		focus: true, // 에디터로딩후포커스를맞출지여부
 		lang: "ko-KR",// 한글설정
 	});
+		
+/* 		$('#appointment-confirm').on('click', function(){
+
+			    let form = document.getElementById("appointment-confirm"); // 반드시 form 태그여야하나/
+
+			    form.action = "/appointment/register";
+			
+			    form.method = "POST";
+			
+			
+			const formData = new FormData(form)
+
+			    form.submit();
+
+			}); */
 	
-/* 	$('#btn').click(function(){
-
-		    var form = document.getElementById("excelForm");
-
-		    form.action = "ExcelList.do";
-
-		    form.method = "POST";
-
-		    form.submit();
-
-		}); */
-	
+	let placeKakaoName = window.localStorage.getItem('placeKakaoName');
 	if(window.localStorage.getItem('placeKakaoName')){
-		 const placeKakaoName = window.localStorage.getItem('placeKakaoName')
 		 document.getElementById("appointment-placeName").innerHTML="장소명: " + placeKakaoName;
+		 document.getElementById("placeName").value= placeKakaoName; 
 		}
 	
+	let placeId = window.localStorage.getItem('placeId');
 	if(window.localStorage.getItem('placeId')){
-		 const placeId = window.localStorage.getItem('placeId')
 		 document.getElementById("appointment-placeId").innerHTML="장소ID: " + placeId;
+		 document.getElementById("placeKakaoId").value= placeId; 
 		}
 	
+	let placeAddress = window.localStorage.getItem('placeAddress');
 	if(window.localStorage.getItem('placeAddress')){
-		 const placeAddress = window.localStorage.getItem('placeAddress')
 		 document.getElementById("appointment-placeAddress").innerHTML="지번 주소: " + placeAddress;
 		}
 	
+	let placeRoadAddress = window.localStorage.getItem('placeRoadAddress');
 	if(window.localStorage.getItem('placeRoadAddress')){
-		 const placeRoadAddress = window.localStorage.getItem('placeRoadAddress')
 		 document.getElementById("appointment-placeRoadAddress").innerHTML="도로명 주소: " + placeRoadAddress;
 		}
 	
+	let placeCategory = window.localStorage.getItem('placeCategory');
 	if(window.localStorage.getItem('placeCategory')){
-		 const placeCategory = window.localStorage.getItem('placeCategory')
 		 document.getElementById("appointment-placeCategory").innerHTML="카테고리 번호: " + placeCategory;
 		}
 	
+	let placeX = window.localStorage.getItem('placeX');
 	if(window.localStorage.getItem('placeX')){
-		 const placeX = window.localStorage.getItem('placeX')
 		 document.getElementById("appointment-placeX").innerHTML="위도: " + placeX;
 		}
 	
+	let placeY = window.localStorage.getItem('placeY');
 	if(window.localStorage.getItem('placeY')){
-		 const placeY = window.localStorage.getItem('placeY')
 		 document.getElementById("appointment-placeY").innerHTML="경도: " + placeY;
 		}
+	
+/*     let appointmentData = {
+        	    "appointmentName": appointmentName,
+        	    "content": content,
+        	    "appointmentDate": appointmentDate,
+        	    "placeId": 14,
+        		"hostId" : hostId,
+        		"placeName" : placeKakaoName
+        	  };
+		
+		$('#submit').on('click', function(){
+		$.ajax({
+            url: '/appointment/register', // url where to submit the request
+            type : "POST", // type of action POST || GET
+            dataType : 'json', // data type
+            data : appointmentData,
+            success : function(result) {
+                // you can see the result from the console
+                // tab of the developer tools
+                console.log(result);
+            },
+            error: function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+
+		}); */
 });
 // 기본글꼴설정
 $('#content').summernote('fontName', 'Arial');
@@ -103,9 +135,11 @@ $('#content').summernote('fontName', 'Arial');
 	
 <div class="panel panel-default">
 	<div class="panel-body">
+	<div id="appointment-confirm" onclick="appointment-confirm()"></div>
 		<form:form modelAttribute="appointment" role="form"
 			action="?_csrf=${_csrf.token}"
 			enctype="multipart/form-data">
+			
 			<form:hidden path="hostId" value="${hostId}"/>
 				
 			<div class="form-group">
@@ -113,6 +147,24 @@ $('#content').summernote('fontName', 'Arial');
 				<form:input path="appointmentName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
 				<form:errors path="appointmentName" cssClass="error"/>
 			</div>
+			
+			<div class="form-group">
+				<form:label path="placeName">약속 장소</form:label>
+				<form:input path="placeName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
+				<form:errors path="placeName" cssClass="error"/>
+			</div>
+			
+			<div class="form-group">
+				<form:label path="placeKakaoId">카카오맵 ID</form:label>
+				<form:input path="placeKakaoId" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
+				<form:errors path="placeKakaoId" cssClass="error"/>
+			</div>
+			
+<%-- 			<div class="form-group">
+				<form:label path="placeTypeId">장소 유형</form:label>
+				<form:input path="placeTypeId" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
+				<form:errors path="placeTypeId" cssClass="error"/>
+			</div> --%>
 			
 			<p id="appointment-placeName-post"></p>
 			
@@ -136,7 +188,7 @@ $('#content').summernote('fontName', 'Arial');
 				<form:input type="datetime-local" path="appointmentDate" cssClass="form-control"/>
 			</div>
 			
-			<button type="submit" class="btn btn-dark">
+			<button type="submit" class="btn btn-dark" id="submit">
 				<i class="fas fa-undo"></i>확인</button>	
 			<button type="reset" class="btn btn-dark">
 				<i class="fas fa-undo"></i>취소</button>	

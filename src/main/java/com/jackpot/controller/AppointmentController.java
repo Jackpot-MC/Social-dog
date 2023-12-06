@@ -89,9 +89,9 @@ public class AppointmentController {
 	}
 
 	@PostMapping("/appointment/register") // POST 요청의 리턴 타입은 String
-	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, 
-			@ModelAttribute("place") PlaceVO place,
-			Errors errors, 
+	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, Errors errors,
+			@Valid @ModelAttribute("place") PlaceVO place,
+			Errors errors2,
 			RedirectAttributes rttr) throws Exception {
 		
 		
@@ -100,6 +100,7 @@ public class AppointmentController {
 			return "appointment/register";
 		}
 
+		/* service.register(appointment, place); */
 		service.register(appointment);
 		
 		/* service.registerPlace(place); */
