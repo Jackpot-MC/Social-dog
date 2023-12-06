@@ -7,11 +7,14 @@ import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
 import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.ParticipantVO;
+import com.jackpot.domain.PlaceVO;
 
 public interface AppointmentService {
 	public AppointmentVO get(Long appointmentId);
 	
 	public void register(AppointmentVO appointment) throws IOException;
+	
+	public void registerPlace(PlaceVO place) throws IOException;
 	
 	public boolean modify(AppointmentVO appointment) throws IOException;
 

@@ -11,6 +11,8 @@ pageEncoding="UTF-8"%>
 <script src="/resources/js/summernote/summernote-lite.min.js"></script>
 <script src="/resources/js/summernote/lang/summernote-ko-KR.min.js"></script>
 
+<link rel="stylesheet" href="/resources/css/appointment/register.css" type="text/css" />
+
 <style>
 section.register {
   padding: 80px 0;
@@ -38,6 +40,53 @@ $(document).ready(function() {
 		focus: true, // 에디터로딩후포커스를맞출지여부
 		lang: "ko-KR",// 한글설정
 	});
+	
+/* 	$('#btn').click(function(){
+
+		    var form = document.getElementById("excelForm");
+
+		    form.action = "ExcelList.do";
+
+		    form.method = "POST";
+
+		    form.submit();
+
+		}); */
+	
+	if(window.localStorage.getItem('placeKakaoName')){
+		 const placeKakaoName = window.localStorage.getItem('placeKakaoName')
+		 document.getElementById("appointment-placeName").innerHTML="장소명: " + placeKakaoName;
+		}
+	
+	if(window.localStorage.getItem('placeId')){
+		 const placeId = window.localStorage.getItem('placeId')
+		 document.getElementById("appointment-placeId").innerHTML="장소ID: " + placeId;
+		}
+	
+	if(window.localStorage.getItem('placeAddress')){
+		 const placeAddress = window.localStorage.getItem('placeAddress')
+		 document.getElementById("appointment-placeAddress").innerHTML="지번 주소: " + placeAddress;
+		}
+	
+	if(window.localStorage.getItem('placeRoadAddress')){
+		 const placeRoadAddress = window.localStorage.getItem('placeRoadAddress')
+		 document.getElementById("appointment-placeRoadAddress").innerHTML="도로명 주소: " + placeRoadAddress;
+		}
+	
+	if(window.localStorage.getItem('placeCategory')){
+		 const placeCategory = window.localStorage.getItem('placeCategory')
+		 document.getElementById("appointment-placeCategory").innerHTML="카테고리 번호: " + placeCategory;
+		}
+	
+	if(window.localStorage.getItem('placeX')){
+		 const placeX = window.localStorage.getItem('placeX')
+		 document.getElementById("appointment-placeX").innerHTML="위도: " + placeX;
+		}
+	
+	if(window.localStorage.getItem('placeY')){
+		 const placeY = window.localStorage.getItem('placeY')
+		 document.getElementById("appointment-placeY").innerHTML="경도: " + placeY;
+		}
 });
 // 기본글꼴설정
 $('#content').summernote('fontName', 'Arial');
@@ -57,20 +106,25 @@ $('#content').summernote('fontName', 'Arial');
 		<form:form modelAttribute="appointment" role="form"
 			action="?_csrf=${_csrf.token}"
 			enctype="multipart/form-data">
-			<form:hidden path="hostId" value="${hostId }"/>
+			<form:hidden path="hostId" value="${hostId}"/>
 				
 			<div class="form-group">
 				<form:label path="appointmentName">제목</form:label>
 				<form:input path="appointmentName" cssClass="form-control"/> <!-- name은 VO에 있는 멤버변수 이름을 사용 -->	
 				<form:errors path="appointmentName" cssClass="error"/>
 			</div>
-
- 			<div class="form-group">
-				<form:label path="placeName">약속 장소</form:label> <!-- id는 summernote 용 --> 
-				<form:input path="placeName" cssClass="form-control"></form:input>
-				<form:errors path="placeName" cssClass="error"/>
-			</div> 
 			
+			<p id="appointment-placeName-post"></p>
+			
+			<span style="font-weight: bold;">약속 장소 정보</span>
+			<div class="card" id="appointment-placeName"></div>
+			<div class="card" id="appointment-placeId"></div>
+			<div class="card" id="appointment-placeAddress"></div>
+			<div class="card" id="appointment-placeRoadAddress"></div>
+			<div class="card" id="appointment-placeCategory"></div>
+			<div class="card" id="appointment-placeX"></div>
+			<div class="card" id="appointment-placeY"></div><br>
+		
 			<div class="form-group">
 				<form:label path="content">약속 내용</form:label>
 				<form:textarea path="content" cssClass="form-control"/> 
@@ -89,6 +143,35 @@ $('#content').summernote('fontName', 'Arial');
 			<a href="javascript:history.back()" class="btn btn-dark"> <!--history.back() : 캐시된 것을 가져옴-->
 				<i class="fas fa-list"></i>목록</a>
 		</form:form>
+
+<%-- 		<form:form modelAttribute="place" role="form"
+			action="?_csrf=${_csrf.token}"
+			enctype="multipart/form-data">
+<!-- 			<div id="place-placeName"></div>
+			<div id="place-placeKakaoId"></div>
+			<div id="place-placeTypeId"></div> -->
+			
+			<form:hidden path="placeName" value="${placeName}"/>
+			<form:hidden path="placeKakaoId" value="${placeId}"/>
+			<form:hidden path="placeTypeId" value="${placeCategory}"/>
+			
+			<span style="font-weight: bold;">약속 장소 정보</span>
+			<div class="card" id="appointment-placeName"></div>
+			<div class="card" id="appointment-placeId"></div>
+			<div class="card" id="appointment-placeAddress"></div>
+			<div class="card" id="appointment-placeRoadAddress"></div>
+			<div class="card" id="appointment-placeCategory"></div>
+			<div class="card" id="appointment-placeX"></div>
+			<div class="card" id="appointment-placeY"></div><br>
+			
+			<button type="submit" class="btn btn-dark">
+				<i class="fas fa-undo"></i>확인</button>	
+			<button type="reset" class="btn btn-dark">
+				<i class="fas fa-undo"></i>취소</button>	
+			<a href="javascript:history.back()" class="btn btn-dark"> <!--history.back() : 캐시된 것을 가져옴-->
+				<i class="fas fa-list"></i>목록</a>
+		</form:form> --%>
+		
 		</div>
 		
 	</div>

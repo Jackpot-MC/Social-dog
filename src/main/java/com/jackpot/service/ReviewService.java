@@ -22,4 +22,6 @@ public interface ReviewService {
 	
 	public int getAverage();
 	
+	public Long getReviewId(String loginId);
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
 import com.jackpot.domain.ParticipantVO;
+import com.jackpot.domain.PlaceVO;
 import com.jackpot.mapper.AppointmentMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -36,6 +37,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Long appointmentId = appointment.getAppointmentId();
 		String placeName = appointment.getPlaceName();
 		mapper.setPlaceIdFromPlaceName(appointmentId, placeName);
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void registerPlace(PlaceVO place) throws IOException {
+		log.info("insert: " + place);
+		mapper.insertPlace(place);
 	}
 
 	@Override

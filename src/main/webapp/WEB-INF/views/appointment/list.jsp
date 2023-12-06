@@ -65,6 +65,12 @@
 			
 			let appointmentId = ${param.appointmentId}; 	// 글번호
 			let memberId = '${memberId}';	// 작성자(로그인 유저)  
+			
+			if(window.localStorage.getItem('placeName')){
+				 const placeName = window.localStorage.getItem('placeName')
+				 console.log(placeName);
+				 document.getElementById("walk_container").innerHTML=placeName;
+				}
 		});
 	
 </script>
@@ -77,7 +83,6 @@
     <!-- 약속 작성하기 모달 윈도우 버튼 -->
         <button type="button" class="btn register-appointment-btn" style="width:100%; padding:10px; margin:auto;"
                 data-toggle="modal" onclick="location.href='appointment/register'"> 약속 작성하기 </button>
-
 
    	 <c:forEach var="appointment" items="${list}">
          <div class="card3 card-margin" style="padding:0;">

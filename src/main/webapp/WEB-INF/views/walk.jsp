@@ -47,6 +47,28 @@
 				$("#maindiv").load(href);
 			});
 			
+			$('#maindiv').on('click', '.review-comment-btn', function(e) {
+				var href = 'review/register .content';
+				e.preventDefault();
+				$("#maindiv").load(href);
+			});
+			
+			$('#maindiv').on('click', '.remove-review', function(e) {
+				e.preventDefault();
+				if(!confirm('정말 삭제할까요?')) return;
+				
+				var href = 'review/list .content';
+
+				$('modify').document.forms.removeFormReview.submit();
+				$("#maindiv").load(href);
+			});
+			
+/*  			$('#maindiv').on('click', '.review-modify', function(e) {
+				var href = 'review/modify';
+				e.preventDefault();
+				$("#maindiv").load("review/modify?reviewId=${review.reviewId} .content");
+			}); */
+			
 /*  			$('#maindiv').on('click', '.detail-btn', function(e) {
 				var href = 'appointment/get?appointmentId=${appointment.appointmentId}';
 				e.preventDefault();
@@ -59,6 +81,11 @@
 			 	 	$("#maindiv").load(href);
 				 }); */
 		});
+		
+/* 		if(window.localStorage.getItem('placeName')){
+			 var placeName = window.localStorage.getItem('placeName')
+			 console.log(placeName);
+			} */
 	</script>
 
 
@@ -113,4 +140,5 @@
 			</div>
 		</div>
 	</section>
+
 	<%@ include file="layouts/footer.jsp"%>

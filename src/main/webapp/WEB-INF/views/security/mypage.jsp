@@ -28,11 +28,11 @@
 
 <div class="container">
 	<div class="d-flex my-3">
-		<form:form modelAttribute="member"
+		<form:form modelAttribute="member" enctype="multipart/form-data" 
 			action="/security/mypage?_csrf=${_csrf.token}" style="width:900px"
 			class="mx-auto">
 
-			<h1 class="title">마이페이지</h1>
+			<h1 class="title">강아지 정보</h1>
 			<h6 class="welcomeM">${member.memberName}(${member.loginId})님
 				반갑습니다.</h6>
 
@@ -59,16 +59,16 @@
 				<c:forEach var="dog" items="${dogList}">
 					<div class="card card-margin">
 						<div class="card-dog">
-							<img src="/resources/images/${dog.dogPhotoPath}" class="dog-pic"
-                            	onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
+							<img src="/dog/avatar/lg/${dog.dogName}" class="dog-pic" style="width:200px; height:200px;"
+                            	onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'"/>
 							<h5>${dog.dogName}</h5>
 							<div class="dog-profile">
 								<ul style="list-style: none; padding-left: 10px; font-size:16px;">
-									<li>견종: ${dog.dogKind}</li>
-									<li>생일: <fmt:formatDate pattern="yyyy-MM-dd"
-											value="${dog.dogBirth}" /></li>
+									<li><i class="fa-solid fa-bone" style="color: #ffc107;"></i> 견종: ${dog.dogKind}</li>
+									<li><i class="fa-solid fa-bone" style="color: #ffc107;"></i> 생일:
+									 <fmt:formatDate pattern="yyyy-MM-dd" value="${dog.dogBirth}" /></li>
 									<%-- <li>관심사: ${dog.dogFavorite}</li> --%>
-									<li>소개: ${dog.dogDescription}</li>
+									<li><i class="fa-solid fa-bone" style="color: #ffc107;"></i> 소개: ${dog.dogDescription}</li>
 
 								</ul>
 							</div>

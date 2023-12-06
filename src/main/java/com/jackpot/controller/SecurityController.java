@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jackpot.domain.DogVO;
 import com.jackpot.domain.MemberVO;
@@ -122,7 +123,8 @@ public class SecurityController {
     }
     
     @PostMapping("/mypage")
-    public String mypagePost(@ModelAttribute("dog") DogVO dog, Model model, Principal principal, Errors errors) {
+    public String mypagePost(@ModelAttribute("dog") DogVO dog, Model model, Principal principal, Errors errors,
+    		MultipartFile avatar) throws IOException {
         String loginId = principal.getName();
         dog.setMemberId(memberService.getMemberIdByLoginId(loginId));
         
@@ -131,7 +133,7 @@ public class SecurityController {
 			return "/dog/modify";
 		}
 
-        dogService.modify(dog);
+        dogService.modify(dog, avatar);
         return "redirect:/security/mypage"; // 요청 url
     }
     

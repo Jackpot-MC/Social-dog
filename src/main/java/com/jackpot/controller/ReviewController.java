@@ -49,7 +49,7 @@ public class ReviewController {
 		return map;		
 	}
 	
-	@GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
+	@GetMapping({"/list", "/register"}) // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
 	public void list(@ModelAttribute("cri") ReviewCriteria cri,
 			@ModelAttribute("review") ReviewVO review,
 			Principal principal,
@@ -76,12 +76,12 @@ public class ReviewController {
 		model.addAttribute("pageMaker", new ReviewPageDTO(cri, total));
 	}
 	
-	@GetMapping("/register") // 로직이 없어서 Test X
-	public void register(@ModelAttribute("review") ReviewVO review) {
-		log.info("register");
-	}
+	/*
+	 * @GetMapping("/register") // 로직이 없어서 Test X public void
+	 * register(@ModelAttribute("review") ReviewVO review) { log.info("register"); }
+	 */
 
-	@PostMapping("/list") // POST 요청의 리턴 타입은 String
+	@PostMapping({"/list", "/register"}) // POST 요청의 리턴 타입은 String
 	public String list(
 			@Valid @ModelAttribute("review") ReviewVO review,
 			Principal principal,
@@ -98,13 +98,15 @@ public class ReviewController {
 		
 		log.info("register: " + review);
 		
-		return "redirect:/?mode=review"; // 요청 url
+		return "redirect:/walk?mode=review"; // 요청 url
 	}
 	
 	@GetMapping({"/get", "/modify"}) //get : 상세보기, modify: 수정 화면으로 가기
-	public void get(@RequestParam("reviewId") Long reviewId, @ModelAttribute("cri") ReviewCriteria cri,
-			Principal principal, Model model) {
-		log.info("/get or modify");
+	public void get(@RequestParam("reviewId") Long reviewId, 
+			@ModelAttribute("cri") ReviewCriteria cri,
+			Principal principal, Model model) {		
+		
+		log.info("/get or modify.............." + service.get(reviewId));
 		model.addAttribute("review", service.get(reviewId));
 		
 		log.info("principal.......................: " + principal);
@@ -125,17 +127,17 @@ public class ReviewController {
 			// Flash --> 1회성
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:" + cri.getLinkWithReviewId("/review/get", review.getReviewId());
+		return "redirect:/walk?mode=review";
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("noticeId") Long reviewId,
+	public String remove(@RequestParam("reviewId") Long reviewId,
 			@ModelAttribute("cri") ReviewCriteria cri,
 			RedirectAttributes rttr) {
 		log.info("remove..." + reviewId);
 		
 		service.remove(reviewId);
 		
-		return "redirect:/?mode=review"; // 요청 url
+		return "redirect:/walk?mode=review"; // 요청 url
 	}
 }

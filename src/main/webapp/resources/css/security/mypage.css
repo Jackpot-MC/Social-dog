@@ -73,20 +73,20 @@ form h6.welcomeM {
 }
 /* 버튼 끝 */
 .cardHolder {
-	padding-top:30px;
+	padding-top:10px;
 	padding-bottom:10px;
 	display: flex;
 	justify-content: center;
 }
 
 .card-margin {
-	padding-top:15px;
-	padding-bottom:10px;
+	padding-top:20px;
+	padding-bottom:20px;
 	margin-left: 1rem;
 }
 
 .card-dog {
-	width: 220px;
+	width: 250px;
 }
 
 .card {
@@ -110,7 +110,8 @@ form h6.welcomeM {
 }
 
 .dog-profile {
-	background-color: #f7edd5;
+	margin-left: 15px;
+	margin-right: 15px;
 	font-size: 15px;
 }
 

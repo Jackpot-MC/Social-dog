@@ -18,7 +18,7 @@
 		class="navbar navbar-expand-sm bg-light navbar-light justify-content-center">
 		<!-- nav 적용  -->
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="/security/mypage">마이페이지</a></li>
+			<li class="nav-item"><a class="nav-link" href="/security/mypage">강아지 정보</a></li>
 			<li class="nav-item"><a class="nav-link" href="/security/profile">내 정보 수정</a></li>
 			<li class="nav-item"><a class="nav-link" href="/security/pwdupdate">비밀번호 변경</a></li>
 		</ul>

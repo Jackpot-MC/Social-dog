@@ -67,5 +67,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public int getAverage() {
 		return mapper.getAverage();
 	}
+	
+	@Override
+	public Long getReviewId(String loginId) {
+		log.info("getReviewId: " + loginId);
+		return mapper.getReviewId(loginId);
+	}
 
 }
