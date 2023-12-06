@@ -64,14 +64,6 @@ public class DogController {
         return "redirect:/security/mypage"; // 요청 url
     }
 
-    //개 삭제
-    @PostMapping("/remove")
-    public String remove(@RequestParam("dogId") Long dogId) {
-        log.info("remove..." + dogId);
-        service.remove(dogId);
-        return "/deleteForm";
-    }
-
     //개 리스트 조회
     @GetMapping("/list") // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
     public void list(@ModelAttribute("dogId") DogVO dog, 
@@ -86,8 +78,11 @@ public class DogController {
     }
     
     @GetMapping("/modify")
-    public void modify(@RequestParam("memberId") Long memberId, Model model) {
-        log.info("modify ");
+    public void modify(@ModelAttribute("dog") DogVO dog, Model model) {
+        log.info("dogId:" + dog.getDogId());
+    	model.addAttribute("dog", service.get(dog.getDogId()));
+    	log.info("dog get modify---------------------- ");
+        
     }
     
     @PostMapping("/modify")
@@ -96,7 +91,8 @@ public class DogController {
     		Errors errors,
 			MultipartFile avatar, Model model) throws Exception {
     	
-        log.info("modify post------------" + dog);
+    	
+        log.info("dog modify post------------" + dog);
         String loginId = principal.getName();
         dog.setMemberId(memberService.getMemberIdByLoginId(loginId));
         
@@ -108,6 +104,7 @@ public class DogController {
         return "redirect:/security/mypage"; // 요청 url
     }
     
+
 	@GetMapping("/avatar/{size}/{dogName}")
 	@ResponseBody
 	public void avatar(@PathVariable("size") String size,
@@ -132,4 +129,13 @@ public class DogController {
 			.toOutputStream(response.getOutputStream());
 		}
 	}
+
+    //개 삭제
+    @PostMapping("/remove")
+    public String remove(@RequestParam("dogId") Long dogId) {
+        log.info("remove..." + dogId);
+        service.remove(dogId);
+        return "redirect:/security/mypage";
+    }
+
 }

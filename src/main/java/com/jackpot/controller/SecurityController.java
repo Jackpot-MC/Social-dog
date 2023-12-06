@@ -128,9 +128,9 @@ public class SecurityController {
         String loginId = principal.getName();
         dog.setMemberId(memberService.getMemberIdByLoginId(loginId));
         
-        log.info("mypage post");
+        log.info("mypage post--------------------------");
         if(errors.hasErrors()) {
-			return "/security/profile";
+			return "/dog/modify";
 		}
 
         dogService.modify(dog, avatar);

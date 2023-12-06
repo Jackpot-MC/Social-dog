@@ -80,9 +80,9 @@
 								style="margin: 0; padding: 0; padding-right: 10px;">
 								<ul style="margin:0; padding:0">
 									<li style="list-style:none; text-align:right; font-size:14px; padding-right:10px;">
-										<a href="/dog/modify" class="dogModify" data-toggle="modal"
-										data-target="#modifyModal" onclick="openModifyModal()">수정</a>
-										<a href="/dog/remove">삭제</a>
+										<a class="dogModify" data-toggle="modal"
+										data-target="#modifyModal" onclick="openModifyModal(${dog.dogId})">수정</a>
+										<a class="dogModify" onclick="deleteDog(${dog.dogId})">삭제</a>
 									</li>
 								</ul>
 							</div>
@@ -93,49 +93,7 @@
 								aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered">
 									<div class="modal-content">
-
-										<!-- Modal Body -->
-										<div class="modal-body">
-											<div class="modal-body" style="padding: 50px;">
-												<div class="dogModify">
-
-													<h4 style="padding-bottom: 30px; text-align: center;">
-														<i class="far fa-edit"></i>강아지 정보 수정
-													</h4>
-
-													<form action="dog/modify" name="modify" method="post">
-														<input type="hidden" name="id" value="${member.memberId}">
-														<input type="hidden" name="id" value="${dog.dogId}">
-
-														<div class="form-group row">
-															<label class="">이름</label> 
-															<input type="text" class="form-control" name="dogName"	value="${dog.dogName}">
-														</div>
-														<div class="form-group row">
-															<label class="">견종</label> 
-															<input type="text" class="form-control" name="dogKind"	value="${dog.dogKind}">
-														</div>
-														<div class="form-group row">
-															<label>생일</label> 
-															<input type="date" class="form-control" name="dogBirth" value="${dog.dogBirth}" >
-														</div>
-														<div class="form-group row">
-															<label class="">강아지 소개</label> 
-															<input type="text" class="form-control" name="dogDescription" value="${dog.dogDescription}">
-														</div>
-														
-															<label class="">강아지 프로필 사진</label>
-															<input type="file" name="avatar"/>
-															
-														<div style="float: right;">
-															<button class="btn btn-dark" type="submit">수정</button>
-															<input class="btn btn-dark" type="button" value="취소" data-dismiss="modal">
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-										<!-- Modal body 끝 -->
+										<!-- dog/modify content -->
 									</div>
 								</div>
 							</div>
@@ -146,14 +104,30 @@
 			</div>
 		</form:form>
 	</div>
+	
+		<form action="/dog/remove?_csrf=${_csrf.token}" method="post" id="removeForm">
+	  		<input type="hidden" name="dogId" value="" id="removeDogId"> 
+		</form>
+
 </div>
 
-<%@ include file="../layouts/footer.jsp"%>
 
+<%@ include file="../layouts/footer.jsp"%>
 
 <script>
 	function openRegisterModal() {
 		$('.modal-content').load("/dog/register");
 	}
 
+	function openModifyModal(dogId){
+		console.log("dogId:" + dogId);
+		$('.modal-content').load("/dog/modify?dogId="+dogId);
+	}
+	
+	function deleteDog(dogId) {
+		$("#removeDogId").val(dogId);
+		$("#removeForm").submit();
+	}
 </script>
+
+
