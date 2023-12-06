@@ -21,10 +21,11 @@ public interface BoardMapper {
 	//추가하고 primary key 얻음
 	public void insertSelectKey(BoardVO board);
 	
-	public BoardVO read(long bno); // 출력
-	public int delete(long bno); // 삭제
-	public int update(BoardVO board);
+	public BoardVO read(Long bno); // 출력
 	
+	public int modify(BoardVO board);
+	
+	public int delete(Long bno); // 삭제
 	
 	//파일업로드 관련
 	public void insertAttachment(BoardAttachmentVO attach); //삽입

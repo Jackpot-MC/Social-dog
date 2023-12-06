@@ -1,7 +1,9 @@
 package com.jackpot.service;
 
+import java.io.File;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,29 +15,19 @@ import com.jackpot.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Log4j
 @Service
 @AllArgsConstructor
-public class BoardSerivceImpl implements BoardService {
+public class BoardServiceImpl implements BoardService {
 
-	// @Autowired
+    public static final String AVATAR_UPLOAD_DIR = "c:/Temp/upload/tmp";
+
+	@Autowired
 	private BoardMapper mapper;
 
-	@Transactional(rollbackFor = Exception.class)
-	@Override
-	public void register(BoardVO board, List<MultipartFile> files) throws Exception {
-		mapper.insertSelectKey(board);
-		Long bno = board.getBno();
-
-		for (MultipartFile part : files) {
-			if (part.isEmpty())
-				continue;
-			BoardAttachmentVO attach = new BoardAttachmentVO(bno, part);
-			mapper.insertAttachment(attach);
-		}
-	}
-
+    
 	@Override
 	public BoardVO get(Long bno) {
 		BoardVO board = mapper.read(bno);
@@ -44,19 +36,37 @@ public class BoardSerivceImpl implements BoardService {
 		board.setAttaches(list);
 		return board;
 	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void register(BoardVO board, MultipartFile avatar) throws Exception {
+		mapper.insertSelectKey(board);
+
+		// avatar 이미지 저장
+		if(!avatar.isEmpty()) {
+			File dest = new File(AVATAR_UPLOAD_DIR, board.getTitle() + ".png");
+			
+			Thumbnails.of(avatar.getInputStream())
+	//		.sourceRegion(Positions.CENTER, 550, 550)
+			.size(1280, 720)
+			.toFile(dest);
+		} else { log.info("No avatar.................");}
+	}
 
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public boolean modify(BoardVO board, List<MultipartFile> files) throws Exception {
-		int result = mapper.update(board);
-		Long bno = board.getBno();
+	public void modify(BoardVO board, MultipartFile avatar) throws Exception {
+		mapper.modify(board);
 		
-		for(MultipartFile part: files) {
-			if(part.isEmpty()) continue;
-			BoardAttachmentVO attach = new BoardAttachmentVO(bno, part);
-			mapper.insertAttachment(attach);
-		}
-		return result == 1;
+		// avatar 이미지 저장
+		if(!avatar.isEmpty()) {
+			File dest = new File(AVATAR_UPLOAD_DIR, board.getTitle() + ".png");
+			
+			Thumbnails.of(avatar.getInputStream())
+	//		.sourceRegion(Positions.CENTER, 550, 550)
+			.size(1280, 720)
+			.toFile(dest);
+		} else { log.info("No avatar.................");}
 	}
 
 	@Override

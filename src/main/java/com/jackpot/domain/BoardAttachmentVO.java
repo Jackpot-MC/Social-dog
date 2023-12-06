@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardAttachmentVO {
 	public static final String UPLOAD_PATH = "c:/upload/board";
+	// public static final String UPLOAD_PATH = "C:/backend_workspace/04_spring/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/social-dog/resources/images";
 
 	private Long no;
 	private String filename;
@@ -36,7 +37,7 @@ public class BoardAttachmentVO {
 		contentType = part.getContentType();
 		size = part.getSize();
 		this.bno = bno;
-		path = UPLOAD_PATH + "/" + System.currentTimeMillis() + "_" + filename;
+		path = System.currentTimeMillis() + "_" + filename;
 		part.transferTo(new File(path)); //실제 저장
 	}
 	

@@ -22,6 +22,7 @@ public class BoardVO {
 	private String loginId;
 	
 	List<BoardAttachmentVO> attaches;
+	// private String path;
 	
 	private Date regDate;
 	private Date updateDate;

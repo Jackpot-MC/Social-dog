@@ -60,7 +60,7 @@ $(document).ready(function() {
 						<form:input path="title" cssClass="form-control" />
 						<form:errors path="title" cssClass="error" />
 					</div>
-
+					
 <!-- 					<div class="form-group">
 						<label for="attaches">첨부파일</label>
 						<div id="attach-list" class="my-1"></div>
@@ -74,6 +74,11 @@ $(document).ready(function() {
 						<form:errors path="content" cssClass="error" />
 					</div>
 
+					<div class="form-group">
+						<label>공유할 강아지 사진을 업로드해주세요!</label>
+						<input type="file" name="avatar" class="form-control" />
+					</div>
+                    
 					<button type="submit" class="btn btn-dark">
 						<i class="fas fa-check"></i>확인
 					</button>

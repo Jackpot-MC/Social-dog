@@ -1,5 +1,7 @@
 package com.jackpot.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,9 +31,11 @@ import com.jackpot.domain.Criteria;
 import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.PageDTO;
 import com.jackpot.service.BoardService;
+import com.jackpot.service.BoardServiceImpl;
 import com.jackpot.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @Log4j
@@ -79,8 +83,7 @@ public class BoardController {
 	public String register(
 			@Valid 
 			@ModelAttribute("board") BoardVO board,
-			Errors errors,
-			List<MultipartFile> files, 
+			Errors errors, 	MultipartFile avatar,
 			RedirectAttributes rttr) throws Exception {
 
 		log.info("register: " + board);
@@ -88,7 +91,7 @@ public class BoardController {
 		if(errors.hasErrors()) {
 			return "board/register";
 		}
-		service.register(board, files);
+		service.register(board, avatar);
 		rttr.addFlashAttribute("result", board.getBno());
 		return "redirect:/board/list";
 	}
@@ -105,8 +108,7 @@ public class BoardController {
 	@PostMapping("/modify")
 	public String modify(
 			@Valid @ModelAttribute("board") BoardVO board, 
-			Errors errors,
-			List<MultipartFile> files,
+			Errors errors, MultipartFile avatar,
 			@ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) throws Exception{
 		log.info("modify:" + board);
@@ -115,16 +117,17 @@ public class BoardController {
 			return "board/modify";
 		}
 		
-		if (service.modify(board, files)) {
-			// Flash --> 1회성
-			rttr.addFlashAttribute("result", "success");
+//		if (service.modify(board, avatar)) {
+//			// Flash --> 1회성
+//			rttr.addFlashAttribute("result", "success");
 //			rttr.addAttribute("bno", board.getBno());
 //			rttr.addAttribute("pageNum", cri.getPageNum());
 //			rttr.addAttribute("amount", cri.getAmount());
 //			// 수정 후 다시 목록으로 돌아왔을때 검색한 값이 유지되도록 함
 //			rttr.addAttribute("type", cri.getType());
 //			rttr.addAttribute("keyword", cri.getKeyword());
-		}
+//		}
+		service.modify(board, avatar);
 		return "redirect:" + cri.getLinkWithBno("/board/get", board.getBno());
 	}
 
@@ -165,6 +168,29 @@ public class BoardController {
 	return "OK";
 	}
 
-	
+    @GetMapping("/avatar/{size}/{title}")
+    @ResponseBody
+    public void avatar(@PathVariable("size") String size,
+                        @PathVariable("title") String title,
+                        HttpServletResponse response) throws IOException {
+        
+        File src = new File(BoardServiceImpl.AVATAR_UPLOAD_DIR, title + ".png");
+        
+        if(!src.exists()) {    // 파일이 존재하지 않으면
+            src = new File(BoardServiceImpl.AVATAR_UPLOAD_DIR, "unknown.png");
+        }
+        
+        response.setHeader("Content-Type", "image/png");
+        
+        if(size.equals("lg")) {
+            Thumbnails.of(src)
+                    .size(1280, 720)
+                    .toOutputStream(response.getOutputStream());
+        } else {
+            Thumbnails.of(src)
+            .size(720, 1280)
+            .toOutputStream(response.getOutputStream());
+        }
+    }
 	
 }
