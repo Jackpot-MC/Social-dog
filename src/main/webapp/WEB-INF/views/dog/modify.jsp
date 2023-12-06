@@ -16,7 +16,7 @@
 				<i class="far fa-edit"></i>강아지 정보 수정
 			</h4>
 
-			<form action="/dog/modify?_csrf=${_csrf.token}" name="modify" method="post">
+			<form enctype="multipart/form-data" action="/dog/modify?_csrf=${_csrf.token}" name="modify" method="post">
 				<input type="hidden" id="id" name="dogId" value="${dog.dogId}"/> 
 				
 				<div class="form-group row">
@@ -41,7 +41,8 @@
 				
 				<div class="form-group row">
                     <label class="">강아지 프로필 사진</label> 
-                    <input type="file" class="form-control" name="dogPhotoPath" value="${dog.dogPhotoPath}">				
+                    <input type="file" class="form-control" name="avatar">	
+              <!--  <input type="file" class="form-control" name="dogPhotoPath" value="${dog.dogPhotoPath}"> -->		
                 </div>
 				
 				<div style="float: right;">
