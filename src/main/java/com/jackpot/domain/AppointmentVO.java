@@ -26,6 +26,7 @@ public class AppointmentVO {
 
 	private String placeSpot;
 	private String placeName;
+	private String placeKakaoId;	
 	private String placeTypeName;
 	
 	private Long participantId;
