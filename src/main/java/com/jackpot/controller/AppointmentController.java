@@ -44,14 +44,13 @@ import net.coobird.thumbnailator.Thumbnails;
 public class AppointmentController {
 
 	private AppointmentService service;
-	
+
 	private MemberService memberService;
-	
+
 	private NoticeService noticeService;
-	
-    private DogService dogService;
-	
-	
+
+	private DogService dogService;
+
 	@ModelAttribute("searchTypes")
 	public Map<String, String> searchTypes() {
 		Map<String, String> map = new LinkedHashMap<String, String>();
@@ -67,7 +66,8 @@ public class AppointmentController {
 	}
 
 	@GetMapping("/appointment/list") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) throws IOException {
+	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model)
+			throws IOException {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
 
@@ -80,36 +80,32 @@ public class AppointmentController {
 
 		log.info("getMemberId");
 		model.addAttribute("memberId", service.getMemberId(loginId));
-		
+
 		model.addAttribute("memberList", memberService.getList());
 		log.info("memberList................" + memberService.getList());
-		
+
 		MemberVO member = memberService.get(principal.getName());
-        model.addAttribute("dogList", service.getDogList());
+		model.addAttribute("dogList", service.getDogList());
 	}
 
 	@GetMapping("/appointment/register") // 로직이 없어서 Test X
-	public void register(@ModelAttribute("appointment") AppointmentVO appointment, 
-			@ModelAttribute("place") PlaceVO place,
-			Principal principal, Model model) {
+	public void register(@ModelAttribute("appointment") AppointmentVO appointment,
+			@ModelAttribute("place") PlaceVO place, Principal principal, Model model) {
 		String loginId = principal.getName();
 
 		Long hostId = service.getMemberId(loginId);
-		
+
 		log.info("setHostId" + hostId);
 		model.addAttribute("hostId", hostId);
-		
+
 		log.info("register" + appointment);
-		
+
 	}
 
 	@PostMapping("/appointment/register") // POST 요청의 리턴 타입은 String
 	public String register(@Valid @ModelAttribute("appointment") AppointmentVO appointment, Errors errors,
-			@Valid @ModelAttribute("place") PlaceVO place,
-			Errors errors2,
-			RedirectAttributes rttr) throws Exception {
-		
-		
+			@Valid @ModelAttribute("place") PlaceVO place, Errors errors2, RedirectAttributes rttr) throws Exception {
+
 		log.info("register: " + appointment);
 		if (errors.hasErrors()) {
 			return "appointment/register";
@@ -117,7 +113,7 @@ public class AppointmentController {
 
 		/* service.register(appointment, place); */
 		service.register(appointment);
-		
+
 		/* service.registerPlace(place); */
 
 		rttr.addFlashAttribute("result", appointment.getAppointmentId());
@@ -125,9 +121,10 @@ public class AppointmentController {
 		return "redirect:/walk"; // 요청 url
 	}
 
-	@GetMapping({ "/appointment/get", "/appointment/modify", "/appointment/my_appointment_get" }) // get : 상세보기, modify: 수정 화면으로 가기
+	@GetMapping({ "/appointment/get", "/appointment/modify", "/appointment/my_appointment_get" }) // get : 상세보기, modify:
+																									// 수정 화면으로 가기
 	public void get(@RequestParam("appointmentId") Long appointmentId, @ModelAttribute("cri") AppointmentCriteria cri,
-			Principal principal, Model model) {
+			Principal principal, Model model) throws IOException {
 
 		String loginId = principal.getName();
 
@@ -144,10 +141,15 @@ public class AppointmentController {
 
 		log.info("checkAttendance");
 		model.addAttribute("checkAttendance", service.checkAttendance(appointmentId, memberId));
-		
+
 		MemberVO member = memberService.get(principal.getName());
-        model.addAttribute("member", member);
-        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
+		model.addAttribute("member", member); 
+		model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));		
+
+		/*
+		 * model.addAttribute("memberList", memberService.getList());
+		 * model.addAttribute("dogList", service.getDogList());
+		 */
 	}
 
 	@PostMapping("/appointment/modify")
@@ -199,18 +201,21 @@ public class AppointmentController {
 	}
 
 	@GetMapping("/appointment/my_appointment") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void my_appointment(Principal principal, Model model) {
-		String loginId = principal.getName();		
+	public void my_appointment(Principal principal, Model model) throws IOException {
+		String loginId = principal.getName();
 		Long memberId = service.getMemberId(loginId);
 		log.info("my_appointment: " + memberId);
-		
-		model.addAttribute("my_appointment_list", service.getMyList(memberId));
-		
-		MemberVO member = memberService.get(principal.getName());
-        model.addAttribute("member", member);
-        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
 
-		}
+		model.addAttribute("my_appointment_list", service.getMyList(memberId));
+
+		MemberVO member = memberService.get(principal.getName());
+		model.addAttribute("member", member);
+		model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
+		
+		model.addAttribute("memberList", memberService.getList());
+		model.addAttribute("dogListAll", service.getDogList());
+
+	}
 
 	@PostMapping("/appointment/absent")
 	public String absent(@RequestParam("appointmentId") Long appointmentId, @RequestParam("memberId") Long memberId,
@@ -223,18 +228,17 @@ public class AppointmentController {
 
 		return "redirect:/appointment/get?appointmentId=" + appointmentId;
 	}
-	
+
 	@GetMapping("/walk")
-	public void walk(@ModelAttribute("mode") String mode,
-			@ModelAttribute("cri") ReviewCriteria cri,
+	public void walk(@ModelAttribute("mode") String mode, @ModelAttribute("cri") ReviewCriteria cri,
 			@ModelAttribute("member") MemberVO member, Model model) {
 
 		model.addAttribute("member", memberService.get(member.getMemberAddress()));
-		
+
 	}
-	
+
 	@GetMapping("/appointment/walk_banner")
 	public void walk_banner() {
-		
+
 	}
 }
