@@ -76,7 +76,7 @@ $(document).ready(async function(){
 		<hr>
 		<div>${board.content}
 		<br>
-		<br><img src="/board/avatar/lg/${board.title}" style="width:400px; height:400px;">
+		<br><img src="/board/boardPhoto/lg/${board.bno}" style="width:400px; height:400px;">
 		</div>
 
 		<!-- 댓글목록 -->

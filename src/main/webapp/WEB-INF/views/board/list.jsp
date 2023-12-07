@@ -89,7 +89,7 @@ section.board-list {
 		                <div class="col-sm-6 col-md-4 mb-3">
 		                    <div class="card" style="width: 100%">
 		                        <a href="${cri.getLinkWithBno('get', board.bno)}">
-		                            <img class="card-img-top" src="/board/avatar/lg/${board.title}"
+		                            <img class="card-img-top" src="/board/boardPhoto/lg/${board.bno}"
 		                            	onerror="this.src='https://images.template.net/76516/Free-Dog-Paw-Vectors-1.jpg'">
 		                        </a>
 		                        

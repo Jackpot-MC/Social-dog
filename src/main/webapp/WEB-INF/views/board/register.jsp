@@ -76,7 +76,7 @@ $(document).ready(function() {
 
 					<div class="form-group">
 						<label>공유할 강아지 사진을 업로드해주세요!</label>
-						<input type="file" name="avatar" class="form-control" />
+						<input type="file" name="boardPhoto" class="form-control" />
 					</div>
                     
 					<button type="submit" class="btn btn-dark">

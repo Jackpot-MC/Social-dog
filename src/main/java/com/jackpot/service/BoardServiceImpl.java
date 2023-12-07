@@ -22,7 +22,7 @@ import net.coobird.thumbnailator.Thumbnails;
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-    public static final String AVATAR_UPLOAD_DIR = "c:/Temp/upload/tmp";
+    public static final String BOARDPHOTO_UPLOAD_DIR = "c:/Temp/upload/tmp";
 
 	@Autowired
 	private BoardMapper mapper;
@@ -39,34 +39,34 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public void register(BoardVO board, MultipartFile avatar) throws Exception {
+	public void register(BoardVO board, MultipartFile boardPhoto) throws Exception {
 		mapper.insertSelectKey(board);
 
-		// avatar 이미지 저장
-		if(!avatar.isEmpty()) {
-			File dest = new File(AVATAR_UPLOAD_DIR, board.getTitle() + ".png");
+		// boardPhoto 이미지 저장
+		if(!boardPhoto.isEmpty()) {
+			File dest = new File(BOARDPHOTO_UPLOAD_DIR, "Board" + board.getBno() + ".png");
 			
-			Thumbnails.of(avatar.getInputStream())
+			Thumbnails.of(boardPhoto.getInputStream())
 	//		.sourceRegion(Positions.CENTER, 550, 550)
 			.size(1280, 720)
 			.toFile(dest);
-		} else { log.info("No avatar.................");}
+		} else { log.info("No boardPhoto.................");}
 	}
 
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public void modify(BoardVO board, MultipartFile avatar) throws Exception {
+	public void modify(BoardVO board, MultipartFile boardPhoto) throws Exception {
 		mapper.modify(board);
 		
-		// avatar 이미지 저장
-		if(!avatar.isEmpty()) {
-			File dest = new File(AVATAR_UPLOAD_DIR, board.getTitle() + ".png");
+		// boardPhoto 이미지 저장
+		if(!boardPhoto.isEmpty()) {
+			File dest = new File(BOARDPHOTO_UPLOAD_DIR, "Board" + board.getBno() + ".png");
 			
-			Thumbnails.of(avatar.getInputStream())
+			Thumbnails.of(boardPhoto.getInputStream())
 	//		.sourceRegion(Positions.CENTER, 550, 550)
 			.size(1280, 720)
 			.toFile(dest);
-		} else { log.info("No avatar.................");}
+		} else { log.info("No boardPhoto.................");}
 	}
 
 	@Override
