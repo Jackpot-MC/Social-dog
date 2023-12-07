@@ -93,6 +93,8 @@ $(document).ready(function() {
 		 document.getElementById("appointment-placeY").innerHTML="경도: " + placeY;
 		}
 	
+	document.getElementById("placeSpot").value= placeY + ", " + placeX; 
+	
 /*     let appointmentData = {
         	    "appointmentName": appointmentName,
         	    "content": content,
@@ -141,6 +143,7 @@ $('#content').summernote('fontName', 'Arial');
 			enctype="multipart/form-data">
 			
 			<form:hidden path="hostId" value="${hostId}"/>
+			<form:hidden path="placeSpot"/>
 				
 			<div class="form-group">
 				<form:label path="appointmentName">제목</form:label>
