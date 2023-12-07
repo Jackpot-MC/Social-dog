@@ -31,8 +31,24 @@
 		<c:forEach var="appointment" items="${my_appointment_list}">
          <div class="card3 card-margin" style="padding:0;">
             <div class="card-header">
-                <img class="profile-pic-appointment-list ml-3" src="/dog/avatar/lg/${dogList[0].dogName}" 
-                onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
+            <c:forEach var="memberList" items="${memberList}">
+	           	<c:if test="${memberList.memberId == appointment.hostId}">
+	           		<c:forEach var="dogList" items="${dogListAll}">
+	           		<c:choose>
+						<c:when test="${memberList.memberId == dogList.memberId}">
+	                <img class="profile-pic-appointment-list ml-3" src="/dog/avatar/lg/${dogList.dogName}"
+	                onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
+						</c:when>
+	<%-- 					<c:otherwise>
+						 <img class="profile-pic-appointment-list ml-3" src="https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png"/>
+						</c:otherwise> --%>
+					</c:choose>
+	             	</c:forEach>
+	             </c:if>
+             </c:forEach>          
+            
+         <%--        <img class="profile-pic-appointment-list ml-3" src="/dog/avatar/lg/${dogList[0].dogName}" 
+                onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'"> --%>
                     <div class="d-flex flex-column">
                         <div class="pl-3 mb-0" style="font-size:17px;">  
 						 ${appointment.appointmentName}

@@ -90,9 +90,9 @@
                 <img class="profile-pic-appointment-list ml-3" src="/dog/avatar/lg/${dogList.dogName}"
                 onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
 					</c:when>
-					<c:otherwise>
-					 <!-- <img class="profile-pic-appointment-list ml-3" src="https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png"\> -->
-					</c:otherwise>
+<%-- 					<c:otherwise>
+					 <img class="profile-pic-appointment-list ml-3" src="https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png"/>
+					</c:otherwise> --%>
 				</c:choose>
              	</c:forEach>
              </c:if>

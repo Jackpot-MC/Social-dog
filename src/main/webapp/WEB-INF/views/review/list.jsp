@@ -116,9 +116,22 @@
 		<c:forEach var="review" items="${list}" begin="0" end="24">
             <div class="card">
                 <div class="row d-flex lists__item card-review">
-                    <div class=""> <img class="profile-pic mt-2" src="/dog/avatar/lg/${dogList[0].dogName}" 
-                    onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
-                    </div>
+	                <c:forEach var="memberList" items="${memberList}">
+			           	<c:if test="${memberList.memberId == review.memberId}">
+			           		<c:forEach var="dogList" items="${dogList}" begin="0" end="0">
+			           		<c:choose>
+								<c:when test="${memberList.memberId == dogList.memberId}">
+				                <img class="profile-pic mt-2" src="/dog/avatar/lg/${dogList.dogName}"
+				                onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
+								</c:when>
+								<c:otherwise>
+								 <img class="profile-pic mt-2" src="https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png"/>
+								</c:otherwise>
+							</c:choose>
+			             	</c:forEach>
+			           </c:if>
+			        </c:forEach>
+
                     <div class="d-flex flex-column">
                         <span class="mt-2 mb-0" style="color: #36260d;font-size: 17px;font-weight: 500;">${review.memberName}</span>
                         <div>

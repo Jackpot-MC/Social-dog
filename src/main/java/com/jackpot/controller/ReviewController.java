@@ -1,5 +1,6 @@
 package com.jackpot.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,6 +21,7 @@ import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.domain.ReviewPageDTO;
 import com.jackpot.domain.ReviewVO;
+import com.jackpot.service.AppointmentService;
 import com.jackpot.service.DogService;
 import com.jackpot.service.MemberService;
 import com.jackpot.service.ReviewService;
@@ -36,6 +38,7 @@ public class ReviewController {
 	private ReviewService service;
 	private MemberService memberService;
     private DogService dogService;
+	private AppointmentService appointmentservice;
 	
 	@ModelAttribute("searchTypes")
 	public Map<String, String> searchTypes() {
@@ -51,11 +54,11 @@ public class ReviewController {
 		return map;		
 	}
 	
-	@GetMapping({"/list", "/register"}) // View이름: notice/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
+	@GetMapping({"/list", "/register"})
 	public void list(@ModelAttribute("cri") ReviewCriteria cri,
 			@ModelAttribute("review") ReviewVO review,
 			Principal principal,
-			Model model) {
+			Model model) throws IOException {
 		
 		/* member.setLoginId(principal.getName()); */
 		
@@ -79,7 +82,13 @@ public class ReviewController {
 		//model.addAttribute("pageMaker", new PageDTO(cri, 274)); // 임의로 273 요청
 		model.addAttribute("pageMaker", new ReviewPageDTO(cri, total));
 		
-        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
+		/*
+		 * model.addAttribute("dogList",
+		 * dogService.getListByMemberId(member.getMemberId()));
+		 */
+        
+		model.addAttribute("memberList", memberService.getList());
+		model.addAttribute("dogList", appointmentservice.getDogList());
 	}
 	
 	/*
