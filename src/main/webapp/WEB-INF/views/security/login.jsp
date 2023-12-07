@@ -18,7 +18,7 @@
 <div class="container">
     <section id="formHolder">
 
-        <div style="width: 600px" class="mx-auto form">
+        <div style="width: auto" class="mx-auto form">
 
             <form action="/security/login" method="post">
                 <h2 class="mt-4">로그인</h2>

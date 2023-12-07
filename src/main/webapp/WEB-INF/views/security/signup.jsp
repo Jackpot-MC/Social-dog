@@ -27,7 +27,7 @@ $(".selector").attr({
 		<div class="signup form">
 			<form:form modelAttribute="member" 
 			           action="/security/signup?_csrf=${_csrf.token}"
-						id="signup_form" style="width:500px" class="mx-auto">
+						id="signup_form" style="width: auto" class="mx-auto">
 				<!-- 첨부파일 기능 때문에 액션에 암호화 코드 넣음 -->
 				<h2 class="mt-5">회원가입</h2>
 				<h6>반려견과의 일상을 소셜독과 함께해요!</h6>
