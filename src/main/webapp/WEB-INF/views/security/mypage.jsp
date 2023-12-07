@@ -12,7 +12,7 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
 
 
 <style>
