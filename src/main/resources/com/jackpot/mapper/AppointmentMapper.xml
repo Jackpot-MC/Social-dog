@@ -14,6 +14,7 @@
 		<result property="content" column="content" />	
 		<result property="placeName" column="place_name" />	
 		<result property="placeKakaoId" column="place_kakao_id" />	
+		<result property="placeSpot" column="place_spot" />	
 		<result property="participantId" column="participant_id" />
 		<result property="memberId" column="member_id" />
 		<result property="memberName" column="member_name" />
@@ -31,9 +32,9 @@
 
   
   	<insert id="insert">
-		insert into appointment (appointment_name, content, appointment_date, place_name, host_id, place_kakao_id)
+		insert into appointment (appointment_name, content, appointment_date, place_name, host_id, place_kakao_id, place_spot)
 		values
-		(#{appointmentName}, #{content}, #{appointmentDate}, #{placeName}, #{hostId}, #{placeKakaoId} )
+		(#{appointmentName}, #{content}, #{appointmentDate}, #{placeName}, #{hostId}, #{placeKakaoId}, #{placeSpot} )
 
 		<selectKey resultType="Long" keyProperty="appointmentId"
 			keyColumn="appointment_id" order="AFTER">
@@ -64,7 +65,7 @@
 
 	<select id="read" resultType="AppointmentVO">
 		select appointment_id, appointment_name, content, appointment_date, 
-		place.place_spot, appointment.place_name, member_name
+		appointment.place_spot, appointment.place_name, member_name
 		from appointment
 		left outer join member on appointment.host_id = member_id
 		left outer join place on appointment.place_id = place.place_id
@@ -85,7 +86,7 @@
 
 	<select id="getListWithPaging" resultType="AppointmentVO">
 		select appointment_id, appointment_name, content, appointment_date, appointment.place_name, host_id, appointment.place_kakao_id,
-		member.member_name, place.place_spot, place.place_name, place_type.place_type_name
+		member.member_name, appointment.place_spot, place.place_name, place_type.place_type_name
 		from appointment
 		left outer join member on appointment.host_id = member.member_id
 		left outer join place on appointment.place_id = place.place_id
@@ -93,7 +94,7 @@
 		<where>
 			<include refid="criteria"></include>
 		</where>
-		order by appointment_date desc
+		order by appointment_date
 		limit #{offset}, #{amount}
 	</select>
 	
