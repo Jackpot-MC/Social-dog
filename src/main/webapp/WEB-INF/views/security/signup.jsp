@@ -24,7 +24,10 @@ $(".selector").attr({
 <div class="container">
 	<section id="formHolder">
 	
-		<div class="signup form">
+		<div class="signup form" style="
+    		padding-left: 20px;
+    		padding-right: 20px;
+		">
 			<form:form modelAttribute="member" 
 			           action="/security/signup?_csrf=${_csrf.token}"
 						id="signup_form" style="width: auto" class="mx-auto">
