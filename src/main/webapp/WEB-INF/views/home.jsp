@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="layouts/header.jsp"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
 <link rel="stylesheet" href="/resources/css/review/list.css" type="text/css" />
 <link rel="stylesheet" href="/resources/css/appointment/list.css" type="text/css" />
 

@@ -116,7 +116,9 @@
 		<c:forEach var="review" items="${list}" begin="0" end="24">
             <div class="card">
                 <div class="row d-flex lists__item card-review">
-                    <div class=""> <img class="profile-pic mt-2" src="/dog/avatar/lg/${dogList[0].dogName}"> </div>
+                    <div class=""> <img class="profile-pic mt-2" src="/dog/avatar/lg/${dogList[0].dogName}" 
+                    onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
+                    </div>
                     <div class="d-flex flex-column">
                         <span class="mt-2 mb-0" style="color: #36260d;font-size: 17px;font-weight: 500;">${review.memberName}</span>
                         <div>
