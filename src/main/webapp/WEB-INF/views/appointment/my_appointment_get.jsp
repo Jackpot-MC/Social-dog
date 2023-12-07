@@ -53,7 +53,8 @@
             <div class="card-header">
            	 <a href="/appointment/my_appointment">
             	<i class="fa-solid fa-arrow-left fa-lg ml-3" style="color: #212529;"></i></a>
-                <img class="profile-pic-appointment-list ml-3" src="/dog/avatar/lg/${dogList[0].dogName}">
+                <img class="profile-pic-appointment-list ml-3" src="/dog/avatar/lg/${dogList[0].dogName}" 
+                onerror="this.src='https://static.vecteezy.com/system/resources/previews/009/664/031/non_2x/paw-icon-set-black-icon-transparent-free-png.png'">
                     <div class="d-flex flex-column">
                         <div class="pl-3 mb-0" style="font-size:17px;">  
 						 ${appointment.appointmentName}
