@@ -4,11 +4,12 @@
 이웃 강아지와 함께 산책을 합시다!
 
 1. [**서비스 소개**](#-서비스-소개)
-2. [**기술 스택**](#-기술-스택)
+2. [**기술 스택**](#%EF%B8%8F-기술-스택)
 3. [**주요 페이지 안내**](#-주요-페이지-안내)
 4. [**프로젝트 기간**](#-프로젝트-기간)
+5. [**팀 잭팟**](#-팀-잭팟)
 
-## ✨ 서비스 소개
+## 🚀 서비스 소개
 
 ####  필요성
 
@@ -18,16 +19,16 @@
 > 
 > 반려견이 이웃 반려견과 만나 사회성을 기르고, 더 나아가 이웃 사람들과의 소통을 할 수 있는 플랫폼이 필요합니다.
 
-#### :dog2: 위치 정보 기반 산책 약속 플랫폼, SocialDog
+#### 🐕 위치 정보 기반 산책 약속 플랫폼, SocialDog
 
-#####  SocialDog에서 이웃 강아지와 산책 약속을 잡고 함께 산책을 해보세요!
+> #####  SocialDog에서 이웃 강아지와 산책 약속을 잡고 함께 산책을 해보세요!
 
 
 
 
 <div id="2"></div>
 
-## 🛠️ 기술 스택
+## 🧰 기술 스택
 - 협업 도구
 <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
 <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white">
@@ -52,7 +53,7 @@
 
 
 
-## 🐕 주요 페이지 안내
+## 🧭 주요 페이지 안내
 ### 홈
 *******************************************************************************
 ![README_-_홈_화면](https://github.com/Jackpot-MC/Social-dog/assets/141387585/67ffab28-51fb-4c26-8e70-b68b59a048a2)
@@ -73,17 +74,26 @@
 
 ### 커뮤니티 및 공지사항
 *******************************************************************************
-![README_-_커뮤니티](https://github.com/Jackpot-MC/Social-dog/assets/141387585/6d251711-adb9-40c1-b97e-ba7dc01a3185)
+![README_-_커뮤니티](https://github.com/Jackpot-MC/Social-dog/assets/141387585/dcfcb0cf-69ff-423a-9c7c-64c4309d9601)
 - 커뮤니티에서 사용자 간 소통을 할 수 있습니다.
 - 공지사항에서 서비스 이용 관련 안내를 확인할 수 있습니다.
 
 
 ### 마이페이지
 *******************************************************************************
-![README_-_커뮤니티](https://github.com/Jackpot-MC/Social-dog/assets/141387585/7ae39422-6f23-4f16-8793-605212ede9d7)
+![README_-_마이페이지](https://github.com/Jackpot-MC/Social-dog/assets/141387585/390c2974-d185-46cc-9378-519b6135f8ea)
 - 사용자나 강아지에 관련된 정보를 추가하거나 수정 및 삭제할 수 있습니다.
   
 
 ## ⌛ 프로젝트 기간
 
 ### 23.10.31 ~ 22.12.08
+
+
+## 🎰 팀 잭팟
+
+- [**김영훈(팀장)**](https://github.com/arcticPeng93)
+- [**박보헌**](https://github.com/Boheon)
+- [**서영아**](https://github.com/syasyass)
+- [**유민지**](https://github.com/mjyoo0353)
+- [**하민우**](https://github.com/minwoo76430635)
