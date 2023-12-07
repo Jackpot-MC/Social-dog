@@ -24,10 +24,42 @@
 </head>
 <body>
 <script>
+$(document).ready(function() {
+	let placeKakaoName = window.localStorage.getItem('placeKakaoName');
+	if(window.localStorage.getItem('placeKakaoName')){
+		 document.getElementById("review-placeName").innerHTML="장소명: " + placeKakaoName;
+		}
+	
+	let placeId = window.localStorage.getItem('placeId');
 	if(window.localStorage.getItem('placeId')){
-		 const placeId = window.localStorage.getItem('placeId')
 		 document.getElementById("appointment-placeId").innerHTML="장소ID: " + placeId;
 		}
+	
+	let placeAddress = window.localStorage.getItem('placeAddress');
+	if(window.localStorage.getItem('placeAddress')){
+		 document.getElementById("appointment-placeAddress").innerHTML="지번 주소: " + placeAddress;
+		}
+	
+	let placeRoadAddress = window.localStorage.getItem('placeRoadAddress');
+	if(window.localStorage.getItem('placeRoadAddress')){
+		 document.getElementById("appointment-placeRoadAddress").innerHTML="도로명 주소: " + placeRoadAddress;
+		}
+	
+	let placeCategory = window.localStorage.getItem('placeCategory');
+	if(window.localStorage.getItem('placeCategory')){
+		 document.getElementById("appointment-placeCategory").innerHTML="카테고리 번호: " + placeCategory;
+		}
+	
+	let placeX = window.localStorage.getItem('placeX');
+	if(window.localStorage.getItem('placeX')){
+		 document.getElementById("appointment-placeX").innerHTML="위도: " + placeX;
+		}
+	
+	let placeY = window.localStorage.getItem('placeY');
+	if(window.localStorage.getItem('placeY')){
+		 document.getElementById("appointment-placeY").innerHTML="경도: " + placeY;
+		}
+});
 </script>
 
 <%-- <sec:authentication property="principal.adminId" var="adminId"/> --%>
@@ -61,6 +93,8 @@
 	            	<form:input path="reviewTitle" cssClass="form-control"/>
 					<form:errors path="reviewTitle" cssClass="error" />
 				</div>
+				
+<!-- 				<div class="card" id="review-placeName"></div> -->
                 
                 <div class="comment-area review-comment-area form-group">
                 내용 <form:textarea path="reviewContent" rows="4"/>

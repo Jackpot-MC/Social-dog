@@ -82,7 +82,7 @@
 		<span id="appointment-placeId"></span>
          <div class="card3 card-margin" style="padding:0;">
             <div class="card-header">
-                <img class="profile-pic-appointment-list ml-3" src="https://i.imgur.com/GJ5WWIB.jpeg">
+                <img class="profile-pic-appointment-list ml-3" src="/dog/avatar/lg/${dogList[0].dogName}">
                     <div class="d-flex flex-column">
                         <div class="pl-3 mb-0" style="font-size:17px;">  
 						 ${appointment.appointmentName}
