@@ -180,6 +180,10 @@
 		order by appointment_date
 	</select>
 	
+	<select id="getDogList" resultType="DogVO">
+		select dog_id, dog_name, member_id  from dog
+	</select>
+	
 	<sql id="criteria"> <!-- 중복 SQL 구문 분리, id 지정 -->
 		<trim prefixOverrides="OR">
 			<foreach item="type" collection="typeArr">

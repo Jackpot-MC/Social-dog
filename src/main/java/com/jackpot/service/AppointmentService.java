@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
-import com.jackpot.domain.MemberVO;
+import com.jackpot.domain.DogVO;
 import com.jackpot.domain.ParticipantVO;
 import com.jackpot.domain.PlaceVO;
 
@@ -35,4 +35,6 @@ public interface AppointmentService {
 	public int checkAttendance(Long appointmentId, Long memberId);
 	
 	public List<AppointmentVO> getMyList(Long memberId);
+	
+	public List<DogVO> getDogList();
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jackpot.domain.AppointmentCriteria;
 import com.jackpot.domain.AppointmentVO;
+import com.jackpot.domain.DogVO;
 import com.jackpot.domain.ParticipantVO;
 import com.jackpot.domain.PlaceVO;
 import com.jackpot.mapper.AppointmentMapper;
@@ -112,6 +113,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<AppointmentVO> getMyList(Long memberId) {
 		log.info("getMyList: " + memberId);
 		return mapper.getMyList(memberId);
+	}
+
+	@Override
+	public List<DogVO> getDogList() {
+		// TODO Auto-generated method stub
+		return mapper.getDogList();
 	}
 	
 }

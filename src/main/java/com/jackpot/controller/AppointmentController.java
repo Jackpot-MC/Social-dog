@@ -67,7 +67,7 @@ public class AppointmentController {
 	}
 
 	@GetMapping("/appointment/list") // View이름: appointment/list (앞뒤 "/"과 확장자는 prefix, surfix가 붙여줌)
-	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) {
+	public void list(@ModelAttribute("cri") AppointmentCriteria cri, Principal principal, Model model) throws IOException {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
 
@@ -81,9 +81,11 @@ public class AppointmentController {
 		log.info("getMemberId");
 		model.addAttribute("memberId", service.getMemberId(loginId));
 		
+		model.addAttribute("memberList", memberService.getList());
+		log.info("memberList................" + memberService.getList());
+		
 		MemberVO member = memberService.get(principal.getName());
-        model.addAttribute("member", member);
-        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
+        model.addAttribute("dogList", service.getDogList());
 	}
 
 	@GetMapping("/appointment/register") // 로직이 없어서 Test X
