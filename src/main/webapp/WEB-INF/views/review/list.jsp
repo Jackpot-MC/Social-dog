@@ -36,6 +36,41 @@
 				//console.log(document.forms);
 				document.forms.removeFormReview.submit();
 			});
+	
+		let placeKakaoName = window.localStorage.getItem('placeKakaoName');
+		if(window.localStorage.getItem('placeKakaoName')){
+			 document.getElementById("review-placeName").innerHTML="장소명: " + placeKakaoName;
+			}
+		
+		let placeId = window.localStorage.getItem('placeId');
+		if(window.localStorage.getItem('placeId')){
+			 document.getElementById("appointment-placeId").innerHTML="장소ID: " + placeId;
+			}
+		
+		let placeAddress = window.localStorage.getItem('placeAddress');
+		if(window.localStorage.getItem('placeAddress')){
+			 document.getElementById("appointment-placeAddress").innerHTML="지번 주소: " + placeAddress;
+			}
+		
+		let placeRoadAddress = window.localStorage.getItem('placeRoadAddress');
+		if(window.localStorage.getItem('placeRoadAddress')){
+			 document.getElementById("appointment-placeRoadAddress").innerHTML="도로명 주소: " + placeRoadAddress;
+			}
+		
+		let placeCategory = window.localStorage.getItem('placeCategory');
+		if(window.localStorage.getItem('placeCategory')){
+			 document.getElementById("appointment-placeCategory").innerHTML="카테고리 번호: " + placeCategory;
+			}
+		
+		let placeX = window.localStorage.getItem('placeX');
+		if(window.localStorage.getItem('placeX')){
+			 document.getElementById("appointment-placeX").innerHTML="위도: " + placeX;
+			}
+		
+		let placeY = window.localStorage.getItem('placeY');
+		if(window.localStorage.getItem('placeY')){
+			 document.getElementById("appointment-placeY").innerHTML="경도: " + placeY;
+			}
 
 	});
 	
@@ -78,10 +113,10 @@
         <!-- 리뷰 리스트 출력하기 -->
 <!-- 		<div id="card-review" class="main">
 		<div class="lists"> -->
-		<c:forEach var="review" items="${list}" begin="0" end="4">
+		<c:forEach var="review" items="${list}" begin="0" end="24">
             <div class="card">
                 <div class="row d-flex lists__item card-review">
-                    <div class=""> <img class="profile-pic mt-2" src="https://i.imgur.com/GJ5WWIB.jpeg"> </div>
+                    <div class=""> <img class="profile-pic mt-2" src="/dog/avatar/lg/${dogList[0].dogName}"> </div>
                     <div class="d-flex flex-column">
                         <span class="mt-2 mb-0" style="color: #36260d;font-size: 17px;font-weight: 500;">${review.memberName}</span>
                         <div>
@@ -102,6 +137,7 @@
                 <div class="row text-left flex-column">
                     <h5 class="blue-text mt-1">"${review.reviewTitle}"</h5>
                     <p class="content-text">${review.reviewContent}</p>
+<!--                     <div class="content-text" id="review-placeName"></div> -->
                 
                 <div class="ml-auto">
                 <!-- 로그인한 사용자 = 작성자이면, 수정/삭제 버튼 출력 -->
@@ -119,7 +155,7 @@
            </div> -->
 
 			<!-- 더보기 버튼 : 아직 작동 안 함 -->
-           <button type="button" class="btn review-load-btn" id="review-load-btn"> 더보기 </button>
+<!--            <button type="button" class="btn review-load-btn" id="review-load-btn"> 더보기 </button> -->
        
     </div>
 </div>

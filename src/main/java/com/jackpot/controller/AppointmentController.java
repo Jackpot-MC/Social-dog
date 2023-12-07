@@ -1,18 +1,24 @@
 package com.jackpot.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jackpot.domain.AppointmentCriteria;
@@ -22,11 +28,14 @@ import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.PlaceVO;
 import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.service.AppointmentService;
+import com.jackpot.service.DogService;
+import com.jackpot.service.DogServiceImpl;
 import com.jackpot.service.MemberService;
 import com.jackpot.service.NoticeService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @Log4j
@@ -39,6 +48,8 @@ public class AppointmentController {
 	private MemberService memberService;
 	
 	private NoticeService noticeService;
+	
+    private DogService dogService;
 	
 	
 	@ModelAttribute("searchTypes")
@@ -70,7 +81,9 @@ public class AppointmentController {
 		log.info("getMemberId");
 		model.addAttribute("memberId", service.getMemberId(loginId));
 		
-		
+		MemberVO member = memberService.get(principal.getName());
+        model.addAttribute("member", member);
+        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
 	}
 
 	@GetMapping("/appointment/register") // 로직이 없어서 Test X
@@ -129,6 +142,10 @@ public class AppointmentController {
 
 		log.info("checkAttendance");
 		model.addAttribute("checkAttendance", service.checkAttendance(appointmentId, memberId));
+		
+		MemberVO member = memberService.get(principal.getName());
+        model.addAttribute("member", member);
+        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
 	}
 
 	@PostMapping("/appointment/modify")
@@ -186,6 +203,10 @@ public class AppointmentController {
 		log.info("my_appointment: " + memberId);
 		
 		model.addAttribute("my_appointment_list", service.getMyList(memberId));
+		
+		MemberVO member = memberService.get(principal.getName());
+        model.addAttribute("member", member);
+        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
 
 		}
 

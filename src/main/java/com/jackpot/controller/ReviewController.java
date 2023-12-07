@@ -20,6 +20,7 @@ import com.jackpot.domain.MemberVO;
 import com.jackpot.domain.ReviewCriteria;
 import com.jackpot.domain.ReviewPageDTO;
 import com.jackpot.domain.ReviewVO;
+import com.jackpot.service.DogService;
 import com.jackpot.service.MemberService;
 import com.jackpot.service.ReviewService;
 
@@ -34,6 +35,7 @@ public class ReviewController {
 	
 	private ReviewService service;
 	private MemberService memberService;
+    private DogService dogService;
 	
 	@ModelAttribute("searchTypes")
 	public Map<String, String> searchTypes() {
@@ -56,6 +58,8 @@ public class ReviewController {
 			Model model) {
 		
 		/* member.setLoginId(principal.getName()); */
+		
+		MemberVO member = memberService.get(principal.getName());
 
 		log.info("list..........................: " + cri);
 		model.addAttribute("list", service.getList(cri));
@@ -65,7 +69,7 @@ public class ReviewController {
 		
 		log.info("member...................: " + memberService.get(principal.getName()));
 		log.info("principal.......................: " + principal);
-		model.addAttribute("member", memberService.get(principal.getName()));
+		model.addAttribute("member", member);
 		
 		log.info("reviewModify: " + review);
 		
@@ -74,6 +78,8 @@ public class ReviewController {
 		
 		//model.addAttribute("pageMaker", new PageDTO(cri, 274)); // 임의로 273 요청
 		model.addAttribute("pageMaker", new ReviewPageDTO(cri, total));
+		
+        model.addAttribute("dogList", dogService.getListByMemberId(member.getMemberId()));
 	}
 	
 	/*
