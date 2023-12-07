@@ -34,7 +34,7 @@ async function searchPlaces() {
   const currentCoordinate = await getCurrentCoordinate();
   var options = {
     location: currentCoordinate,
-    radius: 10000,
+    radius: 5000,
     sort: kakao.maps.services.SortBy.DISTANCE,
   };
   if (!keyword.replace(/^\s+|\s+$/g, '')) {
