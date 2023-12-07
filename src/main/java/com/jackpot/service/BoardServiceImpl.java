@@ -22,7 +22,7 @@ import net.coobird.thumbnailator.Thumbnails;
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-    public static final String BOARDPHOTO_UPLOAD_DIR = "c:/Temp/upload/tmp";
+    public static final String BOARDPHOTO_UPLOAD_DIR = "c:\\Temp\\upload\\tmp";
 
 	@Autowired
 	private BoardMapper mapper;
