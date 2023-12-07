@@ -1,10 +1,10 @@
-![README_-_커뮤니티](https://github.com/Jackpot-MC/Social-dog/assets/141387585/7da58a7a-e26a-4a0a-8a21-e1672be077e4)![logo](./src/main/webapp/resources/images/SocialDog_logo_yellow.png)
+![logo](./src/main/webapp/resources/images/SocialDog_logo_yellow.png)
 
 # SocialDog
 이웃 강아지와 함께 산책을 합시다!
 
 1. [**서비스 소개**](#-서비스-소개)
-2. [**기술 스택**](#%EF%B8%8F-기술-스택)
+2. [**기술 스택**](#-기술-스택)
 3. [**주요 페이지 안내**](#-주요-페이지-안내)
 4. [**프로젝트 기간**](#-프로젝트-기간)
 
@@ -55,7 +55,7 @@
 ## 🐕 주요 페이지 안내
 ### 홈
 *******************************************************************************
-![README_-_홈_화면](https://github.com/Jackpot-MC/Social-dog/assets/141387585/69130b00-edf6-4b78-a11d-41325693b0bf)
+![README_-_홈_화면](https://github.com/Jackpot-MC/Social-dog/assets/141387585/67ffab28-51fb-4c26-8e70-b68b59a048a2)
 - SocialDog 접속할 때 처음으로 보이는 서비스 초기 화면입니다.
 - SocialDog의 서비스를 한 눈에 확인할 수 있습니다.
 - 배너 광고나 커뮤니티 관련 콘텐츠가 표시됩니다. 
@@ -64,7 +64,7 @@
 
 ### 나의약속
 *******************************************************************************
-![README_-_산책하기](https://github.com/Jackpot-MC/Social-dog/assets/141387585/fd3991a1-63cd-4dc0-a5cd-24c48b9b39a9)
+![README_-_산책하기](https://github.com/Jackpot-MC/Social-dog/assets/141387585/c54871ea-fc94-49f1-b2b3-3c7241858df6)
 - 내가 참여하고 있는 약속 리스트를 확인할 수 있습니다.
 - 본인이 주최자일 경우 약속을 삭제하거나 수정할 수 있습니다.
 - 약속 참가자일 경우 약속에 참가하거나 취소를 할 수 있습니다.
@@ -80,7 +80,7 @@
 
 ### 마이페이지
 *******************************************************************************
-![README_-_마이페이지](https://github.com/Jackpot-MC/Social-dog/assets/141387585/df5e3234-6714-45bb-9b65-13320fd52421)
+![README_-_커뮤니티](https://github.com/Jackpot-MC/Social-dog/assets/141387585/7ae39422-6f23-4f16-8793-605212ede9d7)
 - 사용자나 강아지에 관련된 정보를 추가하거나 수정 및 삭제할 수 있습니다.
   
 
