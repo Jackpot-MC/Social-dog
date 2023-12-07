@@ -83,7 +83,7 @@ public class BoardController {
 	public String register(
 			@Valid 
 			@ModelAttribute("board") BoardVO board,
-			Errors errors, 	MultipartFile avatar,
+			Errors errors, 	MultipartFile boardPhoto,
 			RedirectAttributes rttr) throws Exception {
 
 		log.info("register: " + board);
@@ -91,7 +91,7 @@ public class BoardController {
 		if(errors.hasErrors()) {
 			return "board/register";
 		}
-		service.register(board, avatar);
+		service.register(board, boardPhoto);
 		rttr.addFlashAttribute("result", board.getBno());
 		return "redirect:/board/list";
 	}
@@ -108,7 +108,7 @@ public class BoardController {
 	@PostMapping("/modify")
 	public String modify(
 			@Valid @ModelAttribute("board") BoardVO board, 
-			Errors errors, MultipartFile avatar,
+			Errors errors, MultipartFile boardPhoto,
 			@ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) throws Exception{
 		log.info("modify:" + board);
@@ -117,7 +117,7 @@ public class BoardController {
 			return "board/modify";
 		}
 		
-//		if (service.modify(board, avatar)) {
+//		if (service.modify(board, boardPhoto)) {
 //			// Flash --> 1회성
 //			rttr.addFlashAttribute("result", "success");
 //			rttr.addAttribute("bno", board.getBno());
@@ -127,7 +127,7 @@ public class BoardController {
 //			rttr.addAttribute("type", cri.getType());
 //			rttr.addAttribute("keyword", cri.getKeyword());
 //		}
-		service.modify(board, avatar);
+		service.modify(board, boardPhoto);
 		return "redirect:" + cri.getLinkWithBno("/board/get", board.getBno());
 	}
 
@@ -168,16 +168,16 @@ public class BoardController {
 	return "OK";
 	}
 
-    @GetMapping("/avatar/{size}/{title}")
+    @GetMapping("/boardPhoto/{size}/{bno}")
     @ResponseBody
-    public void avatar(@PathVariable("size") String size,
-                        @PathVariable("title") String title,
+    public void boardPhoto(@PathVariable("size") String size,
+                        @PathVariable("bno") String bno,
                         HttpServletResponse response) throws IOException {
         
-        File src = new File(BoardServiceImpl.AVATAR_UPLOAD_DIR, title + ".png");
+        File src = new File(BoardServiceImpl.BOARDPHOTO_UPLOAD_DIR, "Board" + bno + ".png");
         
         if(!src.exists()) {    // 파일이 존재하지 않으면
-            src = new File(BoardServiceImpl.AVATAR_UPLOAD_DIR, "unknown.png");
+            src = new File(BoardServiceImpl.BOARDPHOTO_UPLOAD_DIR, "unknown.png");
         }
         
         response.setHeader("Content-Type", "image/png");

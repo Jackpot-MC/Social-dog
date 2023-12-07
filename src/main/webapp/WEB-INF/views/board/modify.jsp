@@ -119,8 +119,8 @@ $(document).ready(function() {
 					</div>
 					
 					<div class="form-group">
-					<label for="avatar">공유할 강아지 사진을 업로드해주세요!</label>
-                    <input type="file" class="form-control" name="avatar">
+					<label for="boardPhoto">공유할 강아지 사진을 업로드해주세요!</label>
+                    <input type="file" class="form-control" name="boardPhoto">
                     </div> 
                     
 					<!-- 확인 취소 돌아가기 버튼 -->

@@ -11,9 +11,9 @@ import com.jackpot.domain.Criteria;
 public interface BoardService {
 
 	public BoardVO get(Long bno);
-	public void register(BoardVO board, MultipartFile avatar) throws Exception;
+	public void register(BoardVO board, MultipartFile boardPhoto) throws Exception;
 
-	public void modify(BoardVO board, MultipartFile avatar) throws Exception;
+	public void modify(BoardVO board, MultipartFile boardPhoto) throws Exception;
 	
 	public boolean remove(Long bno);
 	
