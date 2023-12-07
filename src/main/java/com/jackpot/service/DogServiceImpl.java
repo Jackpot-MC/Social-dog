@@ -34,7 +34,7 @@ public class DogServiceImpl implements DogService {
 			
 			Thumbnails.of(avatar.getInputStream())
 	//		.sourceRegion(Positions.CENTER, 550, 550)
-			.size(250, 250)
+			.size(1000, 1000)
 			.toFile(dest);
 		} else { log.info("No avatar.................");}
 	}
@@ -54,7 +54,7 @@ public class DogServiceImpl implements DogService {
 			
 			Thumbnails.of(avatar.getInputStream())
 	//		.sourceRegion(Positions.CENTER, 550, 550)
-			.size(250, 250)
+			.size(1000, 1000)
 			.toFile(dest);
 		} else { log.info("No avatar.................");}
 	}

@@ -56,7 +56,7 @@
 		delete from board where bno = #{bno}
 	</delete>
 	
-	<update id="update">
+	<update id="modify">
 		update board set
 		title = #{title},
 		content = #{content},

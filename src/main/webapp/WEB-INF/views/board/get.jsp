@@ -62,7 +62,7 @@ $(document).ready(async function(){
 				<div><i class="fas fa-user"></i>${board.loginId}</div>
 			</div>
 
-<%-- 		<div class="text-right">
+<%--  		<div class="text-right">
 			<c:forEach var="file" items="${board.attaches}">
 				<div class="attach-file-item">
 					<a href="/board/download/${file.no}" class="file-link"> <i
@@ -71,9 +71,13 @@ $(document).ready(async function(){
 					</a>
 				</div>
 			</c:forEach>
-		</div> --%>
+			</div> --%> 
+		
 		<hr>
-		<div>${board.content}</div>
+		<div>${board.content}
+		<br>
+		<br><img src="/board/avatar/lg/${board.title}" style="width:400px; height:400px;">
+		</div>
 
 		<!-- 댓글목록 -->
 		<div class="my-5">
@@ -118,9 +122,7 @@ $(document).ready(async function(){
 			</c:if>
 
 
-
-
-			<form action="remove" method="post" name="removeForm">
+			<form enctype="multipart/form-data" action="remove?_csrf=${_csrf.token}" method="post" name="removeForm">
 				<!-- csrf.token 사용하여 작성자만 삭제 가능하도록 함 -->
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="hidden" name="bno"

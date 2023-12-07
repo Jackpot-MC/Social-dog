@@ -20,7 +20,7 @@ $(document).ready(function() {
 		lang : "ko-KR", // 한글 설정
 	});
 	
-/* 	// 첨부파일
+ 	// 첨부파일
 	const attaches = $('[name="files"]');
 	const attachList = $('#attach-list');
 	
@@ -52,7 +52,7 @@ $(document).ready(function() {
 	});*/
 
 
-/* 
+
 	// 돌아가기 버튼
 	$('.get').click(function(){
 		document.forms.getForm.submit();
@@ -90,7 +90,7 @@ $(document).ready(function() {
 						<form:errors path="title" cssClass="error" />
 					</div>
 
-<%-- 					<!-- 첨부파일 -->
+<%--  					<!-- 첨부파일 -->
 					<div class="my-3">
 						<label for="attaches">첨부파일</label>
 						<c:forEach var="file" items="${board.attaches}">
@@ -109,16 +109,20 @@ $(document).ready(function() {
 						<label for="attaches">추가 첨부파일</label>
 						<div id="attach-list" class="my-1"></div>
 						<input type="file" class="form-control" multiple name="files" />
-					</div> --%>
+					</div>  --%>
 
 					<!-- 내용 -->
 					<div class="form-group">
 						<form:label path="content">Content</form:label>
 						<form:textarea path="content" class="form-control" rows="10"></form:textarea>
 						<form:errors path="content" cssClass="error" />
-
 					</div>
-
+					
+					<div class="form-group">
+					<label for="avatar">공유할 강아지 사진을 업로드해주세요!</label>
+                    <input type="file" class="form-control" name="avatar">
+                    </div> 
+                    
 					<!-- 확인 취소 돌아가기 버튼 -->
 					<button type="submit" class="btn btn-dark">
 						<i class="fas fa-check"></i> 확인
