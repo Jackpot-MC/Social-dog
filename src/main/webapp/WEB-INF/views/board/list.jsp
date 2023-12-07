@@ -131,7 +131,3 @@ section.board-list {
 
 
 <%@include file="../layouts/footer.jsp"%>
-            
-
-
-<%@include file="../layouts/footer.jsp"%>
