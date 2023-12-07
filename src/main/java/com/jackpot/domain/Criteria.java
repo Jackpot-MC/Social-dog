@@ -17,11 +17,11 @@ public class Criteria {
 	private String keyword;
 
 	public Criteria() {
-		this(1, 9);
+		this(1, 6);
 	}
 
 	public Criteria(int pageNum) {
-		this(pageNum, 10);
+		this(pageNum, 6);
 	}
 
 	public Criteria(int pageNum, int amount) {

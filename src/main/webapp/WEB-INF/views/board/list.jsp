@@ -76,7 +76,6 @@ section.board-list {
 
 <section class="board-list">
     <div class="page-title">
-        <div class="container">
             <h3 style="padding-bottom:60px;">커뮤니티</h3>
     
 		    <%@ include file="../common/search_bar.jsp"%>
@@ -127,11 +126,8 @@ section.board-list {
 		        </div>
 		    </div>
 		</div>
-	</div>
 		<%@ include file="../common/pagination.jsp"%>
 </section>
-
-
 
 
 <%@include file="../layouts/footer.jsp"%>

@@ -23,10 +23,10 @@ a:hover {
     color: #455A64
 }
 
-.row {
+/* .row {
 	display: flex;
-	flex-wrap: nowrap;
-}
+	flex-wrap: wrap;
+} */
 
 .card3 {
     border: 0;
