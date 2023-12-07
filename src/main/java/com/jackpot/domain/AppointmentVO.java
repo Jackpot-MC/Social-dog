@@ -32,4 +32,8 @@ public class AppointmentVO {
 	private Long participantId;
 	private Long memberId;
 	private String memberName;
+	
+	public String getSummary() {
+		return content.replace("<p>", "").replace("</p>", " ").replace("<br>", " ");
+	}
 }

@@ -52,11 +52,11 @@
                         		주최자 <i class="fa-solid fa-paw" style="color: #ffc107;"></i> ${appointment.memberName}</span><br>
                     			<span style="color:#808080; font-size:14px;">
 									<c:choose>
-								        <c:when test="${fn:length(appointment.placeName) gt 148}">
-									        <c:out value="${fn:substring(appointment.placeName, 0, 147)}"/>...
+								        <c:when test="${fn:length(appointment.summary) gt 148}">
+									        <c:out value="${fn:substring(appointment.summary, 0, 147)}"/>...
 								        </c:when>
 								        <c:otherwise>
-									        <c:out value="${appointment.content}"></c:out>
+									        <c:out value="${appointment.summary}"></c:out>
 							        </c:otherwise>
 									</c:choose>
 								</span>
