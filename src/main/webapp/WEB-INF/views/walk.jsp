@@ -101,7 +101,7 @@
 						<div class="col-md-8 themed-grid-col">
 							<div class="map_wrap">
 								<div id="map"
-									style="width: 100%; height: 700px; position: relative; overflow: hidden;"></div>
+									style="width: auto; height: 700px; position: relative; overflow: hidden;"></div>
 
 								<!-- 키워드 검색 -->
 								<div id="menu_wrap" class="bg_white">
