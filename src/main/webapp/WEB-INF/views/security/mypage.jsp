@@ -21,6 +21,30 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+/* 모바일 화면에 대한 스타일 */
+@media only screen and (max-width: 767px) {
+	.card{
+	    margin: auto;
+	}
+
+    .cardHolder {
+        flex-direction: column; /* 모바일에서 세로로 배치 */
+    }
+
+    .dog-pic {
+    	margin:auto;
+        width: 100%; /* 이미지를 부모 너비에 맞게 조절 */
+        height: auto; /* 비율 유지 */
+    }
+
+    .dog-profile ul {
+        font-size: 14px; /* 폰트 크기 축소 */
+    }
+}
+
+}
+
 </style>
 
 
