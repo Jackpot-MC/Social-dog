@@ -22,12 +22,25 @@ section.register {
 
 .page-title {
   margin-bottom: 60px;
+  margin-top: 60px;
 }
 .page-title h3 {
   font-size: 28px;
   color: #333333;
   font-weight: 400;
   text-align: center;
+}
+
+/* 모바일 화면에 대한 스타일 */
+@media only screen and (max-width: 767px) {
+    .container {
+    	width: 100%;
+        padding: 0 15px;
+    }
+
+    .form-control {
+        width: 100%; /* 입력 필드를 화면에 맞게 100%로 설정 */
+    }
 }
 
 </style>
@@ -128,11 +141,9 @@ $('#content').summernote('fontName', 'Arial');
 
 <%-- <sec:authentication property="principal.memberId" var="memberId"/> --%>
 
-<section class="register">
+<div class="container">
 	<div class="page-title">
-		<div class="container">
-			<h3>약속 만들기</h3>
-		</div>
+		<h3>약속 만들기</h3>
 	</div>
 	
 <div class="panel panel-default">
@@ -230,6 +241,6 @@ $('#content').summernote('fontName', 'Arial');
 		</div>
 		
 	</div>
-</section>
+</div>
 
 <%@ include file="../layouts/footer.jsp" %>
